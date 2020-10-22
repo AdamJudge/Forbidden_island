@@ -1,4 +1,4 @@
 # Forbidden_island
-Java Software Engineering Project\n
-Authors: Adam Judge & Catherine Waecther\n
-Author Date: 22/10/2020\n
+Java Software Engineering Project
+Authors: Adam Judge & Catherine Waecther
+Author Date: 22/10/2020
