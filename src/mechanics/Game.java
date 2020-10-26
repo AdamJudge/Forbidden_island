@@ -1,5 +1,5 @@
 package mechanics;
 
-public class setup {
+public class Game {
 
 }
