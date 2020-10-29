@@ -1,6 +1,16 @@
+/**
+ * Class Name: Action
+ *
+ * DETAILS
+ * 
+ * Author: @author adamj
+ * Version: @version 
+ * Creation Date: 22/10/20
+ * Last Modified: 29/10/20
+ */
+
 package mechanics.actions;
 
-import java.util.ArrayList;
 
 /* Three abstract classes to be implemented by actions.
 	
