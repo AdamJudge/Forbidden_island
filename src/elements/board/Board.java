@@ -17,15 +17,15 @@ import java.util.ArrayList;
  */
 public class Board {
 
-	static int nbr_tiles =24;	// number of tiles in the board
-	Set<Tile> tiles;			// set of tiles in the board
-	// NB: tiles can be a set because the order is determined by the position field of each tile
+	static private int nbr_tiles =24;	// number of tiles in the board
 	
 	/**
 	 * Board Constructor
 	 * 	Creates all tiles in the board
 	 */
 	public Board() {
+		Set<Tile> tiles;			// set of tiles in the board
+		// NB: tiles can be a set because the order is determined by the position field of each tile
 		
 		tiles = new HashSet<Tile>(); // create empty set of tiles
 		
