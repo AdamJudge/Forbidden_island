@@ -17,7 +17,7 @@ import players.Player;
 import java.util.Set;
 
 public class Setup {
-	protected Set<Player> playerList = new TreeSet<Player>();
+	protected Set<Player> playerList;
 	protected Board board;
 	protected WaterLevel waterLevel;
 	
@@ -31,7 +31,7 @@ public class Setup {
 	 * :)
 	 */
 	public Setup() {
-		
+		playerList = new TreeSet<Player>();
 	}
 	
 	public void addPlayer(Player player) {
@@ -43,7 +43,7 @@ public class Setup {
 	}
 	
 	public void dealStartingCards() {
-		
+		// Deal six cards
 	}
 	
 	public void flipStartingFloodCards() {

@@ -17,17 +17,19 @@ import java.util.Set;
 import elements.cards.Card;
 
 public class Hand {
-	protected Set<Card> hand = new HashSet<Card>();
+	protected Set<Card> hand;
 	
 	public Hand() {
 		hand = new HashSet<Card>();
 	}
 	
 	public void addCard(Card card) {
+		this.hand.add(card);
 		// Add card to hand
 	}
 	
 	public void discardCard(Card card) {
+		this.hand.remove(card);
 		// Remove card from hand
 	}
 	

@@ -15,11 +15,15 @@ public class Game {
 	
 	public Game() {	
 	}
+	
 	public Boolean isOver() {
 		return true;
 	}
 	
 	public void playGame() {
+		while(isOver()) {
+			
+		}
 		//Have fun!
 	}
 }
