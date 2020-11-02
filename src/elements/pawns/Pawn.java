@@ -22,6 +22,7 @@ import java.util.HashSet;
  */
 public abstract class Pawn {
 
+<<<<<<< HEAD
 	private Position position; // pawn's position
 	
 	/**
@@ -84,6 +85,18 @@ public abstract class Pawn {
 	
 	
 	// ArrayList<Tile> swim_check()
+
+
+
+
+
+
+
+
+
+
+
+
 	// bool swim(Tile destination)
 	
 }
