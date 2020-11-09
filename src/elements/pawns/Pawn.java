@@ -16,6 +16,8 @@ import java.util.HashSet;
  * @version 1.2 - changed swim to use moveCheck instead of this.moveCheck
  * 	This makes more sense because the move rules and swim rules are always the same (as long as the current tile is removed)
  *
+ *	Date created: 26/10/20
+ *	Last modified: 09/11/20
  */
 public abstract class Pawn {
 
@@ -29,7 +31,7 @@ public abstract class Pawn {
 	 * @param allTiles - all tiles on the board
 	 * @return validTiles
 	 */
-	Set<Tile> moveCheck(Set<Tile> allTiles){
+	public Set<Tile> moveCheck(Set<Tile> allTiles){
 		Set<Tile> validTiles = new HashSet<Tile>();
 		
 		for( Tile tile : allTiles) {
@@ -47,7 +49,7 @@ public abstract class Pawn {
 	 * 	move pawn to a destination tile (used for swimming as well)
 	 * @param destination
 	 */
-	void move(Tile destination) {
+	public void move(Tile destination) {
 		position.setPosition(destination.getX(), destination.getY());
 	}
 	
@@ -58,8 +60,8 @@ public abstract class Pawn {
 	 * @param allTiles
 	 * @return
 	 */
-	Set<Tile> shoreupCheck(Set<Tile> allTiles){
-		Set<Tile> validTiles =  this.moveCheck(allTiles);						// the basic 
+	public Set<Tile> shoreupCheck(Set<Tile> allTiles){
+		Set<Tile> validTiles =  this.moveCheck(allTiles);					
 		for (Tile tile : validTiles) {
 			if (tile.getStatus() != TileStatus.FLOODED) {
 				tile.remove();
@@ -68,20 +70,26 @@ public abstract class Pawn {
 		return validTiles;
 	}
 	
+	
 	/**
 	 * shoreup 
 	 * 	pawn shores up a tile 
 	 * 	------------------------- does this make sense?? -----------------------------------------------
 	 * @param tile
 	 */
-	void shoreup(Tile tile) {		// should this actually be here...? 
+	public void shoreup(Tile tile) {		// should this actually be here...? 
 		tile.shoreup();
 	}
 	
 	
-	
-	// ArrayList<Tile> swim_check()
-	Set<Tile> swimCheck(Set<Tile> allTiles){
+	/**
+	 * swimCheck 
+	 * 	returns the set of tiles the pawn is allowed to swim to. checks status of tile the pawn is on
+	 * 
+	 * @param allTiles
+	 * @return
+	 */
+	public Set<Tile> swimCheck(Set<Tile> allTiles){
 		Set<Tile> validTiles = new HashSet<Tile>();
 		for (Tile tile : allTiles) {
 			if(tile.getX() == position.getX() && tile.getY() == position.getY() && tile.getStatus() == TileStatus.REMOVED) {
