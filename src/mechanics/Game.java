@@ -11,12 +11,22 @@
 
 package mechanics;
 
+import java.util.Set;
+
+import elements.board.Board;
+import elements.board.WaterLevel;
+import players.Player;
+
 public class Game {
+	protected Set<Player> playerList;
+	protected Board board;
+	protected WaterLevel waterLevel;
 	
 	public Game() {	
 	}
 	
 	public Boolean isOver() {
+		// O B S E R V E 	M E
 		return true;
 	}
 	
