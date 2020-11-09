@@ -22,7 +22,7 @@ import java.util.HashSet;
  */
 public abstract class Pawn {
 
-<<<<<<< HEAD
+
 	private Position position; // pawn's position
 	
 	/**
@@ -85,7 +85,15 @@ public abstract class Pawn {
 	
 	
 	// ArrayList<Tile> swim_check()
-
+	Set<Tile> swimCheck(Set<Tile> allTiles){
+		Set<Tile> validTiles = new HashSet<Tile>();
+		for (Tile tile : allTiles) {
+			if(tile.getX() == position.getX() && tile.getY() == position.getY() && tile.getStatus() == TileStatus.REMOVED) {
+				validTiles = this.moveCheck(allTiles);				
+			}
+		}
+		return validTiles;
+	}
 
 
 
