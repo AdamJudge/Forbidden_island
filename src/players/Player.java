@@ -18,8 +18,11 @@ public class Player {
 	protected Pawn pawn;
 	protected Hand hand;	
 	
-	public Player(String name, Pawn pawn) {
+	public Player(String name) {
 		this.name=name;
+	}
+	
+	public void setPawn(Pawn pawn) {
 		this.pawn=pawn;
 	}
 	
