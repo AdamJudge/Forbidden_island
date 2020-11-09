@@ -22,7 +22,6 @@ import java.util.HashSet;
  */
 public abstract class Pawn {
 
-<<<<<<< HEAD
 	private Position position; // pawn's position
 	
 	/**
