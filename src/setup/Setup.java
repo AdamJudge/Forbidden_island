@@ -1,7 +1,7 @@
 /**
  * Class Name: Setup
  *
- * DETAILS
+ * Singleton Facade for setting up game of Forbidden Island
  * 
  * Author: @author adamj
  * Version: @version 
@@ -9,54 +9,40 @@
  * Last Modified: 29/10/20
  */
 
-package mechanics;
-import java.util.TreeSet;
-import elements.board.Board;
-import elements.board.WaterLevel;
-import players.Player;
-import java.util.Set;
+package setup;
+import java.util.Scanner;
+
 
 public class Setup {
-	protected Set<Player> playerList;
-	protected Board board;
-	protected WaterLevel waterLevel;
+	private static Setup setup = null;
 	
-	/*
-	 * Create board
-	 * Assign Players
-	 * Assign pawn to player of certain type
-	 * Place Pawns on board (board.place(pawn))
-	 * Deal starting cards
-	 * flip 6 flood cards
-	 * :)
-	 */
-	public Setup() {
-		playerList = new TreeSet<Player>();
+	// All other private setups such as board/player
+	private PlayerSetup playerSetup;
+	
+	// Singleton Instance
+	public static Setup getInstance() {
+		if(setup == null) {
+			setup = new Setup();
+		}
+		return setup;
 	}
 	
-	public void addPlayer(Player player) {
-		this.playerList.add(player);
+	//Private constructor as singleton
+	private Setup() {
+		this.playerSetup = new PlayerSetup();
 	}
 	
-	public void setPlayerPawn() {
-		
+	public void setupAll(Scanner user) {
+		welcomeScreen();
+		playerSetup.setupPlayers(user);
 	}
 	
-	public void dealStartingCards() {
-		// Deal six cards
-	}
-	
-	public void flipStartingFloodCards() {
-		
-	}
-	
-	public void startCards() {
-		this.dealStartingCards();
-		this.flipStartingFloodCards();
-	}
-	
-	@Override
-	public String toString() {
-		return null;
-	}
+    public void welcomeScreen(){
+    	System.out.println("___________         ___.   .__    .___  .___              .___       .__                     .___");
+    	System.out.println("\\_   _____/_________\\_ |__ |__| __| _/__| _/____   ____   |   | _____|  | _____    ____    __| _/");
+    	System.out.println(" |    __)/  _ \\_  __ \\ __ \\|  |/ __ |/ __ |/ __ \\ /    \\  |   |/  ___/  | \\__  \\  /    \\  / __ | ");
+    	System.out.println(" |     \\(  <_> )  | \\/ \\_\\ \\  / /_/ / /_/ \\  ___/|   |  \\ |   |\\___ \\|  |__/ __ \\|   |  \\/ /_/ | ");
+    	System.out.println(" \\___  / \\____/|__|  |___  /__\\____ \\____ |\\___  >___|  / |___/____  >____(____  /___|  /\\____ | ");
+    	System.out.println("     \\/                  \\/        \\/    \\/    \\/     \\/           \\/          \\/     \\/      \\/");
+    }
 }
