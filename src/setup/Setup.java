@@ -30,7 +30,6 @@ public class Setup {
 	 * flip 6 flood cards
 	 * :)
 	 */
-	
 	public Setup() {
 		playerList = new TreeSet<Player>();
 	}
@@ -39,10 +38,8 @@ public class Setup {
 		this.playerList.add(player);
 	}
 	
-	public void setPlayerPawns() {
-		for(Player p : playerList) {
-//			p.setPawn();
-		}
+	public void setPlayerPawn() {
+		
 	}
 	
 	public void dealStartingCards() {
