@@ -11,6 +11,16 @@
 
 package main;
 
-public class ForbiddenIsland {
+import java.util.Scanner;
+import setup.Setup;
 
+public class ForbiddenIsland {
+	public static void main(String[] args) {
+		Scanner inputScanner = new Scanner(System.in);
+		Setup.getInstance().setupAll(inputScanner);
+		        
+        //GameManager.getInstance().doGameplay(inputScanner);
+
+        inputScanner.close();
+	}
 }
