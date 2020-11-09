@@ -2,7 +2,6 @@ package elements.pawns;
 
 import elements.board.Position;
 import elements.board.Tile;
-import elements.board.TileNames;
 import elements.board.TileStatus;
 
 import java.util.Set;
@@ -12,21 +11,15 @@ import java.util.HashSet;
 /**
  * Pawn Class
  *  represents a pawn element
- *  
- *  ------------------- doesn't implement swimming yet because I need to check rules -------------------------
- *  ------------------------------- shore up doesn't really make sense? --------------------------------------
- *  
+ *    
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.2 - changed swim to use moveCheck instead of this.moveCheck
+ * 	This makes more sense because the move rules and swim rules are always the same (as long as the current tile is removed)
  *
  */
 public abstract class Pawn {
 
-
-
-
-
-	private Position position; // pawn's position
+	protected Position position; // pawn's position
 	
 	/**
 	 * moveCheck
@@ -51,7 +44,7 @@ public abstract class Pawn {
 	
 	/**
 	 * move
-	 * 	move pawn to a destination tile
+	 * 	move pawn to a destination tile (used for swimming as well)
 	 * @param destination
 	 */
 	void move(Tile destination) {
@@ -92,22 +85,10 @@ public abstract class Pawn {
 		Set<Tile> validTiles = new HashSet<Tile>();
 		for (Tile tile : allTiles) {
 			if(tile.getX() == position.getX() && tile.getY() == position.getY() && tile.getStatus() == TileStatus.REMOVED) {
-				validTiles = this.moveCheck(allTiles);				
+				validTiles = moveCheck(allTiles);				
 			}
 		}
 		return validTiles;
 	}
 
-
-
-
-
-
-
-
-
-
-
-	// bool swim(Tile destination)
-	
 }
