@@ -30,6 +30,10 @@ public class Player {
 		this.hand=hand;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+	
 	@Override
 	public String toString() {
 		return ("Name: " + this.name + ", pawn: " + this.pawn.toString() + ", hand: TBD");
