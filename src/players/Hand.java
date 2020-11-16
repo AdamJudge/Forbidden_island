@@ -35,6 +35,6 @@ public class Hand {
 	
 	@Override
 	public String toString() {
-		return hand.toString();
+		return ("hand contents: " + hand.toString());
 	}
 }
