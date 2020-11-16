@@ -6,4 +6,9 @@ public class Diver extends Pawn {
 	// swimCheck
 	// moveCheck
 	
+	
+	public Diver() {
+		position.setPosition(0, 0);
+	}
+	
 }
