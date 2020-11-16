@@ -40,4 +40,8 @@ public class Navigator extends Pawn {
 	public void moveOther(Pawn otherPawn, Tile destination) {
 		otherPawn.move(destination);
 	}
+	
+	public Navigator() {
+		position.setPosition(0, 0);
+	}
 }

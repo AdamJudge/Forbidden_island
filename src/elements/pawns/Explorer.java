@@ -61,4 +61,7 @@ public class Explorer extends Pawn {
 		return validTiles;
 	}
 	
+	public Explorer() {
+		position.setPosition(0, 0);
+	}
 }
