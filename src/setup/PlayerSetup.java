@@ -14,11 +14,12 @@ import java.util.Scanner;
 import players.Player;
 import elements.pawns.Pawn;
 import elements.pawns.PawnEnum;
+import elements.pawns.*;
 
 public class PlayerSetup {
-	private Set<Player> playerList = new TreeSet<Player>();
+	private List<Player> playerList = new ArrayList<Player>();
 	private List<String> pawnList = new ArrayList<String>();
-	public Set<String> playerNames = new HashSet<String>();
+	public Set<String> playerNames = new TreeSet<String>();
 	private int numPlayers;
 	
 	public PlayerSetup() {
@@ -29,7 +30,7 @@ public class PlayerSetup {
 		setPlayerNum(user);
 		initPawnEnums();
 		setPlayerNames(user);
-		setupPlayerList();
+		setupPlayerPawns();
 	}
 	
 	public void setPlayerNum(Scanner user) {
@@ -49,6 +50,7 @@ public class PlayerSetup {
 		this.setNumPlayers(inputNum);
 	}
 	
+	// gets player names for each user. Can contain symbols letters and numbers.
 	public void setPlayerNames(Scanner user) {
 		String line;
 		for(int i=1; i <= this.getNumPlayers(); i++) {
@@ -58,13 +60,18 @@ public class PlayerSetup {
 		}
 	}
 	
-	public void setupPlayerList() {
+	public void setupPlayerPawns() {
 		System.out.println("Players: " + playerNames);
 		for (String p : playerNames) {
+			System.out.println(p);
 			Player player = new Player(p);
 			System.out.println(p + " will have this pawn: " + pawnList.get(0));
-			//player.setPawn(pawn);
+			Pawn pawn=PlayerSetup.makePawn(pawnList.get(0));
+			player.setPawn(pawn);
+			System.out.println("Player Pawn set to " + pawnList.get(0));
 			pawnList.remove(0);
+			playerList.add(player);
+			System.out.println(player.toString());
 		}
 	}
 	
@@ -80,6 +87,33 @@ public class PlayerSetup {
 		Collections.shuffle(pawnList);
 	}
 
+	public static Pawn makePawn(String p_name) {
+		Pawn pawn = null;
+		switch(p_name) {
+		case "Diver":
+			pawn = new Diver();
+			break;
+		case "Engineer":
+			pawn = new Engineer();
+			break;
+		case "Explorer":
+			pawn = new Explorer();
+			break;
+		case "Messenger":
+			pawn = new Messenger();
+			break;
+		case "Navigator":
+			pawn = new Navigator();
+			break;
+		case "Pilot":
+			pawn = new Pilot();
+			break;
+		default:
+			System.out.println("Pawn name " + p_name + " not found");
+			pawn = new Pilot();
+		}
+		return pawn;
+	}
 	public int getNumPlayers() {
 		return numPlayers;
 	}
