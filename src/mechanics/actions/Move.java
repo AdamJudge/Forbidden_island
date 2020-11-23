@@ -11,6 +11,14 @@
 
 package mechanics.actions;
 
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+import elements.board.Board;
+import elements.board.Tile;
+import elements.pawns.Pawn;
+
 /* 
 	Check pawns possible return places (TO BE DONE IN PAWN)
 	
@@ -18,8 +26,9 @@ package mechanics.actions;
 */
 
 public class Move extends Action{
-	@Override
-	public void doAction() {
+	public void movePawn(Pawn pawn, Scanner user, Board board) {
 		// Move pawn to elem of array list
+		Set<Tile> validTiles = new HashSet<Tile>();
+		//validTiles=pawn.moveCheck();
 	}
 }
