@@ -45,9 +45,22 @@ public class PlayerSetup {
 	
 	// gets player names for each user. Can contain symbols letters and numbers.
 	public void setPlayerNames(Scanner user) throws IOException {
+		//Sets players names
+		boolean duplicate;
+		String name;
 		for(int i=1; i <= this.getNumPlayers(); i++) {
+			duplicate=true;
 			System.out.println("Enter Player " + i + "'s name: ");
-			playerNames.add(ParseLetterInputs.main(user));
+			//Loop while entered name is a duplicate
+			while (duplicate){
+				name=ParseLetterInputs.main(user);
+				if (playerNames.contains(name)) {
+					System.out.println("Enter an unique name for player "+i+":");
+				} else {
+					duplicate=false;
+					playerNames.add(name);
+				}
+			}
 		}
 	}
 	

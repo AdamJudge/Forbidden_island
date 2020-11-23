@@ -9,7 +9,6 @@ public class ParseLetterInputs {
 		String input=null;
 		String pattern="[a-zA-Z]+";
 		while (input==null) {
-			System.out.println("Enter a string");
 			try {	
 				input = user.next(pattern);
 			} catch (NoSuchElementException e){
