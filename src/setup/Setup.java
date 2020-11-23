@@ -10,6 +10,7 @@
  */
 
 package setup;
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -30,14 +31,16 @@ public class Setup {
 	
 	//Private constructor as singleton
 	private Setup() {
-		this.playerSetup = new PlayerSetup();
-		this.boardSetup = new BoardSetup();
+		this.playerSetup = PlayerSetup.getInstance();
+		this.boardSetup = BoardSetup.getInstance();
 	}
 	
-	public void setupAll(Scanner user) {
+	public void setupAll(Scanner user) throws IOException {
 		welcomeScreen();
 		playerSetup.setupPlayers(user);
+		System.out.println("Player setup complete!");
 		boardSetup.setupBoard();
+		System.out.println("Board setup complete!");
 	}
 	
     public void welcomeScreen(){

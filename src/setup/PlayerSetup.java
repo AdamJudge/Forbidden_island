@@ -2,31 +2,31 @@
 
 package setup;
 
+import java.io.IOException;
 import java.util.*;
-
 import players.Player;
 import elements.pawns.Pawn;
 import elements.pawns.*;
 
 public class PlayerSetup {
-//	private static PlayerSetup playerSetup = null;
+	private static PlayerSetup playerSetup = null;
 	private List<Player> playerList = new ArrayList<Player>();
 	public List<Pawn> pawnList = new ArrayList<Pawn>();
-	public Set<String> playerNames = new TreeSet<String>();
+	public List<String> playerNames = new ArrayList<String>();
 	private int numPlayers;
 	
-/*	public static PlayerSetup getInstance() {
+	public static PlayerSetup getInstance() {
 		if(playerSetup == null) {
 			playerSetup = new PlayerSetup();
 		}
 		return playerSetup;
-	}*/
+	}
 	
-	public PlayerSetup() {
+	private PlayerSetup() {
 		this.numPlayers = 0;
 	}
 	
-	public void setupPlayers(Scanner user) {
+	public void setupPlayers(Scanner user) throws IOException {
 		setPlayerNum(user);
 		setPlayerNames(user);
 		makePawns();
@@ -35,30 +35,32 @@ public class PlayerSetup {
 		setupPlayerHand();
 	}
 	
-	public void setPlayerNum(Scanner user) {
-		int inputNum = 0;
-		// While player numbers is outside of required range
-		while (inputNum <2 || inputNum > 4) {
-			System.out.println("How many players? [2-4]");
-			try {	
-				inputNum = user.nextInt();
-			} catch (NoSuchElementException e)
-			{
-				System.out.println("Enter an int between 2 and 4 inclusive.");
-				user.next();
-			}
-		}
+	public void setPlayerNum(Scanner user) throws IOException {
+		int inputNum;
+		System.out.println("How many players?");
+		inputNum = ParseNumberInputs.main(user, 2, 4);
 		System.out.println("Number of players chosen is: " + inputNum);
 		this.setNumPlayers(inputNum);
 	}
 	
 	// gets player names for each user. Can contain symbols letters and numbers.
-	public void setPlayerNames(Scanner user) {
-		String line;
+	public void setPlayerNames(Scanner user) throws IOException {
+		//Sets players names
+		boolean duplicate;
+		String name;
 		for(int i=1; i <= this.getNumPlayers(); i++) {
+			duplicate=true;
 			System.out.println("Enter Player " + i + "'s name: ");
-			line=user.next();
-			playerNames.add(line);
+			//Loop while entered name is a duplicate
+			while (duplicate){
+				name=ParseLetterInputs.main(user);
+				if (playerNames.contains(name)) {
+					System.out.println("Enter an unique name for player "+i+":");
+				} else {
+					duplicate=false;
+					playerNames.add(name);
+				}
+			}
 		}
 	}
 	

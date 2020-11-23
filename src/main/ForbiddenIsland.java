@@ -11,11 +11,12 @@
 
 package main;
 
+import java.io.IOException;
 import java.util.Scanner;
 import setup.Setup;
 
 public class ForbiddenIsland {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Scanner inputScanner = new Scanner(System.in);
 		Setup.getInstance().setupAll(inputScanner);
 		        
