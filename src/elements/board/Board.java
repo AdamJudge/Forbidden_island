@@ -17,17 +17,16 @@ import java.util.ArrayList;
  */
 public class Board {
 	static private int nbr_tiles =24;	// number of tiles in the board
-
-	
+	private Set<Tile> tiles;
 	/**
 	 * Board Constructor
 	 * 	Creates all tiles in the board
 	 */
 	public Board() {
-		Set<Tile> tiles;			// set of tiles in the board
+		//Set<Tile> tiles;			// set of tiles in the board
 		// NB: tiles can be a set because the order is determined by the position field of each tile
 		
-		tiles = new HashSet<Tile>(); // create empty set of tiles
+		this.tiles = new HashSet<Tile>(); // create empty set of tiles
 		
 		ArrayList<Position> positions = new ArrayList<Position>(); // create empty list of positions
 		
@@ -45,7 +44,7 @@ public class Board {
 		
 		// create tiles : name is in a set order, but position is randomised
 		for (TileNames name : TileNames.values()) {
-			tiles.add(new Tile(name, positions.get(tiles.size())));
+			this.tiles.add(new Tile(name, positions.get(this.tiles.size())));
 		}
 	}
 }
