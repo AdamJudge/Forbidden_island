@@ -5,12 +5,14 @@ package setup;
 import java.io.IOException;
 import java.util.*;
 import players.Player;
+import players.PlayerList;
 import elements.pawns.Pawn;
 import elements.pawns.*;
 
 public class PlayerSetup {
 	private static PlayerSetup playerSetup = null;
-	private List<Player> playerList = new ArrayList<Player>();
+	private PlayerList playerList;
+	//private List<Player> playerList = new ArrayList<Player>();
 	public List<Pawn> pawnList = new ArrayList<Pawn>();
 	public List<String> playerNames = new ArrayList<String>();
 	private int numPlayers;
@@ -24,6 +26,7 @@ public class PlayerSetup {
 	
 	private PlayerSetup() {
 		this.numPlayers = 0;
+		this.playerList=PlayerList.getInstance();
 	}
 	
 	public void setupPlayers(Scanner user) throws IOException {
@@ -68,12 +71,12 @@ public class PlayerSetup {
 		System.out.println("Players: " + playerNames);
 		for (String p : playerNames) {
 			Player player = new Player(p);
-			playerList.add(player);
+			playerList.addPlayer(player);
 		}
 	}
 	
 	public void addPlayerPawns() {
-		for (Player p : playerList) {
+		for (Player p : playerList.getPlayers()) {
 			System.out.println(p.getName() + " will have this pawn: " + pawnList.get(0).toString());
 			p.setPawn(pawnList.get(0));
 			System.out.println("Player Pawn set to " + pawnList.get(0));
@@ -93,7 +96,7 @@ public class PlayerSetup {
 	}
 	
 	public void setupPlayerHand() {
-		for (Player p : playerList) {
+		for (Player p : playerList.getPlayers()) {
 			System.out.println("Setting up " + p.getName() + "'s hand"); //TODO add to hand when cards exist
 		}
 	}

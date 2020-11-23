@@ -36,6 +36,6 @@ public class Player {
 	
 	@Override
 	public String toString() {
-		return ("Name: " + this.name + ", pawn: " + this.pawn.toString() + ", hand: TBD");
+		return ("Player Name: " + this.name + ", pawn: " + this.pawn.toString() + ", hand: TBD");
 	}
 }

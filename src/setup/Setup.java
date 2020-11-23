@@ -20,6 +20,7 @@ public class Setup {
 	// All other private setups such as board/player
 	private PlayerSetup playerSetup;
 	private BoardSetup boardSetup;
+	private GameSetup gameSetup;
 	
 	// Singleton Instance
 	public static Setup getInstance() {
@@ -33,6 +34,7 @@ public class Setup {
 	private Setup() {
 		this.playerSetup = PlayerSetup.getInstance();
 		this.boardSetup = BoardSetup.getInstance();
+		this.gameSetup = GameSetup.getInstance();
 	}
 	
 	public void setupAll(Scanner user) throws IOException {
@@ -40,6 +42,8 @@ public class Setup {
 		playerSetup.setupPlayers(user);
 		System.out.println("Player setup complete!");
 		boardSetup.setupBoard();
+		System.out.println("Board setup complete!");
+		gameSetup.setupGame(user);
 		System.out.println("Board setup complete!");
 	}
 	
