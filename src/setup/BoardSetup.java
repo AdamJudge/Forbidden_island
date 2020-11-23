@@ -14,7 +14,7 @@ public class BoardSetup {
 	}
 	
 	private BoardSetup() {
-		this.board = new Board();
+		this.board = Board.getInstance();
 	}
 	
 	public void setupBoard() {
