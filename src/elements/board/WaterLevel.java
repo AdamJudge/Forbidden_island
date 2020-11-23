@@ -4,14 +4,15 @@ package elements.board;
  * WaterLevel Class
  *  Represents the water level marker element
  *  
- * @author Catherine Waechter
+ * @author Catherine Waechter, Adam Judge
  * @version 1.0
+ *  Made singleton
  * Date Created : 26/10/20
  * Last Modified: 29/10/20
  *
  */
 public class WaterLevel {
-	
+	public static WaterLevel waterLevel=null;
 	private int level;		// water level
 	private int nbrCards;	// nbr of flood cards to be drawn at this level
 	
@@ -20,7 +21,18 @@ public class WaterLevel {
 	 * 	Set initial water level and nbr of cards according to difficulty level
 	 * @param difficulty
 	 */
-	public WaterLevel(Difficulty difficulty) {
+	public static WaterLevel getInstance() {
+		if (waterLevel==null) {
+			waterLevel=new WaterLevel();
+		}
+		return waterLevel;
+	}
+	
+	private WaterLevel() {
+
+	}
+	
+	public void setDifficulty(Difficulty difficulty) {
 		if (difficulty == Difficulty.NOVICE) {
 			level = 1;
 			nbrCards = 2;
@@ -38,7 +50,6 @@ public class WaterLevel {
 			nbrCards = 3;
 		}
 	}
-	
 	/**
 	 * raise_level : raises water level by 1
 	 * adjusts number of cards accordingly
