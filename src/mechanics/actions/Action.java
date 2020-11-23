@@ -34,5 +34,5 @@ public abstract class Action{
 		// Print array list, get user input, select action
 	}
 	
-	public abstract void doAction();
+	//public abstract void doAction();
 }

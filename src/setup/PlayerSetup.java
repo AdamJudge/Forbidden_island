@@ -2,25 +2,25 @@
 
 package setup;
 
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 import players.Player;
 import elements.pawns.Pawn;
-import elements.pawns.PawnEnum;
 import elements.pawns.*;
 
 public class PlayerSetup {
+//	private static PlayerSetup playerSetup = null;
 	private List<Player> playerList = new ArrayList<Player>();
-	private List<String> pawnList = new ArrayList<String>();
+	public List<Pawn> pawnList = new ArrayList<Pawn>();
 	public Set<String> playerNames = new TreeSet<String>();
 	private int numPlayers;
+	
+/*	public static PlayerSetup getInstance() {
+		if(playerSetup == null) {
+			playerSetup = new PlayerSetup();
+		}
+		return playerSetup;
+	}*/
 	
 	public PlayerSetup() {
 		this.numPlayers = 0;
@@ -28,10 +28,10 @@ public class PlayerSetup {
 	
 	public void setupPlayers(Scanner user) {
 		setPlayerNum(user);
-		initPawnEnums();
 		setPlayerNames(user);
+		makePawns();
 		setupPlayerList();
-		//setupPlayerPawns();
+		addPlayerPawns();
 		setupPlayerHand();
 	}
 	
@@ -72,40 +72,22 @@ public class PlayerSetup {
 	
 	public void addPlayerPawns() {
 		for (Player p : playerList) {
-			System.out.println(p.getName() + " will have this pawn: " + pawnList.get(0));
-			Pawn pawn=PlayerSetup.makePawn(pawnList.get(0));
-			p.setPawn(pawn);
+			System.out.println(p.getName() + " will have this pawn: " + pawnList.get(0).toString());
+			p.setPawn(pawnList.get(0));
 			System.out.println("Player Pawn set to " + pawnList.get(0));
 			pawnList.remove(0);
 		}
 	}
 
-	public static Pawn makePawn(String p_name) {
-		Pawn pawn = null;
-		switch(p_name) {
-		case "Diver":
-			pawn = new Diver();
-			break;
-		case "Engineer":
-			pawn = new Engineer();
-			break;
-		case "Explorer":
-			pawn = new Explorer();
-			break;
-		case "Messenger":
-			pawn = new Messenger();
-			break;
-		case "Navigator":
-			pawn = new Navigator();
-			break;
-		case "Pilot":
-			pawn = new Pilot();
-			break;
-		default:
-			System.out.println("Pawn name " + p_name + " not found");
-			pawn = new Pilot();
-		}
-		return pawn;
+	public void makePawns() {
+		//Creates all pawns and adds to pawnList
+		this.pawnList.add(new Diver());
+		this.pawnList.add(new Engineer());
+		this.pawnList.add(new Explorer());
+		this.pawnList.add(new Messenger());
+		this.pawnList.add(new Navigator());
+		this.pawnList.add(new Pilot());
+		Collections.shuffle(pawnList);
 	}
 	
 	public void setupPlayerHand() {
@@ -120,17 +102,5 @@ public class PlayerSetup {
 
 	public void setNumPlayers(int numPlayers) {
 		this.numPlayers = numPlayers;
-	}
-
-	public void initPawnEnums() {
-		// Try do with enum later...
-		pawnList.add("Diver");
-		pawnList.add("Engineer");
-		pawnList.add("Explorer");
-		pawnList.add("Messenger");
-		pawnList.add("Navigator");
-		pawnList.add("Pilot");
-		//Shuffle pawns to distribute randomly to players
-		Collections.shuffle(pawnList);
 	}
 }

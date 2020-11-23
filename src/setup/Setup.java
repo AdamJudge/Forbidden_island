@@ -18,6 +18,7 @@ public class Setup {
 	
 	// All other private setups such as board/player
 	private PlayerSetup playerSetup;
+	private BoardSetup boardSetup;
 	
 	// Singleton Instance
 	public static Setup getInstance() {
@@ -30,11 +31,13 @@ public class Setup {
 	//Private constructor as singleton
 	private Setup() {
 		this.playerSetup = new PlayerSetup();
+		this.boardSetup = new BoardSetup();
 	}
 	
 	public void setupAll(Scanner user) {
 		welcomeScreen();
 		playerSetup.setupPlayers(user);
+		boardSetup.setupBoard();
 	}
 	
     public void welcomeScreen(){
