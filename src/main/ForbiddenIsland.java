@@ -13,15 +13,18 @@ package main;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import gameplay.GamePlay;
 import setup.Setup;
 
 public class ForbiddenIsland {
 	public static void main(String[] args) throws IOException {
-		Scanner inputScanner = new Scanner(System.in);
-		Setup.getInstance().setupAll(inputScanner);
-		        
-        //GameManager.getInstance().doGameplay(inputScanner);
-
-        inputScanner.close();
+		Scanner inScan = new Scanner(System.in);
+		Setup.getInstance().setupAll(inScan);
+		
+		GamePlay.getInstance().playGame(inScan);
+		
+		System.out.println("Thanks for playing :)");
+        inScan.close();
 	}
 }
