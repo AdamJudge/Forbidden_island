@@ -4,7 +4,6 @@ package setup;
 
 import java.io.IOException;
 import java.util.*;
-import setup.ParseNumberInputs;
 import players.Player;
 import elements.pawns.Pawn;
 import elements.pawns.*;
@@ -13,7 +12,7 @@ public class PlayerSetup {
 	private static PlayerSetup playerSetup = null;
 	private List<Player> playerList = new ArrayList<Player>();
 	public List<Pawn> pawnList = new ArrayList<Pawn>();
-	public Set<String> playerNames = new TreeSet<String>();
+	public List<String> playerNames = new ArrayList<String>();
 	private int numPlayers;
 	
 	public static PlayerSetup getInstance() {
@@ -45,12 +44,10 @@ public class PlayerSetup {
 	}
 	
 	// gets player names for each user. Can contain symbols letters and numbers.
-	public void setPlayerNames(Scanner user) {
-		String line;
+	public void setPlayerNames(Scanner user) throws IOException {
 		for(int i=1; i <= this.getNumPlayers(); i++) {
 			System.out.println("Enter Player " + i + "'s name: ");
-			line=user.next();
-			playerNames.add(line);
+			playerNames.add(ParseLetterInputs.main(user));
 		}
 	}
 	
