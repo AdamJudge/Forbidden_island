@@ -12,8 +12,7 @@ import java.util.HashSet;
  *  represents a pawn element
  *    
  * @author Catherine Waechter
- * @version 1.2 - changed swim to use moveCheck instead of this.moveCheck
- * 	This makes more sense because the move rules and swim rules are always the same (as long as the current tile is removed)
+ * @version 2 - private field is a tile, not a position
  *
  *	Date created: 26/10/20
  *	Last modified: 09/11/20
@@ -98,6 +97,19 @@ public abstract class Pawn {
 		return validTiles;
 	}
 
+	/**
+	 * getTile 
+	 * 	returns the tile the pawn is on
+	 * @return currentTile
+	 */
+	public Tile getTile() {
+		return currentTile;
+	}
+	
+	/**
+	 * toString
+	 * Prints name of the pawn (ie the pawn type)
+	 */
 	@Override
 	public String toString() {
 		return (this.getClass().getSimpleName());
