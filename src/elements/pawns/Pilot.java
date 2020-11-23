@@ -32,7 +32,7 @@ public class Pilot extends Pawn {
 	// override move
 	
 	public Pilot() {
-		position.setPosition(0, 0);
+		currentTile = null;
 		has_flown = false;
 	}
 	

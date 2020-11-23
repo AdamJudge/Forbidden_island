@@ -1,6 +1,5 @@
 package elements.pawns;
 
-import elements.board.Position;
 import elements.board.Tile;
 import elements.board.TileStatus;
 
@@ -21,7 +20,7 @@ import java.util.HashSet;
  */
 public abstract class Pawn {
 
-	protected Position position; // pawn's position
+	protected Tile currentTile; // tile the pawn is on
 	
 	/**
 	 * moveCheck
@@ -35,7 +34,7 @@ public abstract class Pawn {
 		Set<Tile> validTiles = new HashSet<Tile>();
 		
 		for( Tile tile : allTiles) {
-			if(tile.getX() == position.getX() +1 || tile.getX() == position.getX() - 1 || tile.getY() == position.getY() +1 || tile.getY() == position.getY() -1) {
+			if(tile.getX() == currentTile.getX() +1 || tile.getX() == currentTile.getX() - 1 || tile.getY() == currentTile.getY() +1 || tile.getY() == currentTile.getY() -1) {
 				if(tile.getStatus() != TileStatus.REMOVED) {
 					validTiles.add(tile);
 				}
@@ -50,7 +49,7 @@ public abstract class Pawn {
 	 * @param destination
 	 */
 	public void move(Tile destination) {
-		position.setPosition(destination.getX(), destination.getY());
+		currentTile = destination;
 	}
 	
 	/**
@@ -92,7 +91,7 @@ public abstract class Pawn {
 	public Set<Tile> swimCheck(Set<Tile> allTiles){
 		Set<Tile> validTiles = new HashSet<Tile>();
 		for (Tile tile : allTiles) {
-			if(tile.getX() == position.getX() && tile.getY() == position.getY() && tile.getStatus() == TileStatus.REMOVED) {
+			if(tile.getX() == currentTile.getX() && tile.getY() == currentTile.getY() && tile.getStatus() == TileStatus.REMOVED) {
 				validTiles = moveCheck(allTiles);				
 			}
 		}

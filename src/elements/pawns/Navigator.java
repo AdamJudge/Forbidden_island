@@ -42,6 +42,6 @@ public class Navigator extends Pawn {
 	}
 	
 	public Navigator() {
-		position.setPosition(0, 0);
+		currentTile = null;
 	}
 }

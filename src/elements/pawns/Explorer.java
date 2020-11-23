@@ -28,13 +28,13 @@ public class Explorer extends Pawn {
 		
 		// add diagonal tiles to the set of valid tiles
 		for (Tile tile : allTiles) {
-			if(position.getY() + 1 == tile.getY()) {		// row of tiles below the pawn
-				if(position.getX() + 1 == tile.getX() || position.getX() - 1 == tile.getX()) { 	// diagonal tiles
+			if(currentTile.getY() + 1 == tile.getY()) {		// row of tiles below the pawn
+				if(currentTile.getX() + 1 == tile.getX() || currentTile.getX() - 1 == tile.getX()) { 	// diagonal tiles
 					validTiles.add(tile);
 				}
 			}
-			else if(position.getY() - 1 == tile.getY()) {		// row of tiles above the pawn
-				if(position.getX() + 1 == tile.getX() || position.getX() - 1 == tile.getX()) { 	// diagonal tiles
+			else if(currentTile.getY() - 1 == tile.getY()) {		// row of tiles above the pawn
+				if(currentTile.getX() + 1 == tile.getX() || currentTile.getX() - 1 == tile.getX()) { 	// diagonal tiles
 					validTiles.add(tile);
 				}
 			}
@@ -62,6 +62,6 @@ public class Explorer extends Pawn {
 	}
 	
 	public Explorer() {
-		position.setPosition(0, 0);
+		currentTile = null;
 	}
 }

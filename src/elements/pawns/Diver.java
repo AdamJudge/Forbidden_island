@@ -8,7 +8,7 @@ public class Diver extends Pawn {
 	
 	
 	public Diver() {
-		position.setPosition(0, 0);
+		currentTile = null;
 	}
 	
 }
