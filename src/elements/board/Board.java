@@ -62,7 +62,7 @@ public class Board {
 	 * Board Constructor
 	 * 	Creates all tiles in the board
 	 */
-	public Board() {
+	private Board() {
 		//Set<Tile> tiles;			// set of tiles in the board
 		// NB: tiles can be a set because the order is determined by the position field of each tile
 		
