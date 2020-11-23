@@ -16,14 +16,21 @@ import java.util.ArrayList;
  * Last modified: 29/10/20
  */
 public class Board {
-
+	private static Board board = null;
 	static private int nbr_tiles =24;	// number of tiles in the board
+	
+	public static Board getInstance() {
+		if(board == null) {
+			board = new Board();
+		}
+		return board;
+	}
 	
 	/**
 	 * Board Constructor
 	 * 	Creates all tiles in the board
 	 */
-	public Board() {
+	private Board() {
 		Set<Tile> tiles;			// set of tiles in the board
 		// NB: tiles can be a set because the order is determined by the position field of each tile
 		
