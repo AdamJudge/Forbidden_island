@@ -8,9 +8,11 @@ import elements.treasures.TreasureNames;
  *  represents a tile
  *  
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.1
+ * 	added toString
+ * 
  * Date Created : 26/10/20
- * Last Modified: 29/10/20
+ * Last Modified: 23/11/20
  */
 public class Tile {
 	
@@ -109,6 +111,13 @@ public class Tile {
 		return position.getY();
 	}
 	
-	
+	/**
+	 * toString
+	 * returns name of the tile
+	 */
+	@Override
+	public String toString() {
+		return name.name();
+	}
 	
 }
