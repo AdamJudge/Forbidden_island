@@ -2,31 +2,32 @@
 
 package setup;
 
+import java.io.IOException;
 import java.util.*;
-
+import setup.parseInputs;
 import players.Player;
 import elements.pawns.Pawn;
 import elements.pawns.*;
 
 public class PlayerSetup {
-//	private static PlayerSetup playerSetup = null;
+	private static PlayerSetup playerSetup = null;
 	private List<Player> playerList = new ArrayList<Player>();
 	public List<Pawn> pawnList = new ArrayList<Pawn>();
 	public Set<String> playerNames = new TreeSet<String>();
 	private int numPlayers;
 	
-/*	public static PlayerSetup getInstance() {
+	public static PlayerSetup getInstance() {
 		if(playerSetup == null) {
 			playerSetup = new PlayerSetup();
 		}
 		return playerSetup;
-	}*/
+	}
 	
-	public PlayerSetup() {
+	private PlayerSetup() {
 		this.numPlayers = 0;
 	}
 	
-	public void setupPlayers(Scanner user) {
+	public void setupPlayers(Scanner user) throws IOException {
 		setPlayerNum(user);
 		setPlayerNames(user);
 		makePawns();
@@ -35,19 +36,10 @@ public class PlayerSetup {
 		setupPlayerHand();
 	}
 	
-	public void setPlayerNum(Scanner user) {
-		int inputNum = 0;
-		// While player numbers is outside of required range
-		while (inputNum <2 || inputNum > 4) {
-			System.out.println("How many players? [2-4]");
-			try {	
-				inputNum = user.nextInt();
-			} catch (NoSuchElementException e)
-			{
-				System.out.println("Enter an int between 2 and 4 inclusive.");
-				user.next();
-			}
-		}
+	public void setPlayerNum(Scanner user) throws IOException {
+		int inputNum;
+		System.out.println("How many players?");
+		inputNum = parseInputs.main(user, 2, 4);
 		System.out.println("Number of players chosen is: " + inputNum);
 		this.setNumPlayers(inputNum);
 	}
