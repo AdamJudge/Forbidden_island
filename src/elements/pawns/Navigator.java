@@ -1,6 +1,6 @@
 package elements.pawns;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import elements.board.Tile;
 
@@ -10,10 +10,11 @@ import elements.board.Tile;
  * 	Represents the navigator pawn (Yellow)
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 2.0
+ * removed allTiles parameter from all check methods, changed return to ArrayList
  * 
  *  Date created: 26/10/20
- *  Last modified: 09/11/20
+ *  Last modified: 23/11/20
  */
 public class Navigator extends Pawn {
 
@@ -25,9 +26,8 @@ public class Navigator extends Pawn {
 	 * @param allTiles 	
 	 * @return set of valid tiles for the other pawn 
 	 */
-	public Set<Tile> moveOtherCheck(Pawn otherPawn, Set<Tile> allTiles) {
-		
-		Set<Tile> validTiles = super.moveCheck(allTiles); 	// only adjacent tiles, regardless of pawn type
+	public ArrayList<Tile> moveOtherCheck(Pawn otherPawn) {
+		ArrayList<Tile> validTiles = otherPawn.moveCheck(); 	// only adjacent tiles, regardless of pawn type
 		return validTiles;
 	}
 	

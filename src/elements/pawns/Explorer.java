@@ -1,19 +1,22 @@
 package elements.pawns;
 
 import java.util.Set;
+import java.util.ArrayList;
 
 import elements.board.Tile;
 import elements.board.TileStatus;
+import elements.board.Board;
+
 
 /**
  * Explorer class
  * 	Represents the explorer pawn (Green)
  * 
  * @author Catherine Waechter
- * @version 1.0
- * 
+ * @version 2.0
+ * 	adjusted to have currentTile field. removed allTiles parameter from all check methods, changed return to ArrayList
  *  Date created: 26/10/20
- *  Last modified: 09/11/20
+ *  Last modified: 23/11/20
  */
 public class Explorer extends Pawn {
 	/**
@@ -22,12 +25,14 @@ public class Explorer extends Pawn {
 	 * @param allTiles
 	 * @return set of valid tiles
 	 */
+	
 	@Override
-	public Set<Tile> moveCheck(Set<Tile> allTiles){
-		Set<Tile> validTiles = super.moveCheck(allTiles); // tiles that are valid for the base pawn are also valid for the explorer
+	public ArrayList<Tile> moveCheck(){
+		ArrayList<Tile> validTiles = super.moveCheck(); // tiles that are valid for the base pawn are also valid for the explorer
 		
+		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
 		// add diagonal tiles to the set of valid tiles
-		for (Tile tile : allTiles) {
+		for (Tile tile : remainingTiles) {
 			if(currentTile.getY() + 1 == tile.getY()) {		// row of tiles below the pawn
 				if(currentTile.getX() + 1 == tile.getX() || currentTile.getX() - 1 == tile.getX()) { 	// diagonal tiles
 					validTiles.add(tile);
@@ -51,11 +56,11 @@ public class Explorer extends Pawn {
 	 * @return set of valid tiles
 	 */
 	@Override
-	public Set<Tile> shoreupCheck(Set<Tile> allTiles){			
-		Set<Tile> validTiles = moveCheck(allTiles);
+	public ArrayList<Tile> shoreupCheck(){			
+		ArrayList<Tile> validTiles = moveCheck();
 		for (Tile tile : validTiles) {
 			if (tile.getStatus() != TileStatus.FLOODED) {
-				tile.remove();
+				validTiles.remove(tile);
 			}
 		}
 		return validTiles;

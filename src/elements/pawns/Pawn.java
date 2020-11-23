@@ -1,10 +1,11 @@
 package elements.pawns;
 
+import elements.board.Board;
 import elements.board.Tile;
 import elements.board.TileStatus;
 
 import java.util.Set;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 
 /**
@@ -12,10 +13,10 @@ import java.util.HashSet;
  *  represents a pawn element
  *    
  * @author Catherine Waechter
- * @version 2 - private field is a tile, not a position
+ * @version 2.1 - private field is a tile, not a position. check methods no longer take in parameters, and return ArrayLists, not Sets
  *
  *	Date created: 26/10/20
- *	Last modified: 09/11/20
+ *	Last modified: 23/11/20
  */
 public abstract class Pawn {
 
@@ -29,10 +30,10 @@ public abstract class Pawn {
 	 * @param allTiles - all tiles on the board
 	 * @return validTiles
 	 */
-	public Set<Tile> moveCheck(Set<Tile> allTiles){
-		Set<Tile> validTiles = new HashSet<Tile>();
-		
-		for( Tile tile : allTiles) {
+	public ArrayList<Tile> moveCheck(){
+		ArrayList<Tile> validTiles = new ArrayList<Tile>();
+		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
+		for( Tile tile : remainingTiles) {
 			if(tile.getX() == currentTile.getX() +1 || tile.getX() == currentTile.getX() - 1 || tile.getY() == currentTile.getY() +1 || tile.getY() == currentTile.getY() -1) {
 				if(tile.getStatus() != TileStatus.REMOVED) {
 					validTiles.add(tile);
@@ -58,8 +59,8 @@ public abstract class Pawn {
 	 * @param allTiles
 	 * @return
 	 */
-	public Set<Tile> shoreupCheck(Set<Tile> allTiles){
-		Set<Tile> validTiles =  this.moveCheck(allTiles);					
+	public ArrayList<Tile> shoreupCheck(){
+		ArrayList<Tile> validTiles =  this.moveCheck();					
 		for (Tile tile : validTiles) {
 			if (tile.getStatus() != TileStatus.FLOODED) {
 				tile.remove();
@@ -87,12 +88,10 @@ public abstract class Pawn {
 	 * @param allTiles
 	 * @return
 	 */
-	public Set<Tile> swimCheck(Set<Tile> allTiles){
-		Set<Tile> validTiles = new HashSet<Tile>();
-		for (Tile tile : allTiles) {
-			if(tile.getX() == currentTile.getX() && tile.getY() == currentTile.getY() && tile.getStatus() == TileStatus.REMOVED) {
-				validTiles = moveCheck(allTiles);				
-			}
+	public ArrayList<Tile> swimCheck(){
+		ArrayList<Tile> validTiles = new ArrayList<Tile>();
+		if(currentTile.getStatus() == TileStatus.REMOVED) {
+			validTiles = moveCheck();				
 		}
 		return validTiles;
 	}
