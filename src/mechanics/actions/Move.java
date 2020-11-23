@@ -20,7 +20,7 @@ import java.util.Set;
 
 import elements.board.Tile;
 import elements.pawns.*;
-import setup.parseInputs;
+import setup.ParseNumberInputs;
 
 /* 
 	Check pawns possible return places (TO BE DONE IN PAWN)
@@ -47,7 +47,7 @@ public class Move extends Action{
 		for (Tile t:possibleTiles) {
 			System.out.println(t.getName());
 		}
-		userNum=parseInputs.main(user, 0, limit);
+		userNum=ParseNumberInputs.main(user, 0, limit);
 		
 		destTile=possibleTiles.get(userNum);
 		pawn.move(destTile);

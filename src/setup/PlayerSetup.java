@@ -4,7 +4,7 @@ package setup;
 
 import java.io.IOException;
 import java.util.*;
-import setup.parseInputs;
+import setup.ParseNumberInputs;
 import players.Player;
 import elements.pawns.Pawn;
 import elements.pawns.*;
@@ -39,7 +39,7 @@ public class PlayerSetup {
 	public void setPlayerNum(Scanner user) throws IOException {
 		int inputNum;
 		System.out.println("How many players?");
-		inputNum = parseInputs.main(user, 2, 4);
+		inputNum = ParseNumberInputs.main(user, 2, 4);
 		System.out.println("Number of players chosen is: " + inputNum);
 		this.setNumPlayers(inputNum);
 	}

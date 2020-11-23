@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class parseInputs {
+public class ParseNumberInputs {
 	public static int main(Scanner user, int low, int high) throws IOException {
 		int inputNum=low-1;
 		while (inputNum <low || inputNum > high) {
