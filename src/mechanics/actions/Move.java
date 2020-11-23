@@ -11,13 +11,16 @@
 
 package mechanics.actions;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import elements.board.Board;
 import elements.board.Tile;
-import elements.pawns.Pawn;
+import elements.pawns.*;
+import setup.parseInputs;
 
 /* 
 	Check pawns possible return places (TO BE DONE IN PAWN)
@@ -26,9 +29,28 @@ import elements.pawns.Pawn;
 */
 
 public class Move extends Action{
-	public void movePawn(Pawn pawn, Scanner user, Board board) {
+	public void movePawn(Pawn pawn, Scanner user) throws IOException {
 		// Move pawn to elem of array list
-		Set<Tile> validTiles = new HashSet<Tile>();
+		Tile destTile;
+		int limit;
+		int userNum=-1;
+		List<Tile> possibleTiles = new ArrayList<Tile>();
+		if (pawn instanceof Explorer) {
+			//Override for explorer as method is different
+			possibleTiles=((Explorer)pawn).moveCheck();
+		} else {
+			possibleTiles=pawn.moveCheck();
+		}
+		
+		System.out.println("Which tile do you want to move to? [0-9]");
+		limit = possibleTiles.size();
+		for (Tile t:possibleTiles) {
+			System.out.println(t.getName());
+		}
+		userNum=parseInputs.main(user, 0, limit);
+		
+		destTile=possibleTiles.get(userNum);
+		pawn.move(destTile);
 		//validTiles=pawn.moveCheck();
 	}
 }
