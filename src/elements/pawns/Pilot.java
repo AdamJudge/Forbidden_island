@@ -11,8 +11,8 @@ import elements.board.Tile;
  * 	Represents the pilot pawn (Blue)
  * 
  * @author Catherine Waechter
- * @version 2.1
- * 	Added printout for check functions, added move override and resetHasFlown method
+ * @version 2.2
+ * 	added getHasFlown method
  * 
  *  Date created: 26/10/20
  *  Last modified: 25/11/20
@@ -27,6 +27,14 @@ public class Pilot extends Pawn {
 	 */
 	public void resetHasFlown() {
 		hasFlown = false;
+	}
+	
+	/**
+	 * getHasFlown
+	 * @return HasFlown variable
+	 */
+	public boolean getHasFlown() {
+		return hasFlown;
 	}
 	
 	/**
