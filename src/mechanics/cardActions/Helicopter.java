@@ -4,6 +4,7 @@ import players.Player;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.pawns.Pawn;
+import elements.pawns.Pilot;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
 
@@ -45,9 +46,20 @@ public class Helicopter {
 		// TODO get user input
 		int input = 1; // change to input
 		
+		// if pawn is a pilot, check if it has flown before the helicopter lift
+		boolean flown=false;
+		if(pawn instanceof Pilot) {
+			flown = ((Pilot)pawn).getHasFlown();
+		}
+		
 		pawn.move(sortedTiles.get(input));
 		
-		TreasureDiscard.getInstance().addCard(card);
+		// if pilot hadn't flown, reset the hasFlown flag
+		if(!flown && pawn instanceof Pilot) {
+			((Pilot)pawn).resetHasFlown();
+		}
+		
+		TreasureDiscard.getInstance().addCard(card); 	// discard helicopter lift card
 		
 	}
 	
