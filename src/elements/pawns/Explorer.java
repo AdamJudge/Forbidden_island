@@ -13,10 +13,11 @@ import elements.board.Board;
  * 	Represents the explorer pawn (Green)
  * 
  * @author Catherine Waechter
- * @version 2.0
- * 	adjusted to have currentTile field. removed allTiles parameter from all check methods, changed return to ArrayList
+ * @version 2.1
+ * 	Added printout for check functions
+ * 
  *  Date created: 26/10/20
- *  Last modified: 23/11/20
+ *  Last modified: 25/11/20
  */
 public class Explorer extends Pawn {
 	/**
@@ -29,6 +30,7 @@ public class Explorer extends Pawn {
 	@Override
 	public ArrayList<Tile> moveCheck(){
 		ArrayList<Tile> validTiles = super.moveCheck(); // tiles that are valid for the base pawn are also valid for the explorer
+		int startPrint = validTiles.size();
 		
 		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
 		// add diagonal tiles to the set of valid tiles
@@ -44,7 +46,7 @@ public class Explorer extends Pawn {
 				}
 			}
 		}
-		
+		checkPrint(validTiles, startPrint);
 		return validTiles;
 	}
 	
@@ -58,11 +60,15 @@ public class Explorer extends Pawn {
 	@Override
 	public ArrayList<Tile> shoreupCheck(){			
 		ArrayList<Tile> validTiles = moveCheck();
+		int startPrint = validTiles.size();
+		
 		for (Tile tile : validTiles) {
 			if (tile.getStatus() != TileStatus.FLOODED) {
 				validTiles.remove(tile);
 			}
 		}
+		checkPrint(validTiles, startPrint);
+		
 		return validTiles;
 	}
 	

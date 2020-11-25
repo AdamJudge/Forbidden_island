@@ -13,10 +13,11 @@ import java.util.ArrayList;
  *  represents a pawn element
  *    
  * @author Catherine Waechter
- * @version 2.1 - private field is a tile, not a position. check methods no longer take in parameters, and return ArrayLists, not Sets
+ * @version 2.2
+ * 	Added printout for check functions
  *
  *	Date created: 26/10/20
- *	Last modified: 23/11/20
+ *	Last modified: 25/11/20
  */
 public abstract class Pawn {
 
@@ -40,7 +41,20 @@ public abstract class Pawn {
 				}
 			}
 		}
+		checkPrint(validTiles, 0);
 		return validTiles;
+	}
+	
+	/**
+	 * checkPrint
+	 * 	Prints valid tiles for the pawn
+	 * @param validTiles
+	 * @param start - index to start printing from
+	 */
+	protected static void checkPrint(ArrayList<Tile> validTiles, int start) {
+		for(int i=start; i<validTiles.size(); i++) {
+			System.out.println("[" + start + "] " + validTiles.get(i));
+		}
 	}
 	
 	/**
@@ -66,6 +80,7 @@ public abstract class Pawn {
 				tile.remove();
 			}
 		}
+		checkPrint(validTiles, 0);
 		return validTiles;
 	}
 	
@@ -93,6 +108,7 @@ public abstract class Pawn {
 		if(currentTile.getStatus() == TileStatus.REMOVED) {
 			validTiles = moveCheck();				
 		}
+		checkPrint(validTiles, 0);
 		return validTiles;
 	}
 
