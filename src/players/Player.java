@@ -3,10 +3,12 @@
  *
  * DETAILS
  * 
- * Author: @author adamj
- * Version: @version 
+ * Author: @author Adam Judge , Catherine Waechter
+ * Version: @version 1.1
+ * 	Added getPawn
+ * 
  * Creation Date: 22/10/20
- * Last Modified: 29/10/20
+ * Last Modified: 25/11/20
  */
 
 package players;
@@ -32,6 +34,14 @@ public class Player {
 
 	public String getName() {
 		return this.name;
+	}
+	
+	/**
+	 * getPawn
+	 * @return player's pawn
+	 */
+	public Pawn getPawn() {
+		return pawn;
 	}
 	
 	@Override
