@@ -1,6 +1,7 @@
 package elements.cards;
 
 import elements.board.TileNames;
+import elements.board.Tile;
 
 /**
  * FloodCard class
@@ -8,8 +9,8 @@ import elements.board.TileNames;
  * Represents a flood card
  * 
  * @author Catherine Waechter
- * @version 1.1
- *  Added toString
+ * @version 2.0
+ *  changed field to be a tile, not a name. Added getTile
  * 
  * Date Created: 26/10/20
  * Last Modified: 25/11/20
@@ -17,7 +18,7 @@ import elements.board.TileNames;
  */
 public class FloodCard extends Card{
 	
-	private TileNames name; 	// associated tile
+	private Tile tile; 	// associated tile
 	
 	/**
 	 * getName
@@ -25,7 +26,15 @@ public class FloodCard extends Card{
 	 * @return
 	 */
 	public TileNames getName() {
-		return name;
+		return tile.getName();
+	}
+	
+	/**
+	 * getTile
+	 * 	@return tile associated with the card
+	 */
+	public Tile getTile() {
+		return tile;
 	}
 	
 	/**
@@ -33,8 +42,8 @@ public class FloodCard extends Card{
 	 * 	sets the name of the card
 	 * @param name
 	 */
-	public FloodCard(TileNames name) {
-		this.name = name;
+	public FloodCard(Tile tile) {
+		this.tile = tile;
 	}
 	
 	/**
@@ -43,6 +52,6 @@ public class FloodCard extends Card{
 	 */
 	@Override
 	public String toString() {
-		return name.name();
+		return tile.toString();
 	}
 }
