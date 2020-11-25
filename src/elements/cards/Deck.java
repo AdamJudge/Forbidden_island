@@ -9,10 +9,10 @@ import java.util.Stack;
  * Contains general deck methods
  * 
  * @author Catherine Waechter
- * @version 1.0
- * 
+ * @version 1.1
+ * 	Added printout for draw method
  * Date Created: 26/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 25/11/20
  *
  */
 public abstract class Deck {
@@ -43,6 +43,7 @@ public abstract class Deck {
 	 * @return
 	 */
 	public Card draw() {
+		System.out.println("Card Drawn : " + cards.peek());
 		return cards.pop();
 	}
 	
