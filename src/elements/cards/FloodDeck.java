@@ -1,6 +1,8 @@
 package elements.cards;
 
-import elements.board.TileNames;
+import elements.board.Board;
+import elements.board.Tile;
+import mechanics.cardActions.FloodTile;
 
 
 /**
@@ -9,10 +11,12 @@ import elements.board.TileNames;
  * Represent the deck of flood cards
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 2.0
+ * 	adjusted for change in flood card (associated tile, not tile name)
+ * 	Added draw override
  * 
  * Date Created: 26/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 25/11/20
  *
  */
 public class FloodDeck extends Deck{
@@ -32,12 +36,23 @@ public class FloodDeck extends Deck{
 	}
 	
 	/**
+	 * draw
+	 * 	draws a floodcard and carries out required flooding. Card is discarded in floodTile method
+	 * return null - card has been used and/or discarded
+	 */
+	public Card draw() {
+		FloodCard card = (FloodCard)super.draw();
+		FloodTile.floodTile(card);
+		return null;
+	}
+	
+	/**
 	 * FloodDeck constructor
 	 * 	Adds one card per tile name, then shuffles the deck
 	 */
 	private FloodDeck() {
-		for(TileNames name : TileNames.values()) {
-			cards.push(new FloodCard(name));
+		for(Tile tile : Board.getInstance().getAllTiles()) {
+			cards.push(new FloodCard(tile));
 		}
 		
 		shuffleDeck();
