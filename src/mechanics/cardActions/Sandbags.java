@@ -1,18 +1,20 @@
 package mechanics.cardActions;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import elements.board.Board;
 import elements.board.Tile;
 import elements.board.TileStatus;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
-
+import setup.ParseNumberInputs;
 /**
  * Sandbags
  * 	carries out mechanics of playing a sandbags card and discards the card. 
  * 
- * @author Catherine Waechter
+ * @author Catherine Waechter, Adam Judge
  * @version 1.0
  * 
  * Date created: 25/11/20
@@ -24,14 +26,20 @@ public class Sandbags {
 	/**
 	 * play 
 	 * 	asks for user input and shores up the requested tile
+	 * @throws IOException 
 	 */
-	public static void play(Card card) {
+	public static void play(Card card, Scanner user) throws IOException {
 		
 		ArrayList<Tile> floodedTiles = getFloodedTiles();
-		// TODO : user input for tile to shore up
-		int input = 1; // change to user input val
-		
-		floodedTiles.get(input).shoreup();
+		int iter=1;
+		System.out.println("Which tile do you want to shore up?");
+		for (Tile t:floodedTiles) {
+			System.out.println("["+iter+"]: " + t.getName());
+			iter+=1;
+		}
+		int input = ParseNumberInputs.main(user, 1, floodedTiles.size());
+		//input minus one as start from 0
+		floodedTiles.get(input-1).shoreup();
 		
 		TreasureDiscard.getInstance().addCard(card);
 		

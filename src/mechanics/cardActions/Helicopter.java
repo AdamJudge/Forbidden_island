@@ -1,6 +1,7 @@
 package mechanics.cardActions;
 
 import players.Player;
+import setup.ParseNumberInputs;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.pawns.Pawn;
@@ -9,7 +10,9 @@ import elements.cards.Card;
 import elements.cards.TreasureDiscard;
 
 import java.util.Set;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Helicopter
@@ -28,8 +31,9 @@ public class Helicopter {
 	 * play
 	 * 	moves given player's pawn to a requested tile
 	 * @param player
+	 * @throws IOException 
 	 */
-	public static void play(Card card, Player player) {
+	public static void play(Card card, Player player, Scanner user) throws IOException {
 		
 		Pawn pawn = player.getPawn();
 		
@@ -40,11 +44,17 @@ public class Helicopter {
 		sortedTiles.addAll(remainingTiles);
 		
 		for(int i = 0; i<sortedTiles.size(); i++) {
-			System.out.println("[" + i + "] " + sortedTiles.get(i));
+			System.out.println("[" + i + "]: " + sortedTiles.get(i));
 		}
 		
-		// TODO get user input
-		int input = 1; // change to input
+		// Get user Input
+		int iter=1;
+		System.out.println("Which tile do you want get a helicopter lift to?");
+		for (Tile t:sortedTiles) {
+			System.out.println("["+iter+"]: " + t.getName());
+			iter+=1;
+		}
+		int input = ParseNumberInputs.main(user, 1, sortedTiles.size());
 		
 		// if pawn is a pilot, check if it has flown before the helicopter lift
 		boolean flown=false;
