@@ -11,41 +11,69 @@ import elements.board.Tile;
  * 	Represents the pilot pawn (Blue)
  * 
  * @author Catherine Waechter
- * @version 2.0
- * 	adjusted to have currentTile field. removed allTiles parameter from all check methods, changed return to ArrayList
+ * @version 2.1
+ * 	Added printout for check functions, added move override and resetHasFlown method
+ * 
  *  Date created: 26/10/20
- *  Last modified: 23/11/20
+ *  Last modified: 25/11/20
  */
 public class Pilot extends Pawn {
 
-	// field : has_flown (?)
-	private boolean has_flown;
+	private boolean hasFlown; 	
 	
-	public boolean has_flown() {
-		return has_flown;
+	/**
+	 * resetHasFlown
+	 * 	Set hasFlown to false (must be done at end of turn)
+	 */
+	public void resetHasFlown() {
+		hasFlown = false;
 	}
 	
+	/**
+	 * moveCheck
+	 * 	splits tiles that can be flown to vs walked to 
+	 */
 	@Override
 	public ArrayList<Tile> moveCheck(){
 		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();		
 		
-		if(has_flown) {
-			validTiles = super.moveCheck();
+		validTiles = super.moveCheck();
+		int startPrint = validTiles.size();
+		
+		if(!hasFlown){
+			for(Tile tile : remainingTiles) {
+				if(!validTiles.contains(tile)) {
+					validTiles.add(tile);
+				}
+			}
 		}
-		else {
-			validTiles.addAll(remainingTiles);
-		}
+		System.out.println("Pilot can fly to these tiles (will not be able to fly again this turn)");
+		checkPrint(validTiles, startPrint);
+		
 		return validTiles;
 	}
 	
+	/**
+	 * move
+	 * 	Check tiles pilot can walk to, if destination needs to be flown to, hasFlown set to true
+	 * @param destination tile
+	 */
+	public void move(Tile destination) {
+		ArrayList<Tile> walkingTiles = super.moveCheck();
+		if(!walkingTiles.contains(destination)) {
+			hasFlown = true;
+		}
+		
+		currentTile = destination;
+	}
 	
-	// override check_move
-	// override move
-	
+	/**
+	 * Pilot constructor
+	 */
 	public Pilot() {
 		currentTile = null;
-		has_flown = false;
+		hasFlown = false;
 	}
 	
 }
