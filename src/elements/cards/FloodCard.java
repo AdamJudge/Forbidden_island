@@ -8,10 +8,11 @@ import elements.board.TileNames;
  * Represents a flood card
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.1
+ *  Added toString
  * 
  * Date Created: 26/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 25/11/20
  *
  */
 public class FloodCard extends Card{
@@ -34,5 +35,14 @@ public class FloodCard extends Card{
 	 */
 	public FloodCard(TileNames name) {
 		this.name = name;
+	}
+	
+	/**
+	 * toString
+	 * 	Returns the name of corresponding tile
+	 */
+	@Override
+	public String toString() {
+		return name.name();
 	}
 }

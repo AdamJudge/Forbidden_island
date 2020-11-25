@@ -8,10 +8,10 @@ import elements.treasures.TreasureNames;
  * Represents a treasure card
  * 
  * @author Catherine Waechter
- * @version 1.0
- * 
+ * @version 1.1
+ * 	Added toString
  * Date Created: 26/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 25/11/20
  *
  */
 public class TreasureCard extends Card{
@@ -43,6 +43,18 @@ public class TreasureCard extends Card{
 	protected TreasureCard(TreasureCardTypes cardType, TreasureNames treasureType) {
 		this.cardType = cardType;
 		this.treasureType = treasureType;
+	}
+	
+	/**
+	 * toString
+	 * 	returns the type of the card, or name of treasure if it's a treasure card
+	 */
+	@Override
+	public String toString() {
+		if(cardType == TreasureCardTypes.TREASURE) {
+			return treasureType.name();
+		}
+		else return cardType.name();
 	}
 
 }
