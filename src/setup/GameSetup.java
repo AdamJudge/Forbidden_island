@@ -1,46 +1,87 @@
 package setup;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
 import elements.board.WaterLevel;
 import elements.board.Difficulty;
-public class GameSetup {
-	public static GameSetup gs=null;
-	public WaterLevel waterLevel;
-	
-	public static GameSetup getInstance() {
-		if(gs==null) {
-			gs=new GameSetup();
-		}
-		return gs;
-	}
-	
-	private GameSetup() {
+import elements.cards.TreasureDeck;
+import elements.cards.FloodDeck;
+import elements.cards.Card;
 
-	}
+/**
+ * GameSetup
+ * 	Handles setup of the board, water level, and decks
+ * @author Adam Judge, Catherine Waechter
+ * @version 2.0
+ * 	Edited to suit MVC
+ * 
+ * Date created: 23/11/20 
+ * Last modified: 30/11/20
+ *
+ */
+
+public class GameSetup {
+	public static GameSetup gameSetup=null;
 	
-	public void setupGame(Scanner user) throws IOException {
-		setupWaterLevel(user);
-	}
+	private boolean inSetup; 	// flag to set the setup mode // TODO maybe put in Setup instead
 	
-	public void setupWaterLevel(Scanner user) throws IOException {
-		this.waterLevel= WaterLevel.getInstance();
-		Difficulty difficulty;
-		int input;
-		int i=1;
-		List<Difficulty> difficultyList = new ArrayList<Difficulty>(EnumSet.allOf(Difficulty.class));
-		System.out.println("Which difficulty do you want to play?");
-		for (Difficulty d:difficultyList) {
-			System.out.println("[" + i + "]: "+d.toString());
-			i+=1;
+	/**
+	 * getInstance
+	 * @return instance of GameSetup
+	 */
+	public static GameSetup getInstance() {
+		if(gameSetup==null) {
+			gameSetup=new GameSetup();
 		}
-		input=ParseNumberInputs.main(user, 1, i-1);
-		difficulty=difficultyList.get(input-1);
+		return gameSetup;
+	}
+	
+	/**
+	 * setSetup
+	 * @param inSetup
+	 */
+	public void setSetup(boolean inSetup) {
+		this.inSetup = inSetup;
+	}
+	
+	/**
+	 * getSetup
+	 * @return inSetup - whether the game is in setup mode
+	 */
+	public boolean getSetup() {
+		return inSetup;
+	}
+	
+	/**
+	 * drawFloodCards
+	 * 	draw 6 flood cards
+	 * @return drawnCards - set of flood cards drawn
+	 */
+	public Set<Card> drawFloodCards(){
+		Set<Card> drawnCards = new HashSet<Card>();
+		for(int i = 0; i<6; i++) {
+			drawnCards.add(FloodDeck.getInstance().draw());
+		}
+		return drawnCards;
+	}
+	
+	/**
+	 * createDecks
+	 * 	create and shuffle Treasure and Flood decks
+	 */
+	public void createDecks() {
+		TreasureDeck.getInstance().shuffleDeck();
+		FloodDeck.getInstance().shuffleDeck();
+	}
+	
+	/**
+	 * setupWaterLevel
+	 * 	Creates a WaterLevel instance, and sets difficulty according to input
+	 * @param difficulty - difficulty chosen by user
+	 */
+	public void setupWaterLevel(Difficulty difficulty) {
+		WaterLevel waterLevel= WaterLevel.getInstance();	
 		waterLevel.setDifficulty(difficulty);
-		System.out.println("Water level has been set to: "+ waterLevel.getLevel());
 	}
 }
