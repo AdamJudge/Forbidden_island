@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.ArrayList;
 
 import elements.board.Tile;
+import elements.board.TileNames;
 import elements.board.TileStatus;
 import elements.board.Board;
 
@@ -17,7 +18,7 @@ import elements.board.Board;
  * 	Added printout for check functions
  * 
  *  Date created: 26/10/20
- *  Last modified: 25/11/20
+ *  Last modified: 03/12/20
  */
 public class Explorer extends Pawn {
 	/**
@@ -71,6 +72,20 @@ public class Explorer extends Pawn {
 		
 		return validTiles;
 	}
+	
+	/**
+	 * toInitialTile
+	 * 	move pawn to starting tile (copper gate)
+	 */
+	public void toInitialTile() {
+		for(Tile tile : Board.getInstance().getAllTiles()) {
+			if(tile.getName() == TileNames.COPPER_GATE) {
+				move(tile);
+				break;
+			}
+		}
+	}
+
 	
 	public Explorer() {
 		currentTile = null;

@@ -24,6 +24,12 @@ public abstract class Pawn {
 	protected Tile currentTile; // tile the pawn is on
 	
 	/**
+	 * toInitialTile
+	 * 	move pawn to starting tile (gold gate)
+	 */
+	public abstract void toInitialTile();
+	
+	/**
 	 * moveCheck
 	 * 	returns the set of tiles that the pawn is allowed to move to
 	 * 	All pawn types can move to adjacent tiles

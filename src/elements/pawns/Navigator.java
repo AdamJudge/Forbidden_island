@@ -2,7 +2,9 @@ package elements.pawns;
 
 import java.util.ArrayList;
 
+import elements.board.Board;
 import elements.board.Tile;
+import elements.board.TileNames;
 
 
 /**
@@ -10,8 +12,8 @@ import elements.board.Tile;
  * 	Represents the navigator pawn (Yellow)
  * 
  * @author Catherine Waechter
- * @version 2.0
- * removed allTiles parameter from all check methods, changed return to ArrayList
+ * @version 2.1
+ * added toInitialTile
  * 
  *  Date created: 26/10/20
  *  Last modified: 23/11/20
@@ -41,6 +43,19 @@ public class Navigator extends Pawn {
 		otherPawn.move(destination);
 	}
 	
+	/**
+	 * toInitialTile
+	 * 	move pawn to starting tile (gold gate)
+	 */
+	public void toInitialTile() {
+		for(Tile tile : Board.getInstance().getAllTiles()) {
+			if(tile.getName() == TileNames.GOLD_GATE) {
+				move(tile);
+				break;
+			}
+		}
+	}
+
 	public Navigator() {
 		currentTile = null;
 	}
