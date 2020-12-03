@@ -8,16 +8,17 @@ import elements.board.Difficulty;
 import elements.cards.TreasureDeck;
 import elements.cards.FloodDeck;
 import elements.cards.Card;
+import elements.board.Board;
 
 /**
  * GameSetup
  * 	Handles setup of the board, water level, and decks
  * @author Adam Judge, Catherine Waechter
- * @version 2.0
- * 	Edited to suit MVC
+ * @version 2.1
+ * 	Edited to suit MVC (added getBoard)
  * 
  * Date created: 23/11/20 
- * Last modified: 30/11/20
+ * Last modified: 03/12/20
  *
  */
 
@@ -83,5 +84,13 @@ public class GameSetup {
 	public void setupWaterLevel(Difficulty difficulty) {
 		WaterLevel waterLevel= WaterLevel.getInstance();	
 		waterLevel.setDifficulty(difficulty);
+	}
+	
+	/**
+	 * getBoard 
+	 * @return singleton instance of the board
+	 */
+	public Board getBoard() {
+		return Board.getInstance();
 	}
 }
