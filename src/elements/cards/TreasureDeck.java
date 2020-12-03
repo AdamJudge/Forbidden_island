@@ -1,7 +1,10 @@
 package elements.cards;
 
+import java.util.Stack;
+
 import elements.treasures.TreasureNames;
 import mechanics.cardActions.WatersRise;
+import setup.GameSetup;
 
 /**
  * TreasureDeck class
@@ -9,11 +12,12 @@ import mechanics.cardActions.WatersRise;
  * Represent the deck of treasure cards
  * 
  * @author Catherine Waechter
- * @version 2.0
- * 	draw overridden to handle waters rise
+ * @version 2.1
+ * 	Initialised cards
+ * 	Made waters rise cards have effect only outside of setup
  * 
  * Date Created: 26/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 30/11/20
  *
  */
 public class TreasureDeck extends Deck {
@@ -39,10 +43,24 @@ public class TreasureDeck extends Deck {
 	 */
 	public Card draw() {
 		TreasureCard card = (TreasureCard)super.draw();
-		if(card.getCardType() == TreasureCardTypes.WATERSRISE) {
+		
+		// if in setup mode, waters rise cards drawn are returned to the deck, which is then shuffled
+		if(GameSetup.getInstance().getSetup()) {
+			while(card.getCardType() == TreasureCardTypes.WATERSRISE) {
+				addCard(card);
+				shuffleDeck();
+				card = (TreasureCard)super.draw();
+			}
+			return card;
+		}
+		
+		// outside of setup, waters rise cards are played (discarded in play method)
+		else if(card.getCardType() == TreasureCardTypes.WATERSRISE) {
 			WatersRise.play(card);
 			return null;
 		}
+		
+		// if a regular card is drawn outside of setup
 		else return card;
 	}
 	
@@ -52,6 +70,7 @@ public class TreasureDeck extends Deck {
 	 * Add required cards to the deck and shuffle it
 	 */
 	private TreasureDeck() {
+		cards = new Stack<Card>();
 		
 		// add 5 cards per treasure
 		for(TreasureNames treasureType : TreasureNames.values()) {
