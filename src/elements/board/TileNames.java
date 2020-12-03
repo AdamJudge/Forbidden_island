@@ -5,9 +5,11 @@ package elements.board;
  * list of names of tiles
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.1
+ * 	fixed typo
+ * 
  * Date created : 29/10/20
- * Last modified: 29/10/20
+ * Last modified: 03/12/20
  */
 public enum TileNames {
 	BREAKERS_BRIDGE,
@@ -27,7 +29,7 @@ public enum TileNames {
 	CRIMSON_FOREST, 
 	WATCHTOWER, 
 	TEMPLE_OF_THE_MOON, 
-	BROZE_GATE, 
+	BRONZE_GATE, 
 	WHISPERING_GARDEN, 
 	FOOLS_LANDING, 
 	LOST_LAGOON, 
