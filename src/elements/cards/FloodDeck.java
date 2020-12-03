@@ -3,6 +3,7 @@ package elements.cards;
 import elements.board.Board;
 import elements.board.Tile;
 import mechanics.cardActions.FloodTile;
+import java.util.Stack;
 
 
 /**
@@ -11,12 +12,11 @@ import mechanics.cardActions.FloodTile;
  * Represent the deck of flood cards
  * 
  * @author Catherine Waechter
- * @version 2.0
- * 	adjusted for change in flood card (associated tile, not tile name)
- * 	Added draw override
+ * @version 2.1
+ * 	Initialised cards
  * 
  * Date Created: 26/10/20
- * Last Modified: 25/11/20
+ * Last Modified: 30/11/20
  *
  */
 public class FloodDeck extends Deck{
@@ -52,6 +52,8 @@ public class FloodDeck extends Deck{
 	 * 	Adds one card per tile name, then shuffles the deck
 	 */
 	private FloodDeck() {
+		cards = new Stack<Card>();
+		
 		for(Tile tile : Board.getInstance().getAllTiles()) {
 			cards.push(new FloodCard(tile));
 		}
