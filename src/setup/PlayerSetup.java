@@ -97,6 +97,7 @@ public class PlayerSetup {
 		for (Player player : playerList.getPlayers()) {
 			player.setPawn(pawnList.get(0));
 			pawnList.remove(0);
+			player.getPawn().toInitialTile();
 		}
 	}
 	
