@@ -4,11 +4,11 @@
  * DETAILS
  * 
  * Author: @author Adam Judge , Catherine Waechter
- * Version: @version 1.1
- * 	Added getPawn
+ * Version: @version 1.2
+ * 	Added getHand. initialise hand
  * 
  * Creation Date: 22/10/20
- * Last Modified: 25/11/20
+ * Last Modified: 30/11/20
  */
 
 package players;
@@ -22,6 +22,7 @@ public class Player {
 	
 	public Player(String name) {
 		this.name=name;
+		this.hand = new Hand();
 	}
 	
 	public void setPawn(Pawn pawn) {
@@ -36,6 +37,9 @@ public class Player {
 		return this.name;
 	}
 	
+	public Hand getHand() {
+		return hand;
+	}
 	/**
 	 * getPawn
 	 * @return player's pawn
