@@ -14,8 +14,8 @@ import elements.board.Board;
  * 	Represents the explorer pawn (Green)
  * 
  * @author Catherine Waechter
- * @version 2.1
- * 	Added printout for check functions
+ * @version 2.2
+ * 	fixed shoreupCheck
  * 
  *  Date created: 26/10/20
  *  Last modified: 03/12/20
@@ -63,7 +63,8 @@ public class Explorer extends Pawn {
 		ArrayList<Tile> validTiles = moveCheck();
 		int startPrint = validTiles.size();
 		
-		for (Tile tile : validTiles) {
+		for (int i = validTiles.size()-1; i>=0; i--) {
+			Tile tile = validTiles.get(i);
 			if (tile.getStatus() != TileStatus.FLOODED) {
 				validTiles.remove(tile);
 			}

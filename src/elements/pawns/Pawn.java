@@ -15,9 +15,10 @@ import java.util.ArrayList;
  * @author Catherine Waechter
  * @version 2.3
  * 	Fixed moveCheck (wasn't outputting the correct tiles)
+ *	Fixed shoreupCheck 
  *
  *	Date created: 26/10/20
- *	Last modified: 03/12/20
+ *	Last modified: 04/12/20
  */
 public abstract class Pawn {
 
@@ -38,6 +39,10 @@ public abstract class Pawn {
 	 * @return validTiles
 	 */
 	public ArrayList<Tile> moveCheck(){
+		return getAdjacent();
+	}
+	
+	protected ArrayList<Tile> getAdjacent(){
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();
 		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
 		for( Tile tile : remainingTiles) {
@@ -56,7 +61,7 @@ public abstract class Pawn {
 				}
 			}
 		}
-		checkPrint(validTiles, 0);
+
 		return validTiles;
 	}
 	
@@ -89,13 +94,13 @@ public abstract class Pawn {
 	 * @return
 	 */
 	public ArrayList<Tile> shoreupCheck(){
-		ArrayList<Tile> validTiles =  this.moveCheck();					
-		for (Tile tile : validTiles) {
+		ArrayList<Tile> validTiles =  getAdjacent();		
+		for (int i = validTiles.size()-1; i>=0; i--) {
+			Tile tile = validTiles.get(i);
 			if (tile.getStatus() != TileStatus.FLOODED) {
-				tile.remove();
+				validTiles.remove(tile);
 			}
 		}
-		checkPrint(validTiles, 0);
 		return validTiles;
 	}
 	
