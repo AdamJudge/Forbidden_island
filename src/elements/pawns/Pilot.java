@@ -12,11 +12,12 @@ import elements.board.TileNames;
  * 	Represents the pilot pawn (Blue)
  * 
  * @author Catherine Waechter
- * @version 2.3
+ * @version 2.4
  * 	added toInitialTile method
+ * 	no longer check flight for initial tile placement
  * 
  *  Date created: 26/10/20
- *  Last modified: 25/11/20
+ *  Last modified: 03/12/20
  */
 public class Pilot extends Pawn {
 
@@ -82,11 +83,13 @@ public class Pilot extends Pawn {
 	 * @param destination tile
 	 */
 	public void move(Tile destination) {
-		ArrayList<Tile> walkingTiles = super.moveCheck();
-		if(!walkingTiles.contains(destination)) {
-			hasFlown = true;
+		// initial placement will not be flight
+		if(this.currentTile != null) {
+			ArrayList<Tile> walkingTiles = super.moveCheck();
+			if(!walkingTiles.contains(destination)) {
+				hasFlown = true;
+			}
 		}
-		
 		currentTile = destination;
 	}
 	
