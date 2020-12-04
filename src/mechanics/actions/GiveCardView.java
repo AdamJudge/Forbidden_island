@@ -55,6 +55,9 @@ public class GiveCardView  extends ActionView{
 		cardsToGive.addAll(controller.getHandCards(currentPlayer));
 		printCardList(cardsToGive);
 		userNum=ParseNumberInputs.main(user, 0, cardsToGive.size());
+		if(userNum == 0) {
+			return false;
+		}
 		Card selectedCard = cardsToGive.get(userNum-1);
 		
 		controller.giveCard(currentPlayer, playerToGive, selectedCard);
