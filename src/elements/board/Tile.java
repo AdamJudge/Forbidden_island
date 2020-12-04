@@ -8,11 +8,11 @@ import elements.treasures.TreasureNames;
  *  represents a tile
  *  
  * @author Catherine Waechter
- * @version 1.1
- * 	added toString
+ * @version 1.2
+ * 	made sortable
  * 
  * Date Created : 26/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 03/12/20
  */
 public class Tile {
 	
@@ -49,6 +49,18 @@ public class Tile {
 		}
 	}
 	
+	public int compareTo(Tile otherTile) {
+		if(this.getY() > otherTile.getY()) {
+			return 1;
+		}
+		else if((this.getY() == otherTile.getY()) && this.getX() > otherTile.getX()) {
+			return 1;
+		}
+		else if(this.getX() == otherTile.getX() && this.getY() == otherTile.getY()) {
+			return 0;
+		}
+		else return -1;
+	}
 	
 	/**
 	 * flood : flood a tile
