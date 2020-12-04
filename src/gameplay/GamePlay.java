@@ -1,6 +1,6 @@
 package gameplay;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -30,9 +30,10 @@ public class GamePlay {
 	}
 	
 	public void playGame(Scanner user) throws IOException {
+		ArrayList<Player> players = playerList.getInstance().getPlayers();
 		while (!this.gameOver) {
-			for (Player player: playerList.getPlayers()) {
-				Turn.getInstance().doTurn(player, user);	
+			for (int i = 0; i< players.size(); i++) {
+				Turn.getInstance().doTurn(players.get(i), user);	
 			}
 //			this.gameOver=true;
 		}
