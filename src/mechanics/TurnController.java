@@ -60,6 +60,17 @@ public class TurnController {
 	}
 	
 	/**
+	 * getShoreupCheck
+	 * 	Get possible tiles the given player's can shore up
+	 * @param player 
+	 * @return	list of possible tiles
+	 */
+	public ArrayList<Tile> getShoreupCheck(Player player){	// TODO should be done in model ?
+		return player.getPawn().shoreupCheck();
+	}
+	
+	
+	/**
 	 * drawFloodCards
 	 * 	Draw flood cards according to water level
 	 */
@@ -93,6 +104,17 @@ public class TurnController {
 	 */
 	public Tile move(Player player, Tile destination) { // TODO should this be more abstract? 
 		player.getPawn().move(destination);
+		return player.getPawn().getTile();
+	}
+	
+	/**
+	 * shoreup
+	 * 	Shore up a given tile
+	 * @param tile
+	 * @return
+	 */
+	public Tile shoreup(Player player, Tile tile) { // TODO should this be more abstract? 
+		player.getPawn().shoreup(tile);
 		return player.getPawn().getTile();
 	}
 }
