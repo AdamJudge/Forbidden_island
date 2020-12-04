@@ -1,12 +1,15 @@
 package mechanics;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import elements.board.Tile;
 import elements.board.WaterLevel;
 import players.Player;
 import players.PlayerList;
 import elements.cards.*;
+import elements.pawns.Messenger;
+import players.Hand;
 
 /**
  * TurnController
@@ -47,6 +50,52 @@ public class TurnController {
 	private TurnController(TurnView view, Turn model) {
 		this.view = view;
 		this.model = model;
+	}
+	
+	/**
+	 * getPlayers
+	 * 	@return list of players in the game
+	 */
+	public ArrayList<Player> getPlayers(){
+		return PlayerList.getInstance().getPlayers();
+	}
+	
+	public void giveCard(Player playerFrom, Player playerTo, Card card) {
+		playerFrom.getHand().takeCard(card);
+		playerTo.getHand().addCard(card);
+	}
+	
+	/**
+	 * getHand
+	 * @param player
+	 * @return player's hand
+	 */
+	public Hand getHand(Player player){
+		return player.getHand();
+	}
+	
+	public Set<Card> getHandCards(Player player){
+		return player.getHand().getCards();
+	}
+	
+	public ArrayList<Player> getGiveCardCheck(Player player){
+		if(player.getPawn() instanceof Messenger) {
+			ArrayList<Player> validPlayers = getPlayers();
+			validPlayers.remove(player);
+			return validPlayers;
+		}
+		else {
+			ArrayList<Player> validPlayers = new ArrayList<Player>();
+			for(Player otherPlayer : getPlayers()) {
+				if(otherPlayer == player) {
+					// skip current player
+				}
+				else if (otherPlayer.getPawn().getTile() == player.getPawn().getTile()) {
+					validPlayers.add(otherPlayer);
+				}
+			}
+			return validPlayers;
+		}
 	}
 	
 	/**
