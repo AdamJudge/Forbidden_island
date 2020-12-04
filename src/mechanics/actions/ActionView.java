@@ -13,7 +13,9 @@
 package mechanics.actions;
 
 import players.Player;
+import players.PlayerList;
 import elements.board.Tile;
+import elements.cards.Card;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -38,6 +40,33 @@ public abstract class ActionView{
 		int i = 1;
 		for (Tile tile :tiles) {
 			System.out.println("[" + i + "]" + tile.getName());
+			i++;
+		}
+	}
+	
+	public void printCardList(ArrayList<Card> cards) {
+		int i = 1;
+		for (Card card : cards) {
+			System.out.println("[" + i + "]" + card);
+			i++;
+		}
+	}
+	
+	/**
+	 * printPlayerList 
+	 * 	print list of players, except currentPlayer
+	 * @param players - list of players to be printed
+	 * @param currentPlayer
+	 */
+	public void printPlayerList(ArrayList<Player> players, Player currentPlayer) {
+		int i = 1;
+		for (Player player : PlayerList.getInstance().getPlayers()) {
+			if(player != currentPlayer) {
+				System.out.println("[" + i + "]" + player);
+			}
+			else {
+				System.out.println("[" + i + "]" + player + "(You)");
+			}
 			i++;
 		}
 	}
