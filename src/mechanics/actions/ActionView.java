@@ -60,7 +60,7 @@ public abstract class ActionView{
 	 */
 	public void printPlayerList(ArrayList<Player> players, Player currentPlayer) {
 		int i = 1;
-		for (Player player : PlayerList.getInstance().getPlayers()) {
+		for (Player player : players) {
 			if(player != currentPlayer) {
 				System.out.println("[" + i + "]" + player);
 			}
