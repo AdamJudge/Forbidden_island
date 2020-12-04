@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * 	added very basic print (will need to improve)
  * 
  * Date created: 26/10/20
- * Last modified: 23/11/20
+ * Last modified: 03/12/20
  */
 public class Board {
 	private static Board board = null;
