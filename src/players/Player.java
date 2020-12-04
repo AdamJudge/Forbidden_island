@@ -4,11 +4,11 @@
  * DETAILS
  * 
  * Author: @author Adam Judge , Catherine Waechter
- * Version: @version 1.2
- * 	Added getHand. initialise hand
+ * Version: @version 1.3
+ * 	Changed toString to print only the name
  * 
  * Creation Date: 22/10/20
- * Last Modified: 30/11/20
+ * Last Modified: 03/12/20
  */
 
 package players;
@@ -50,6 +50,7 @@ public class Player {
 	
 	@Override
 	public String toString() {
-		return ("Player Name: " + this.name + ", pawn: " + this.pawn.toString() + ", hand: TBD");
+//		return ("Player Name: " + this.name + ", pawn: " + this.pawn.toString() + ", hand: TBD");
+		return(name);
 	}
 }
