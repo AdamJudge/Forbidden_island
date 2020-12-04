@@ -49,10 +49,10 @@ public class TurnView {
 	 * @throws IOException
 	 */
 	public void run(Player player, Scanner user) throws IOException  {
-		System.out.println(Board.getInstance());  // TODO Print board at every turn if we can 
+		System.out.println(Board.getInstance()); 
 		currentPlayer = player;
 		System.out.println("It's your turn " + player + "!");
-		System.out.println("Your cards are : " + player.getHand());			// TODO should this be done by controller? (probably... )
+		System.out.println("Your cards are : " + controller.getHand(player));
 		System.out.println("Your " + player.getPawn() + " is on " + player.getPawn().getTile());
 		int actionCount = 3;
 		boolean actionReturn;
@@ -93,8 +93,7 @@ public class TurnView {
 		case 2:
 			return ShoreupView.getInstance(controller).doAction(currentPlayer, user);
 		case 3: 
-			giveCard();
-			break;
+			return GiveCardView.getInstance(controller).doAction(currentPlayer, user);
 		case 4:
 			claimTreasure();
 			break;
@@ -103,13 +102,7 @@ public class TurnView {
 		return true; // use false for cases where the player has not used an action
 	}
 	
-	private void shoreup() {
-		
-	}
 	
-	private void giveCard() {
-		
-	}
 	private void claimTreasure() {
 		
 	}
