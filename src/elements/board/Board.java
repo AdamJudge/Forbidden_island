@@ -1,6 +1,8 @@
 package elements.board;
 
 import java.util.Set;
+
+
 import java.util.HashSet;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -11,9 +13,8 @@ import java.util.ArrayList;
  * Creates a board made up of Tile objects
  * 
  * @author Catherine Waechter
- * @version 2.0
- * 	Board is now a singleton class
- * 	added getAllTiles and getReminingTiles methods
+ * @version 2.1
+ * 	added very basic print (will need to improve)
  * 
  * Date created: 26/10/20
  * Last modified: 23/11/20
@@ -86,5 +87,42 @@ public class Board {
 		for (TileNames name : TileNames.values()) {
 			this.allTiles.add(new Tile(name, positions.get(this.allTiles.size())));
 		}
+	}
+	
+	private ArrayList<Tile> sortTiles(){
+		ArrayList<Tile> sortedTiles = new ArrayList<Tile>();
+		sortedTiles.addAll(allTiles);
+		
+		// bubble sort algorithm
+		for (int i=0 ; i< 24 ; i++) {
+			for( int j=0; j<24 - 1; j++){
+				if(sortedTiles.get(j).compareTo(sortedTiles.get(j+1) ) > 0 ) {
+					Tile tempTile = sortedTiles.get(j+1);
+					sortedTiles.set(j+1, sortedTiles.get(j));
+					sortedTiles.set(j, tempTile);
+				}
+			}
+		}
+		
+		return sortedTiles;
+	}
+	
+	public String toString() {	// TODO improve this!! suggestion : have "print tile" function
+		String boardString;
+		ArrayList<Tile> tiles = sortTiles();
+		
+		boardString = "\t\t\t\t\t\t | \t" + tiles.get(0) + "\t|\t" +  tiles.get(1) + "\t|\n";
+		
+		boardString += "\t\t\t | \t" + tiles.get(2) + "\t|\t" +  tiles.get(3) + "\t|\t" + tiles.get(4) + "\t|\t" +  tiles.get(5) + "\t|\n";
+		
+		boardString += " | \t" + tiles.get(6) + "\t|\t" +  tiles.get(7) + "\t|\t" + tiles.get(8) + "\t|\t" +  tiles.get(9) + "\t|\t " + tiles.get(10) + "\t|\t" +  tiles.get(11) +"\t|\n";
+		
+		boardString += " | \t" + tiles.get(12) + "\t|\t" +  tiles.get(13) + "\t|\t" + tiles.get(14) + "\t|\t" +  tiles.get(15) + "\t|\t " + tiles.get(16) + "\t|\t" +  tiles.get(17) +  "\t|\n";
+		
+		boardString += "\t\t\t | \t" + tiles.get(18) + "\t|\t" +  tiles.get(19) + "\t|\t" + tiles.get(20) + "\t|\t" +  tiles.get(21) + "\t|\n";		
+		
+		boardString += "\t\t\t\t\t\t | \t" + tiles.get(22) + "\t|\t" +  tiles.get(23) + "\t|\n";
+		
+		return boardString;
 	}
 }
