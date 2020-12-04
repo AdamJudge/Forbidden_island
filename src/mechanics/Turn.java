@@ -6,10 +6,10 @@
  * @author Adam Judge, Catherine Waechter
  * 
  * @version 1.2
- * 	Rewritten to suit MVC
+ * 	implement TurnView.setupView
  * 
  * Creation Date: 22/10/20
- * Last Modified: 03/12/20
+ * Last Modified: 04/12/20
  */
 package mechanics;
 
@@ -52,7 +52,7 @@ public class Turn {
 		// TODO setting up the turn controller and turn view shouldn't be done here, should jsut be done once
 		TurnView view = TurnView.getInstance();			// create SetupView instance
 		TurnController controller = TurnController.getInstance(view, turn);	// create SetupController instance, assign it view and setup instances
-		view.setController(controller);		// assign controller to view instance
+		view.setupView(controller);		// assign controller to view instance
 		view.run(player, user);		// run the view
 	}
 	
