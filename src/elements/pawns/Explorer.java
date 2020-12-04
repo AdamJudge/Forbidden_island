@@ -18,7 +18,7 @@ import elements.board.Board;
  * 	fixed shoreupCheck
  * 
  *  Date created: 26/10/20
- *  Last modified: 03/12/20
+ *  Last modified: 04/12/20
  */
 public class Explorer extends Pawn {
 	/**
