@@ -9,9 +9,11 @@ import setup.SetupController;
 import players.Player;
 import players.PlayerList;
 import elements.pawns.*;
+import elements.board.Board;
 import elements.board.Tile;
 import elements.cards.*;
 import elements.board.WaterLevel;
+import mechanics.actions.*;
 
 /**
  * TurnView
@@ -24,7 +26,7 @@ import elements.board.WaterLevel;
  */
 public class TurnView {
 
-	public static TurnView turnView;
+	private static TurnView turnView = null;
 	private TurnController controller;
 	private Player currentPlayer;
 	
@@ -47,11 +49,11 @@ public class TurnView {
 	 * @throws IOException
 	 */
 	public void run(Player player, Scanner user) throws IOException  {
-//		System.out.println(board);  // TODO Print board at every turn if we can 
+		System.out.println(Board.getInstance());  // TODO Print board at every turn if we can 
 		currentPlayer = player;
 		System.out.println("It's your turn " + player + "!");
 		System.out.println("Your cards are : " + player.getHand());			// TODO should this be done by controller? (probably... )
-		System.out.println("Your pawn is on " + player.getPawn().getTile());
+		System.out.println("Your " + player.getPawn() + " is on " + player.getPawn().getTile());
 		int actionCount = 3;
 		boolean actionReturn;
 		while(actionCount > 0) {
@@ -87,11 +89,9 @@ public class TurnView {
 		
 		switch(actionNum) {
 		case 1:
-			move(user);
-			break;
+			return MoveView.getInstance(controller).doAction(currentPlayer, user);
 		case 2:
-			shoreup();
-			break;
+			return ShoreupView.getInstance(controller).doAction(currentPlayer, user);
 		case 3: 
 			giveCard();
 			break;
@@ -114,49 +114,18 @@ public class TurnView {
 		
 	}
 	
-	private void move(Scanner user) throws IOException{
-		Player playerToMove = currentPlayer;
-		
-		// Navigator exception
-		if(currentPlayer.getPawn() instanceof Navigator) {
-			System.out.println("Would you like to move ");
-			int i = 1;
-			for (Player player : PlayerList.getInstance().getPlayers()) {
-				if(player != currentPlayer) {
-					System.out.println("[" + i + "]" + player);
-				}
-				else {
-					System.out.println("[" + i + "]" + player + "(You)");
-				}
-				i++;
-			}
-			int input=ParseNumberInputs.main(user, 1, i);
-			playerToMove = PlayerList.getInstance().getPlayers().get(input-1);
-		}
-		
-		// TODO Pilot exception
-		
-		System.out.println(playerToMove + " can move to ");
-		ArrayList<Tile> possibleTiles = controller.getMoveCheck(playerToMove);
-		int limit = possibleTiles.size();
-		System.out.println("Which tile do you want to move to?");
-		int i = 1;
-		for (Tile t:possibleTiles) {
-			System.out.println("[" + i + "]" + t.getName());
-			i++;
-		}
-		int userNum=ParseNumberInputs.main(user, 1, limit);
-		Tile newTile = controller.move(playerToMove, possibleTiles.get(userNum-1));
-		System.out.println(playerToMove + " has moved to " + newTile);
-	}
-	
+
     /**
      * setController
      * 	assign controller instance
      * @param controller
      */
-    public void setController(TurnController controller) {
+    public void setupView(TurnController controller) {
     	this.controller = controller;
+    	ClaimTreasureView.getInstance(controller);
+    	GiveCardView.getInstance(controller);
+    	MoveView.getInstance(controller);
+    	ShoreupView.getInstance(controller);
     }
     
 	
