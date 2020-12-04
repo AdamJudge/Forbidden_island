@@ -13,11 +13,11 @@ import java.util.ArrayList;
  *  represents a pawn element
  *    
  * @author Catherine Waechter
- * @version 2.2
- * 	Added printout for check functions
+ * @version 2.3
+ * 	Fixed moveCheck (wasn't outputting the correct tiles)
  *
  *	Date created: 26/10/20
- *	Last modified: 25/11/20
+ *	Last modified: 03/12/20
  */
 public abstract class Pawn {
 
@@ -41,9 +41,18 @@ public abstract class Pawn {
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();
 		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
 		for( Tile tile : remainingTiles) {
-			if(tile.getX() == currentTile.getX() +1 || tile.getX() == currentTile.getX() - 1 || tile.getY() == currentTile.getY() +1 || tile.getY() == currentTile.getY() -1) {
-				if(tile.getStatus() != TileStatus.REMOVED) {
-					validTiles.add(tile);
+			if(tile.getX() == currentTile.getX()) {
+				if(tile.getY() == (currentTile.getY() + 1) || tile.getY() == (currentTile.getY() - 1)) {
+					if(tile.getStatus() != TileStatus.REMOVED) {
+						validTiles.add(tile);
+					}
+				}
+			}
+			else if(tile.getY() == currentTile.getY()) {
+				if(tile.getX() == (currentTile.getX() + 1) || tile.getX() == (currentTile.getX() - 1)) {
+					if(tile.getStatus() != TileStatus.REMOVED) {
+						validTiles.add(tile);
+					}
 				}
 			}
 		}
@@ -58,9 +67,9 @@ public abstract class Pawn {
 	 * @param start - index to start printing from
 	 */
 	protected static void checkPrint(ArrayList<Tile> validTiles, int start) {
-		for(int i=start; i<validTiles.size(); i++) {
-			System.out.println("[" + start + "] " + validTiles.get(i));
-		}
+//		for(int i=start; i<validTiles.size(); i++) {
+//			System.out.println("[" + start + "] " + validTiles.get(i));
+//		}
 	}
 	
 	/**
