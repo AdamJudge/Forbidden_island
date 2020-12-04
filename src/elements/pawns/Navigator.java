@@ -40,7 +40,7 @@ public class Navigator extends Pawn {
 	 * @param destination
 	 */
 	public void moveOther(Pawn otherPawn, Tile destination) {
-		otherPawn.move(destination);
+		((Pawn)otherPawn).move(destination);		// TODO needs to use super version of move (this doesn't work)
 	}
 	
 	/**
