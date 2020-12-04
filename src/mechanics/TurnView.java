@@ -85,7 +85,8 @@ public class TurnView {
 		System.out.println("[2] Shore-up a tile");
 		System.out.println("[3] Give someone a card");
 		System.out.println("[4] Claim a treasure");
-		int actionNum = ParseNumberInputs.main(user, 1, 4);				/// ---------------------- TODO why does parse inputs have a main? -------------------------
+		System.out.println("[5] Finish turn without another action");
+		int actionNum = ParseNumberInputs.main(user, 1, 5);				/// ---------------------- TODO why does parse inputs have a main? -------------------------
 		
 		switch(actionNum) {
 		case 1:
@@ -96,6 +97,9 @@ public class TurnView {
 			return GiveCardView.getInstance(controller).doAction(currentPlayer, user);
 		case 4:
 			claimTreasure();
+			break;
+		case 5:
+			// TODO how do we get the number of actions to go down to 0? Could return 0,1,-1 instead of a boolean?
 			break;
 		}
 		
