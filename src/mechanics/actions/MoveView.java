@@ -1,12 +1,14 @@
 /**
- * Class Name: Move
+ * Class Name: MoveView
  *
- * DETAILS
+ * 	view to display move action
  * 
- * Author: @author adamj
- * Version: @version 
+ * @author Adam Judge, Catherine Waechter
+ * @version 2.1
+ * 	implemented as MVC
+ * 	
  * Creation Date: 22/10/20
- * Last Modified: 29/10/20
+ * Last Modified: 04/12/20
  */
 
 package mechanics.actions;
@@ -22,11 +24,6 @@ import players.Player;
 import players.PlayerList;
 import setup.ParseNumberInputs;
 
-/* 
-	Check pawns possible return places (TO BE DONE IN PAWN)
-	
-	MoveTo()
-*/
 
 public class MoveView extends ActionView{
 	
@@ -86,18 +83,12 @@ public class MoveView extends ActionView{
 	
 	private Player navigatorException(Player currentPlayer) throws IOException{
 		
-		System.out.println("Would you like to move ");
-		int i = 1;
-		for (Player player : PlayerList.getInstance().getPlayers()) {
-			if(player != currentPlayer) {
-				System.out.println("[" + i + "]" + player);
-			}
-			else {
-				System.out.println("[" + i + "]" + player + "(You)");
-			}
-			i++;
-		}
-		int input=ParseNumberInputs.main(user, 1, i);
+		System.out.println("Who would you like to move?");
+		
+		ArrayList<Player> validPlayers = controller.getPlayers();
+		printPlayerList(validPlayers, currentPlayer);
+
+		int input=ParseNumberInputs.main(user, 1, validPlayers.size());
 		return PlayerList.getInstance().getPlayers().get(input-1);
 	
 	}
