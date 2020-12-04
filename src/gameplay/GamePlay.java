@@ -2,10 +2,12 @@ package gameplay;
 
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
 
 import elements.board.Board;
 import players.Player;
 import players.PlayerList;
+import mechanics.Turn;
 
 public class GamePlay {
 	private static GamePlay gp=null;
@@ -27,25 +29,12 @@ public class GamePlay {
 		this.playerList=PlayerList.getInstance();
 	}
 	
-	public void playGame(Scanner user) {
+	public void playGame(Scanner user) throws IOException {
 		while (!this.gameOver) {
-			for (Player p: playerList.getPlayers()) {
-				System.out.println("It's your turn " + p.getName() + "!");
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+			for (Player player: playerList.getPlayers()) {
+				Turn.getInstance().doTurn(player, user);	
 			}
-			this.gameOver=true;
+//			this.gameOver=true;
 		}
 	}
 }
