@@ -12,12 +12,11 @@ import setup.GameSetup;
  * Represent the deck of treasure cards
  * 
  * @author Catherine Waechter
- * @version 2.1
- * 	Initialised cards
- * 	Made waters rise cards have effect only outside of setup
+ * @version 2.2
+ * 	no longer adding treasure cards with a "none" treasure
  * 
  * Date Created: 26/10/20
- * Last Modified: 30/11/20
+ * Last Modified: 03/12/20
  *
  */
 public class TreasureDeck extends Deck {
@@ -74,8 +73,10 @@ public class TreasureDeck extends Deck {
 		
 		// add 5 cards per treasure
 		for(TreasureNames treasureType : TreasureNames.values()) {
-			for(int cardCount = 0; cardCount < 5; cardCount ++) {
-				cards.push(new TreasureCard(TreasureCardTypes.TREASURE, treasureType));
+			if(treasureType != TreasureNames.NONE) {
+				for(int cardCount = 0; cardCount < 5; cardCount ++) {
+					cards.push(new TreasureCard(TreasureCardTypes.TREASURE, treasureType));
+				}
 			}
 		}
 		// add 3 helicopter lift cards
