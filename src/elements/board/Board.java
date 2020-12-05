@@ -5,6 +5,7 @@ import java.util.Set;
 
 import java.util.HashSet;
 import java.util.Collections;
+import java.text.Format;
 import java.util.ArrayList;
 
 /**
@@ -111,17 +112,13 @@ public class Board {
 		String boardString;
 		ArrayList<Tile> tiles = sortTiles();
 		
-		boardString = "\t\t\t\t\t\t | \t" + tiles.get(0) + "\t|\t" +  tiles.get(1) + "\t|\n";
-		
-		boardString += "\t\t\t | \t" + tiles.get(2) + "\t|\t" +  tiles.get(3) + "\t|\t" + tiles.get(4) + "\t|\t" +  tiles.get(5) + "\t|\n";
-		
-		boardString += " | \t" + tiles.get(6) + "\t|\t" +  tiles.get(7) + "\t|\t" + tiles.get(8) + "\t|\t" +  tiles.get(9) + "\t|\t " + tiles.get(10) + "\t|\t" +  tiles.get(11) +"\t|\n";
-		
-		boardString += " | \t" + tiles.get(12) + "\t|\t" +  tiles.get(13) + "\t|\t" + tiles.get(14) + "\t|\t" +  tiles.get(15) + "\t|\t " + tiles.get(16) + "\t|\t" +  tiles.get(17) +  "\t|\n";
-		
-		boardString += "\t\t\t | \t" + tiles.get(18) + "\t|\t" +  tiles.get(19) + "\t|\t" + tiles.get(20) + "\t|\t" +  tiles.get(21) + "\t|\n";		
-		
-		boardString += "\t\t\t\t\t\t | \t" + tiles.get(22) + "\t|\t" +  tiles.get(23) + "\t|\n";
+		//boardString = "\t\t\t\t\t\t|  \t" + tiles.get(0) + "\t|\t" +  tiles.get(1) + "\t|\n";
+		boardString = String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", tiles.get(0), tiles.get(1));
+		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", tiles.get(2), tiles.get(3), tiles.get(4), tiles.get(5));
+		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", tiles.get(6), tiles.get(7), tiles.get(8), tiles.get(9), tiles.get(10), tiles.get(11));
+		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", tiles.get(12), tiles.get(13), tiles.get(14), tiles.get(15), tiles.get(16), tiles.get(17));
+		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", tiles.get(18), tiles.get(19), tiles.get(20), tiles.get(21));
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", tiles.get(22), tiles.get(23));
 		
 		return boardString;
 	}

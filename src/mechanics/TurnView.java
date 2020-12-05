@@ -81,11 +81,11 @@ public class TurnView {
 	 */
 	private boolean selectAction(Scanner user) throws IOException {
 		System.out.println("Select action : "); // TODO print possible actions
-		System.out.println("[1] Move");
-		System.out.println("[2] Shore-up a tile");
-		System.out.println("[3] Give someone a card");
-		System.out.println("[4] Claim a treasure");
-		System.out.println("[5] Finish turn without another action");
+		System.out.println("[1]: Move");
+		System.out.println("[2]: Shore-up a tile");
+		System.out.println("[3]: Give someone a card");
+		System.out.println("[4]: Claim a treasure");
+		System.out.println("[5]: Finish turn without another action");
 		int actionNum = ParseNumberInputs.main(user, 1, 5);				/// ---------------------- TODO why does parse inputs have a main? -------------------------
 		
 		switch(actionNum) {
