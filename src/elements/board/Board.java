@@ -111,15 +111,38 @@ public class Board {
 	public String toString() {	// TODO improve this!! suggestion : have "print tile" function
 		String boardString;
 		ArrayList<Tile> tiles = sortTiles();
-		
-		//boardString = "\t\t\t\t\t\t|  \t" + tiles.get(0) + "\t|\t" +  tiles.get(1) + "\t|\n";
-		boardString = String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", tiles.get(0), tiles.get(1));
-		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", tiles.get(2), tiles.get(3), tiles.get(4), tiles.get(5));
-		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", tiles.get(6), tiles.get(7), tiles.get(8), tiles.get(9), tiles.get(10), tiles.get(11));
-		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", tiles.get(12), tiles.get(13), tiles.get(14), tiles.get(15), tiles.get(16), tiles.get(17));
-		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", tiles.get(18), tiles.get(19), tiles.get(20), tiles.get(21));
-		boardString += String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", tiles.get(22), tiles.get(23));
-		
+		boardString = String.format("\t\t\t\t\t\t\t\t _______________________________________________________________\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %15s \t|\t %15s \t|\n", tiles.get(0), tiles.get(1));
+		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t _______________________________|_______________________________|_______________________________|________________________________\n");
+		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
+		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
+		boardString += String.format("\t\t\t\t|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s\t |\n", tiles.get(2), tiles.get(3), tiles.get(4), tiles.get(5));
+		boardString += String.format("                                |                               |                               |                               |                                |                              \n");
+		boardString += String.format(" _______________________________|_______________________________|_______________________________|_______________________________|________________________________|______________________________\n");
+		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
+		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
+		boardString += String.format("|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s \t|\t %15s \t |\t %15s \t|\n", tiles.get(6), tiles.get(7), tiles.get(8), tiles.get(9), tiles.get(10), tiles.get(11));
+		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
+		boardString += String.format("|_______________________________|_______________________________|_______________________________|_______________________________|________________________________|______________________________|\n");
+		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
+		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
+		boardString += String.format("|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s \t|\t %15s \t |\t %15s \t|\n", tiles.get(12), tiles.get(13), tiles.get(14), tiles.get(15), tiles.get(16), tiles.get(17));
+		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
+		boardString += String.format("|_______________________________|_______________________________|_______________________________|_______________________________|________________________________|______________________________|\n");
+		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
+		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
+		boardString += String.format("\t\t\t\t|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s\t |\n", tiles.get(18), tiles.get(19), tiles.get(20), tiles.get(21));
+		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
+		boardString += String.format("\t\t\t\t|_______________________________|_______________________________|_______________________________|________________________________|\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %15s \t|\t %15s \t|\n", tiles.get(22), tiles.get(23));
+		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t|_______________________________|_______________________________|\n");
+
 		return boardString;
 	}
 }
