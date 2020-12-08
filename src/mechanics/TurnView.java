@@ -3,6 +3,7 @@ package mechanics;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import setup.ParseNumberInputs;
 import setup.SetupController;
@@ -46,10 +47,14 @@ public class TurnView {
 	 * 
 	 * @param player
 	 * @param user
-	 * @throws IOException
+	 * @throws IOException 
 	 */
 	public void run(Player player, Scanner user) throws IOException  {
-		System.out.println(Board.getInstance()); 
+		try {TimeUnit.SECONDS.sleep(2);}
+		catch (InterruptedException e) {}
+		System.out.println(Board.getInstance());
+
+	
 		currentPlayer = player;
 		System.out.println("It's your turn " + player + "!");
 		System.out.println("Your cards are : " + controller.getHand(player));

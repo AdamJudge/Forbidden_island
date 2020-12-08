@@ -43,7 +43,7 @@ public abstract class Deck {
 	 * @return
 	 */
 	public Card draw() {
-		System.out.println("Card Drawn : " + cards.peek());
+		System.out.println("Card Drawn: " + cards.peek());
 		return cards.pop();
 	}
 	
