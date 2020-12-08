@@ -4,10 +4,11 @@
  * 	Represents a player's hand
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 1.2
+ * @version 1.3
+ * 	Discard to actual discard pile (typo, had it going to deck)
  * 	
  * Creation Date: 22/10/20
- * Last Modified: 29/10/20
+ * Last Modified: 08/12/20
  */
 
 package players;
@@ -16,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import elements.cards.Card;
-import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 
 public class Hand {
 	protected Set<Card> hand;
@@ -50,7 +51,7 @@ public class Hand {
 	 * @param card
 	 */
 	public void discardCard(Card card) {
-		TreasureDeck.getInstance().addCard(card);
+		TreasureDiscard.getInstance().addCard(card);
 		this.hand.remove(card);
 	}
 	
