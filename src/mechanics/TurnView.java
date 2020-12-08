@@ -88,6 +88,9 @@ public class TurnView {
 		System.out.println("[5]: Finish turn without another action");
 		int actionNum = ParseNumberInputs.main(user, 1, 5);				/// ---------------------- TODO why does parse inputs have a main? -------------------------
 		
+		// TODO need to check for hands with too many cards and prompt discard
+		// also maybe allow for discard at end of turn regardless?
+		
 		switch(actionNum) {
 		case 1:
 			return MoveView.getInstance(controller).doAction(currentPlayer, user);
@@ -96,19 +99,13 @@ public class TurnView {
 		case 3: 
 			return GiveCardView.getInstance(controller).doAction(currentPlayer, user);
 		case 4:
-			claimTreasure();
-			break;
+			return ClaimTreasureView.getInstance(controller).doAction(currentPlayer, user);
 		case 5:
 			// TODO how do we get the number of actions to go down to 0? Could return 0,1,-1 instead of a boolean?
 			break;
 		}
 		
 		return true; // use false for cases where the player has not used an action
-	}
-	
-	
-	private void claimTreasure() {
-		
 	}
 	
 

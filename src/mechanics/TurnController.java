@@ -1,8 +1,11 @@
 package mechanics;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
+import java.util.HashSet;
 
+import elements.board.Board;
 import elements.board.Tile;
 import elements.board.WaterLevel;
 import players.Player;
@@ -10,6 +13,8 @@ import players.PlayerList;
 import elements.cards.*;
 import elements.pawns.Messenger;
 import players.Hand;
+import elements.treasures.Treasure;
+import elements.treasures.TreasureNames;
 
 /**
  * TurnController
@@ -58,6 +63,64 @@ public class TurnController {
 	 */
 	public ArrayList<Player> getPlayers(){
 		return PlayerList.getInstance().getPlayers();
+	}
+	
+	/**
+	 * getClaimTreasureCheck
+	 * 	Returns the treasure the given player is able to capture
+	 * @param currentPlayer
+	 * @return Treasure the player can capture, or null if none
+	 */
+	public Treasure getClaimTreasureCheck(Player currentPlayer) {
+		int treasureCount = 0;
+		Treasure potentialTreasure = null;
+		
+		// get treasure associated with tile the player's pawn is on
+		potentialTreasure = currentPlayer.getPawn().getTile().getTreasure();
+		
+		// if no treasure associated, no treasure can be collected
+		if(potentialTreasure == null) {
+			return null;
+		}
+		
+		// if player's pawn is on a tile with a treasure, count cards of that treasure type
+		for(Card card : currentPlayer.getHand().getCards()) {
+			if(((TreasureCard)card).getCardType() != TreasureCardTypes.TREASURE) {
+				continue;
+			}
+			
+			if(((TreasureCard)card).getTreasureType() == potentialTreasure) {
+				treasureCount++;
+			}
+		}
+		if(treasureCount >= 4) {
+			return potentialTreasure;
+		}
+		else return null;
+	}
+	
+	/**
+	 * claimTreasure
+	 * 	capture the given treasure
+	 * @param treasure
+	 */
+	public void claimTreasure(Treasure treasure) {
+		treasure.captureTreasure();
+	}
+	
+	/**
+	 * getUnclaimedTreasures
+	 * 	returns a set of treasures which have not been claimed yet
+	 * @return
+	 */
+	public Set<Treasure> getUnclaimedTreasures(){
+		Set<Treasure> unclaimedTreasures = new HashSet<Treasure>();
+		for(Map.Entry<TreasureNames, Treasure> entry : Board.getInstance().getTreasures().entrySet()) {
+			if(!entry.getValue().isCaptured()) {
+				unclaimedTreasures.add(entry.getValue());
+			}
+		}
+		return unclaimedTreasures;
 	}
 	
 	public void giveCard(Player playerFrom, Player playerTo, Card card) {
