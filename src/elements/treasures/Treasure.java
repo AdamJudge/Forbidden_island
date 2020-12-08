@@ -39,6 +39,14 @@ public class Treasure {
 	}
 	
 	/**
+	 * toString
+	 * returns string representation of the treasure (ie its name)
+	 */
+	public String toString() {
+		return name.name();
+	}
+	
+	/**
 	 * Treasure Constructor
 	 * @param name : name of the treasure
 	 */
