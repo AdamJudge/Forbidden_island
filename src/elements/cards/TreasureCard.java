@@ -1,6 +1,6 @@
 package elements.cards;
 
-import elements.treasures.TreasureNames;
+import elements.treasures.Treasure;
 
 /**
  * TreasureCard class
@@ -8,16 +8,16 @@ import elements.treasures.TreasureNames;
  * Represents a treasure card
  * 
  * @author Catherine Waechter
- * @version 1.1
- * 	Added toString
+ * @version 2.0
+ * 	Field representing the treasureType is now a Treasure, not a TreasureName
  * Date Created: 26/10/20
- * Last Modified: 25/11/20
+ * Last Modified: 08/12/20
  *
  */
 public class TreasureCard extends Card{
 	
 	private TreasureCardTypes cardType;		// type of the card (treasure, sandbag, helicopter lift, waters rise)
-	private TreasureNames treasureType;		// treasure associated (none if not a treasure card)
+	private Treasure treasureType;		// treasure associated (none if not a treasure card)
 	
 	/**
 	 * getCardType
@@ -31,7 +31,7 @@ public class TreasureCard extends Card{
 	 * getTreasureType
 	 * @return treasure associated with the card
 	 */
-	public TreasureNames getTreasureType() {
+	public Treasure getTreasureType() {
 		return treasureType;
 	}
 	
@@ -40,7 +40,7 @@ public class TreasureCard extends Card{
 	 * @param cardType
 	 * @param treasureType
 	 */
-	protected TreasureCard(TreasureCardTypes cardType, TreasureNames treasureType) {
+	protected TreasureCard(TreasureCardTypes cardType, Treasure treasureType) {
 		this.cardType = cardType;
 		this.treasureType = treasureType;
 	}
@@ -52,7 +52,7 @@ public class TreasureCard extends Card{
 	@Override
 	public String toString() {
 		if(cardType == TreasureCardTypes.TREASURE) {
-			return treasureType.name();
+			return treasureType.toString();
 		}
 		else return cardType.name();
 	}

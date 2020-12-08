@@ -1,8 +1,10 @@
 package elements.cards;
 
 import java.util.Stack;
+import java.util.Map;
 
-import elements.treasures.TreasureNames;
+import elements.board.Board;
+import elements.treasures.*;
 import mechanics.cardActions.WatersRise;
 import setup.GameSetup;
 
@@ -12,11 +14,11 @@ import setup.GameSetup;
  * Represent the deck of treasure cards
  * 
  * @author Catherine Waechter
- * @version 2.2
- * 	no longer adding treasure cards with a "none" treasure
+ * @version 2.3
+ * 	Treasure card initialisation updated to suit updated treasure card
  * 
  * Date Created: 26/10/20
- * Last Modified: 03/12/20
+ * Last Modified: 08/12/20
  *
  */
 public class TreasureDeck extends Deck {
@@ -72,24 +74,22 @@ public class TreasureDeck extends Deck {
 		cards = new Stack<Card>();
 		
 		// add 5 cards per treasure
-		for(TreasureNames treasureType : TreasureNames.values()) {
-			if(treasureType != TreasureNames.NONE) {
-				for(int cardCount = 0; cardCount < 5; cardCount ++) {
-					cards.push(new TreasureCard(TreasureCardTypes.TREASURE, treasureType));
-				}
+		for(Map.Entry<TreasureNames, Treasure> entry : Board.getInstance().getTreasures().entrySet()) {
+			for(int cardCount = 0; cardCount < 5; cardCount ++) {
+				cards.push(new TreasureCard(TreasureCardTypes.TREASURE, entry.getValue()));
 			}
 		}
 		// add 3 helicopter lift cards
 		for(int cardCount = 0; cardCount <3; cardCount ++) {
-			cards.push(new TreasureCard(TreasureCardTypes.HELICOPTER, TreasureNames.NONE));
+			cards.push(new TreasureCard(TreasureCardTypes.HELICOPTER, null));
 		}
 		// add 2 sandbag cards
 		for(int cardCount = 0; cardCount <2; cardCount ++) {
-			cards.push(new TreasureCard(TreasureCardTypes.SANDBAGS, TreasureNames.NONE));
+			cards.push(new TreasureCard(TreasureCardTypes.SANDBAGS, null));
 		}
 		// add 3 waters rise cards
 		for(int cardCount = 0; cardCount <3; cardCount ++) {
-			cards.push(new TreasureCard(TreasureCardTypes.WATERSRISE, TreasureNames.NONE));
+			cards.push(new TreasureCard(TreasureCardTypes.WATERSRISE, null));
 		}
 		
 		shuffleDeck();
