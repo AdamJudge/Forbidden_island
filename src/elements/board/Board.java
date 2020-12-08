@@ -171,7 +171,7 @@ public class Board {
 		boardString += String.format("\t\t\t\t\t\t      | %22s   | %22s   |\n", printTileName(0), printTileName(1));
 		boardString += String.format("\t\t\t\t\t\t      | %22s   | %22s   |\n", printPawn(0), printPawn(1));
 		boardString += String.format("\t\t\t\t\t\t      |                          |                          |\n");
-		boardString += String.format("\t\t\t    __________________________|__________________________|__________________________|___________________________\n");
+		boardString += String.format("\t\t\t    __________________________|__________________________|__________________________|__________________________\n");
 		boardString += String.format("\t\t\t   |        %18s|        %18s|        %18s|        %18s|\n", printTileTreasure(2), printTileTreasure(3), printTileTreasure(4), printTileTreasure(5));
 		boardString += String.format("\t\t\t   |                          |                          |                          |                          |\n");
 		boardString += String.format("\t\t\t   | %22s   | %22s   | %22s   | %22s   |\n", printTileName(2), printTileName(3), printTileName(4), printTileName(5));
