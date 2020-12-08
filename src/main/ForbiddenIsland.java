@@ -14,7 +14,7 @@ package main;
 import java.io.IOException;
 import java.util.Scanner;
 
-import gameplay.GamePlay;
+import mechanics.GamePlay;
 import setup.Setup;
 
 public class ForbiddenIsland {

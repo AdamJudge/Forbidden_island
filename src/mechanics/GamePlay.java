@@ -1,4 +1,4 @@
-package gameplay;
+package mechanics;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,7 +7,6 @@ import java.io.IOException;
 import elements.board.Board;
 import players.Player;
 import players.PlayerList;
-import mechanics.Turn;
 
 public class GamePlay {
 	private static GamePlay gp=null;
