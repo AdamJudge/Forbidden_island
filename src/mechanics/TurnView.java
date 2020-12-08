@@ -69,12 +69,30 @@ public class TurnView {
 			}
 		}
 		// TODO should still be able to play cards in here
-		controller.drawTreasureCards(player);
+		for(int i = 0; i<2; i++) {
+			controller.drawTreasureCard(player);
+			if(controller.handSize(player) == 6) {
+				doDiscard(user, currentPlayer);
+			}
+		}
+		
 		controller.drawFloodCards();
 		
-		System.out.println("Your cards are : " + player.getHand());			// TODO should this be done by controller? (probably... )
+		System.out.println("Your cards are : " + controller.getHand(player));
 
 		// TODO get floodcards to return card name so it can be printed. Will also need to check status of tile to say if it was flooded or removed
+	}
+	
+	
+	private void doDiscard(Scanner user, Player player) throws IOException {
+		System.out.println(player + "'s hand is full! Please select a card to discard: ");
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.addAll(controller.getHandCards(player));
+		ActionView.printCardList(cards);
+		
+		int cardNum = ParseNumberInputs.main(user, 1, 6);
+		
+		controller.discard(player, cards.get(cardNum-1));
 	}
 	
 	/**
@@ -102,7 +120,13 @@ public class TurnView {
 		case 2:
 			return ShoreupView.getInstance(controller).doAction(currentPlayer, user);
 		case 3: 
-			return GiveCardView.getInstance(controller).doAction(currentPlayer, user);
+			boolean actionResult =  GiveCardView.getInstance(controller).doAction(currentPlayer, user);
+			for(Player player : controller.getPlayers()) {
+				if (controller.handSize(player) == 6) {
+					doDiscard(user, player);
+				}
+			}
+			return actionResult;
 		case 4:
 			return ClaimTreasureView.getInstance(controller).doAction(currentPlayer, user);
 		case 5:

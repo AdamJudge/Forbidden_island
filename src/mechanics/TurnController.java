@@ -128,6 +128,14 @@ public class TurnController {
 		playerTo.getHand().addCard(card);
 	}
 	
+	public int handSize(Player player) {
+		return player.getHand().getCards().size();
+	}
+	
+	public void discard(Player player, Card card) {
+		player.getHand().discardCard(card);
+	}
+	
 	/**
 	 * getHand
 	 * @param player
@@ -197,13 +205,11 @@ public class TurnController {
 	 * 	draw two treasure cards. Add to player's hand
 	 * @param player
 	 */
-	public void drawTreasureCards(Player player) {	// TODO should this be more abstract? 
+	public void drawTreasureCard(Player player) {	// TODO should this be more abstract? 
 		Card card;
-		for(int i=0; i<2; i++) {
-			card = TreasureDeck.getInstance().draw();
-			if(card != null) {		// card returned is null if it was a waters rise card
-				player.getHand().addCard(card);
-			}
+		card = TreasureDeck.getInstance().draw();
+		if(card != null) {		// card returned is null if it was a waters rise card
+			player.getHand().addCard(card);
 		}
 	} // TODO needs to return cards for view
 	

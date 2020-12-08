@@ -4,16 +4,17 @@
  *  View to display action of giving a card
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 1.2
- * 	adjusted to suit ActionView 
+ * @version 2.0
+ * 	Carries out action
  * 
  * Creation Date: 22/10/20
- * Last Modified: 04/12/20
+ * Last Modified: 08/12/20
  */
 
 package mechanics.actions;
 
 import players.Player;
+import setup.ParseLetterInputs;
 import setup.ParseNumberInputs;
 import mechanics.TurnController;
 
@@ -35,8 +36,6 @@ public class GiveCardView  extends ActionView{
 	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
 		
 		this.user = user;
-
-		// messenger exception
 		
 		ArrayList<Player> possiblePlayers = controller.getGiveCardCheck(currentPlayer);
 
@@ -49,6 +48,22 @@ public class GiveCardView  extends ActionView{
 		}
 		
 		Player playerToGive = possiblePlayers.get(userNum-1);
+		
+		if(controller.handSize(playerToGive) == 5) {
+			System.out.println(playerToGive + "'s hand is full, they will need to discard a card. Proceed anyway? [y/n]");
+			String userAns = null;
+			while (userAns != "y" && userAns != "n") {
+				userAns = ParseLetterInputs.main(user);
+				if(userAns.equals("n")) {
+					return false;
+				}
+				else if(userAns.equals("y")) {
+					break;
+				}
+				System.out.println("Please enter \"y\" or \"n\""); // TODO maybe a parse y/n inputs function? 
+			}
+
+		}
 		
 		System.out.println("Which card would you like to give " + playerToGive + " ?");
 		ArrayList<Card> cardsToGive = new ArrayList<>();

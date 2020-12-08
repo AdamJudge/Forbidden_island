@@ -44,7 +44,7 @@ public abstract class ActionView{
 	 *  prints given cards
 	 * @param cards
 	 */
-	public void printCardList(ArrayList<Card> cards) {
+	public static void printCardList(ArrayList<Card> cards) {
 		int i = 1;
 		for (Card card : cards) {
 			System.out.println("[" + i + "]" + card);
