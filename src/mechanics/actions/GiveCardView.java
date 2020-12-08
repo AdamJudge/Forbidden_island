@@ -52,7 +52,7 @@ public class GiveCardView  extends ActionView{
 		if(controller.handSize(playerToGive) == 5) {
 			System.out.println(playerToGive + "'s hand is full, they will need to discard a card. Proceed anyway? [y/n]");
 			String userAns = null;
-			while (userAns != "y" && userAns != "n") {
+			while (!userAns.equals("y") && !userAns.equals("n")) {
 				userAns = ParseLetterInputs.main(user);
 				if(userAns.equals("n")) {
 					return false;

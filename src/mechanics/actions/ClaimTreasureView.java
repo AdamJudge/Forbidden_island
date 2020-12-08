@@ -46,12 +46,12 @@ public class ClaimTreasureView extends ActionView{
 		
 		String userAns = null;
 		
-		while(userAns != "n" && userAns != "y") {
+		while(!userAns.equals("n") && !userAns.equals("y")) {
 			userAns = ParseLetterInputs.main(user);
-			if(userAns == "n") {
+			if(userAns.equals("n")) {
 				return false;
 			}
-			else if(userAns == "y") {
+			else if(userAns.equals("y")) {
 				controller.claimTreasure(possibleTreasure);
 				System.out.println(possibleTreasure + " has been captured!");
 				Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
