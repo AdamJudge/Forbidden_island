@@ -7,6 +7,12 @@ import java.util.HashSet;
 import java.util.Collections;
 import java.text.Format;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+import elements.treasures.*;
+import players.PlayerList;
+import players.Player;
 
 /**
  * Board class
@@ -14,15 +20,17 @@ import java.util.ArrayList;
  * Creates a board made up of Tile objects
  * 
  * @author Catherine Waechter
- * @version 2.1
- * 	added very basic print (will need to improve)
+ * @version 3.0
+ * 	Board now contains set of treasures
  * 
  * Date created: 26/10/20
- * Last modified: 03/12/20
+ * Last modified: 08/12/20
  */
 public class Board {
 	private static Board board = null;
 	private Set<Tile> allTiles;
+	private ArrayList<Tile> sortedTiles;
+	private Map<TreasureNames, Treasure> allTreasures;
 	
 	/**
 	 * getAllTiles
@@ -65,10 +73,14 @@ public class Board {
 	 * 	Creates all tiles in the board
 	 */
 	private Board() {
-		//Set<Tile> tiles;			// set of tiles in the board
-		// NB: tiles can be a set because the order is determined by the position field of each tile
+		// Create the 4 treasures
+		allTreasures = new HashMap<TreasureNames, Treasure>();
+		for(TreasureNames name : TreasureNames.values()) {
+			allTreasures.put(name, new Treasure(name));
+		}
 		
 		this.allTiles = new HashSet<Tile>(); // create empty set of tiles
+		// NB: tiles can be a set because the order is determined by the position field of each tile
 		
 		ArrayList<Position> positions = new ArrayList<Position>(); // create empty list of positions
 		
@@ -86,60 +98,91 @@ public class Board {
 		
 		// create tiles : name is in a set order, but position is randomised
 		for (TileNames name : TileNames.values()) {
-			this.allTiles.add(new Tile(name, positions.get(this.allTiles.size())));
+			this.allTiles.add(new Tile(name, positions.get(this.allTiles.size()), allTreasures));
 		}
+		
+		sortedTiles = sortTiles();
 	}
 	
 	private ArrayList<Tile> sortTiles(){
-		ArrayList<Tile> sortedTiles = new ArrayList<Tile>();
-		sortedTiles.addAll(allTiles);
+		ArrayList<Tile> sorted = new ArrayList<Tile>();
+		sorted.addAll(allTiles);
 		
 		// bubble sort algorithm
 		for (int i=0 ; i< 24 ; i++) {
 			for( int j=0; j<24 - 1; j++){
-				if(sortedTiles.get(j).compareTo(sortedTiles.get(j+1) ) > 0 ) {
-					Tile tempTile = sortedTiles.get(j+1);
-					sortedTiles.set(j+1, sortedTiles.get(j));
-					sortedTiles.set(j, tempTile);
+				if(sorted.get(j).compareTo(sorted.get(j+1) ) > 0 ) {
+					Tile tempTile = sorted.get(j+1);
+					sorted.set(j+1, sorted.get(j));
+					sorted.set(j, tempTile);
 				}
 			}
 		}
 		
-		return sortedTiles;
+		return sorted;
+	}
+	
+	public Map<TreasureNames, Treasure> getTreasures(){
+		return allTreasures;
+	}
+	
+	private String printTileName(int index) {
+		if(sortedTiles.get(index).getStatus() == TileStatus.REMOVED) {
+			return " ";
+		}
+		else if(sortedTiles.get(index).getStatus() == TileStatus.FLOODED) {
+			return "**" + sortedTiles.get(index).toString() + "**";
+		}
+		else return sortedTiles.get(index).toString();
+	}
+	
+	
+	private String printPawn(int index) {
+		String pawnsString = " ";
+		for (Player player : PlayerList.getInstance().getPlayers()) {
+			if(player.getPawn().getTile() == sortedTiles.get(index)) {
+				pawnsString += player.getPawn().toString() + " ";
+			}
+		}
+		return pawnsString;
 	}
 	
 	public String toString() {	// TODO improve this!! suggestion : have "print tile" function
 		String boardString;
-		ArrayList<Tile> tiles = sortTiles();
+		
 		boardString = String.format("\t\t\t\t\t\t\t\t _______________________________________________________________\n");
 		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
 		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
-		boardString += String.format("\t\t\t\t\t\t\t\t| \t %15s \t|\t %15s \t|\n", tiles.get(0), tiles.get(1));
-		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", printTileName(0), printTileName(1));
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", printPawn(0), printPawn(1));
 		boardString += String.format("\t\t\t\t _______________________________|_______________________________|_______________________________|________________________________\n");
 		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
 		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
-		boardString += String.format("\t\t\t\t|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s\t |\n", tiles.get(2), tiles.get(3), tiles.get(4), tiles.get(5));
+		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", printTileName(2), printTileName(3), printTileName(4), printTileName(5));
+		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", printPawn(2), printPawn(3), printPawn(4), printPawn(5));
 		boardString += String.format("                                |                               |                               |                               |                                |                              \n");
 		boardString += String.format(" _______________________________|_______________________________|_______________________________|_______________________________|________________________________|______________________________\n");
 		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
 		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
-		boardString += String.format("|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s \t|\t %15s \t |\t %15s \t|\n", tiles.get(6), tiles.get(7), tiles.get(8), tiles.get(9), tiles.get(10), tiles.get(11));
+		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", printTileName(6), printTileName(7), printTileName(8), printTileName(9), printTileName(10), printTileName(11));
+		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", printPawn(6), printPawn(7), printPawn(8), printPawn(9), printPawn(10), printPawn(11));
 		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
 		boardString += String.format("|_______________________________|_______________________________|_______________________________|_______________________________|________________________________|______________________________|\n");
 		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
 		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
-		boardString += String.format("|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s \t|\t %15s \t |\t %15s \t|\n", tiles.get(12), tiles.get(13), tiles.get(14), tiles.get(15), tiles.get(16), tiles.get(17));
+		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", printTileName(12), printTileName(13), printTileName(14), printTileName(15), printTileName(16), printTileName(17));
+		boardString += String.format("|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s \t|\t %20s \t |\t %20s \t|\n", printPawn(12), printPawn(13), printPawn(14), printPawn(15), printPawn(16), printPawn(17));
 		boardString += String.format("|                               |                               |                               |                               |                                |                              |\n");
 		boardString += String.format("|_______________________________|_______________________________|_______________________________|_______________________________|________________________________|______________________________|\n");
 		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
 		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
-		boardString += String.format("\t\t\t\t|\t %15s  \t|\t %15s \t|\t %15s \t|\t %15s\t |\n", tiles.get(18), tiles.get(19), tiles.get(20), tiles.get(21));
-		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
+		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", printTileName(18), printTileName(19), printTileName(20), printTileName(21));
+		boardString += String.format("\t\t\t\t|\t %20s  \t|\t %20s \t|\t %20s \t|\t %20s\t |\n", printPawn(18), printPawn(19), printPawn(20), printPawn(21));		boardString += String.format("\t\t\t\t|                               |                               |                               |                                |\n");
 		boardString += String.format("\t\t\t\t|_______________________________|_______________________________|_______________________________|________________________________|\n");
 		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
 		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
-		boardString += String.format("\t\t\t\t\t\t\t\t| \t %15s \t|\t %15s \t|\n", tiles.get(22), tiles.get(23));
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", printTileName(22), printTileName(23));
+		boardString += String.format("\t\t\t\t\t\t\t\t| \t %20s \t|\t %20s \t|\n", printPawn(22), printPawn(23));
 		boardString += String.format("\t\t\t\t\t\t\t\t|                               |                               |\n");
 		boardString += String.format("\t\t\t\t\t\t\t\t|_______________________________|_______________________________|\n");
 
