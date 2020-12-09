@@ -31,7 +31,7 @@ public abstract class ActionView{
 	 * 	print given list of tiles
 	 * @param tiles
 	 */
-	public void printTileList(ArrayList<Tile> tiles) {
+	public static void printTileList(ArrayList<Tile> tiles) {
 		int i = 1;
 		for (Tile tile :tiles) {
 			System.out.println("[" + i + "]" + tile.getName());
@@ -58,7 +58,7 @@ public abstract class ActionView{
 	 * @param players - list of players to be printed
 	 * @param currentPlayer
 	 */
-	public void printPlayerList(ArrayList<Player> players, Player currentPlayer) {
+	public static void printPlayerList(ArrayList<Player> players, Player currentPlayer) {
 		int i = 1;
 		for (Player player : players) {
 			if(player != currentPlayer) {
