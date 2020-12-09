@@ -89,7 +89,6 @@ public class SetupView {
 	private void setupBoard() {
 		Board board = controller.getBoard();
 		System.out.println("Board has been set up"); 
-		System.out.println(board);						// TODO print actual board ? 
 	}
 	
 	/**
