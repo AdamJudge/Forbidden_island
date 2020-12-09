@@ -46,7 +46,7 @@ public class FloodDeck extends Deck{
 	/**
 	 * draw
 	 * 	draws a floodcard and carries out required flooding. Card is discarded in floodTile method
-	 * return null - card has been used and/or discarded
+	 * return card - Note card has been either used or discarded, does not need to be added back to deck
 	 * @throws IOException 
 	 */
 	@Override
@@ -57,7 +57,7 @@ public class FloodDeck extends Deck{
 		if (cards.isEmpty()) {
 			FloodDiscard.getInstance().toDeck();
 		}
-		return null;
+		return card;
 	}
 	
 	/**
