@@ -51,8 +51,6 @@ public class TurnView {
 	 * @throws IOException 
 	 */
 	public void run(Player player, Scanner user) throws IOException  {
-		try {TimeUnit.SECONDS.sleep(2);}
-		catch (InterruptedException e) {}
 		System.out.println(Board.getInstance());
 
 		this.user = user;
