@@ -213,24 +213,27 @@ public class TurnController {
 	 * drawFloodCards
 	 * 	Draw flood cards according to water level
 	 */
-	public void drawFloodCards() throws IOException {			// TODO should this be more abstract? 
+	public Set<Card> drawFloodCards() throws IOException {			// TODO should this be more abstract? 
+		Set<Card> cardsDrawn = new HashSet<Card>();
 		for(int i=0; i< WaterLevel.getInstance().getNbrCards(); i++) {
-			FloodDeck.getInstance().draw(); 	// cards drawn will automatically flood
+			cardsDrawn.add(FloodDeck.getInstance().draw()); 	// cards drawn will automatically flood
 		}
-	} // TODO needs to return cards for view
+		return cardsDrawn;
+	} 
 	
 	/**
 	 * drawTreasureCards
 	 * 	draw two treasure cards. Add to player's hand
 	 * @param player
 	 */
-	public void drawTreasureCard(Player player) throws IOException {	// TODO should this be more abstract? 
+	public Card drawTreasureCard(Player player) throws IOException {	// TODO should this be more abstract? 
 		Card card;
 		card = TreasureDeck.getInstance().draw();
 		if(card != null) {		// card returned is null if it was a waters rise card
 			player.getHand().addCard(card);
 		}
-	} // TODO needs to return cards for view
+		return card;
+	} 
 	
 	/**
 	 * move

@@ -3,11 +3,12 @@ package setup;
 import java.io.IOException;
 import java.util.Scanner;
 
-import java.util.Set;
-
 import elements.board.Difficulty;
 import elements.board.Board;
+import elements.cards.Card;
+import mechanics.actions.ActionView;
 
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -66,7 +67,8 @@ public class SetupView {
 		setupWaterLevel(user);
 		
 		// draw initial flood cards (6)
-		controller.drawFloodCards();
+		Set<Card> floodCardsDrawn = controller.drawFloodCards();
+		System.out.println("Tiles initially flooded: " + floodCardsDrawn);
 		
 		controller.endSetup();	// indicate game is no longer in setup
 	}

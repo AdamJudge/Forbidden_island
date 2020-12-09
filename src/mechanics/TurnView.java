@@ -2,6 +2,7 @@ package mechanics;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +10,6 @@ import setup.ParseNumberInputs;
 import setup.SetupController;
 import players.Player;
 import players.PlayerList;
-import elements.pawns.*;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.cards.*;
@@ -70,19 +70,21 @@ public class TurnView {
 				actionCount--;
 			}
 		}
-		// TODO should still be able to play cards in here
+		
+		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
-			controller.drawTreasureCard(player);
+			Card cardDrawn = controller.drawTreasureCard(player);
+			System.out.println(player + " drew a " + cardDrawn + " card.");
 			if(controller.handSize(player) == 6) {
 				doDiscard(user, currentPlayer);
 			}
 		}
 		
-		controller.drawFloodCards();
+		Set<Card> cardsDrawn = controller.drawFloodCards();
+		System.out.println("Flood cards drawn: " + cardsDrawn);
+		// TODO could be nice to print new status of relevant tiles, but not completely necessary since board is printed
 		
 		System.out.println("Your cards are : " + controller.getHand(player));
-
-		// TODO get floodcards to return card name so it can be printed. Will also need to check status of tile to say if it was flooded or removed
 	}
 	
 	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
