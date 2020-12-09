@@ -61,9 +61,8 @@ public class Helicopter {
 		if(pawn instanceof Pilot) {
 			flown = ((Pilot)pawn).getHasFlown();
 		}
-		
-		pawn.move(sortedTiles.get(input));
-		
+		pawn.move(sortedTiles.get(input-1));
+		//		System.out.println(sortedTiles.get(input).toString());
 		// if pilot hadn't flown, reset the hasFlown flag
 		if(!flown && pawn instanceof Pilot) {
 			((Pilot)pawn).resetHasFlown();
