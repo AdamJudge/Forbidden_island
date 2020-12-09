@@ -25,25 +25,48 @@ public class Diver extends Pawn {
 
 	// override 
 	// swimCheck
-	// moveCheck
+
+	public ArrayList<Tile> swimCheck(){
+		ArrayList<Tile> prevRound = new ArrayList<Tile>();
+		ArrayList<Tile> thisRound = new ArrayList<Tile>();
+		ArrayList<Tile> nextRound = new ArrayList<Tile>();
+		ArrayList<Tile> validTiles = new ArrayList<Tile>();
+		
+		thisRound.add(currentTile);
+		
+		for(int i = 0; i<6; i++) { // TODO check this value!
+			// check if any tiles in this round can be landed on
+			for(Tile tile : thisRound) {
+				if(tile.getStatus() != TileStatus.REMOVED) {
+					validTiles.add(tile);
+				}
+			}
+			// if prev search found any tiles, stop here
+			if(validTiles.size() != 0) {
+				break;
+			}
+			
+			// if not, get next round
+			for(Tile tile : thisRound) {
+				prevRound.addAll(nextRound);
+				nextRound.addAll(adjacentNewTiles(tile, prevRound));
+			}
+			prevRound = thisRound;
+			thisRound = nextRound;
+			nextRound = null;
+			
+		}
+		
+		return validTiles;
+	}
 	
 	public ArrayList<Tile> moveCheck(){
 		
-		Set<Tile> checkedTiles = new HashSet<Tile>();
+		ArrayList<Tile> checkedTiles = new ArrayList<Tile>();
 		ArrayList<Tile> checkTiles = new ArrayList<Tile>();
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();
 		
 		// TODO see if this can be done with smth that isn't arrayList
-		
-		// add adjacent to check (even removed)
-		// 
-		// while check tiles not empty
-		// 	for tile in check tiles
-		// 		if not removed, add to valid
-		//		if not normal 	
-		//			add adjacent to checktiles if not checked
-		// 		
-		//  remove from check to checked
 		
 		checkTiles = adjacentNewTiles(currentTile, checkedTiles);
 		
@@ -66,7 +89,7 @@ public class Diver extends Pawn {
 		return validTiles;
 	}
 	
-	private ArrayList<Tile> adjacentNewTiles(Tile centerTile, Set<Tile> notNewTiles){
+	private ArrayList<Tile> adjacentNewTiles(Tile centerTile, ArrayList<Tile> notNewTiles){
 		ArrayList<Tile> adjacentNewTiles = new ArrayList<Tile>();
 		Set<Tile> allTiles = Board.getInstance().getAllTiles();
 		for( Tile tile : allTiles) {
