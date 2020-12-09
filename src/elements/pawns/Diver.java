@@ -7,6 +7,7 @@ import elements.board.TileNames;
 /**
  * Diver class
  * 	Represents the diver pawn (Black)
+ *  Rule clarifications : https://boardgamegeek.com/thread/524604/diver-questions/page/1
  * 
  * @author Catherine Waechter
  * @version 1.1
@@ -20,6 +21,8 @@ public class Diver extends Pawn {
 	// override 
 	// swimCheck
 	// moveCheck
+	
+	
 	
 	
 	public Diver() {

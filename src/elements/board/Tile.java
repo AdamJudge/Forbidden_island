@@ -82,6 +82,7 @@ public class Tile {
 	 */
 	public void remove() {
 		status = TileStatus.REMOVED;
+		
 	}
 	
 	/**

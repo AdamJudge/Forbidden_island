@@ -62,7 +62,6 @@ public class Pilot extends Pawn {
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();		
 		
 		validTiles = super.moveCheck();
-		int startPrint = validTiles.size();
 		
 		if(!hasFlown){
 			for(Tile tile : remainingTiles) {
@@ -72,7 +71,6 @@ public class Pilot extends Pawn {
 			}
 		}
 		System.out.println("Pilot can fly to these tiles (will not be able to fly again this turn)");
-		checkPrint(validTiles, startPrint);
 		
 		return validTiles;
 	}
