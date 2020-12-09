@@ -15,11 +15,11 @@ import setup.GameSetup;
  * Represent the deck of treasure cards
  * 
  * @author Catherine Waechter
- * @version 2.3
- * 	Treasure card initialisation updated to suit updated treasure card
+ * @version 2.4
+ * 	Shuffle deck when empty
  * 
  * Date Created: 26/10/20
- * Last Modified: 08/12/20
+ * Last Modified: 09/12/20
  *
  */
 public class TreasureDeck extends Deck {
@@ -59,11 +59,19 @@ public class TreasureDeck extends Deck {
 		// outside of setup, waters rise cards are played (discarded in play method)
 		else if(card.getCardType() == TreasureCardTypes.WATERSRISE) {
 			WatersRise.play(card);
+			if (cards.isEmpty()) {
+				TreasureDiscard.getInstance().toDeck();
+			}
 			return null;
 		}
 		
 		// if a regular card is drawn outside of setup
-		else return card;
+		else {
+			if (cards.isEmpty()) {
+				TreasureDiscard.getInstance().toDeck();
+			}
+			return card;
+		}
 	}
 	
 	/**

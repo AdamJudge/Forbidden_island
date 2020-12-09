@@ -15,11 +15,11 @@ import java.util.Stack;
  * Represent the deck of flood cards
  * 
  * @author Catherine Waechter
- * @version 2.1
- * 	Initialised cards
+ * @version 2.2
+ * 	Shuffle deck when empty
  * 
  * Date Created: 26/10/20
- * Last Modified: 30/11/20
+ * Last Modified: 09/12/20
  *
  */
 public class FloodDeck extends Deck{
@@ -53,6 +53,10 @@ public class FloodDeck extends Deck{
 	public Card draw() throws IOException {
 		FloodCard card = (FloodCard)super.draw();
 		FloodTile.floodTile(card, controller);
+		
+		if (cards.isEmpty()) {
+			FloodDiscard.getInstance().toDeck();
+		}
 		return null;
 	}
 	
