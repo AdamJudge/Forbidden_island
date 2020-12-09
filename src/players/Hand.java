@@ -13,17 +13,18 @@
 
 package players;
 
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
 
 public class Hand {
-	protected Set<Card> hand;
+	protected List<Card> hand;
 	
 	public Hand() {
-		hand = new HashSet<Card>();
+		hand = new ArrayList<Card>();
 	}
 	
 	public void addCard(Card card) {
@@ -31,7 +32,7 @@ public class Hand {
 		// Add card to hand
 	}
 	
-	public Set<Card> getCards(){
+	public List<Card> getCards(){
 		return hand;
 	}
 	
