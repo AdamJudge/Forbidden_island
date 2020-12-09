@@ -60,7 +60,7 @@ public class WaterLevel {
 			nbrCards += 1;
 		}
 		if (level == 10) {	// losing level
-//			Game.end();		// game over
+			// TODO End game observer
 		}
 	}
 	
