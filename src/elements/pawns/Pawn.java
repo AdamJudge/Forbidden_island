@@ -66,18 +66,6 @@ public abstract class Pawn {
 	}
 	
 	/**
-	 * checkPrint
-	 * 	Prints valid tiles for the pawn
-	 * @param validTiles
-	 * @param start - index to start printing from
-	 */
-	protected static void checkPrint(ArrayList<Tile> validTiles, int start) {
-//		for(int i=start; i<validTiles.size(); i++) {
-//			System.out.println("[" + start + "] " + validTiles.get(i));
-//		}
-	}
-	
-	/**
 	 * move
 	 * 	move pawn to a destination tile (used for swimming as well)
 	 * @param destination
@@ -128,7 +116,6 @@ public abstract class Pawn {
 		if(currentTile.getStatus() == TileStatus.REMOVED) {
 			validTiles = moveCheck();				
 		}
-		checkPrint(validTiles, 0);
 		return validTiles;
 	}
 

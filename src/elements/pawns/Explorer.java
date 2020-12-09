@@ -31,7 +31,6 @@ public class Explorer extends Pawn {
 	@Override
 	public ArrayList<Tile> moveCheck(){
 		ArrayList<Tile> validTiles = super.moveCheck(); // tiles that are valid for the base pawn are also valid for the explorer
-		int startPrint = validTiles.size();
 		
 		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
 		// add diagonal tiles to the set of valid tiles
@@ -47,7 +46,6 @@ public class Explorer extends Pawn {
 				}
 			}
 		}
-		checkPrint(validTiles, startPrint);
 		return validTiles;
 	}
 	
@@ -61,7 +59,6 @@ public class Explorer extends Pawn {
 	@Override
 	public ArrayList<Tile> shoreupCheck(){			
 		ArrayList<Tile> validTiles = moveCheck();
-		int startPrint = validTiles.size();
 		
 		for (int i = validTiles.size()-1; i>=0; i--) {
 			Tile tile = validTiles.get(i);
@@ -69,8 +66,7 @@ public class Explorer extends Pawn {
 				validTiles.remove(tile);
 			}
 		}
-		checkPrint(validTiles, startPrint);
-		
+			
 		return validTiles;
 	}
 	

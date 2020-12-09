@@ -13,6 +13,10 @@ package setup;
 import java.io.IOException;
 import java.util.Scanner;
 
+import elements.cards.FloodDeck;
+import mechanics.TurnController;
+import mechanics.TurnView;
+
 /**
  * Setup
  * 	Sets up MVC and Setup classes to carry out player and game setup
@@ -72,6 +76,11 @@ public class Setup {
 		SetupController controller = SetupController.getInstance(view, setup);	// create SetupController instance, assign it view and setup instances
 		view.setController(controller);		// assign controller to view instance
 		view.run(user);		// run the view
+		
+		// Set up turn MVC
+		TurnView turnView = TurnView.getInstance();			// create SetupView instance
+		TurnController turnController = TurnController.getInstance(turnView);	// create SetupController instance, assign it view and setup instances
+		turnView.setupView(turnController);		// assign controller to view instance
 	}
 	
 
