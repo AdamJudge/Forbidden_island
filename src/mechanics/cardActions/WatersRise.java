@@ -1,5 +1,7 @@
 package mechanics.cardActions;
 
+import java.io.IOException;
+
 import elements.board.WaterLevel;
 import elements.cards.FloodDeck;
 import elements.cards.FloodDiscard;
@@ -19,7 +21,7 @@ import elements.cards.TreasureDiscard;
  */
 public class WatersRise {
 
-	public static void play(Card card) {
+	public static void play(Card card) throws IOException {
 		// draw cards as indicated by water level
 		for(int nbrCards = 0; nbrCards < WaterLevel.getInstance().getNbrCards(); nbrCards++) {
 			FloodDeck.getInstance().draw();
