@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.io.IOException;
 
 import elements.board.Board;
 import elements.board.Tile;
@@ -45,6 +46,24 @@ public class TurnController {
 			turnController = new TurnController(view);
 		}
 		return turnController;
+	}
+	
+	public void doSwim(ArrayList<Player> players) throws IOException {
+		// check that all players can swim somewhere first
+		
+		for(Player player : players) {
+			if(player.getPawn().swimCheck() == null) {
+				view.doSwim(null, null);	// TODO Maybe not needed
+				// TODO End game observer
+				return;
+			}
+		}
+		
+		for(Player player : players) {
+			ArrayList<Tile> possibleTiles = player.getPawn().swimCheck();
+			view.doSwim(player, possibleTiles);
+		}
+
 	}
 	
 	/**
@@ -194,7 +213,7 @@ public class TurnController {
 	 * drawFloodCards
 	 * 	Draw flood cards according to water level
 	 */
-	public void drawFloodCards() {			// TODO should this be more abstract? 
+	public void drawFloodCards() throws IOException {			// TODO should this be more abstract? 
 		for(int i=0; i< WaterLevel.getInstance().getNbrCards(); i++) {
 			FloodDeck.getInstance().draw(); 	// cards drawn will automatically flood
 		}
@@ -205,7 +224,7 @@ public class TurnController {
 	 * 	draw two treasure cards. Add to player's hand
 	 * @param player
 	 */
-	public void drawTreasureCard(Player player) {	// TODO should this be more abstract? 
+	public void drawTreasureCard(Player player) throws IOException {	// TODO should this be more abstract? 
 		Card card;
 		card = TreasureDeck.getInstance().draw();
 		if(card != null) {		// card returned is null if it was a waters rise card

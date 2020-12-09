@@ -30,6 +30,7 @@ public class TurnView {
 	private static TurnView turnView = null;
 	private TurnController controller;
 	private Player currentPlayer;
+	private Scanner user;
 	
 	/**
 	 * getInstance
@@ -54,6 +55,7 @@ public class TurnView {
 		catch (InterruptedException e) {}
 		System.out.println(Board.getInstance());
 
+		this.user = user;
 	
 		currentPlayer = player;
 		System.out.println("It's your turn " + player + "!");
@@ -83,6 +85,15 @@ public class TurnView {
 		// TODO get floodcards to return card name so it can be printed. Will also need to check status of tile to say if it was flooded or removed
 	}
 	
+	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
+		System.out.println("The tile " + player + " was on sank!");
+		System.out.println("Where would you like to swim? ");
+		ActionView.printTileList(possibleTiles);
+		
+		int userNum = ParseNumberInputs.main(user, 1, possibleTiles.size());
+		controller.move(player, possibleTiles.get(userNum-1));
+		
+	}
 	
 	private void doDiscard(Scanner user, Player player) throws IOException {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
