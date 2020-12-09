@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 import elements.board.Board;
 import elements.board.Tile;
@@ -145,7 +146,7 @@ public class TurnController {
 		return player.getHand();
 	}
 	
-	public Set<Card> getHandCards(Player player){
+	public List<Card> getHandCards(Player player){
 		return player.getHand().getCards();
 	}
 	
