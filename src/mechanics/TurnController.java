@@ -21,15 +21,15 @@ import elements.treasures.TreasureNames;
  * 	Controller to implement turn as MVC
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.1
  *
  *	Date created: 03/12/20
- *	Last modified: 03/12/20
+ *	Last modified: 09/12/20
  */
 public class TurnController {
 
 	private static TurnController turnController = null;
-	private Turn model;	// TODO what is the model here, It's not actually turn
+	//private Turn model;	// TODO what is the model here, It's not actually turn
 	private TurnView view;
 	
 	/**
@@ -39,9 +39,9 @@ public class TurnController {
 	 * @param model - model associated with controller 
 	 * @return turnController (singleton instance)
 	 */
-	public static TurnController getInstance(TurnView view, Turn model) {
+	public static TurnController getInstance(TurnView view) {
 		if(turnController == null) { 
-			turnController = new TurnController(view, model);
+			turnController = new TurnController(view);
 		}
 		return turnController;
 	}
@@ -50,11 +50,10 @@ public class TurnController {
 	 * TurnController Constructor
 	 * 		Assigns model and view
 	 * @param view
-	 * @param model
 	 */
-	private TurnController(TurnView view, Turn model) {
+	private TurnController(TurnView view) {
 		this.view = view;
-		this.model = model;
+	//	this.model = model;
 	}
 	
 	/**
