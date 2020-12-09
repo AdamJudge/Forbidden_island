@@ -6,7 +6,7 @@
  * @author Adam Judge, Catherine Waechter
  * 
  * @version 1.2
- * 	implement TurnView.setupView
+ * 	implement TurnView.setupView 
  * 
  * Creation Date: 22/10/20
  * Last Modified: 04/12/20
@@ -27,10 +27,7 @@ public class Turn {
 //	public ArrayList<Tile> getMoveCheck(Player player){
 //		return model.getMoveCheck(player);
 //	}
-	
-
-
-	private static Turn turn= null;
+		private static Turn turn= null;
 		
 	// Singleton Instance
 	public static Turn getInstance() {
@@ -49,11 +46,7 @@ public class Turn {
 	 */
 	public void doTurn(Player player, Scanner user) throws IOException {
 		
-		// TODO setting up the turn controller and turn view shouldn't be done here, should jsut be done once
-		TurnView view = TurnView.getInstance();			// create SetupView instance
-		TurnController controller = TurnController.getInstance(view, turn);	// create SetupController instance, assign it view and setup instances
-		view.setupView(controller);		// assign controller to view instance
-		view.run(player, user);		// run the view
+		TurnView.getInstance().run(player, user);		// TODO find a better way to organise this
 	}
 	
 
