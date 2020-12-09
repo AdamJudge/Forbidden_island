@@ -2,6 +2,7 @@ package elements.cards;
 
 import java.util.Stack;
 import java.util.Map;
+import java.io.IOException;
 
 import elements.board.Board;
 import elements.treasures.*;
@@ -42,7 +43,7 @@ public class TreasureDeck extends Deck {
 	 *	otherwise the card is returned
 	 *	@return card
 	 */
-	public Card draw() {
+	public Card draw() throws IOException {
 		TreasureCard card = (TreasureCard)super.draw();
 		
 		// if in setup mode, waters rise cards drawn are returned to the deck, which is then shuffled

@@ -1,5 +1,6 @@
 package setup;
 
+import java.io.IOException;
 import java.util.Set;
 
 import players.PlayerList;
@@ -93,7 +94,7 @@ public class SetupController {
 	 * @param names - names of players
 	 * @return List of players (names, pawns, and hands initialised)
 	 */
-	public PlayerList setupPlayers(Set<String> names) {
+	public PlayerList setupPlayers(Set<String> names) throws IOException {
 		return model.getPlayerSetup().setupPlayerList(names);
 	}
 	
@@ -110,7 +111,7 @@ public class SetupController {
 	 *		call model to draw 6 flood cards
 	 * @return Set of flood cards drawn
 	 */
-	public Set<Card> drawFloodCards() {
+	public Set<Card> drawFloodCards() throws IOException {
 		return model.getGameSetup().drawFloodCards();
 	}
 	

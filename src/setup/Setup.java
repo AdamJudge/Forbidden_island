@@ -81,6 +81,7 @@ public class Setup {
 		TurnView turnView = TurnView.getInstance();			// create SetupView instance
 		TurnController turnController = TurnController.getInstance(turnView);	// create SetupController instance, assign it view and setup instances
 		turnView.setupView(turnController);		// assign controller to view instance
+		FloodDeck.getInstance().setController(turnController);
 	}
 	
 

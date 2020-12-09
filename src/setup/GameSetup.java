@@ -1,6 +1,7 @@
 package setup;
 
 import java.util.Set;
+import java.io.IOException;
 import java.util.HashSet;
 
 import elements.board.WaterLevel;
@@ -59,7 +60,7 @@ public class GameSetup {
 	 * 	draw 6 flood cards
 	 * @return drawnCards - set of flood cards drawn
 	 */
-	public Set<Card> drawFloodCards(){
+	public Set<Card> drawFloodCards() throws IOException{
 		Set<Card> drawnCards = new HashSet<Card>();
 		for(int i = 0; i<6; i++) {
 			drawnCards.add(FloodDeck.getInstance().draw());

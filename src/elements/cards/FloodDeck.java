@@ -5,6 +5,7 @@ import elements.board.Tile;
 import mechanics.cardActions.FloodTile;
 import mechanics.TurnController;
 
+import java.io.IOException;
 import java.util.Stack;
 
 
@@ -46,11 +47,12 @@ public class FloodDeck extends Deck{
 	 * draw
 	 * 	draws a floodcard and carries out required flooding. Card is discarded in floodTile method
 	 * return null - card has been used and/or discarded
+	 * @throws IOException 
 	 */
 	@Override
-	public Card draw() {
+	public Card draw() throws IOException {
 		FloodCard card = (FloodCard)super.draw();
-		FloodTile.floodTile(card);
+		FloodTile.floodTile(card, controller);
 		return null;
 	}
 	

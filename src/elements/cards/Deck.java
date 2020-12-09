@@ -2,6 +2,7 @@ package elements.cards;
 
 import java.util.Collections;
 import java.util.Stack;
+import java.io.IOException;
 
 /**
  * Deck class (abstract)
@@ -42,7 +43,7 @@ public abstract class Deck {
 	 * 	returns the top card of the deck
 	 * @return
 	 */
-	public Card draw() {
+	public Card draw() throws IOException {
 		System.out.println("Card Drawn: " + cards.peek());
 		return cards.pop();
 	}

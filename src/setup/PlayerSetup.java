@@ -2,6 +2,7 @@
 
 package setup;
 
+import java.io.IOException;
 import java.util.*;
 import players.Player;
 import players.PlayerList;
@@ -53,7 +54,7 @@ public class PlayerSetup {
 	 * @param playerNames - set of player names
 	 * @return playerList - list of players
 	 */
-	public PlayerList setupPlayerList(Set<String> playerNames) {
+	public PlayerList setupPlayerList(Set<String> playerNames) throws IOException {
 		// set player names
 		for (String p : playerNames) {
 			Player player = new Player(p);
@@ -71,7 +72,7 @@ public class PlayerSetup {
 	 * dealInitialHands
 	 * 	deal 2 cards to each player (waters rise exception handled in TreasureDeck)
 	 */
-	private void dealInitialHands() {
+	private void dealInitialHands() throws IOException{
 		for (int cardNum = 0; cardNum <2; cardNum++) {
 			for (Player player : playerList.getPlayers()) {
 				player.getHand().addCard(TreasureDeck.getInstance().draw());
