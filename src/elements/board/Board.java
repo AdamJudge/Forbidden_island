@@ -162,14 +162,21 @@ public class Board {
 		return pawnsString;
 	}
 	
+	private String printDifficulty() {
+		return WaterLevel.getInstance().getDifficulty();
+	}
+	private int printWaterLevel() {
+		return WaterLevel.getInstance().getLevel();
+	}
+	
 	public String toString() {	// TODO improve this!! suggestion : have "print tile" function
 		String boardString;
 		
-		boardString = String.format("\t\t\t\t\t\t       _____________________________________________________\n");
-		boardString += String.format("\t\t\t\t\t\t      |        %18s|        %18s|\n", printTileTreasure(0), printTileTreasure(1));
-		boardString += String.format("\t\t\t\t\t\t      |                          |                          |\n");
-		boardString += String.format("\t\t\t\t\t\t      | %22s   | %22s   |\n", printTileName(0), printTileName(1));
-		boardString += String.format("\t\t\t\t\t\t      | %22s   | %22s   |\n", printPawn(0), printPawn(1));
+		boardString =  String.format("\t  ____________________________                 _____________________________________________________\n");
+		boardString += String.format("\t |                            |               |        %18s|        %18s|\n" , printTileTreasure(0), printTileTreasure(1));
+		boardString += String.format("\t |   Difficulty:%12s  |               |                          |                          |\n",printDifficulty());
+		boardString += String.format("\t |  Water Level:\t  %2d  |               | %22s   | %22s   |\n", printWaterLevel(), printTileName(0), printTileName(1));
+		boardString += String.format("\t |____________________________|               | %22s   | %22s   |\n", printPawn(0), printPawn(1));
 		boardString += String.format("\t\t\t\t\t\t      |                          |                          |\n");
 		boardString += String.format("\t\t\t    __________________________|__________________________|__________________________|__________________________\n");
 		boardString += String.format("\t\t\t   |        %18s|        %18s|        %18s|        %18s|\n", printTileTreasure(2), printTileTreasure(3), printTileTreasure(4), printTileTreasure(5));

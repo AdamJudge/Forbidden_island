@@ -13,6 +13,7 @@ package elements.board;
  */
 public class WaterLevel {
 	public static WaterLevel waterLevel=null;
+	private Difficulty difficulty;
 	private int level;		// water level
 	private int nbrCards;	// nbr of flood cards to be drawn at this level
 	
@@ -33,6 +34,7 @@ public class WaterLevel {
 	}
 	
 	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty=difficulty;
 		if (difficulty == Difficulty.NOVICE) {
 			level = 1;
 			nbrCards = 2;
@@ -80,4 +82,11 @@ public class WaterLevel {
 		return nbrCards;
 	}
 	
+	public String getDifficulty() {
+		return difficulty.toString();
+	}
+	
+	public int getWaterLevel() {
+		return level;
+	}
 }
