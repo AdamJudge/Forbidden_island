@@ -56,7 +56,9 @@ public class Diver extends Pawn {
 			nextRound = null;
 			
 		}
-		
+		if (validTiles.size()==0) {
+			notifyAllObservers();
+		}
 		return validTiles;
 	}
 	

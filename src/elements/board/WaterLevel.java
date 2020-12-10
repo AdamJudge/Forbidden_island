@@ -65,7 +65,6 @@ public class WaterLevel extends Subject{
 		}
 		if (level == 10) {	// losing level
 			notifyAllObservers();
-			// TODO End game observer
 		}
 	}
 	
