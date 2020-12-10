@@ -3,6 +3,7 @@ package elements.pawns;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.board.TileStatus;
+import observers.Subject;
 
 import java.util.Set;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  *	Date created: 26/10/20
  *	Last modified: 04/12/20
  */
-public abstract class Pawn {
+public abstract class Pawn extends Subject{
 
 	protected Tile currentTile; // tile the pawn is on
 	
@@ -115,6 +116,10 @@ public abstract class Pawn {
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();
 		if(currentTile.getStatus() == TileStatus.REMOVED) {
 			validTiles = moveCheck();				
+		}
+		if (validTiles.size() == 0) {
+			System.out.println("\nNOTIFYING OBSERVER\n");
+			notifyAllObservers();
 		}
 		return validTiles;
 	}
