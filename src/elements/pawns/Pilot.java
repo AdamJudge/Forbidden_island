@@ -20,7 +20,7 @@ import elements.board.TileNames;
  *  Last modified: 03/12/20
  */
 public class Pilot extends Pawn {
-
+	//TODO CAT FIX ME PLS
 	private boolean hasFlown; 	
 	
 	/**
