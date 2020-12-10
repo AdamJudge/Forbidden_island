@@ -1,5 +1,7 @@
 package elements.board;
 
+import observers.Subject;
+
 /**
  * WaterLevel Class
  *  Represents the water level marker element
@@ -11,7 +13,7 @@ package elements.board;
  * Last Modified: 29/10/20
  *
  */
-public class WaterLevel {
+public class WaterLevel extends Subject{
 	public static WaterLevel waterLevel=null;
 	private Difficulty difficulty;
 	private int level;		// water level
@@ -62,6 +64,7 @@ public class WaterLevel {
 			nbrCards += 1;
 		}
 		if (level == 10) {	// losing level
+			notifyAllObservers();
 			// TODO End game observer
 		}
 	}

@@ -4,6 +4,7 @@ public class ObserverGameOver extends Observer {
 
 	public ObserverGameOver(Subject subject) {
 		this.subject=subject;
+		this.subject.attach(this);
 	}
 	
 	@Override
