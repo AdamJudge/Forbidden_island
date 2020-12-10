@@ -37,10 +37,17 @@ public class Board {
 	 * 	returns all tiles (even if removed)
 	 * @return
 	 */
+	public ArrayList<Tile> getSortedTiles(){
+		return sortedTiles;
+	}
+	/**
+	 * getSortedTiles
+	 * 	returns all tiles sorted (even if removed)
+	 * @return
+	 */
 	public Set<Tile> getAllTiles(){
 		return allTiles;
 	}
-	
 	/**
 	 * getRemainingTiles 
 	 * 	returns tiles that are still on the board (not removed)
