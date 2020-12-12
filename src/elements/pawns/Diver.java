@@ -48,8 +48,7 @@ public class Diver extends Pawn {
 			
 			// if not, get next round
 			for(Tile tile : thisRound) {
-				prevRound.addAll(nextRound);
-				nextRound.addAll(adjacentNewTiles(tile, prevRound));
+				nextRound.addAll(adjacentNewTiles(tile, prevRound, nextRound));
 			}
 			prevRound = thisRound;
 			thisRound = nextRound;
@@ -68,7 +67,7 @@ public class Diver extends Pawn {
 		
 		// TODO see if this can be done with smth that isn't arrayList
 		
-		checkTiles = adjacentNewTiles(currentTile, checkedTiles);
+		checkTiles = adjacentNewTiles(currentTile, checkedTiles, checkTiles);
 		
 		while(!checkTiles.isEmpty()) {
 			Tile tile = checkTiles.get(0);
@@ -78,7 +77,7 @@ public class Diver extends Pawn {
 					validTiles.add(tile);
 				}
 				if(tile.getStatus() != TileStatus.NORMAL) {
-					checkTiles.addAll(adjacentNewTiles(tile, checkedTiles));
+					checkTiles.addAll(adjacentNewTiles(tile, checkedTiles, checkTiles));
 				}
 			}
 
@@ -89,11 +88,11 @@ public class Diver extends Pawn {
 		return validTiles;
 	}
 	
-	private ArrayList<Tile> adjacentNewTiles(Tile centerTile, ArrayList<Tile> notNewTiles){
+	private ArrayList<Tile> adjacentNewTiles(Tile centerTile, ArrayList<Tile> duplicates1, ArrayList<Tile> duplicates2){
 		ArrayList<Tile> adjacentNewTiles = new ArrayList<Tile>();
 		Set<Tile> allTiles = Board.getInstance().getAllTiles();
 		for( Tile tile : allTiles) {
-			if(!notNewTiles.contains(tile)) {
+			if( !duplicates1.contains(tile) && !duplicates2.contains(tile)) {
 				if(tile.getX() == centerTile.getX()) {
 					if(tile.getY() == (centerTile.getY() + 1) || tile.getY() == (centerTile.getY() - 1)) {
 						adjacentNewTiles.add(tile);
