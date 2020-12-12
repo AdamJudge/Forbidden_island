@@ -15,16 +15,13 @@ import java.util.HashSet;
  *  Rule clarifications : https://boardgamegeek.com/thread/524604/diver-questions/page/1
  * 
  * @author Catherine Waechter
- * @version 2.0
- * 	Added correct moveCheck
+ * @version 2.1
+ * 	Fixed bugs
  * 
  *  Date created: 26/10/20
  *  Last modified: 09/12/20
  */
 public class Diver extends Pawn {
-
-	// override 
-	// swimCheck
 
 	public ArrayList<Tile> swimCheck(){
 		ArrayList<Tile> prevRound = new ArrayList<Tile>();
@@ -41,6 +38,7 @@ public class Diver extends Pawn {
 					validTiles.add(tile);
 				}
 			}
+			
 			// if prev search found any tiles, stop here
 			if(validTiles.size() != 0) {
 				break;
@@ -48,7 +46,12 @@ public class Diver extends Pawn {
 			
 			// if not, get next round
 			for(Tile tile : thisRound) {
-				nextRound.addAll(adjacentNewTiles(tile, prevRound, nextRound));
+				if(nextRound == null) {		// add all doesn't work with a null list
+					nextRound = adjacentNewTiles(tile, prevRound, nextRound);
+				}
+				else {
+					nextRound.addAll(adjacentNewTiles(tile, prevRound, nextRound));
+				}
 			}
 			prevRound = thisRound;
 			thisRound = nextRound;
@@ -93,8 +96,21 @@ public class Diver extends Pawn {
 	private ArrayList<Tile> adjacentNewTiles(Tile centerTile, ArrayList<Tile> duplicates1, ArrayList<Tile> duplicates2){
 		ArrayList<Tile> adjacentNewTiles = new ArrayList<Tile>();
 		Set<Tile> allTiles = Board.getInstance().getAllTiles();
+		
+		boolean dup1 = false, dup2 = false;		// true if a tile is contained in either set. initialise to false
+												// if the list is empty, the tile is not contained in the list
+		
 		for( Tile tile : allTiles) {
-			if( !duplicates1.contains(tile) && !duplicates2.contains(tile)) {
+			
+			// need these if statements because contains can't be called on an empty list 
+			if(duplicates1 != null) {
+				dup1 = duplicates1.contains(tile);
+			}
+			if(duplicates2 != null) {
+				dup2 = duplicates2.contains(tile);
+			}
+			
+			if( !dup1 && !dup2) {
 				if(tile.getX() == centerTile.getX()) {
 					if(tile.getY() == (centerTile.getY() + 1) || tile.getY() == (centerTile.getY() - 1)) {
 						adjacentNewTiles.add(tile);
