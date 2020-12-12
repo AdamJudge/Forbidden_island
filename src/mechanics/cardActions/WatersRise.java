@@ -23,6 +23,9 @@ public class WatersRise {
 
 	public static void play(Card card) throws IOException {
 		// draw cards as indicated by water level
+		WaterLevel.getInstance().raise_level();
+		
+		//TODO Check if this is required in rules
 		for(int nbrCards = 0; nbrCards < WaterLevel.getInstance().getNbrCards(); nbrCards++) {
 			FloodDeck.getInstance().draw();
 		}

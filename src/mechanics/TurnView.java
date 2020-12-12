@@ -72,6 +72,7 @@ public class TurnView {
 		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
 			Card cardDrawn = controller.drawTreasureCard(player);
+			//TODO draw null card when waters rise is drawn CAT
 			System.out.println(player + " drew a " + cardDrawn + " card.");
 			if(controller.handSize(player) == 6) {
 				doDiscard(user, currentPlayer);

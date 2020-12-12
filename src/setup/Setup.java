@@ -36,6 +36,7 @@ public class Setup {
 	
 	private PlayerSetup playerSetup; 
 	private GameSetup gameSetup;
+	private ObserverSetup observerSetup;
 	
 	// Singleton Instance
 	public static Setup getInstance() {
@@ -62,6 +63,13 @@ public class Setup {
 	}
 	
 	/**
+	 * getObservverSetup
+	 * @return observerSetup instance
+	 */
+	public ObserverSetup getObserverSetup() {
+		return observerSetup;
+	}
+	/**
 	 * setupAll
 	 * 	Creates instances of Player and Game setup, starts the view and controller
 	 * 
@@ -71,6 +79,7 @@ public class Setup {
 	public void setupAll(Scanner user) throws IOException {
 		this.playerSetup = PlayerSetup.getInstance();		// create PlayerSetup instance
 		this.gameSetup = GameSetup.getInstance();			// create GameSetup instance
+		this.observerSetup = ObserverSetup.getInstance();  	// create ObserverSetup instance
 		
 		SetupView view = SetupView.getInstance();			// create SetupView instance
 		SetupController controller = SetupController.getInstance(view, setup);	// create SetupController instance, assign it view and setup instances
@@ -82,6 +91,9 @@ public class Setup {
 		TurnController turnController = TurnController.getInstance(turnView);	// create SetupController instance, assign it view and setup instances
 		turnView.setupView(turnController);		// assign controller to view instance
 		FloodDeck.getInstance().setController(turnController);
+		
+		//TODO cat can you add this to the MVC
+		ObserverSetup.getInstance().attachObservers();
 	}
 	
 

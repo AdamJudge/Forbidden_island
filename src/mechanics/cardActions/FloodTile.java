@@ -7,6 +7,7 @@ import elements.board.TileNames;
 import elements.board.TileStatus;
 import elements.cards.FloodDiscard;
 import mechanics.TurnController;
+import observers.Subject;
 import players.Player;
 import players.PlayerList;
 
@@ -24,7 +25,7 @@ import java.io.IOException;
  * Last modified:25/11/20
  *
  */
-public class FloodTile {
+public class FloodTile{
 	
 	/**
 	 * floodTile
@@ -56,7 +57,7 @@ public class FloodTile {
 			}
 			
 			if(tile.getName() == TileNames.FOOLS_LANDING) {
-				// TODO END GAME Observer
+				//notifyAllObservers();
 			}
 			
 			tile.remove();

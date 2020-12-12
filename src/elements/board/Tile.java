@@ -1,6 +1,8 @@
-package elements.board;
+	package elements.board;
 
 import elements.treasures.*;
+import observers.Subject;
+
 import java.util.Map;
 
 
@@ -15,7 +17,7 @@ import java.util.Map;
  * Date Created : 26/10/20
  * Last Modified: 03/12/20
  */
-public class Tile {
+public class Tile extends Subject{
 	
 	private Position position;		// position of the tile (x,y)
 	private TileNames name;			// location name on the tile
@@ -82,6 +84,9 @@ public class Tile {
 	 */
 	public void remove() {
 		status = TileStatus.REMOVED;
+		if (name.equals(TileNames.FOOLS_LANDING)) {
+			notifyAllObservers();
+		}
 		
 	}
 	
