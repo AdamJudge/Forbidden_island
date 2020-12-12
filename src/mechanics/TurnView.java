@@ -20,10 +20,11 @@ import mechanics.actions.*;
  * TurnView
  * 	View to display turn events
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.3
+ * 	Added pilot reset, and fixed null card issue
  * 
  * Date Created:  03/12/20
- * Last Modified: 03/12/20
+ * Last Modified: 12/12/20
  */
 public class TurnView {
 
@@ -72,8 +73,9 @@ public class TurnView {
 		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
 			Card cardDrawn = controller.drawTreasureCard(player);
-			//TODO draw null card when waters rise is drawn CAT
-			System.out.println(player + " drew a " + cardDrawn + " card.");
+			if(cardDrawn != null) {
+				System.out.println(player + " drew a " + cardDrawn + " card.");
+			}
 			if(controller.handSize(player) == 6) {
 				doDiscard(user, currentPlayer);
 			}
@@ -82,8 +84,11 @@ public class TurnView {
 		Set<Card> cardsDrawn = controller.drawFloodCards();
 		System.out.println("Flood cards drawn: " + cardsDrawn);
 		// TODO could be nice to print new status of relevant tiles, but not completely necessary since board is printed
+		// TODO draw one card at a time to print out each card when it's drawn instead of all together
 		
 		System.out.println("Your cards are : " + controller.getHand(player));
+		
+		controller.pilotReset(player); // checks if the player is a pilot, so can be called regardless
 	}
 	
 	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
