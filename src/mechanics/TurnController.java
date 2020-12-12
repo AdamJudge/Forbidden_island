@@ -14,6 +14,7 @@ import players.Player;
 import players.PlayerList;
 import elements.cards.*;
 import elements.pawns.Messenger;
+import elements.pawns.Pilot;
 import players.Hand;
 import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
@@ -30,6 +31,8 @@ import elements.treasures.TreasureNames;
  */
 public class TurnController {
 
+	// TODO refactor this into multiple classes
+	
 	private static TurnController turnController = null;
 	//private Turn model;	// TODO what is the model here, It's not actually turn
 	private TurnView view;
@@ -46,6 +49,12 @@ public class TurnController {
 			turnController = new TurnController(view);
 		}
 		return turnController;
+	}
+	
+	public void pilotReset(Player player){
+		if(player.getPawn() instanceof Pilot) {
+			((Pilot)player.getPawn()).resetHasFlown();
+		}
 	}
 	
 	public void doSwim(ArrayList<Player> players) throws IOException {
