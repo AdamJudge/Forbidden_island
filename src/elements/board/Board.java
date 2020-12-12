@@ -176,7 +176,7 @@ public class Board {
 		return WaterLevel.getInstance().getLevel();
 	}
 	
-	public String toString() {	// TODO improve this!! suggestion : have "print tile" function
+	public String toString() {
 		String boardString;
 		
 		boardString =  String.format("\t  ____________________________                 _____________________________________________________\n");
