@@ -39,11 +39,47 @@ public class ObserverSetup {
 	
 	public void attachObservers() {
 		Set<Tile> tileList = Board.getInstance().getAllTiles();
-		Tile forbiddenIsland = null;
+		Tile foolsLanding = null;
+		Tile whisperingGarden = null;
+		Tile howlingGarden = null;
+		Tile tidalPalace = null;
+		Tile coralPalace = null;
+		Tile templeOfTheSun = null;
+		Tile templeOfTheMoon = null;
+		Tile caveOfEmbers = null;
+		Tile caveOfShadows = null;
 		
 		for(Tile t:tileList) {
-			if (t.getName().equals(TileNames.FOOLS_LANDING)){
-				forbiddenIsland  = t;
+			switch (t.getName()){
+			case FOOLS_LANDING:
+				foolsLanding=t;
+				break;			
+			case WHISPERING_GARDEN:
+				whisperingGarden=t;
+				break;			
+			case HOWLING_GARDEN:
+				howlingGarden=t;
+				break;			
+			case TIDAL_PALACE:
+				tidalPalace=t;
+				break;			
+			case CORAL_PALACE:
+				coralPalace=t;
+				break;			
+			case TEMPLE_OF_THE_SUN:
+				templeOfTheSun=t;
+				break;			
+			case TEMPLE_OF_THE_MOON:
+				templeOfTheMoon=t;
+				break;			
+			case CAVE_OF_EMBERS:
+				caveOfEmbers=t;
+				break;			
+			case CAVE_OF_SHADOWS:
+				caveOfShadows=t;
+				break;			
+			default:
+				break;			
 			}
 		}
 		
@@ -51,7 +87,10 @@ public class ObserverSetup {
 			new PawnObserver(p.getPawn());
 		}
 		new WaterLevelObserver(WaterLevel.getInstance());
-		new ForbiddenIslandObserver(forbiddenIsland);
-			
+		new ForbiddenIslandObserver(foolsLanding);
+		new TreasureObserver(whisperingGarden, howlingGarden, howlingGarden.getTreasure());	
+		new TreasureObserver(tidalPalace, coralPalace, tidalPalace.getTreasure());	
+		new TreasureObserver(templeOfTheSun, templeOfTheMoon, templeOfTheSun.getTreasure());	
+		new TreasureObserver(caveOfEmbers, caveOfShadows, caveOfEmbers.getTreasure());	
 	}
 }
