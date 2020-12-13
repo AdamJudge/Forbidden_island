@@ -13,10 +13,11 @@ import java.util.ArrayList;
  * Pawn Class
  *  represents a pawn element
  *    
- * @author Catherine Waechter
- * @version 2.3
+ * @author Catherine Waechter, Adam Judge
+ * @version 2.4
  * 	Fixed moveCheck (wasn't outputting the correct tiles)
  *	Fixed shoreupCheck 
+ *	Added Observer Notification
  *
  *	Date created: 26/10/20
  *	Last modified: 04/12/20
@@ -118,7 +119,7 @@ public abstract class Pawn extends Subject{
 			validTiles = moveCheck();				
 		}
 		if (validTiles.size() == 0) {
-			System.out.println("\nNOTIFYING OBSERVER\n");
+			//Can't swim
 			notifyAllObservers();
 		}
 		return validTiles;

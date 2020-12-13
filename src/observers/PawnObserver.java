@@ -11,6 +11,7 @@ public class PawnObserver extends Observer {
 	@Override
 	public void update() {
 		System.out.println(((Pawn)subject).toString() + " has drowned!");
+		//TODO gameover screen
 		System.exit(0);
 	}
 }
