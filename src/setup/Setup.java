@@ -4,9 +4,10 @@
  * Singleton Facade for setting up game of Forbidden Island
  * 
  * Author: @author adamj
- * Version: @version 
+ * Version: @version 2.0
+ * 
  * Creation Date: 22/10/20
- * Last Modified: 29/10/20
+ * Last Modified: 13/12/20
  */
 
 package setup;
