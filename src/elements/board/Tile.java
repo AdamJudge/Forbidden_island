@@ -4,18 +4,21 @@ import elements.treasures.*;
 import observers.Subject;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
  * Tile class
  *  represents a tile
  *  
- * @author Catherine Waechter
- * @version 2.0
+ * @author Catherine Waechter, Adam Judge
+ * @version 2.1
  * 	Associated with Treasure, not treasureName
+ *  Added observers to tiles and made Tile extend Subject
  * 
  * Date Created : 26/10/20
- * Last Modified: 03/12/20
+ * Last Modified: 13/12/20
  */
 public class Tile extends Subject{
 	
@@ -23,6 +26,7 @@ public class Tile extends Subject{
 	private TileNames name;			// location name on the tile
 	private TileStatus status;		// tile status
 	private Treasure treasure;	// treasure associated with the tile
+	private Set<TileNames> observeTiles = new TreeSet<TileNames>();
 	
 	/**
 	 * Tile constructor
@@ -50,6 +54,15 @@ public class Tile extends Subject{
 		else {
 			treasure = null;
 		}
+		observeTiles.add(TileNames.FOOLS_LANDING);
+		observeTiles.add(TileNames.WHISPERING_GARDEN);
+		observeTiles.add(TileNames.HOWLING_GARDEN);
+		observeTiles.add(TileNames.TIDAL_PALACE);
+		observeTiles.add(TileNames.CORAL_PALACE);
+		observeTiles.add(TileNames.TEMPLE_OF_THE_MOON);
+		observeTiles.add(TileNames.TEMPLE_OF_THE_SUN);
+		observeTiles.add(TileNames.CAVE_OF_EMBERS);
+		observeTiles.add(TileNames.CAVE_OF_SHADOWS);
 	}
 	
 	public int compareTo(Tile otherTile) {
@@ -84,9 +97,8 @@ public class Tile extends Subject{
 	 */
 	public void remove() {
 		status = TileStatus.REMOVED;
-		if (name.equals(TileNames.FOOLS_LANDING)) {
-			notifyAllObservers();
-		}
+		System.out.println(name.toString() + " has sunken!");
+		notifyAllObservers();
 		
 	}
 	
