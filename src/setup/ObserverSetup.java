@@ -1,6 +1,7 @@
 package setup;
 import elements.board.WaterLevel;
 import elements.pawns.Pawn;
+import mechanics.GamePlay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +98,7 @@ public class ObserverSetup {
 		new TreasureObserver(tidalPalace, coralPalace, tidalPalace.getTreasure());	
 		new TreasureObserver(templeOfTheSun, templeOfTheMoon, templeOfTheSun.getTreasure());	
 		new TreasureObserver(caveOfEmbers, caveOfShadows, caveOfEmbers.getTreasure());	
-		
+		new HelicopterLiftWinObserver(GamePlay.getInstance());
 		// Game Win Observer
 	}
 }
