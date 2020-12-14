@@ -13,22 +13,17 @@ import elements.cards.TreasureDiscard;
  * 	carries out events that happen when a waters rise card is drawn and discards the card
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.2
+ * 	Removed drawing cards, bc that's not in the rules
  * 
  * Date created: 25/11/20
- * Last modified: 25/11/20
+ * Last modified: 14/12/20
  *
  */
 public class WatersRise {
 
 	public static void play(Card card) throws IOException {
-		// draw cards as indicated by water level
 		WaterLevel.getInstance().raise_level();
-		
-		//TODO Check if this is required in rules
-		for(int nbrCards = 0; nbrCards < WaterLevel.getInstance().getNbrCards(); nbrCards++) {
-			FloodDeck.getInstance().draw();
-		}
 		
 		// shuffle and return to top of the deck
 		FloodDiscard.getInstance().toDeck();		
