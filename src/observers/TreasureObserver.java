@@ -5,6 +5,7 @@ import elements.board.TileStatus;
 
 
 import elements.treasures.*;
+import mechanics.GameOver;
 public class TreasureObserver extends Observer {
 	private Subject subject2;
 	private Treasure treasureName;
@@ -23,7 +24,7 @@ public class TreasureObserver extends Observer {
 		System.out.println("Tile: " + ((Tile)subject2).toString() + ", Status: " + ((Tile)subject2).getStatus());
 		if (((Tile)subject).getStatus().equals(TileStatus.REMOVED) && ((Tile)subject2).getStatus().equals(TileStatus.REMOVED) && ! treasureName.isCaptured()) {
 			System.out.println("Both "+ treasureName.toString()+" treasure tiles have sunken without the treasure being captured!");
-			System.exit(0);
+			new GameOver(false);
 		}
 	}
 }

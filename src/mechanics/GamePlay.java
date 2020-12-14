@@ -32,6 +32,8 @@ public class GamePlay extends Subject{
 	public void tryLeave() {
 		notifyAllObservers();
 	}
+	
+	// Observer will update this when updated in tryLeave
 	public void setLeave(Boolean bool) {
 		canLeave=bool;
 	}

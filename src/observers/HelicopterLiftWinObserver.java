@@ -8,6 +8,7 @@ import elements.board.Board;
 import elements.board.TileNames;
 import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
+import mechanics.GameOver;
 import mechanics.GamePlay;
 import mechanics.TurnController;
 import mechanics.TurnView;
@@ -52,7 +53,7 @@ public class HelicopterLiftWinObserver extends Observer {
 		if (onFoolsIsland && treasuresCaptured) {
 			System.out.println("Safe flight! x");
 			GamePlay.getInstance().setLeave(true);
-			System.exit(0);
+			new GameOver(true);
 		} else {
 			GamePlay.getInstance().setLeave(false);
 		}

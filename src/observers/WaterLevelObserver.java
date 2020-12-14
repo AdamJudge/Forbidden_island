@@ -1,5 +1,7 @@
 package observers;
 
+import mechanics.GameOver;
+
 public class WaterLevelObserver extends Observer {
 	public WaterLevelObserver(Subject subject) {
 		this.subject=subject;
@@ -9,6 +11,6 @@ public class WaterLevelObserver extends Observer {
 	@Override
 	public void update() {
 		System.out.println("The Water Level has risen too high!");
-		System.exit(0);
+		new GameOver(false);
 	}
 }

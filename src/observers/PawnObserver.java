@@ -1,6 +1,7 @@
 package observers;
 
 import elements.pawns.Pawn;
+import mechanics.GameOver;
 
 public class PawnObserver extends Observer {
 	public PawnObserver(Subject subject) {
@@ -12,6 +13,6 @@ public class PawnObserver extends Observer {
 	public void update() {
 		System.out.println(((Pawn)subject).toString() + " has drowned!");
 		//TODO gameover screen
-		System.exit(0);
+		new GameOver(false);
 	}
 }
