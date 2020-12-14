@@ -5,12 +5,13 @@ import java.util.Scanner;
 import java.io.IOException;
 
 import elements.board.Board;
+import observers.Subject;
 import players.Player;
 import players.PlayerList;
 
-public class GamePlay {
+public class GamePlay extends Subject{
 	private static GamePlay gp=null;
-	private boolean gameOver;
+	private boolean canLeave;
 	private Board board;
 	private PlayerList playerList;
 	
@@ -23,14 +24,25 @@ public class GamePlay {
 	}
 	
 	private GamePlay() {
-		this.gameOver=false;
+		this.canLeave=false;
 		this.board=Board.getInstance();
 		this.playerList=PlayerList.getInstance();
 	}
 	
+	public void tryLeave() {
+		notifyAllObservers();
+	}
+	public void setLeave(Boolean bool) {
+		canLeave=bool;
+	}
+	
+	public Boolean canLeave() {
+		return canLeave;
+	}
+	
 	public void playGame(Scanner user) throws IOException {
-		ArrayList<Player> players = playerList.getInstance().getPlayers();
-		while (!this.gameOver) {
+		ArrayList<Player> players = playerList.getPlayers();
+		while (true) {
 			for (int i = 0; i< players.size(); i++) {
 				Turn.getInstance().doTurn(players.get(i), user);	
 			}
