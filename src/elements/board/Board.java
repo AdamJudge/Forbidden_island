@@ -132,7 +132,7 @@ public class Board {
 	public Map<TreasureNames, Treasure> getTreasures(){
 		return allTreasures;
 	}
-	
+
 	private String printTileName(int index) {
 		if(sortedTiles.get(index).getStatus() == TileStatus.REMOVED) {
 			return " ";

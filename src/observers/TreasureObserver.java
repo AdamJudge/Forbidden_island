@@ -18,13 +18,12 @@ public class TreasureObserver extends Observer {
 	
 	@Override
 	public void update() {
-		System.out.println("Treasure status 1: " + ((Tile)subject).getTreasure().isCaptured() + ", on tile: " + ((Tile)subject).toString());
-		System.out.println("Treasure status 2: " + ((Tile)subject2).getTreasure().isCaptured() + ", on tile: " + ((Tile)subject2).toString());
-		System.out.println(treasureName.toString());
+		System.out.println("Treasure status of "+treasureName.toString()+": " + ((Tile)subject).getTreasure().isCaptured());
+		System.out.println("Tile: " + ((Tile)subject).toString() + ", Status: " + ((Tile)subject).getStatus());
+		System.out.println("Tile: " + ((Tile)subject2).toString() + ", Status: " + ((Tile)subject2).getStatus());
 		if (((Tile)subject).getStatus().equals(TileStatus.REMOVED) && ((Tile)subject2).getStatus().equals(TileStatus.REMOVED) && ! treasureName.isCaptured()) {
 			System.out.println("Both "+ treasureName.toString()+" treasure tiles have sunken without the treasure being captured!");
 			System.exit(0);
 		}
-		//System.out.println("Forbidden Island has Sunk beneath the waves!");
 	}
 }
