@@ -57,22 +57,23 @@ public class Helicopter {
 			iter+=1;
 		}
 		System.out.println("[" + (sortedTiles.size()+1) + "]: Try Leave Forbidden Island!");
-
-		int input = ParseNumberInputs.main(user, 1, sortedTiles.size()+1);
-		
-		if (input == sortedTiles.size()+1) {
-			System.out.println("Trying to leave!");
-			GamePlay.getInstance().tryLeave();
-			//If unable to leave
-			if (!GamePlay.getInstance().canLeave()) {
-				System.out.println("Conditions not met for leaving!");
-				return; // Don't discard as didn't use
-			}
+		int input=sortedTiles.size()+1;
+		//If can't leave pick different option.
+		while (input ==sortedTiles.size()+1) {
+			input = ParseNumberInputs.main(user, 1, sortedTiles.size()+1);
 			
-		} else {
-			pawn.move(sortedTiles.get(input-1));
+			if (input == sortedTiles.size()+1) {
+				System.out.println("Trying to leave!");
+				GamePlay.getInstance().tryLeave();
+				//If unable to leave
+				if (!GamePlay.getInstance().canLeave()) {
+					System.out.println("Conditions not met for leaving!");
+				}
+				
+			} else {
+				pawn.move(sortedTiles.get(input-1));
+			}
 		}
-		
 		// if pawn is a pilot, check if it has flown before the helicopter lift
 		boolean flown=false;
 		if(pawn instanceof Pilot) {
