@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import elements.board.*;
@@ -105,5 +106,9 @@ public class BoardTest {
 			assertTrue("The tile's position should be valid.", Position.validPosition(t.getX(), t.getY()));
 		}
 	}
-
+	
+	@After
+	public void tearDown() {
+		testBoard.tearDown();
+	}
 }
