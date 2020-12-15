@@ -117,13 +117,14 @@ public class TurnController {
 				continue;
 			}
 			
-			if(((TreasureCard)card).getTreasureType() == potentialTreasure) {
+			if(((TreasureCard)card).getTreasureType().getName().equals(potentialTreasure.getName())) {
 				treasureCount++;
 			}
 		}
 		if(treasureCount >= 4) {
 			return potentialTreasure;
 		}
+
 		else return null;
 	}
 	
