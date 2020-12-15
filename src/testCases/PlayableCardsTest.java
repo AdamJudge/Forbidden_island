@@ -75,12 +75,15 @@ public class PlayableCardsTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		
+
 		PlayCardView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		
-		assertEquals("Hand should be size 1", player1.getHand().getCards().size(), 1);
-		assertEquals("Card in hand should be a helicopter",((TreasureCard)player1.getHand().getCards().get(0)).getCardType(), TreasureCardTypes.HELICOPTER);
+		int handSize=player1.getHand().getCards().size();
+		assertEquals("Hand should be size 1", 1, handSize);
+		
+		TreasureCardTypes cardType = ((TreasureCard)player1.getHand().getCards().get(0)).getCardType();
+		assertEquals("Card in hand should be a helicopter", TreasureCardTypes.HELICOPTER, cardType);
 	}
 
 	@Test
