@@ -154,7 +154,7 @@ public class Board {
 			return " ";
 		}
 		else { 
-			System.out.println(treasure.toString());
+			//System.out.println(treasure.toString());
 			return treasure.toString();}
 	}
 	
