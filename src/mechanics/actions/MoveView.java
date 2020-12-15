@@ -60,15 +60,14 @@ public class MoveView extends ActionView{
 		playerToMove = currentPlayer;
 	
 		// Navigator exception
-		if(currentPlayer.getPawn() instanceof Navigator) {
+		if(currentPlayer.getPawn() instanceof Navigator) {  // TODO do the check in controller? 
 			playerToMove = navigatorException(currentPlayer);
 		}
-		
-		// TODO Pilot exception
 		
 		System.out.println(playerToMove + " can move to ");
 		ArrayList<Tile> possibleTiles = controller.getMoveCheck(playerToMove);
 		int limit = possibleTiles.size();
+		
 		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
 		printTileList(possibleTiles);
 		int userNum=ParseNumberInputs.main(user, 0, limit);

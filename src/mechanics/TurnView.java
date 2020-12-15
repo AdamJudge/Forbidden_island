@@ -61,12 +61,14 @@ public class TurnView {
 		System.out.println("Your cards are : " + controller.getHand(player));
 		System.out.println("Your " + player.getPawn() + " is on " + player.getPawn().getTile());
 		int actionCount = 3;
-		boolean actionReturn;
+		int actionReturn;
 		while(actionCount > 0) {
-			// TODO Allow interrupt to play a card
 			actionReturn = selectAction(user);
-			if(actionReturn == true) {
+			if(actionReturn == 1) {
 				actionCount--;
+			}
+			else if(actionReturn == -1) {
+				actionCount = 0;
 			}
 		}
 		
@@ -116,11 +118,11 @@ public class TurnView {
 	 * selectAction
 	 * 	Allow user to select desired action. calls each action
 	 * @param user
-	 * @return whether an action was used
+	 * @return whether an action was used (0 - no, 1 - yes, -1 - cancel further actions)
 	 * @throws IOException
 	 */
-	private boolean selectAction(Scanner user) throws IOException {
-		System.out.println("Select action : "); // TODO print possible actions
+	private int selectAction(Scanner user) throws IOException {
+		System.out.println("Select action : ");
 		System.out.println("[1]: Move");
 		System.out.println("[2]: Shore-up a tile");
 		System.out.println("[3]: Give someone a card");
@@ -128,16 +130,24 @@ public class TurnView {
 		System.out.println("[5]: Finish turn without another action");
 		System.out.println("[6]: Play a card (Any Player)");
 		int actionNum = ParseNumberInputs.main(user, 1, 6);				/// ---------------------- TODO why does parse inputs have a main? -------------------------
-		// TODO need to check for hands with too many cards and prompt discard
-		// also maybe allow for discard at end of turn regardless?
+		// TODO should we also maybe allow for discard at end of turn regardless?
 		
 		switch(actionNum) {
 		case 1:
-			return MoveView.getInstance(controller).doAction(currentPlayer, user);
+			if( MoveView.getInstance(controller).doAction(currentPlayer, user)) {
+				return 1;
+			}
+			break;
 		case 2:
-			return ShoreupView.getInstance(controller).doAction(currentPlayer, user);
+			if( ShoreupView.getInstance(controller).doAction(currentPlayer, user)) {
+				return 1;
+			}
+			break;
 		case 3: 
-			boolean actionResult =  GiveCardView.getInstance(controller).doAction(currentPlayer, user);
+			int actionResult = 0;
+			if(GiveCardView.getInstance(controller).doAction(currentPlayer, user)) {
+				actionResult = 1;
+			}
 			for(Player player : controller.getPlayers()) {
 				if (controller.handSize(player) == 6) {
 					doDiscard(user, player);
@@ -145,9 +155,11 @@ public class TurnView {
 			}
 			return actionResult;
 		case 4:
-			return ClaimTreasureView.getInstance(controller).doAction(currentPlayer, user);
+			if(ClaimTreasureView.getInstance(controller).doAction(currentPlayer, user)) {
+				return 1;
+			}
 		case 5:
-			break;
+			return -1;
 		case 6:
 			System.out.println("Which player?");
 			int iter = 0;
@@ -157,12 +169,15 @@ public class TurnView {
 			}
 			int playerNum = ParseNumberInputs.main(user, 1, iter);
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
-			return PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user);
-			/// ---------------------- TODO why does parse inputs have a main? -------------------------
-			// TODO how do we get the number of actions to go down to 0? Could return 0,1,-1 instead of a boolean?
+			
+			if(PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
+				return 1;				
+			}
+
+			/// TODO why does parse inputs have a main? 
 		}
 		
-		return true; // use false for cases where the player has not used an action
+		return 0; 
 	}
 	
 

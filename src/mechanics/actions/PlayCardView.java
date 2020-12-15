@@ -85,9 +85,9 @@ public class PlayCardView  extends ActionView{
 		System.out.println("Card picked: "+cardToPlay.toString());
 		player.getHand().takeCard(cardToPlay);
 		if (cardToPlay.toString().equals(helicopter)) {
-			Helicopter.play(cardToPlay, player, user);
+			Helicopter.play(cardToPlay, player, user);		 // TODO should be done by controller
 		} else if (cardToPlay.toString().equals(sandbags)) {
-			Sandbags.play(cardToPlay, user);
+			Sandbags.play(cardToPlay, user);				// TODO should be done by controller
 		}
 		return false;
 	}
