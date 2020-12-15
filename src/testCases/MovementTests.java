@@ -131,8 +131,24 @@ public class MovementTests {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		
+		input = "2 4";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 
-		Tile finalTile = player2.getPawn().getTile();
+		input = "3 8";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		
+		input = "4 4";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -146,8 +162,24 @@ public class MovementTests {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		
+		input = "2 5 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 
-		Tile finalTile = player2.getPawn().getTile();
+		input = "3 9 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		
+		input = "4 5 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -226,6 +258,24 @@ public class MovementTests {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		
+		input = "2 4";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+
+		input = "3 8";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		
+		input = "4 18";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		scanner = new Scanner(in);
+		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -239,7 +289,7 @@ public class MovementTests {
 		Scanner scanner = new Scanner(in);
 		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 		
-		input = "2 5 0";
+		input = "2 9 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
@@ -251,7 +301,7 @@ public class MovementTests {
 		scanner = new Scanner(in);
 		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
 		
-		input = "4 5 0";
+		input = "4 19 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
@@ -326,5 +376,6 @@ public class MovementTests {
 	@After
 	public void tearDown() {
 		testBoard.tearDown();
+		PlayerList.getInstance().tearDown();
 	}
 }
