@@ -40,7 +40,7 @@ public class TreasureCard extends Card{
 	 * @param cardType
 	 * @param treasureType
 	 */
-	protected TreasureCard(TreasureCardTypes cardType, Treasure treasureType) {
+	public TreasureCard(TreasureCardTypes cardType, Treasure treasureType) {
 		this.cardType = cardType;
 		this.treasureType = treasureType;
 	}
