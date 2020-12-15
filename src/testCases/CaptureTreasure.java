@@ -3,9 +3,7 @@ package testCases;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,16 +19,17 @@ import players.*;
 
 public class CaptureTreasure {
 	private Board testBoard;
-	private List<TileNames> tileList = new ArrayList<TileNames>();
-	private Map<TileNames, TreasureNames> treasureMap = new HashMap<TileNames, TreasureNames>();
+	private PlayerList playerList;
 	private List<Tile> boardTiles =new ArrayList<Tile>();
 	private List<TileNames> boardTileNames = new ArrayList<TileNames>();
 	private Player player1, player2, player3, player4;
 	
 	@Before
 	public void setup() {
+		// Get board
 		testBoard = Board.getInstance();
-		WaterLevel.getInstance().setDifficulty(Difficulty.NORMAL);
+		
+		//WaterLevel.getInstance().setDifficulty(Difficulty.NORMAL);
 		boardTiles = testBoard.getSortedTiles();
 		for(Tile t:boardTiles) {
 			boardTileNames.add(t.getName());
@@ -41,50 +40,32 @@ public class CaptureTreasure {
 		player3 = new Player("player 3");
 		player4 = new Player("player 4");
 		
-		PlayerList.getInstance().addPlayer(player1);
-		PlayerList.getInstance().addPlayer(player2);
-		PlayerList.getInstance().addPlayer(player3);
-		PlayerList.getInstance().addPlayer(player4);
+		playerList = PlayerList.getInstance();
+		
+		playerList.addPlayer(player1);
+		playerList.addPlayer(player2);
+		playerList.addPlayer(player3);
+		playerList.addPlayer(player4);
 		
 		player1.setPawn(new Diver());
 		player2.setPawn(new Engineer());
 		player3.setPawn(new Explorer());
 		player4.setPawn(new Navigator());
 		
-		player1.getPawn().toInitialTile();
-		player2.getPawn().toInitialTile();
-		player3.getPawn().toInitialTile();
-		player4.getPawn().toInitialTile();
-		System.out.println(Board.getInstance().toString());
+		for (Player p:playerList.getPlayers()) {
+			p.getPawn().toInitialTile();
+			p.setHand(new Hand());
+		}
 		
-		player1.setHand(new Hand());
-		player2.setHand(new Hand());
-		player3.setHand(new Hand());
-		player4.setHand(new Hand());
 		
+		//Add three of each treasure to each player
+		for (int i=0; i<3; i++) {
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
-		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
-		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
-		//player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
-		
 		player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
-		player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
-		player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
-		//player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
-
-		
 		player3.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
-		player3.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
-		player3.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
-		//player3.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
+		player4.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.STATUE_OF_THE_WIND)));
 
-		
-		player4.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.STATUE_OF_THE_WIND)));
-		player4.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.STATUE_OF_THE_WIND)));
-		player4.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.STATUE_OF_THE_WIND)));
-		//player4.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.STATUE_OF_THE_WIND)));	
-		System.out.println(Board.getInstance().toString());
-
+		}
 	}
 	
 	public void moveToIncorrectTreasureTiles() {
@@ -93,10 +74,10 @@ public class CaptureTreasure {
 			if(t.getName().equals(TileNames.CAVE_OF_EMBERS)) {
 				player2.getPawn().move(t);
 			}
-			if(t.getName().equals(TileNames.CORAL_PALACE)) {
+			if(t.getName().equals(TileNames.TEMPLE_OF_THE_MOON)) {
 				player3.getPawn().move(t);
 			}
-			if(t.getName().equals(TileNames.TEMPLE_OF_THE_MOON)) {
+			if(t.getName().equals(TileNames.CORAL_PALACE)) {
 				player4.getPawn().move(t);
 			}
 			if(t.getName().equals(TileNames.WHISPERING_GARDEN)) {
@@ -111,10 +92,10 @@ public class CaptureTreasure {
 			if(t.getName().equals(TileNames.CAVE_OF_EMBERS)) {
 				player1.getPawn().move(t);
 			}
-			if(t.getName().equals(TileNames.CORAL_PALACE)) {
+			if(t.getName().equals(TileNames.TEMPLE_OF_THE_MOON)) {
 				player2.getPawn().move(t);
 			}
-			if(t.getName().equals(TileNames.TEMPLE_OF_THE_MOON)) {
+			if(t.getName().equals(TileNames.CORAL_PALACE)) {
 				player3.getPawn().move(t);
 			}
 			if(t.getName().equals(TileNames.WHISPERING_GARDEN)) {
@@ -133,42 +114,47 @@ public class CaptureTreasure {
 	@Test
 	public void failToCaptureAllTreasures() {
 		//Should be null if player is unable to capture treasure
-		moveToIncorrectTreasureTiles();
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player1));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player2));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player3));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player4));
+		//Move to correct tile without enough cards
 		moveToCorrectTreasureTiles();
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player1));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player2));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player3));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player4));
+		
+		for (Player p:playerList.getPlayers()) {
+			assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(p));
+		}
+
+		//Move to wrong tile and try capture wrong treasure with wrong amount of cards
 		moveToIncorrectTreasureTiles();
-		System.out.println(player1.getHand().toString());
+		for (Player p:playerList.getPlayers()) {
+			assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(p));
+
+		}
+
+		//Correct number of cards but wrong treasure type
 		giveAnotherCard();
-		System.out.println(player1.getHand().toString());
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player1));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player2));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player3));
-		assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player4));
+		for (Player p:playerList.getPlayers()) {
+			assertNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(p));
+		}
+
 	}
 	
 	@Test
 	public void CaptureAllTreasures() {
-		//Should be null if player is unable to capture treasure
+		//Move to correct tile and obtain correct number of tiles
 		moveToCorrectTreasureTiles();
-		System.out.println(testBoard);
 		giveAnotherCard();
-		System.out.println(player1.getHand().toString());
 		//All players should be able to capture a treasure now.
-		assertNotNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player1));
-		assertNotNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player2));
-		assertNotNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player3));
-		assertNotNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(player4));
+		for (Player p:playerList.getPlayers()) {
+			//Check if able to claim
+			assertNotNull(TurnController.getInstance(TurnView.getInstance()).getClaimTreasureCheck(p));
+			//Claim
+			p.getPawn().getTile().getTreasure().captureTreasure();
+			//Check if claimed
+			assertTrue(p.getPawn().getTile().getTreasure().isCaptured());
+		}
 	}
 
 	@After
 	public void tearDown() {
 		testBoard.tearDown();
+		playerList.tearDown();
 	}
 }
