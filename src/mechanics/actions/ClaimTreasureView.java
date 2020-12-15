@@ -19,7 +19,12 @@ import setup.ParseLetterInputs;
 import setup.ParseNumberInputs;
 import mechanics.TurnController;
 import elements.treasures.Treasure;
-
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -44,7 +49,7 @@ public class ClaimTreasureView extends ActionView{
 		System.out.println("You can claim the " + possibleTreasure );
 		System.out.println("Would you like to do so? [y/n]");
 		
-		String userAns = null;
+		String userAns = " ";
 		
 		while(!userAns.equals("n") && !userAns.equals("y")) {
 			userAns = ParseLetterInputs.main(user);
@@ -55,7 +60,7 @@ public class ClaimTreasureView extends ActionView{
 				controller.claimTreasure(possibleTreasure);
 				System.out.println(possibleTreasure + " has been captured!");
 				Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
-				if(unClaimed == null) {
+				if(unClaimed.isEmpty()) {
 					System.out.println("You've claimed all treasures! Make your way to Fools' landing to get off the island!");
 				}
 				else {
