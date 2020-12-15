@@ -41,4 +41,8 @@ public class PlayerList {
 	public String toString() {
 		return (playerList.toString());
 	}
+	
+	public void tearDown() {
+		pl=null;
+	}
 }
