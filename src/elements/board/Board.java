@@ -80,7 +80,7 @@ public class Board {
 	 * 	Creates all tiles in the board
 	 */
 	private Board() {
-		// Create the 4 treasures
+		// Create the 4s
 		allTreasures = new HashMap<TreasureNames, Treasure>();
 		for(TreasureNames name : TreasureNames.values()) {
 			allTreasures.put(name, new Treasure(name));
@@ -219,4 +219,9 @@ public class Board {
 
 		return boardString;
 	}
+	
+	public void tearDown() {
+		board = null;
+	}
+	
 }
