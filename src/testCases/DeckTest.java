@@ -107,7 +107,6 @@ public class DeckTest {
 		
 		FloodDeck fdeck = FloodDeck.getInstance();
 		FloodDiscard fdiscard = FloodDiscard.getInstance();
-		Board board = Board.getInstance();
 		
 		assertEquals("FloodDeck should initially have 24 cards", 24, fdeck.getSize());
 		assertEquals("Flood Discard should be empty", 0, fdiscard.getSize());
