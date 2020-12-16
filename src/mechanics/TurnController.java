@@ -45,11 +45,15 @@ public class TurnController {
 	 * @param model - model associated with controller 
 	 * @return turnController (singleton instance)
 	 */
-	public static TurnController getInstance(TurnView view) {
+	public static TurnController getInstance() {
 		if(turnController == null) { 
-			turnController = new TurnController(view);
+			turnController = new TurnController();
 		}
 		return turnController;
+	}
+	
+	public void setView(TurnView view) {
+		this.view = view;
 	}
 	
 	public void pilotReset(Player player){
@@ -74,16 +78,6 @@ public class TurnController {
 			view.doSwim(player, possibleTiles);
 		}
 
-	}
-	
-	/**
-	 * TurnController Constructor
-	 * 		Assigns model and view
-	 * @param view
-	 */
-	private TurnController(TurnView view) {
-		this.view = view;
-	//	this.model = model;
 	}
 	
 	/**

@@ -76,7 +76,7 @@ public class PlayableCardsTest {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 
-		PlayCardView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+		PlayCardView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		
 		int handSize=player1.getHand().getCards().size();
@@ -94,7 +94,7 @@ public class PlayableCardsTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		PlayCardView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+		PlayCardView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 		
 		//TODO better than this
 		assertTrue(player1.getPawn().getTile().getName().equals(TileNames.CAVE_OF_EMBERS));

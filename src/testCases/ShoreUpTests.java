@@ -96,7 +96,7 @@ public class ShoreUpTests {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
 			Scanner scanner = new Scanner(in);
-			ShoreupView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+			ShoreupView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 		}
 		int floodedTileNum = numRemainingFloodedTiles();
 		assertEquals("Only four of nine tiles can be shored up", 5, floodedTileNum);
@@ -113,7 +113,7 @@ public class ShoreUpTests {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
 			Scanner scanner = new Scanner(in);
-			ShoreupView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+			ShoreupView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		}
 		int floodedTileNum = numRemainingFloodedTiles();
 		assertEquals("Only tile underneath players remain.", 1, floodedTileNum);
@@ -132,7 +132,7 @@ public class ShoreUpTests {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
 			Scanner scanner = new Scanner(in);
-			ShoreupView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player3, scanner);
+			ShoreupView.getInstance(TurnController.getInstance()).doAction(player3, scanner);
 		}
 		int floodedTileNum = numRemainingFloodedTiles();
 		assertEquals("Only four of nine tiles can be shored up", 5, floodedTileNum);

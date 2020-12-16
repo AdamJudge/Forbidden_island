@@ -98,7 +98,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 
 		Tile finalTile = player1.getPawn().getTile();
 		assertNotEquals("The Normal Pawn should be able to move to up to a 4th, different tile with this board setup", initTile, finalTile);
@@ -114,7 +114,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 
 		Tile finalTile = player1.getPawn().getTile();
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
@@ -130,25 +130,25 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "2 4";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 
 		input = "3 8";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "4 4";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -161,25 +161,25 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "2 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 
 		input = "3 9 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "4 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -191,7 +191,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player3, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player3, scanner);
 
 		Tile finalTile = player3.getPawn().getTile();
 		assertNotEquals("The Explorer should be able to move up to an 8th, different tile with this board setup", initTile, finalTile);
@@ -206,7 +206,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player3, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player3, scanner);
 
 		Tile finalTile = player3.getPawn().getTile();
 		assertEquals("The Explorer should not be able to move to an 9th with this board setup", initTile, finalTile);
@@ -225,7 +225,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 		
 		Tile finalTile = player1.getPawn().getTile();
 		assertNotEquals("The Normal Pawn should be able to move to up to a 4th, different tile with this board setup", initTile, finalTile);
@@ -241,7 +241,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player1, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 		
 		Tile finalTile = player1.getPawn().getTile();
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
@@ -257,25 +257,25 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "2 4";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 
 		input = "3 8";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "4 18";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -287,25 +287,25 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "2 9 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 
 		input = "3 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 		
 		input = "4 19 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player2, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player2, scanner);
 	}
 	
 	@Test
@@ -318,7 +318,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player3, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player3, scanner);
 		
 		Tile finalTile = player3.getPawn().getTile();
 		assertNotEquals("The Explorer should be able to move up to an 8th, different tile with this board setup", initTile, finalTile);
@@ -335,7 +335,7 @@ public class MovementTests {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player3, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player3, scanner);
 		
 		Tile finalTile = player3.getPawn().getTile();
 		assertEquals("The Explorer should not be able to move to a 9th tile with this board setup", initTile, finalTile);
@@ -351,7 +351,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player4, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player4, scanner);
 
 		Tile finalTile = player4.getPawn().getTile();
 		assertNotEquals("The Diver should be able to move up to an 18th, different tile with this board setup", initTile, finalTile);
@@ -367,7 +367,7 @@ public class MovementTests {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		MoveView.getInstance(TurnController.getInstance(TurnView.getInstance())).doAction(player4, scanner);
+		MoveView.getInstance(TurnController.getInstance()).doAction(player4, scanner);
 		
 		TileNames finalTile = player4.getPawn().getTile().getName();
 		assertEquals("The Diver should not be able to move to a 19th tile with this board setup", initTile, finalTile);

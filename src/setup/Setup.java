@@ -23,8 +23,8 @@ import mechanics.TurnView;
  * 	Sets up MVC and Setup classes to carry out player and game setup
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 2.0
- * 	Edited to suit MVC. Removed board setup (done in game setup now)
+ * @version 2.1
+ * 	TurnController gets view set separately
  * 
  * Date created: 23/11/20 
  * Last modified: 30/11/20
@@ -89,11 +89,11 @@ public class Setup {
 		
 		// Set up turn MVC
 		TurnView turnView = TurnView.getInstance();			// create SetupView instance
-		TurnController turnController = TurnController.getInstance(turnView);	// create SetupController instance, assign it view and setup instances
+		TurnController turnController = TurnController.getInstance();	// create SetupController instance, assign it view and setup instances
 		turnView.setupView(turnController);		// assign controller to view instance
+		turnController.setView(turnView);
 		FloodDeck.getInstance().setController(turnController);
 		
-		//TODO cat can you add this to the MVC
 		ObserverSetup.getInstance().attachObservers();
 	}
 	
