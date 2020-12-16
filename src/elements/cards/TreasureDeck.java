@@ -53,25 +53,19 @@ public class TreasureDeck extends Deck {
 				shuffleDeck();
 				card = (TreasureCard)super.draw();
 			}
-			return card;
 		}
 		
 		// outside of setup, waters rise cards are played (discarded in play method)
 		else if(card.getCardType() == TreasureCardTypes.WATERSRISE) {
 			WatersRise.play(card);
-			if (cards.isEmpty()) {
-				TreasureDiscard.getInstance().toDeck();
-			}
-			return null;
 		}
 		
-		// if a regular card is drawn outside of setup
-		else {
-			if (cards.isEmpty()) {
-				TreasureDiscard.getInstance().toDeck();
-			}
-			return card;
+		if (cards.isEmpty()) {
+			TreasureDiscard.getInstance().toDeck();
 		}
+		
+		return card;
+
 	}
 	
 	/**
