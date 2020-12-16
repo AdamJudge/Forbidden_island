@@ -170,6 +170,9 @@ public class TurnView {
 		return 0; 
 	}
 	
+	public void setScanner(Scanner user) {
+		this.user = user;
+	}
 
     /**
      * setController
