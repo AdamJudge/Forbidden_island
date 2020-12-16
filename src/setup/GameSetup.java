@@ -15,18 +15,18 @@ import elements.board.Board;
  * GameSetup
  * 	Handles setup of the board, water level, and decks
  * @author Adam Judge, Catherine Waechter
- * @version 2.1
- * 	Edited to suit MVC (added getBoard)
+ * @version 2.2
+ * 	initialise inSetup to false
  * 
  * Date created: 23/11/20 
- * Last modified: 03/12/20
+ * Last modified: 16/12/20
  *
  */
 
 public class GameSetup {
 	public static GameSetup gameSetup=null;
 	
-	private boolean inSetup; 	// flag to set the setup mode // TODO maybe put in Setup instead
+	private boolean inSetup = false; 	// flag to set the setup mode // TODO maybe put in Setup instead
 	
 	/**
 	 * getInstance
