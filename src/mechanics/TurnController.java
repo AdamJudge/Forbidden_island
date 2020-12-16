@@ -24,10 +24,11 @@ import elements.treasures.TreasureNames;
  * 	Controller to implement turn as MVC
  * 
  * @author Catherine Waechter
- * @version 1.1
+ * @version 1.2
+ * 	Adjusted for Waters Rise returning WatersRise type, not null
  *
  *	Date created: 03/12/20
- *	Last modified: 09/12/20
+ *	Last modified: 16/12/20
  */
 public class TurnController {
 
@@ -239,7 +240,7 @@ public class TurnController {
 	public Card drawTreasureCard(Player player) throws IOException {	// TODO should this be more abstract? 
 		Card card;
 		card = TreasureDeck.getInstance().draw();
-		if(card != null) {		// card returned is null if it was a waters rise card
+		if(((TreasureCard)card).getCardType() != TreasureCardTypes.WATERSRISE) {		
 			player.getHand().addCard(card);
 		}
 		return card;

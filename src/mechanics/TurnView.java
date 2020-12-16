@@ -75,9 +75,7 @@ public class TurnView {
 		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
 			Card cardDrawn = controller.drawTreasureCard(player);
-			if(cardDrawn != null) {
-				System.out.println(player + " drew a " + cardDrawn + " card.");
-			}
+			System.out.println(player + " drew a " + cardDrawn + " card.");
 			if(controller.handSize(player) == 6) {
 				doDiscard(user, currentPlayer);
 			}
