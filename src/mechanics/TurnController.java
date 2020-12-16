@@ -24,8 +24,9 @@ import elements.treasures.TreasureNames;
  * 	Controller to implement turn as MVC
  * 
  * @author Catherine Waechter
- * @version 1.2
+ * @version 1.3
  * 	Adjusted for Waters Rise returning WatersRise type, not null
+ *	Discarding prompted by model, call view as needed	
  *
  *	Date created: 03/12/20
  *	Last modified: 16/12/20
@@ -59,6 +60,16 @@ public class TurnController {
 	public void pilotReset(Player player){
 		if(player.getPawn() instanceof Pilot) {
 			((Pilot)player.getPawn()).resetHasFlown();
+		}
+	}
+	
+	public void doDiscard() throws IOException{
+		
+		for(Player player : PlayerList.getInstance().getPlayers()) {
+			if(player.getHand().getCards().size() == 6) {
+				view.doDiscard(player);
+				break;
+			}
 		}
 	}
 	
@@ -147,7 +158,7 @@ public class TurnController {
 		return unclaimedTreasures;
 	}
 	
-	public void giveCard(Player playerFrom, Player playerTo, Card card) {
+	public void giveCard(Player playerFrom, Player playerTo, Card card) throws IOException {
 		playerFrom.getHand().takeCard(card);
 		playerTo.getHand().addCard(card);
 	}
