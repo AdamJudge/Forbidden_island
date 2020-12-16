@@ -15,11 +15,11 @@ import setup.GameSetup;
  * Represent the deck of treasure cards
  * 
  * @author Catherine Waechter
- * @version 2.4
- * 	Shuffle deck when empty
+ * @version 2.5
+ * 	Added tearDown
  * 
  * Date Created: 26/10/20
- * Last Modified: 09/12/20
+ * Last Modified: 16/12/20
  *
  */
 public class TreasureDeck extends Deck {
@@ -97,5 +97,12 @@ public class TreasureDeck extends Deck {
 		
 		shuffleDeck();
 		
+	}
+	
+	/**
+	 * tearDown for testing
+	 */
+	public void tearDown() {
+		treasureDeck = null;
 	}
 }

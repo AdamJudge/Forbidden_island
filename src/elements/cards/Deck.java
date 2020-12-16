@@ -69,4 +69,6 @@ public abstract class Deck {
 		else return false;
 	}	
 	
+	public abstract void tearDown();
+	
 }

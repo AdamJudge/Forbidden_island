@@ -8,8 +8,8 @@ import java.util.Stack;
  * 	represents a discard pile
  * 
  * @author Catherine Waechter
- * @version 1.1
- * 	added getSize method
+ * @version 1.2
+ * 	added abstract tearDown method
  * 
  * Date created 26/10/20
  * Last modified 16/12/20
@@ -50,4 +50,6 @@ public abstract class DiscardPile {
 	public int getSize() {
 		return discardedCards.size();
 	}
+	
+	public abstract void tearDown();
 }

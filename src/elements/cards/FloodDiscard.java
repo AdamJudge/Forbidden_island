@@ -7,10 +7,11 @@ import java.util.Stack;
  * 	Represents the treasure deck's discard pile
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.1
+ * 	Added tearDown method
  * 
  * Date created: 25/11/20
- * Last modified: 25/11/20
+ * Last modified: 16/12/20
  */
 public class FloodDiscard extends DiscardPile {
 
@@ -42,6 +43,13 @@ public class FloodDiscard extends DiscardPile {
 	 */
 	private FloodDiscard() {
 		discardedCards = new Stack<Card>();
+	}
+	
+	/**
+	 * tearDown for testing
+	 */
+	public void tearDown() {
+		floodDiscard = null;
 	}
 
 }

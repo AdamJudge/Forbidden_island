@@ -15,11 +15,11 @@ import java.util.Stack;
  * Represent the deck of flood cards
  * 
  * @author Catherine Waechter
- * @version 2.2
- * 	Shuffle deck when empty
+ * @version 2.3
+ * 	added teadDown
  * 
  * Date Created: 26/10/20
- * Last Modified: 09/12/20
+ * Last Modified: 16/12/20
  *
  */
 public class FloodDeck extends Deck{
@@ -72,6 +72,13 @@ public class FloodDeck extends Deck{
 		}
 		
 		shuffleDeck();
+	}
+	
+	/**
+	 * tearDown for testing
+	 */
+	public void tearDown() {
+		floodDeck = null;
 	}
 
 }
