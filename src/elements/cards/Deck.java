@@ -10,10 +10,10 @@ import java.io.IOException;
  * Contains general deck methods
  * 
  * @author Catherine Waechter
- * @version 1.1
- * 	Added printout for draw method
+ * @version 1.3
+ * 	Added getSize method
  * Date Created: 26/10/20
- * Last Modified: 25/11/20
+ * Last Modified: 16/12/20
  *
  */
 public abstract class Deck {
@@ -47,6 +47,14 @@ public abstract class Deck {
 		Card cardDrawn = cards.pop();
 //		System.out.println("Card Drawn: " + cardDrawn);
 		return cardDrawn;
+	}
+	
+	/**
+	 * getSize
+	 * @return size of deck
+	 */
+	public int getSize() {
+		return cards.size();
 	}
 	
 	/**

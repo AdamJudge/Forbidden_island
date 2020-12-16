@@ -8,10 +8,11 @@ import java.util.Stack;
  * 	represents a discard pile
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.1
+ * 	added getSize method
  * 
  * Date created 26/10/20
- * Last modified 25/11/20
+ * Last modified 16/12/20
  *
  */
 public abstract class DiscardPile {
@@ -42,4 +43,11 @@ public abstract class DiscardPile {
 		discardedCards.add(card);
 	}
 	
+	/**
+	 * getSize
+	 * @return size of discard pile
+	 */
+	public int getSize() {
+		return discardedCards.size();
+	}
 }
