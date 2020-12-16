@@ -4,21 +4,23 @@
  * 	Represents a player's hand
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 1.3
- * 	Discard to actual discard pile (typo, had it going to deck)
+ * @version 1.4
+ * 	AddCard checks size of hand
  * 	
  * Creation Date: 22/10/20
- * Last Modified: 08/12/20
+ * Last Modified: 16/12/20
  */
 
 package players;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
+import mechanics.TurnController;
 
 public class Hand {
 	protected List<Card> hand;
@@ -27,9 +29,11 @@ public class Hand {
 		hand = new ArrayList<Card>();
 	}
 	
-	public void addCard(Card card) {
+	public void addCard(Card card) throws IOException {
 		this.hand.add(card);
-		// Add card to hand
+		if(hand.size() >= 6) {
+			TurnController.getInstance().doDiscard();
+		}
 	}
 	
 	public List<Card> getCards(){
