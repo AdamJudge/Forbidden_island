@@ -30,7 +30,7 @@ public class PlayableCardsTest {
 	private Player player1;
 	
 	@Before
-	public void setup() {
+	public void setup() throws IOException {
 		testBoard = Board.getInstance();
 		boardTiles = testBoard.getSortedTiles();
 		WaterLevel.getInstance().setDifficulty(Difficulty.NOVICE);

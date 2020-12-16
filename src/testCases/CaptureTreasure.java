@@ -30,7 +30,7 @@ public class CaptureTreasure {
 	private Player player1, player2, player3, player4;
 	
 	@Before
-	public void setup() {
+	public void setup() throws IOException {
 		// Get board
 		testBoard = Board.getInstance();
 		
@@ -109,7 +109,7 @@ public class CaptureTreasure {
 		}
 	}
 	
-	public void giveAnotherCard() {
+	public void giveAnotherCard() throws IOException {
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
 		player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
 		player3.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
