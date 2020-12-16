@@ -2,6 +2,7 @@ package testCases;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -10,7 +11,10 @@ import java.util.HashSet;
 import elements.cards.*;
 import elements.treasures.*;
 import setup.GameSetup;
+import elements.board.Board;
 import elements.board.TileNames;
+import elements.board.Tile;
+import elements.board.TileStatus;
 
 public class DeckTest {
 
@@ -21,15 +25,16 @@ public class DeckTest {
 			
 		int oceanCount = 0, fireCount = 0, earthCount = 0, windCount = 0;
 		int watersCount = 0, helicopterCount = 0, sandbagsCount = 0;
-		int deckSize = 28; 	// should be 28, will be set to different value if it isn't.
+		 	
 		Card card;
-		for(int i = 0; i<29; i++) {			// go for 1 larger than the deck, to catch if the deck is too big
-			if(tdeck.isEmpty() == true) {
-				deckSize = i;
-				break;
-			}
+		
+		int deckSize = tdeck.getSize();
+		
+		for(int i = 0; i<28; i++) {	
+			
 			card = tdeck.draw();
 			
+			System.out.println(card);
 			
 			if(((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER) {
 				helicopterCount += 1;
@@ -71,15 +76,13 @@ public class DeckTest {
 		
 		FloodDeck fdeck = FloodDeck.getInstance();
 		Set<TileNames> usedNames = new HashSet<TileNames>();
-		int nbrCards = 24;
+		
 		Card card;
 		int duplicateCount = 0;
 		
-		for(int i=0; i<25;i++) {			// go for 1 larger than the deck, to catch if the deck is too big
-			if(fdeck.isEmpty() == true) {
-				nbrCards = i;
-				break;
-			}
+		int deckSize = fdeck.getSize();
+		
+		for(int i=0; i<24;i++) {			
 			
 			card = fdeck.draw();
 			if(!usedNames.contains(((FloodCard)card).getName())) {
@@ -90,9 +93,54 @@ public class DeckTest {
 			}	
 		}
 		
-		assertEquals("FloodDeck should have 24 cards", 24, nbrCards);
+		assertEquals("FloodDeck should have 24 cards", 24, deckSize);
 		assertEquals("FloodDeck should not contain any duplicates", 0, duplicateCount);
 		
 	}
 
+	@Test
+	public void drawFloodCard() throws IOException {
+		
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		
+		FloodDeck fdeck = FloodDeck.getInstance();
+		FloodDiscard fdiscard = FloodDiscard.getInstance();
+		Board board = Board.getInstance();
+		
+		assertEquals("FloodDeck should initially have 24 cards", 24, fdeck.getSize());
+		assertEquals("Flood Discard should be empty", 0, fdiscard.getSize());
+		
+		Card firstCard = fdeck.draw();
+		
+		assertEquals("FloodDeck should have 23 cards after a card is drawn", 23, fdeck.getSize());
+		assertEquals("Flood Discard should contain one card after a card is drawn", 1, fdiscard.getSize());
+		
+		assertEquals("Drawn card should have caused the tile to be flooded", TileStatus.FLOODED, ((FloodCard)firstCard).getTile().getStatus());
+		
+		fdiscard.toDeck();
+		
+		assertEquals("Discard should be empty after putting card back in deck", 0, fdiscard.getSize());
+		assertEquals("Deck should have 24 cards after putting the discarded card back", 24, fdeck.getSize());
+		
+		Card secondCard = fdeck.draw();
+		
+		assertEquals("FloodDeck should have 23 cards after a card is drawn", 23, fdeck.getSize());
+		assertEquals("Flood Discard should still be empty because card should be removed", 0, fdiscard.getSize());
+		
+		assertEquals("The two cards drawn should be the same object", firstCard, secondCard);
+		assertEquals("Drawn card should have caused the tile to be removed", TileStatus.REMOVED, ((FloodCard)secondCard).getTile().getStatus());
+		
+		
+	}
+	
+	@After
+	public void tearDown() {
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+	}
 }
