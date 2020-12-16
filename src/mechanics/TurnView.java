@@ -20,11 +20,11 @@ import mechanics.actions.*;
  * TurnView
  * 	View to display turn events
  * @author Catherine Waechter
- * @version 1.3
- * 	Added pilot reset, and fixed null card issue
+ * @version 1.4
+ * 	No longer check hand size. Controller prompts as needed
  * 
  * Date Created:  03/12/20
- * Last Modified: 12/12/20
+ * Last Modified: 16/12/20
  */
 public class TurnView {
 
@@ -76,9 +76,6 @@ public class TurnView {
 		for(int i = 0; i<2; i++) {
 			Card cardDrawn = controller.drawTreasureCard(player);
 			System.out.println(player + " drew a " + cardDrawn + " card.");
-			if(controller.handSize(player) == 6) {
-				doDiscard(user, currentPlayer);
-			}
 		}
 		
 		Set<Card> cardsDrawn = controller.drawFloodCards();
@@ -101,7 +98,7 @@ public class TurnView {
 		
 	}
 	
-	private void doDiscard(Scanner user, Player player) throws IOException {
+	public void doDiscard(Player player) throws IOException {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
 		ArrayList<Card> cards = new ArrayList<Card>();
 		cards.addAll(controller.getHandCards(player));
@@ -145,11 +142,6 @@ public class TurnView {
 			int actionResult = 0;
 			if(GiveCardView.getInstance(controller).doAction(currentPlayer, user)) {
 				actionResult = 1;
-			}
-			for(Player player : controller.getPlayers()) {
-				if (controller.handSize(player) == 6) {
-					doDiscard(user, player);
-				}
 			}
 			return actionResult;
 		case 4:
