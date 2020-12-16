@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.HashSet;
 import elements.cards.*;
 import elements.treasures.*;
+import setup.GameSetup;
 import elements.board.TileNames;
 
 public class DeckTest {
@@ -17,7 +18,7 @@ public class DeckTest {
 	public void treasureDeckContents() throws IOException {
 		
 		TreasureDeck tdeck = TreasureDeck.getInstance();
-		
+			
 		int oceanCount = 0, fireCount = 0, earthCount = 0, windCount = 0;
 		int watersCount = 0, helicopterCount = 0, sandbagsCount = 0;
 		int deckSize = 28; 	// should be 28, will be set to different value if it isn't.
