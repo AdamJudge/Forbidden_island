@@ -1,21 +1,10 @@
-/**
- * Class Name: Setup
- *
- * Singleton Facade for setting up game of Forbidden Island
- * 
- * Author: @author adamj
- * Version: @version 2.0
- * 
- * Creation Date: 22/10/20
- * Last Modified: 13/12/20
- */
-
 package setup;
 import java.io.IOException;
 import java.util.Scanner;
 
 import elements.cards.FloodDeck;
 import mechanics.TurnController;
+import mechanics.actions.ActionController;
 import mechanics.TurnView;
 
 /**
@@ -23,11 +12,11 @@ import mechanics.TurnView;
  * 	Sets up MVC and Setup classes to carry out player and game setup
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 2.1
- * 	TurnController gets view set separately
+ * @version 3.0
+ * 	adjusted for ActionController
  * 
  * Date created: 23/11/20 
- * Last modified: 30/11/20
+ * Last modified: 17/12/20
  *
  */
 
@@ -90,9 +79,10 @@ public class Setup {
 		// Set up turn MVC
 		TurnView turnView = TurnView.getInstance();			// create SetupView instance
 		TurnController turnController = TurnController.getInstance();	// create SetupController instance, assign it view and setup instances
-		turnView.setupView(turnController);		// assign controller to view instance
+		ActionController actionController = ActionController.getInstance();
+		turnView.setupView(turnController, actionController);		// assign controller to view instance
 		turnController.setView(turnView);
-		FloodDeck.getInstance().setController(turnController);
+		FloodDeck.getInstance().setController(actionController);
 		
 		ObserverSetup.getInstance().attachObservers();
 	}

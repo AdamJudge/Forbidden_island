@@ -5,11 +5,11 @@
  * 
  * @author Adam Judge, Catherine Waechter
  * 
- * @version 1.2
- * 	adjusted to suit ActionView
+ * @version 1.3
+ * 	adjusted for ActionController
  * 
  * Creation Date: 22/10/20
- * Last Modified: 03/12/20
+ * Last Modified: 17/12/20
  */
 
 package mechanics.actions;
@@ -17,7 +17,6 @@ package mechanics.actions;
 import players.Player;
 import setup.ParseLetterInputs;
 import setup.ParseNumberInputs;
-import mechanics.TurnController;
 import elements.treasures.Treasure;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -31,12 +30,10 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-
-
 public class ClaimTreasureView extends ActionView{
 
 	private static ClaimTreasureView claimTreasureView = null;
-	private TurnController controller;
+	private ActionController controller;
 	
 	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
 	
@@ -79,18 +76,16 @@ public class ClaimTreasureView extends ActionView{
 	 * @param controller - controller associated with the view
 	 * @return claimTreasureView (singleton instance)
 	 */
-	public static ClaimTreasureView getInstance(TurnController controller) {
+	public static ClaimTreasureView getInstance() {
 		if(claimTreasureView == null) { 
-			claimTreasureView = new ClaimTreasureView(controller);
+			claimTreasureView = new ClaimTreasureView();
 		}
 		return claimTreasureView;
 	}
 	
-	/**
-	 * ClaimTreasureView Constructor
-	 * @param controller	 - turn controller 
-	 */
-	private ClaimTreasureView(TurnController controller) {
+	public void setController(ActionController controller) {
 		this.controller = controller;
 	}
+	
+	
 }

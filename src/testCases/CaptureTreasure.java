@@ -17,8 +17,6 @@ import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
 import elements.treasures.*;
-import mechanics.TurnController;
-import mechanics.TurnView;
 import mechanics.actions.ClaimTreasureView;
 import players.*;
 
@@ -129,21 +127,21 @@ public class CaptureTreasure {
 		
 		Boolean result;
 		for (Player p:playerList.getPlayers()) {
-			result = ClaimTreasureView.getInstance(TurnController.getInstance()).doAction(p, scanner);
+			result = ClaimTreasureView.getInstance().doAction(p, scanner);
 			assertFalse("Player should not be able to claim treasure", result);
 			}
 
 		//Move to wrong tile and try capture wrong treasure with wrong amount of cards
 		moveToIncorrectTreasureTiles();
 		for (Player p:playerList.getPlayers()) {
-			result = ClaimTreasureView.getInstance(TurnController.getInstance()).doAction(p, scanner);
+			result = ClaimTreasureView.getInstance().doAction(p, scanner);
 			assertFalse("Player should not be able to claim treasure", result);
 		}
 
 		//Correct number of cards but wrong treasure type
 		giveAnotherCard();
 		for (Player p:playerList.getPlayers()) {
-			result=ClaimTreasureView.getInstance(TurnController.getInstance()).doAction(p, scanner);
+			result=ClaimTreasureView.getInstance().doAction(p, scanner);
 			assertFalse("Player should not be able to claim treasure", result);
 		}
 
@@ -166,7 +164,7 @@ public class CaptureTreasure {
 			Scanner scanner = new Scanner(in);
 			
 			//Try Claim
-			result=ClaimTreasureView.getInstance(TurnController.getInstance()).doAction(p, scanner);
+			result=ClaimTreasureView.getInstance().doAction(p, scanner);
 			assertTrue("Player should not be able to claim treasure", result);
 			
 			//Check if claimed

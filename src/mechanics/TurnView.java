@@ -20,11 +20,11 @@ import mechanics.actions.*;
  * TurnView
  * 	View to display turn events
  * @author Catherine Waechter
- * @version 1.4
- * 	No longer check hand size. Controller prompts as needed
+ * @version 1.5
+ * 	adjusted for ActionController
  * 
  * Date Created:  03/12/20
- * Last Modified: 16/12/20
+ * Last Modified: 17/12/20
  */
 public class TurnView {
 
@@ -88,15 +88,7 @@ public class TurnView {
 		controller.pilotReset(player); // checks if the player is a pilot, so can be called regardless
 	}
 	
-	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
-		System.out.println("The tile " + player + " was on sank!");
-		System.out.println("Where would you like to swim? ");
-		ActionView.printTileList(possibleTiles);
-		
-		int userNum = ParseNumberInputs.main(user, 1, possibleTiles.size());
-		controller.move(player, possibleTiles.get(userNum-1));
-		
-	}
+	
 	
 	public void doDiscard(Player player) throws IOException {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
@@ -129,23 +121,23 @@ public class TurnView {
 		
 		switch(actionNum) {
 		case 1:
-			if( MoveView.getInstance(controller).doAction(currentPlayer, user)) {
+			if( MoveView.getInstance().doAction(currentPlayer, user)) {
 				return 1;
 			}
 			break;
 		case 2:
-			if( ShoreupView.getInstance(controller).doAction(currentPlayer, user)) {
+			if( ShoreupView.getInstance().doAction(currentPlayer, user)) {
 				return 1;
 			}
 			break;
 		case 3: 
 			int actionResult = 0;
-			if(GiveCardView.getInstance(controller).doAction(currentPlayer, user)) {
+			if(GiveCardView.getInstance().doAction(currentPlayer, user)) {
 				actionResult = 1;
 			}
 			return actionResult;
 		case 4:
-			if(ClaimTreasureView.getInstance(controller).doAction(currentPlayer, user)) {
+			if(ClaimTreasureView.getInstance().doAction(currentPlayer, user)) {
 				return 1;
 			}
 		case 5:
@@ -179,12 +171,12 @@ public class TurnView {
      * 	assign controller instance
      * @param controller
      */
-    public void setupView(TurnController controller) {
-    	this.controller = controller;
-    	ClaimTreasureView.getInstance(controller);
-    	GiveCardView.getInstance(controller);
-    	MoveView.getInstance(controller);
-    	ShoreupView.getInstance(controller);
+    public void setupView(TurnController turnController, ActionController actionController) {
+    	this.controller = turnController;
+    	ClaimTreasureView.getInstance().setController(actionController);
+    	GiveCardView.getInstance().setController(turnController, actionController);
+    	MoveView.getInstance().setController(turnController, actionController);
+    	ShoreupView.getInstance().setController(actionController);
     }
     
 	

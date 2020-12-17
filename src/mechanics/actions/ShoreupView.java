@@ -1,12 +1,14 @@
 /**
  * Class Name: ShoreUp
  *
- * DETAILS
+ * View for shoring up action
  * 
- * Author: @author adamj
- * Version: @version 
+ * @author Adam Judege, Catherine Waechter
+ * @version 2.1
+ *  adjusted for ActionController
+ * 
  * Creation Date: 22/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 17/12/20
  */
 
 package mechanics.actions;
@@ -19,14 +21,13 @@ import java.util.Scanner;
 import elements.board.Tile;
 import elements.pawns.Engineer;
 import elements.pawns.Pawn;
-import mechanics.TurnController;
 import players.Player;
 import setup.ParseNumberInputs;
 
 public class ShoreupView  extends ActionView{
 
 	private static ShoreupView shoreupView = null;
-	private TurnController controller;
+	private ActionController controller;
 	
 	/**
 	 * getInstance
@@ -34,19 +35,15 @@ public class ShoreupView  extends ActionView{
 	 * @param controller - controller associated with the view
 	 * @return shoreupView (singleton instance)
 	 */
-	public static ShoreupView getInstance(TurnController controller) {
+	public static ShoreupView getInstance() {
 		if(shoreupView == null) { 
-			shoreupView = new ShoreupView(controller);
+			shoreupView = new ShoreupView();
 		}
 		return shoreupView;
 	}
 	
-	/**
-	 * ShoreupView Constructor
-	 * @param controller	 - turn controller 
-	 */
-	private ShoreupView(TurnController controller) {
-		this.controller = controller;
+	public void setController(ActionController actionController) {
+		controller = actionController;
 	}
 
 	public boolean doAction(Player player, Scanner user) throws IOException {

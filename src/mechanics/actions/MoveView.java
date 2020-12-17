@@ -4,8 +4,8 @@
  * 	view to display move action
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 2.1
- * 	implemented as MVC
+ * @version 2.2
+ * 	adjusted for ActionController
  * 	
  * Creation Date: 22/10/20
  * Last Modified: 04/12/20
@@ -31,7 +31,8 @@ public class MoveView extends ActionView{
 	private Scanner user;
 	
 	private static MoveView moveView = null;
-	private TurnController controller;
+	private ActionController controller;
+	private TurnController turnController;
 	
 	/**
 	 * getInstance
@@ -39,19 +40,26 @@ public class MoveView extends ActionView{
 	 * @param controller - controller associated with the view
 	 * @return moveView (singleton instance)
 	 */
-	public static MoveView getInstance(TurnController controller) {
+	public static MoveView getInstance() {
 		if(moveView == null) { 
-			moveView = new MoveView(controller);
+			moveView = new MoveView();
 		}
 		return moveView;
 	}
 	
-	/**
-	 * MoveView Constructor
-	 * @param controller	 - turn controller 
-	 */
-	private MoveView(TurnController controller) {
+	public void setController(TurnController turnController, ActionController controller) {
 		this.controller = controller;
+		this.turnController = turnController;
+	}
+	
+	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
+		System.out.println("The tile " + player + " was on sank!");
+		System.out.println("Where would you like to swim? ");
+		ActionView.printTileList(possibleTiles);
+		
+		int userNum = ParseNumberInputs.main(user, 1, possibleTiles.size());
+		controller.move(player, possibleTiles.get(userNum-1));
+		
 	}
 	
 	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
@@ -84,7 +92,7 @@ public class MoveView extends ActionView{
 		
 		System.out.println("Who would you like to move?");
 		
-		ArrayList<Player> validPlayers = controller.getPlayers();
+		ArrayList<Player> validPlayers = turnController.getPlayers();
 		printPlayerList(validPlayers, currentPlayer);
 
 		int input=ParseNumberInputs.main(user, 1, validPlayers.size());

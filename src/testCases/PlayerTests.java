@@ -14,6 +14,7 @@ import org.junit.After;
 import elements.cards.TreasureDeck;
 import mechanics.TurnController;
 import mechanics.TurnView;
+import mechanics.actions.ActionController;
 import players.*;
 
 public class PlayerTests {
@@ -23,8 +24,9 @@ public class PlayerTests {
 		TurnController.getInstance();
 		TurnView view = TurnView.getInstance();
 		TurnController controller = TurnController.getInstance();
+		
 		controller.setView(view);
-		view.setupView(controller);
+		view.setupView(controller, ActionController.getInstance());
 	}
 	
 	@Test

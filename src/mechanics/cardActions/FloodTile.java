@@ -6,7 +6,7 @@ import elements.board.Tile;
 import elements.board.TileNames;
 import elements.board.TileStatus;
 import elements.cards.FloodDiscard;
-import mechanics.TurnController;
+import mechanics.actions.ActionController;
 import observers.Subject;
 import players.Player;
 import players.PlayerList;
@@ -19,10 +19,11 @@ import java.io.IOException;
  * 	Carries out mechanics that happen when a flood card is drawn
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 1.2
+ * adjusted for ActionController
  * 
  * Date created: 25/11/20
- * Last modified:25/11/20
+ * Last modified:17/12/20
  *
  */
 public class FloodTile{
@@ -33,7 +34,7 @@ public class FloodTile{
 	 * 	if tile is flooded, remove tile, and remove card (ie don't add to discard)
 	 * @param card
 	 */
-	public static void floodTile(FloodCard card, TurnController controller) throws IOException {
+	public static void floodTile(FloodCard card, ActionController controller) throws IOException {
 		
 		Tile tile = card.getTile();
 		

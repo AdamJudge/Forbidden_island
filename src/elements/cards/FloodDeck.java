@@ -3,7 +3,7 @@ package elements.cards;
 import elements.board.Board;
 import elements.board.Tile;
 import mechanics.cardActions.FloodTile;
-import mechanics.TurnController;
+import mechanics.actions.ActionController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -25,7 +25,7 @@ import java.util.Stack;
 public class FloodDeck extends Deck{
 	
 	private static FloodDeck floodDeck = null;  	// singleton instance
-	private TurnController controller;
+	private ActionController controller;
 	
 	/**
 	 * getInstance
@@ -39,7 +39,7 @@ public class FloodDeck extends Deck{
 		return floodDeck;
 	}
 	
-	public void setController(TurnController controller) {
+	public void setController(ActionController controller) {
 		this.controller = controller; 
 	}
 	
