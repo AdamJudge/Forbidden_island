@@ -24,16 +24,13 @@ import elements.treasures.TreasureNames;
  * 	Controller to implement turn as MVC
  * 
  * @author Catherine Waechter
- * @version 1.3
- * 	Adjusted for Waters Rise returning WatersRise type, not null
- *	Discarding prompted by model, call view as needed	
+ * @version 2.0
+ * 	Put all action related methods into ActionCotroller
  *
  *	Date created: 03/12/20
- *	Last modified: 16/12/20
+ *	Last modified: 17/12/20
  */
 public class TurnController {
-
-	// TODO refactor this into multiple classes
 	
 	private static TurnController turnController = null;
 	//private Turn model;	// TODO what is the model here, It's not actually turn
@@ -42,8 +39,6 @@ public class TurnController {
 	/**
 	 * getInstance
 	 * 	get singleton instance of TurnController
-	 * @param view - view associated with controller
-	 * @param model - model associated with controller 
 	 * @return turnController (singleton instance)
 	 */
 	public static TurnController getInstance() {
@@ -73,23 +68,7 @@ public class TurnController {
 		}
 	}
 	
-	public void doSwim(ArrayList<Player> players) throws IOException {
-		// check that all players can swim somewhere first
-		
-		for(Player player : players) {
-			if(player.getPawn().swimCheck() == null) {
-				view.doSwim(null, null);	// TODO Maybe not needed
-				// TODO End game observer
-				return;
-			}
-		}
-		
-		for(Player player : players) {
-			ArrayList<Tile> possibleTiles = player.getPawn().swimCheck();
-			view.doSwim(player, possibleTiles);
-		}
-
-	}
+	
 	
 	/**
 	 * getPlayers
@@ -99,70 +78,7 @@ public class TurnController {
 		return PlayerList.getInstance().getPlayers();
 	}
 	
-	/**
-	 * getClaimTreasureCheck
-	 * 	Returns the treasure the given player is able to capture
-	 * @param currentPlayer
-	 * @return Treasure the player can capture, or null if none
-	 */
-	public Treasure getClaimTreasureCheck(Player currentPlayer) {
-		int treasureCount = 0;
-		Treasure potentialTreasure = null;
-		
-		// get treasure associated with tile the player's pawn is on
-		potentialTreasure = currentPlayer.getPawn().getTile().getTreasure();
-		
-		// if no treasure associated, no treasure can be collected
-		if(potentialTreasure == null) {
-			return null;
-		}
-		
-		// if player's pawn is on a tile with a treasure, count cards of that treasure type
-		for(Card card : currentPlayer.getHand().getCards()) {
-			if(((TreasureCard)card).getCardType() != TreasureCardTypes.TREASURE) {
-				continue;
-			}
-			
-			if(((TreasureCard)card).getTreasureType().getName().equals(potentialTreasure.getName())) {
-				treasureCount++;
-			}
-		}
-		if(treasureCount >= 4) {
-			return potentialTreasure;
-		}
 
-		else return null;
-	}
-	
-	/**
-	 * claimTreasure
-	 * 	capture the given treasure
-	 * @param treasure
-	 */
-	public void claimTreasure(Treasure treasure) {
-		treasure.captureTreasure();
-	}
-	
-	/**
-	 * getUnclaimedTreasures
-	 * 	returns a set of treasures which have not been claimed yet
-	 * @return
-	 */
-	public Set<Treasure> getUnclaimedTreasures(){
-		Set<Treasure> unclaimedTreasures = new HashSet<Treasure>();
-		for(Map.Entry<TreasureNames, Treasure> entry : Board.getInstance().getTreasures().entrySet()) {
-			if(!entry.getValue().isCaptured()) {
-				unclaimedTreasures.add(entry.getValue());
-			}
-		}
-		return unclaimedTreasures;
-	}
-	
-	public void giveCard(Player playerFrom, Player playerTo, Card card) throws IOException {
-		playerFrom.getHand().takeCard(card);
-		playerTo.getHand().addCard(card);
-	}
-	
 	public int handSize(Player player) {
 		return player.getHand().getCards().size();
 	}
@@ -183,47 +99,6 @@ public class TurnController {
 	public List<Card> getHandCards(Player player){
 		return player.getHand().getCards();
 	}
-	
-	public ArrayList<Player> getGiveCardCheck(Player player){
-		if(player.getPawn() instanceof Messenger) {
-			ArrayList<Player> validPlayers = getPlayers();
-			validPlayers.remove(player);
-			return validPlayers;
-		}
-		else {
-			ArrayList<Player> validPlayers = new ArrayList<Player>();
-			for(Player otherPlayer : getPlayers()) {
-				if(otherPlayer == player) {
-					// skip current player
-				}
-				else if (otherPlayer.getPawn().getTile() == player.getPawn().getTile()) {
-					validPlayers.add(otherPlayer);
-				}
-			}
-			return validPlayers;
-		}
-	}
-	
-	/**
-	 * getMoveCheck
-	 * 	Get possible tiles the given player's pawn can move to 
-	 * @param player whose pawn will move
-	 * @return	list of possible tiles
-	 */
-	public ArrayList<Tile> getMoveCheck(Player player){
-		return player.getPawn().moveCheck();
-	}
-	
-	/**
-	 * getShoreupCheck
-	 * 	Get possible tiles the given player's can shore up
-	 * @param player 
-	 * @return	list of possible tiles
-	 */
-	public ArrayList<Tile> getShoreupCheck(Player player){	// TODO should be done in model ?
-		return player.getPawn().shoreupCheck();
-	}
-	
 	
 	/**
 	 * drawFloodCards
@@ -251,26 +126,4 @@ public class TurnController {
 		return card;
 	} 
 	
-	/**
-	 * move
-	 * 	Move player's pawn to the destination
-	 * @param player
-	 * @param destination
-	 * @return
-	 */
-	public Tile move(Player player, Tile destination) { // TODO should this be more abstract? 
-		player.getPawn().move(destination);
-		return player.getPawn().getTile();
-	}
-	
-	/**
-	 * shoreup
-	 * 	Shore up a given tile
-	 * @param tile
-	 * @return
-	 */
-	public Tile shoreup(Player player, Tile tile) { // TODO should this be more abstract? 
-		player.getPawn().shoreup(tile);
-		return player.getPawn().getTile();
-	}
 }
