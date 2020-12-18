@@ -25,7 +25,8 @@ public class Tile extends Subject{
 	private Position position;		// position of the tile (x,y)
 	private TileNames name;			// location name on the tile
 	private TileStatus status;		// tile status
-	private Treasure treasure;	// treasure associated with the tile
+	private Treasure treasure;		// treasure associated with the tile
+	
 	private Set<TileNames> observeTiles = new TreeSet<TileNames>();
 	
 	/**
@@ -54,6 +55,8 @@ public class Tile extends Subject{
 		else {
 			treasure = null;
 		}
+		
+		// TODO IMPORTANT We need to discuss this, looks like it's in the wrong place
 		observeTiles.add(TileNames.FOOLS_LANDING);
 		observeTiles.add(TileNames.WHISPERING_GARDEN);
 		observeTiles.add(TileNames.HOWLING_GARDEN);
@@ -65,6 +68,13 @@ public class Tile extends Subject{
 		observeTiles.add(TileNames.CAVE_OF_SHADOWS);
 	}
 	
+	/**
+	 * compareTo
+	 * 	used to sort tiles (by board)
+	 * 	Tiles are sorted by their position. Y value is most significant, then sort by X value
+	 * @param otherTile
+	 * @return
+	 */
 	public int compareTo(Tile otherTile) {
 		if(this.getY() > otherTile.getY()) {
 			return 1;
@@ -99,7 +109,6 @@ public class Tile extends Subject{
 		status = TileStatus.REMOVED;
 		System.out.println(name.toString() + " has sunken!");
 		notifyAllObservers();
-		
 	}
 	
 	/**

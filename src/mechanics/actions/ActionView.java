@@ -34,7 +34,7 @@ public abstract class ActionView{
 	public static void printTileList(ArrayList<Tile> tiles) {
 		int i = 1;
 		for (Tile tile :tiles) {
-			System.out.println("[" + i + "]" + tile.getName());
+			System.out.println("[" + i + "]" + tile);
 			i++;
 		}
 	}

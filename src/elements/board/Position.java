@@ -3,7 +3,7 @@ package elements.board;
 
 /**
  * Position Class
- * x , y position . Used for pawns and tiles
+ * x , y position . Used for tiles
  * @author Catherine Waechter
  * @version 1.0
  * Date created : 29/10/20
@@ -13,6 +13,8 @@ public class Position {
 
 	private int x;	// x position
 	private int y;	// y position
+	
+	// TODO Cat make a private class for Tiles ? 
 	
 	/**
 	 * get the x position
@@ -28,16 +30,6 @@ public class Position {
 	 */	
 	public int getY() {
 		return y;
-	}
-	
-	/**
-	 * set the position
-	 * @param x
-	 * @param y
-	 */
-	public void setPosition(int x, int y) {
-		this.x = x;
-		this.y = y;
 	}
 	
 	/**
