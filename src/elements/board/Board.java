@@ -5,7 +5,6 @@ import java.util.Set;
 
 import java.util.HashSet;
 import java.util.Collections;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
@@ -30,38 +29,7 @@ public class Board {
 	private static Board board = null;
 	private Set<Tile> allTiles;
 	private ArrayList<Tile> sortedTiles;
-	private Map<TreasureNames, Treasure> allTreasures;
-	
-	/**
-	 * getAllTiles
-	 * 	returns all tiles (even if removed)
-	 * @return
-	 */
-	public ArrayList<Tile> getSortedTiles(){
-		return sortedTiles;
-	}
-	/**
-	 * getSortedTiles
-	 * 	returns all tiles sorted (even if removed)
-	 * @return
-	 */
-	public Set<Tile> getAllTiles(){
-		return allTiles;
-	}
-	/**
-	 * getRemainingTiles 
-	 * 	returns tiles that are still on the board (not removed)
-	 * @return 
-	 */
-	public Set<Tile> getRemainingTiles(){
-		Set<Tile> remainingTiles = new HashSet<Tile>();
-		for (Tile tile : allTiles) {
-			if(tile.getStatus() != TileStatus.REMOVED) {
-				remainingTiles.add(tile);
-			}
-		}
-		return remainingTiles;
-	}
+	private Map<TreasureNames, Treasure> allTreasures; // TODO should this be done in a separate class? 
 	
 	/**
 	 * getInstance
@@ -80,13 +48,25 @@ public class Board {
 	 * 	Creates all tiles in the board
 	 */
 	private Board() {
-		// Create the 4s
+		// Create the 4 treasures
 		allTreasures = new HashMap<TreasureNames, Treasure>();
 		for(TreasureNames name : TreasureNames.values()) {
 			allTreasures.put(name, new Treasure(name));
 		}
 		
-		this.allTiles = new HashSet<Tile>(); // create empty set of tiles
+		allTiles = placeTiles();
+		
+		sortedTiles = sortTiles();
+	}
+	
+	
+	/**
+	 * placeTiles
+	 * 	Creates tiles and assigns them a position
+	 * @return set of all tiles
+	 */
+	private Set<Tile> placeTiles(){
+		Set<Tile> tiles = new HashSet<Tile>(); // create empty set of tiles
 		// NB: tiles can be a set because the order is determined by the position field of each tile
 		
 		ArrayList<Position> positions = new ArrayList<Position>(); // create empty list of positions
@@ -105,12 +85,17 @@ public class Board {
 		
 		// create tiles : name is in a set order, but position is randomised
 		for (TileNames name : TileNames.values()) {
-			this.allTiles.add(new Tile(name, positions.get(this.allTiles.size()), allTreasures));
+			tiles.add(new Tile(name, positions.get(tiles.size()), allTreasures));
 		}
-		
-		sortedTiles = sortTiles();
+		return tiles;
 	}
 	
+	/**
+	 * sortTiles 
+	 * 	Sorts tiles by their position (top left to bottom right)
+	 * 
+	 * @return sortedTiles
+	 */
 	private ArrayList<Tile> sortTiles(){
 		ArrayList<Tile> sorted = new ArrayList<Tile>();
 		sorted.addAll(allTiles);
@@ -129,10 +114,47 @@ public class Board {
 		return sorted;
 	}
 	
+	/**
+	 * getAllTiles
+	 * 	returns all tiles (even if removed) in positional order
+	 * @return sortedTiles
+	 */
+	public ArrayList<Tile> getSortedTiles(){
+		return sortedTiles;
+	}
+	/**
+	 * getSortedTiles
+	 * 	returns all tiles sorted (even if removed)
+	 * @return allTiles
+	 */
+	public Set<Tile> getAllTiles(){
+		return allTiles;
+	}
+	/**
+	 * getRemainingTiles 
+	 * 	returns tiles that are still on the board (not removed)
+	 * @return remainingTiles
+	 */
+	public Set<Tile> getRemainingTiles(){
+		Set<Tile> remainingTiles = new HashSet<Tile>();
+		for (Tile tile : allTiles) {
+			if(tile.getStatus() != TileStatus.REMOVED) {
+				remainingTiles.add(tile);
+			}
+		}
+		return remainingTiles;
+	}
+	
 	public Map<TreasureNames, Treasure> getTreasures(){
 		return allTreasures;
 	}
 
+	/**
+	 * printTileName
+	 * 	used to print the board. checks state of tile and returns appropriate string
+	 * @param index - index of tile in the board
+	 * @return
+	 */
 	private String printTileName(int index) {
 		if(sortedTiles.get(index).getStatus() == TileStatus.REMOVED) {
 			return " ";
@@ -143,6 +165,12 @@ public class Board {
 		else return sortedTiles.get(index).toString();
 	}
 	
+	/**
+	 * printTileTreasure
+	 * 	used to print the board. returns name of treasure if the corresponding tile hasn't been flooded
+	 * @param index - index of tile being checked
+	 * @return String - blank unless the tile has a treasure and has not been removed
+	 */
 	private String printTileTreasure(int index) {
 		Treasure treasure;
 	
@@ -154,11 +182,16 @@ public class Board {
 			return " ";
 		}
 		else { 
-			//System.out.println(treasure.toString());
-			return treasure.toString();}
+			return treasure.toString();
+		}
 	}
 	
-	// Get shorthand of pawn name for board print
+	/**
+	 * printPawn
+	 * 	Get shorthand of pawn name for board print
+	 * @param index - index of tile being checked
+	 * @return 
+	 */
 	private String printPawn(int index) {
 		String pawnsString = " ";
 		for (Player player : PlayerList.getInstance().getPlayers()) {
@@ -169,20 +202,17 @@ public class Board {
 		return pawnsString;
 	}
 	
-	private String printDifficulty() {
-		return WaterLevel.getInstance().getDifficulty();
-	}
-	private int printWaterLevel() {
-		return WaterLevel.getInstance().getLevel();
-	}
-	
+	/**
+	 * toString
+	 * 	returns string representing the board
+	 */
 	public String toString() {
 		String boardString;
 		
 		boardString =  String.format("\t  ____________________________                 _____________________________________________________\n");
 		boardString += String.format("\t |                            |               |        %18s|        %18s|\n" , printTileTreasure(0), printTileTreasure(1));
-		boardString += String.format("\t |   Difficulty:%12s  |               |                          |                          |\n",printDifficulty());
-		boardString += String.format("\t |  Water Level:\t  %2d  |               | %22s   | %22s   |\n", printWaterLevel(), printTileName(0), printTileName(1));
+		boardString += String.format("\t |   Difficulty:%12s  |               |                          |                          |\n",WaterLevel.getInstance().getDifficulty());
+		boardString += String.format("\t |  Water Level:\t  %2d  |               | %22s   | %22s   |\n", WaterLevel.getInstance().getLevel(), printTileName(0), printTileName(1));
 		boardString += String.format("\t |____________________________|               | %22s   | %22s   |\n", printPawn(0), printPawn(1));
 		boardString += String.format("\t\t\t\t\t\t      |                          |                          |\n");
 		boardString += String.format("\t\t\t    __________________________|__________________________|__________________________|__________________________\n");
