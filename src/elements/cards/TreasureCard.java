@@ -6,6 +6,8 @@ import elements.treasures.Treasure;
  * TreasureCard class
  * 
  * Represents a treasure card
+ * 	Treasure cards have a type (Sandbags, Helicopter lift, Waters rise, Treasure)
+ * 	Treasure cards of type treasure have an associated treasure	
  * 
  * @author Catherine Waechter
  * @version 2.0
@@ -17,7 +19,7 @@ import elements.treasures.Treasure;
 public class TreasureCard extends Card{
 	
 	private TreasureCardTypes cardType;		// type of the card (treasure, sandbag, helicopter lift, waters rise)
-	private Treasure treasureType;		// treasure associated (none if not a treasure card)
+	private Treasure treasureType;			// treasure associated (null if not a treasure card)
 	
 	/**
 	 * getCardType

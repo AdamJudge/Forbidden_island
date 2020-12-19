@@ -1,33 +1,23 @@
 package elements.cards;
 
-import elements.board.TileNames;
 import elements.board.Tile;
 
 /**
  * FloodCard class
  * 
- * Represents a flood card
+ * Represents a flood card. A flood card has an associated tile, which is the one with the same name as the one on the card
  * 
  * @author Catherine Waechter
- * @version 2.0
- *  changed field to be a tile, not a name. Added getTile
+ * @version 2.1
+ *  removed getName 
  * 
  * Date Created: 26/10/20
- * Last Modified: 25/11/20
+ * Last Modified: 19/12/20
  *
  */
 public class FloodCard extends Card{
 	
 	private Tile tile; 	// associated tile
-	
-	/**
-	 * getName
-	 * 	returns name of the card (ie name of corresponding tile)
-	 * @return
-	 */
-	public TileNames getName() {
-		return tile.getName();
-	}
 	
 	/**
 	 * getTile
@@ -39,8 +29,8 @@ public class FloodCard extends Card{
 	
 	/**
 	 * FloodCard constructor
-	 * 	sets the name of the card
-	 * @param name
+	 * 	sets tile associated with the card
+	 * @param tile associated 
 	 */
 	public FloodCard(Tile tile) {
 		this.tile = tile;
