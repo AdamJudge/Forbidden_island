@@ -19,6 +19,8 @@ public class Messenger extends Pawn {
 
 	// normal pawn (?)
 	
+	// TODO IMPORTANT disappears when giving another player a card? ? 
+	
 	/**
 	 * toInitialTile
 	 * 	move pawn to starting tile (silver gate)
