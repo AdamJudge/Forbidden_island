@@ -8,25 +8,26 @@ import java.util.Stack;
  * 	represents a discard pile
  * 
  * @author Catherine Waechter
- * @version 1.2
- * 	added abstract tearDown method
+ * @version 2.0
+ * 	now has a deckInstance field
+ * 	returnToDeck renamed to toDeck (because it now has the same use as the old toDeck function)
  * 
  * Date created 26/10/20
- * Last modified 16/12/20
+ * Last modified 19/12/20
  *
  */
 public abstract class DiscardPile {
 
 	protected Stack<Card> discardedCards;
+	protected Deck deckInstance;
 	
-	
-	public abstract void toDeck();
+	// TODO Cat make a "CardStack" abstract class with add, shuffle, getSize, isEmpty 
 	
 	/**
-	 * returnToDeck
+	 * toDeck
 	 * shuffles the discard pile and returns cards to a deck (general)
 	 */
-	public void returnToDeck(Deck deckInstance) {
+	public void toDeck() {
 		Collections.shuffle(discardedCards);
 		int totalCards = discardedCards.size();
 		for(int i = 0; i<totalCards; i++) {

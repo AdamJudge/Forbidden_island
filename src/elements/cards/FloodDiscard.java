@@ -7,11 +7,12 @@ import java.util.Stack;
  * 	Represents the treasure deck's discard pile
  * 
  * @author Catherine Waechter
- * @version 1.1
- * 	Added tearDown method
+ * @version 2.0
+ * 	now has deckInstance for the flood deck
+ * 	no more toDeck method
  * 
  * Date created: 25/11/20
- * Last modified: 16/12/20
+ * Last modified: 19/12/20
  */
 public class FloodDiscard extends DiscardPile {
 
@@ -30,19 +31,11 @@ public class FloodDiscard extends DiscardPile {
 	}
 	
 	/**
-	 * toDeck
-	 * 	shuffle and return to correct deck
-	 */
-	public void toDeck() {
-		super.returnToDeck(FloodDeck.getInstance());
-	}
-	
-	
-	/**
 	 * FloodDiscard constructor
 	 */
 	private FloodDiscard() {
 		discardedCards = new Stack<Card>();
+		deckInstance = FloodDeck.getInstance();
 	}
 	
 	/**

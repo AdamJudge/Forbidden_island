@@ -45,7 +45,6 @@ public abstract class Deck {
 	 */
 	public Card draw() throws IOException {
 		Card cardDrawn = cards.pop();
-//		System.out.println("Card Drawn: " + cardDrawn);
 		return cardDrawn;
 	}
 	

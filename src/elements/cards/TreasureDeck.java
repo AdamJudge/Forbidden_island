@@ -13,6 +13,7 @@ import setup.GameSetup;
  * TreasureDeck class
  * 
  * Represent the deck of treasure cards
+ * 	Singleton as there is only one treasure deck in the game
  * 
  * @author Catherine Waechter
  * @version 2.5
@@ -63,9 +64,7 @@ public class TreasureDeck extends Deck {
 		if (cards.isEmpty()) {
 			TreasureDiscard.getInstance().toDeck();
 		}
-		
 		return card;
-
 	}
 	
 	/**
