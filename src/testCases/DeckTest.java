@@ -75,7 +75,7 @@ public class DeckTest {
 	public void floodDeckContents() throws IOException {
 		
 		FloodDeck fdeck = FloodDeck.getInstance();
-		Set<TileNames> usedNames = new HashSet<TileNames>();
+		Set<Tile> usedTiles = new HashSet<Tile>();
 		
 		Card card;
 		int duplicateCount = 0;
@@ -85,8 +85,8 @@ public class DeckTest {
 		for(int i=0; i<24;i++) {			
 			
 			card = fdeck.draw();
-			if(!usedNames.contains(((FloodCard)card).getName())) {
-				usedNames.add(((FloodCard)card).getName());
+			if(!usedTiles.contains(((FloodCard)card).getTile())) {
+				usedTiles.add(((FloodCard)card).getTile());
 			}
 			else {
 				duplicateCount += 1;
