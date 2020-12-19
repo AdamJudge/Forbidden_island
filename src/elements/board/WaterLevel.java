@@ -7,7 +7,7 @@ import observers.Subject;
  *  Represents the water level marker element
  *  
  * @author Catherine Waechter, Adam Judge
- * @version 1.0
+ * @version 1.1
  *  Made singleton
  * Date Created : 26/10/20
  * Last Modified: 29/10/20
@@ -20,9 +20,8 @@ public class WaterLevel extends Subject{
 	private int nbrCards;	// nbr of flood cards to be drawn at this level
 	
 	/**
-	 * WaterLevel Constructor
-	 * 	Set initial water level and nbr of cards according to difficulty level
-	 * @param difficulty
+	 * getInstance
+	 * 	@return singleton instance of the water level
 	 */
 	public static WaterLevel getInstance() {
 		if (waterLevel==null) {
@@ -31,10 +30,11 @@ public class WaterLevel extends Subject{
 		return waterLevel;
 	}
 	
-	private WaterLevel() {
-
-	}
-	
+	/**
+	 * setDifficulty
+	 * 	sets level and number of cards for required difficulty
+	 * @param difficulty
+	 */
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty=difficulty;
 		if (difficulty == Difficulty.NOVICE) {
@@ -54,6 +54,7 @@ public class WaterLevel extends Subject{
 			nbrCards = 3;
 		}
 	}
+	
 	/**
 	 * raise_level : raises water level by 1
 	 * adjusts number of cards accordingly
@@ -69,14 +70,6 @@ public class WaterLevel extends Subject{
 	}
 	
 	/**
-	 * getLevel : get water level
-	 * @return
-	 */
-	public int getLevel() {
-		return level;
-	}
-	
-	/**
 	 * getNbrCards : get number of flood cards to be drawn at current level
 	 * @return
 	 */
@@ -84,10 +77,18 @@ public class WaterLevel extends Subject{
 		return nbrCards;
 	}
 	
+	/**
+	 * getDifficulty
+	 * @return difficulty level (from start of game)
+	 */
 	public String getDifficulty() {
 		return difficulty.toString();
 	}
 	
+	/**
+	 * getWaterLevel
+	 * @return water level (int)
+	 */
 	public int getWaterLevel() {
 		return level;
 	}
