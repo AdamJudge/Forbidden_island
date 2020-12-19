@@ -212,7 +212,7 @@ public class Board {
 		boardString =  String.format("\t  ____________________________                 _____________________________________________________\n");
 		boardString += String.format("\t |                            |               |        %18s|        %18s|\n" , printTileTreasure(0), printTileTreasure(1));
 		boardString += String.format("\t |   Difficulty:%12s  |               |                          |                          |\n",WaterLevel.getInstance().getDifficulty());
-		boardString += String.format("\t |  Water Level:\t  %2d  |               | %22s   | %22s   |\n", WaterLevel.getInstance().getLevel(), printTileName(0), printTileName(1));
+		boardString += String.format("\t |  Water Level:\t  %2d  |               | %22s   | %22s   |\n", WaterLevel.getInstance().getWaterLevel(), printTileName(0), printTileName(1));
 		boardString += String.format("\t |____________________________|               | %22s   | %22s   |\n", printPawn(0), printPawn(1));
 		boardString += String.format("\t\t\t\t\t\t      |                          |                          |\n");
 		boardString += String.format("\t\t\t    __________________________|__________________________|__________________________|__________________________\n");
