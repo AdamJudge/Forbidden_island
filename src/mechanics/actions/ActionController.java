@@ -21,8 +21,9 @@ import players.Player;
  * ActionController
  * 	controller to carry out actions as requested by action views
  * @author Catherine Waechter
- * @version 1.2
+ * @version 1.3
  * 	ClaimTreasure now discards cards
+ * 	Fixed disappearing messenger bug
  * 
  * Date created: 17/12/20
  * Last modified: 19/12/20
@@ -131,8 +132,12 @@ public class ActionController {
 	
 	public ArrayList<Player> getGiveCardCheck(Player player){
 		if(player.getPawn() instanceof Messenger) {
-			ArrayList<Player> validPlayers = turnController.getPlayers();
-			validPlayers.remove(player);
+			ArrayList<Player> validPlayers = new ArrayList<Player>();
+			for(Player otherPlayer : turnController.getPlayers()) {
+				if (otherPlayer != player) {
+					validPlayers.add(otherPlayer);
+				}
+			}
 			return validPlayers;
 		}
 		else {
