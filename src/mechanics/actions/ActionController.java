@@ -17,6 +17,17 @@ import elements.treasures.TreasureNames;
 import mechanics.TurnController;
 import players.Player;
 
+/**
+ * ActionController
+ * 	controller to carry out actions as requested by action views
+ * @author Catherine Waechter
+ * @version 1.2
+ * 	ClaimTreasure now discards cards
+ * 
+ * Date created: 17/12/20
+ * Last modified: 19/12/20
+ *
+ */
 public class ActionController {
 
 	
@@ -83,11 +94,23 @@ public class ActionController {
 	
 	/**
 	 * claimTreasure
-	 * 	capture the given treasure
-	 * @param treasure
+	 * 	capture the given treasure and discard 4 cards of that treasure type
+	 * 
+	 * @param player - player capturing the treasure
+	 * @param treasure - treasure to be captured
 	 */
-	public void claimTreasure(Treasure treasure) {
+	public void claimTreasure(Player player, Treasure treasure) {
 		treasure.captureTreasure();
+		int discardedCount = 0;
+		for(Card card : player.getHand().getCards()) {
+			if(discardedCount == 4) {
+				break;
+			}
+			if(((TreasureCard)card).getTreasureType() == treasure) {
+				player.getHand().discardCard(card);
+				discardedCount++;
+			}
+		}
 	}
 	
 	/**
