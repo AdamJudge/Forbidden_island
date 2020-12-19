@@ -34,7 +34,7 @@ public abstract class Pawn extends Subject{
 	
 	/**
 	 * moveCheck
-	 * 	returns the set of tiles that the pawn is allowed to move to
+	 * 	returns the list of tiles that the pawn is allowed to move to
 	 * 	All pawn types can move to adjacent tiles
 	 * 
 	 * @param allTiles - all tiles on the board
@@ -44,6 +44,13 @@ public abstract class Pawn extends Subject{
 		return getAdjacent();
 	}
 	
+	/**
+	 * getAdjacent
+	 * 	returns list of tiles adjacent to the pawn
+	 * 	Only for use by pawns
+	 * 
+	 * @return
+	 */
 	protected ArrayList<Tile> getAdjacent(){
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();
 		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
@@ -94,18 +101,6 @@ public abstract class Pawn extends Subject{
 		return validTiles;
 	}
 	
-	
-	/**
-	 * shoreup 
-	 * 	pawn shores up a tile 
-	 * 	------------------------- does this make sense?? -----------------------------------------------
-	 * @param tile
-	 */
-	public void shoreup(Tile tile) {		// should this actually be here...? 
-		tile.shoreup();
-	}
-	
-	
 	/**
 	 * swimCheck 
 	 * 	returns the set of tiles the pawn is allowed to swim to. checks status of tile the pawn is on
@@ -118,9 +113,10 @@ public abstract class Pawn extends Subject{
 		if(currentTile.getStatus() == TileStatus.REMOVED) {
 			validTiles = moveCheck();				
 		}
-		if (validTiles.size() == 0) {
+		if (validTiles.size() == 0) { // TODO Discuss - probably to be done elsewhere 
 			//Can't swim
 			notifyAllObservers();
+			// TODO If someone can't swim, we should check if they have a helicopter card?
 		}
 		return validTiles;
 	}

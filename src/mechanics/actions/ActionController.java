@@ -215,14 +215,9 @@ public class ActionController {
 	 * shoreup
 	 * 	Shore up a given tile
 	 * @param tile
-	 * @return
 	 */
-	public Tile shoreup(Player player, Tile tile) { // TODO should this be more abstract? 
-		player.getPawn().shoreup(tile);
-		return player.getPawn().getTile();
+	public void shoreup(Player player, Tile tile) { // TODO should this be more abstract? 
+		tile.shoreup();
 	}
-	
-	
-	
 	
 }
