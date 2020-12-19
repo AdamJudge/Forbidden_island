@@ -54,7 +54,7 @@ public class ClaimTreasureView extends ActionView{
 				return false;
 			}
 			else if(userAns.equals("y")) {
-				controller.claimTreasure(possibleTreasure);
+				controller.claimTreasure(currentPlayer, possibleTreasure);
 				System.out.println(possibleTreasure + " has been captured!");
 				Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
 				if(unClaimed.isEmpty()) {
