@@ -69,7 +69,7 @@ public class ShoreupView  extends ActionView{
 			Tile chosenTile = possibleTiles.get(userNum-1);
 			controller.shoreup(player, chosenTile);
 			
-			System.out.println("Tile : " + chosenTile + "Status: " + chosenTile.getStatus().name());
+			System.out.println("Tile : " + chosenTile + " Status: " + chosenTile.getStatus().name());
 			
 			if(player.getPawn() instanceof Engineer && i==0) {
 				System.out.println("You can shore up another tile for no additional actions!");
