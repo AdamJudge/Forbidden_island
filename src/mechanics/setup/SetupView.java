@@ -6,6 +6,7 @@ import java.util.Scanner;
 import elements.board.Difficulty;
 import elements.board.Board;
 import elements.cards.Card;
+import mechanics.ViewInputTools;
 import mechanics.actions.ActionView;
 
 import java.util.Set;
@@ -112,7 +113,7 @@ public class SetupView {
 			i+=1;
 		}
 		
-		input=ParseNumberInputs.main(user, 1, i-1);
+		input=ViewInputTools.numbers(user, 1, i-1);
 		difficulty = difficultyList.get(input-1);
 		controller.setGameDifficulty(difficulty);
 		
@@ -152,7 +153,7 @@ public class SetupView {
 			System.out.println("Enter Player " + i + "'s name: ");
 			//Loop while entered name is a duplicate
 			while (duplicate){
-				name=ParseLetterInputs.main(user);
+				name=ViewInputTools.letters(user);
 				if (names.contains(name)) {
 					System.out.println("Enter an unique name for player "+i+":");
 				} else {
@@ -175,7 +176,7 @@ public class SetupView {
 	private int getPlayerNum(Scanner user) throws IOException {
 		int inputNum;
 		System.out.println("How many players?");
-		inputNum = ParseNumberInputs.main(user, 2, 4);
+		inputNum = ViewInputTools.numbers(user, 2, 4);
 		System.out.println("Number of players chosen is: " + inputNum);
 		controller.setNumPlayers(inputNum);
 		return inputNum; // for the next set of inputs taken from the user.

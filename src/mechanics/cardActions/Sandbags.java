@@ -9,7 +9,8 @@ import elements.board.Tile;
 import elements.board.TileStatus;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
-import setup.ParseNumberInputs;
+import mechanics.ViewInputTools;
+
 /**
  * Sandbags
  * 	carries out mechanics of playing a sandbags card and discards the card. 
@@ -37,7 +38,7 @@ public class Sandbags {
 			System.out.println("["+iter+"]: " + t.getName());
 			iter+=1;
 		}
-		int input = ParseNumberInputs.main(user, 1, floodedTiles.size());
+		int input = ViewInputTools.numbers(user, 1, floodedTiles.size());
 		//input minus one as start from 0
 		floodedTiles.get(input-1).shoreup();
 		

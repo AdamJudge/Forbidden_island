@@ -13,7 +13,6 @@ import elements.board.Tile;
 import elements.cards.*;
 import elements.board.WaterLevel;
 import mechanics.actions.*;
-import mechanics.setup.ParseNumberInputs;
 import mechanics.setup.SetupController;
 
 /**
@@ -96,7 +95,7 @@ public class TurnView {
 		cards.addAll(controller.getHandCards(player));
 		ViewDisplayTools.printCardList(cards);
 		
-		int cardNum = ParseNumberInputs.main(user, 1, 6);
+		int cardNum = ViewInputTools.numbers(user, 1, 6);
 		
 		controller.discard(player, cards.get(cardNum-1));
 	}
@@ -116,8 +115,9 @@ public class TurnView {
 		System.out.println("[4]: Claim a treasure");
 		System.out.println("[5]: Finish turn without another action");
 		System.out.println("[6]: Play a card (Any Player)");
-		int actionNum = ParseNumberInputs.main(user, 1, 6);				/// ---------------------- TODO why does parse inputs have a main? -------------------------
-		// TODO should we also maybe allow for discard at end of turn regardless?
+		int actionNum = ViewInputTools.numbers(user, 1, 6);
+		
+		// TODO should allow for discard at end of turn regardless!! bc it doesn't cost an action 
 		
 		switch(actionNum) {
 		case 1:
@@ -149,7 +149,7 @@ public class TurnView {
 				iter+=1;
 				System.out.println("["+iter+"]: " + p.getName());
 			}
-			int playerNum = ParseNumberInputs.main(user, 1, iter);
+			int playerNum = ViewInputTools.numbers(user, 1, iter);
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
 			
 			if(PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {

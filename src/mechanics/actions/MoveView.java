@@ -21,7 +21,7 @@ import elements.board.Tile;
 import elements.pawns.*;
 import mechanics.TurnController;
 import mechanics.ViewDisplayTools;
-import mechanics.setup.ParseNumberInputs;
+import mechanics.ViewInputTools;
 import players.Player;
 import players.PlayerList;
 
@@ -59,7 +59,7 @@ public class MoveView extends ActionView{
 		
 		ViewDisplayTools.printTileList(possibleTiles);
 		
-		int userNum = ParseNumberInputs.main(user, 1, possibleTiles.size());
+		int userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
 		controller.move(player, possibleTiles.get(userNum-1));
 		
 	}
@@ -80,7 +80,7 @@ public class MoveView extends ActionView{
 		
 		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
 		ViewDisplayTools.printTileList(possibleTiles);
-		int userNum=ParseNumberInputs.main(user, 0, limit);
+		int userNum=ViewInputTools.numbers(user, 0, limit);
 		if(userNum == 0) {
 			return false;
 		}
@@ -97,7 +97,7 @@ public class MoveView extends ActionView{
 		ArrayList<Player> validPlayers = turnController.getPlayers();
 		ViewDisplayTools.printPlayerList(validPlayers, currentPlayer);
 
-		int input=ParseNumberInputs.main(user, 1, validPlayers.size());
+		int input=ViewInputTools.numbers(user, 1, validPlayers.size());
 		return PlayerList.getInstance().getPlayers().get(input-1);
 	
 	}

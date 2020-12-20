@@ -26,9 +26,9 @@ import elements.cards.TreasureCardTypes;
 import elements.pawns.Engineer;
 import elements.pawns.Pawn;
 import mechanics.TurnController;
+import mechanics.ViewInputTools;
 import mechanics.cardActions.Helicopter;
 import mechanics.cardActions.Sandbags;
-import mechanics.setup.ParseNumberInputs;
 import players.Player;
 
 public class PlayCardView  extends ActionView{
@@ -76,7 +76,7 @@ public class PlayCardView  extends ActionView{
 				}
 			}
 		}
-		int cardNum = ParseNumberInputs.main(user, 0, iter);
+		int cardNum = ViewInputTools.numbers(user, 0, iter);
 		if (cardNum == 0){
 			//Cancel
 			return false;

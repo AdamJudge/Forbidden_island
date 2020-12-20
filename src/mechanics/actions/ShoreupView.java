@@ -22,7 +22,7 @@ import elements.board.Tile;
 import elements.pawns.Engineer;
 import elements.pawns.Pawn;
 import mechanics.ViewDisplayTools;
-import mechanics.setup.ParseNumberInputs;
+import mechanics.ViewInputTools;
 import players.Player;
 
 public class ShoreupView  extends ActionView{
@@ -59,7 +59,7 @@ public class ShoreupView  extends ActionView{
 			}
 			ViewDisplayTools.printTileList(possibleTiles);
 		
-			userNum=ParseNumberInputs.main(user, 0, limit);
+			userNum=ViewInputTools.numbers(user, 0, limit);
 			if(userNum == 0 && i == 0) {
 				return false;
 			}

@@ -6,7 +6,7 @@ import elements.board.Tile;
 import elements.pawns.Pawn;
 import elements.pawns.Pilot;
 import mechanics.GamePlay;
-import mechanics.setup.ParseNumberInputs;
+import mechanics.ViewInputTools;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
 
@@ -60,7 +60,7 @@ public class Helicopter {
 		int input=sortedTiles.size()+1;
 		//If can't leave pick different option.
 		while (input ==sortedTiles.size()+1) {
-			input = ParseNumberInputs.main(user, 1, sortedTiles.size()+1);
+			input = ViewInputTools.numbers(user, 1, sortedTiles.size()+1);
 			
 			if (input == sortedTiles.size()+1) {
 				System.out.println("Trying to leave!");
