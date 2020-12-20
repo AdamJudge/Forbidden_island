@@ -16,8 +16,7 @@ package mechanics.actions;
 import players.Player;
 import mechanics.TurnController;
 import mechanics.ViewDisplayTools;
-import mechanics.setup.ParseLetterInputs;
-import mechanics.setup.ParseNumberInputs;
+import mechanics.ViewInputTools;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class GiveCardView  extends ActionView{
 		int limit = possiblePlayers.size();
 		System.out.println("Who would you like to give a card to? (Enter 0 to cancel and pick another action)");
 		ViewDisplayTools.printPlayerList(possiblePlayers, currentPlayer);
-		int userNum=ParseNumberInputs.main(user, 0, limit);
+		int userNum=ViewInputTools.numbers(user, 0, limit);
 		if(userNum == 0) {
 			return false;
 		}
@@ -53,16 +52,10 @@ public class GiveCardView  extends ActionView{
 		
 		if(turnController.handSize(playerToGive) == 5) {
 			System.out.println(playerToGive + "'s hand is full, they will need to discard a card. Proceed anyway? [y/n]");
-			String userAns = "x";
-			while (!userAns.equals("y") && !userAns.equals("n")) {
-				userAns = ParseLetterInputs.main(user);
-				if(userAns.equals("n")) {
-					return false;
-				}
-				else if(userAns.equals("y")) {
-					break;
-				}
-				System.out.println("Please enter \"y\" or \"n\""); // TODO maybe a parse y/n inputs function? 
+			
+			boolean userAns = ViewInputTools.yesNo(user);
+			if(userAns == false) {
+				return false;
 			}
 
 		}
@@ -71,7 +64,7 @@ public class GiveCardView  extends ActionView{
 		ArrayList<Card> cardsToGive = new ArrayList<>();
 		cardsToGive.addAll(turnController.getHandCards(currentPlayer));
 		ViewDisplayTools.printCardList(cardsToGive);
-		userNum=ParseNumberInputs.main(user, 0, cardsToGive.size());
+		userNum=ViewInputTools.numbers(user, 0, cardsToGive.size());
 		if(userNum == 0) {
 			return false;
 		}

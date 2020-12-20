@@ -16,7 +16,7 @@ package mechanics.actions;
 
 import players.Player;
 import elements.treasures.Treasure;
-import mechanics.setup.ParseLetterInputs;
+import mechanics.ViewInputTools;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -52,33 +52,28 @@ public class ClaimTreasureView extends ActionView{
 		System.out.println("You can claim the " + possibleTreasure );
 		System.out.println("Would you like to do so? [y/n]");
 		
-		String userAns = " ";
+		boolean userAns = ViewInputTools.yesNo(user);
 		
-		// TODO could have a ParseYesNo method
-		while(!userAns.equals("n") && !userAns.equals("y")) {	// only accept y or n
-			userAns = ParseLetterInputs.main(user);
-			
-			if(userAns.equals("n")) {
-				return false;
+		if(userAns == false) {
+			return false;
+		}
+		
+		// Get controller to claim treasure
+		// Display remaining treasures
+		else if(userAns == true) {
+			controller.claimTreasure(currentPlayer, possibleTreasure);
+			System.out.println(possibleTreasure + " has been captured!");
+			Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
+			if(unClaimed.isEmpty()) {
+				System.out.println("You've claimed all treasures! Make your way to Fools' landing to get off the island!");
 			}
-			
-			// Get controller to claim treasure
-			// Display 
-			else if(userAns.equals("y")) {
-				controller.claimTreasure(currentPlayer, possibleTreasure);
-				System.out.println(possibleTreasure + " has been captured!");
-				Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
-				if(unClaimed.isEmpty()) {
-					System.out.println("You've claimed all treasures! Make your way to Fools' landing to get off the island!");
-				}
-				else {
-					System.out.println("You still need to claim " + unClaimed);
-				}
-				return true;
+			else {
+				System.out.println("You still need to claim " + unClaimed);
 			}
-			System.out.println("Please enter \"y\" or \"n\"");
-		} 
-		return false;
+			return true;
+		}
+		
+		return false;	
 	}
 
 	/**
