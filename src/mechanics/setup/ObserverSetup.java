@@ -1,4 +1,4 @@
-package setup;
+package mechanics.setup;
 import elements.board.WaterLevel;
 import elements.pawns.Pawn;
 import mechanics.GamePlay;

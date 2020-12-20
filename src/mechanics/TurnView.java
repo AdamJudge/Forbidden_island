@@ -6,8 +6,6 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import setup.ParseNumberInputs;
-import setup.SetupController;
 import players.Player;
 import players.PlayerList;
 import elements.board.Board;
@@ -15,6 +13,8 @@ import elements.board.Tile;
 import elements.cards.*;
 import elements.board.WaterLevel;
 import mechanics.actions.*;
+import mechanics.setup.ParseNumberInputs;
+import mechanics.setup.SetupController;
 
 /**
  * TurnView
@@ -94,7 +94,7 @@ public class TurnView {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
 		ArrayList<Card> cards = new ArrayList<Card>();
 		cards.addAll(controller.getHandCards(player));
-		ActionView.printCardList(cards);
+		ViewDisplayTools.printCardList(cards);
 		
 		int cardNum = ParseNumberInputs.main(user, 1, 6);
 		

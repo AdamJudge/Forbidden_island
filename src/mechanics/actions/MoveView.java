@@ -20,9 +20,10 @@ import java.util.Scanner;
 import elements.board.Tile;
 import elements.pawns.*;
 import mechanics.TurnController;
+import mechanics.ViewDisplayTools;
+import mechanics.setup.ParseNumberInputs;
 import players.Player;
 import players.PlayerList;
-import setup.ParseNumberInputs;
 
 
 public class MoveView extends ActionView{
@@ -55,7 +56,8 @@ public class MoveView extends ActionView{
 	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
 		System.out.println("The tile " + player + " was on sank!");
 		System.out.println("Where would you like to swim? ");
-		ActionView.printTileList(possibleTiles);
+		
+		ViewDisplayTools.printTileList(possibleTiles);
 		
 		int userNum = ParseNumberInputs.main(user, 1, possibleTiles.size());
 		controller.move(player, possibleTiles.get(userNum-1));
@@ -77,7 +79,7 @@ public class MoveView extends ActionView{
 		int limit = possibleTiles.size();
 		
 		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
-		printTileList(possibleTiles);
+		ViewDisplayTools.printTileList(possibleTiles);
 		int userNum=ParseNumberInputs.main(user, 0, limit);
 		if(userNum == 0) {
 			return false;
@@ -93,7 +95,7 @@ public class MoveView extends ActionView{
 		System.out.println("Who would you like to move?");
 		
 		ArrayList<Player> validPlayers = turnController.getPlayers();
-		printPlayerList(validPlayers, currentPlayer);
+		ViewDisplayTools.printPlayerList(validPlayers, currentPlayer);
 
 		int input=ParseNumberInputs.main(user, 1, validPlayers.size());
 		return PlayerList.getInstance().getPlayers().get(input-1);

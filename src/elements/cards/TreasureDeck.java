@@ -7,7 +7,7 @@ import java.io.IOException;
 import elements.board.Board;
 import elements.treasures.*;
 import mechanics.cardActions.WatersRise;
-import setup.GameSetup;
+import mechanics.setup.GameSetup;
 
 /**
  * TreasureDeck class

@@ -3,8 +3,8 @@
  *
  * 	superclass for action views
  * 
- * Author: @author Adam Judge, Catherine Waechter
- * Version: @version 1.2
+ * @author Adam Judge, Catherine Waechter
+ * @version 1.2
  * 	added printCardList 
  * 
  * Creation Date: 22/10/20
@@ -14,7 +14,6 @@
 package mechanics.actions;
 
 import players.Player;
-import players.PlayerList;
 import elements.board.Tile;
 import elements.cards.Card;
 
@@ -24,50 +23,11 @@ import java.io.IOException;
 
 public abstract class ActionView{
 	
+	// TODO put printing functions in some static ViewTools class or smth
+	
 	public abstract boolean doAction(Player currentPlayer, Scanner user) throws IOException;
 	
-	/**
-	 * printTileList 
-	 * 	print given list of tiles
-	 * @param tiles
-	 */
-	public static void printTileList(ArrayList<Tile> tiles) {
-		int i = 1;
-		for (Tile tile :tiles) {
-			System.out.println("[" + i + "]" + tile);
-			i++;
-		}
-	}
 	
-	/**
-	 * printCardList
-	 *  prints given cards
-	 * @param cards
-	 */
-	public static void printCardList(ArrayList<Card> cards) {
-		int i = 1;
-		for (Card card : cards) {
-			System.out.println("[" + i + "]" + card);
-			i++;
-		}
-	}
 	
-	/**
-	 * printPlayerList 
-	 * 	print list of players, highglight currentPlayer
-	 * @param players - list of players to be printed
-	 * @param currentPlayer
-	 */
-	public static void printPlayerList(ArrayList<Player> players, Player currentPlayer) {
-		int i = 1;
-		for (Player player : players) {
-			if(player != currentPlayer) {
-				System.out.println("[" + i + "]" + player);
-			}
-			else {
-				System.out.println("[" + i + "]" + player + "(You)");
-			}
-			i++;
-		}
-	}
+
 }

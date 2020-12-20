@@ -15,17 +15,10 @@
 package mechanics.actions;
 
 import players.Player;
-import setup.ParseLetterInputs;
-import setup.ParseNumberInputs;
 import elements.treasures.Treasure;
-import java.io.ByteArrayInputStream;
+import mechanics.setup.ParseLetterInputs;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -35,24 +28,42 @@ public class ClaimTreasureView extends ActionView{
 	private static ClaimTreasureView claimTreasureView = null;
 	private ActionController controller;
 	
+	/**
+	 * doAction
+	 * 	Display Treasure that can be claimed 
+	 * 	Ask user for confirmation
+	 * 	Prompt controller to claim treasure
+	 * 
+	 * @param currentPlayer
+	 * @param scanner
+	 * @return true if action was carried out, false if cancelled 
+	 */
 	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
 	
-		Treasure possibleTreasure = controller.getClaimTreasureCheck(currentPlayer);
+		Treasure possibleTreasure = controller.getClaimTreasureCheck(currentPlayer); 
 		
+		// If no treasure can be claimed
 		if(possibleTreasure == null) {
 			System.out.println("You cannot claim any treasure at this time. Please select another action");
 			return false;
 		}
+		
+		// Print Treasure to be claimed and ask for confirmation
 		System.out.println("You can claim the " + possibleTreasure );
 		System.out.println("Would you like to do so? [y/n]");
 		
 		String userAns = " ";
 		
-		while(!userAns.equals("n") && !userAns.equals("y")) {
+		// TODO could have a ParseYesNo method
+		while(!userAns.equals("n") && !userAns.equals("y")) {	// only accept y or n
 			userAns = ParseLetterInputs.main(user);
+			
 			if(userAns.equals("n")) {
 				return false;
 			}
+			
+			// Get controller to claim treasure
+			// Display 
 			else if(userAns.equals("y")) {
 				controller.claimTreasure(currentPlayer, possibleTreasure);
 				System.out.println(possibleTreasure + " has been captured!");

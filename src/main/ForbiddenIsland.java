@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import mechanics.GamePlay;
-import setup.Setup;
+import mechanics.setup.Setup;
 
 public class ForbiddenIsland {
 	public static void main(String[] args) throws IOException {

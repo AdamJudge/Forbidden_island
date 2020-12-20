@@ -1,6 +1,6 @@
 // Sets up player with a random pawn and user entered name. Handles number of players too for game. Gives empty hand
 
-package setup;
+package mechanics.setup;
 
 import java.io.IOException;
 import java.util.*;

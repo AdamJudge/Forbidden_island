@@ -21,8 +21,9 @@ import java.util.Scanner;
 import elements.board.Tile;
 import elements.pawns.Engineer;
 import elements.pawns.Pawn;
+import mechanics.ViewDisplayTools;
+import mechanics.setup.ParseNumberInputs;
 import players.Player;
-import setup.ParseNumberInputs;
 
 public class ShoreupView  extends ActionView{
 
@@ -56,7 +57,7 @@ public class ShoreupView  extends ActionView{
 			if(i == 0) {	// printout is different if there is another shore up
 			System.out.println("Which tile do you want to shore up? (enter 0 to cancel and pick another action)");
 			}
-			printTileList(possibleTiles);
+			ViewDisplayTools.printTileList(possibleTiles);
 		
 			userNum=ParseNumberInputs.main(user, 0, limit);
 			if(userNum == 0 && i == 0) {

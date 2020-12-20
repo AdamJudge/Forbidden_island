@@ -28,8 +28,8 @@ import elements.pawns.Pawn;
 import mechanics.TurnController;
 import mechanics.cardActions.Helicopter;
 import mechanics.cardActions.Sandbags;
+import mechanics.setup.ParseNumberInputs;
 import players.Player;
-import setup.ParseNumberInputs;
 
 public class PlayCardView  extends ActionView{
 

@@ -14,9 +14,10 @@
 package mechanics.actions;
 
 import players.Player;
-import setup.ParseLetterInputs;
-import setup.ParseNumberInputs;
 import mechanics.TurnController;
+import mechanics.ViewDisplayTools;
+import mechanics.setup.ParseLetterInputs;
+import mechanics.setup.ParseNumberInputs;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class GiveCardView  extends ActionView{
 
 		int limit = possiblePlayers.size();
 		System.out.println("Who would you like to give a card to? (Enter 0 to cancel and pick another action)");
-		printPlayerList(possiblePlayers, currentPlayer);
+		ViewDisplayTools.printPlayerList(possiblePlayers, currentPlayer);
 		int userNum=ParseNumberInputs.main(user, 0, limit);
 		if(userNum == 0) {
 			return false;
@@ -69,7 +70,7 @@ public class GiveCardView  extends ActionView{
 		System.out.println("Which card would you like to give " + playerToGive + " ?");
 		ArrayList<Card> cardsToGive = new ArrayList<>();
 		cardsToGive.addAll(turnController.getHandCards(currentPlayer));
-		printCardList(cardsToGive);
+		ViewDisplayTools.printCardList(cardsToGive);
 		userNum=ParseNumberInputs.main(user, 0, cardsToGive.size());
 		if(userNum == 0) {
 			return false;

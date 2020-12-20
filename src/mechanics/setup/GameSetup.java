@@ -1,4 +1,4 @@
-package setup;
+package mechanics.setup;
 
 import java.util.Set;
 import java.io.IOException;

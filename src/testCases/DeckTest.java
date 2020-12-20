@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.HashSet;
 import elements.cards.*;
 import elements.treasures.*;
-import setup.GameSetup;
+import mechanics.setup.GameSetup;
 import elements.board.Board;
 import elements.board.TileNames;
 import elements.board.Tile;

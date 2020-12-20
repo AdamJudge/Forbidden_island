@@ -1,12 +1,12 @@
 package mechanics.cardActions;
 
 import players.Player;
-import setup.ParseNumberInputs;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.pawns.Pawn;
 import elements.pawns.Pilot;
 import mechanics.GamePlay;
+import mechanics.setup.ParseNumberInputs;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
 
