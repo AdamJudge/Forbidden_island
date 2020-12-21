@@ -67,6 +67,9 @@ public class Helicopter {
 				//If unable to leave
 				if (!GamePlay.getInstance().canLeave()) {
 					System.out.println("Conditions not met for leaving!");
+					continue;
+				} else {
+					return;
 				}
 				
 			} else {
