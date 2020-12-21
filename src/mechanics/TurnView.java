@@ -1,8 +1,6 @@
 package mechanics;
 
 import java.util.Scanner;
-import java.util.Set;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import players.Player;
@@ -13,6 +11,7 @@ import elements.cards.*;
 import mechanics.actions.*;
 import mechanics.cardActions.CardActionController;
 import mechanics.cardActions.HelicopterView;
+import mechanics.cardActions.SandbagsView;
 
 /**
  * TurnView
@@ -190,6 +189,7 @@ public class TurnView {
     	ShoreupView.getInstance().setController(actionController);
     	PlayCardView.getInstance().setController(actionController);
     	HelicopterView.getInstance().setController(CardActionController.getInstance(), actionController, turnController); // TODO Cat put cardAction controller in params ? 
+    	SandbagsView.getInstance().setController(CardActionController.getInstance(), actionController, turnController); // TODO Cat put cardAction controller in params ? 
     }
     
 	
