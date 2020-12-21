@@ -2,7 +2,7 @@ package elements.cards;
 
 import elements.board.Board;
 import elements.board.Tile;
-import mechanics.cardActions.FloodTile;
+import mechanics.cardActions.FloodTileView;
 import mechanics.actions.ActionController;
 
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class FloodDeck extends Deck{
 	@Override
 	public Card draw() {
 		FloodCard card = (FloodCard)super.draw();
-		FloodTile.floodTile(card, controller);
+		FloodTileView.floodTile(card, controller);
 		
 		if (cards.isEmpty()) {
 			FloodDiscard.getInstance().toDeck();

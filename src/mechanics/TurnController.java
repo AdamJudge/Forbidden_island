@@ -77,7 +77,7 @@ public class TurnController {
 	}
 	
 	public void discard(Player player, Card card) {
-		player.getHand().discardCard(card);
+		player.getHand().discardCard(card); 
 	}
 	
 	/**

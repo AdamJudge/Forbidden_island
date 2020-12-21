@@ -16,8 +16,8 @@ import elements.pawns.Navigator;
 import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
 import mechanics.TurnController;
-import mechanics.cardActions.Helicopter;
-import mechanics.cardActions.Sandbags;
+import mechanics.cardActions.HelicopterView;
+import mechanics.cardActions.SandbagsView;
 import players.Player;
 
 /**
@@ -235,10 +235,10 @@ public class ActionController {
 	
 	public void playCard(Card card, Player player, Scanner user) {
 		if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER) {
-			Helicopter.play(card, player, user);
+			HelicopterView.getInstance().play(card, player, user);
 		}
 		else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
-			Sandbags.play(card, user);
+			SandbagsView.play(card, user);
 		}
 	}
 }

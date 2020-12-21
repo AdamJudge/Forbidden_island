@@ -9,6 +9,8 @@ import elements.board.Board;
 import elements.board.Tile;
 import elements.cards.*;
 import mechanics.actions.*;
+import mechanics.cardActions.CardActionController;
+import mechanics.cardActions.HelicopterView;
 
 /**
  * TurnView
@@ -169,11 +171,13 @@ public class TurnView {
      */
     public void setupView(TurnController turnController, ActionController actionController) {
     	this.controller = turnController;
+    	
     	ClaimTreasureView.getInstance().setController(actionController);			// TODO Cat Probably shouldn't all be here
     	GiveCardView.getInstance().setController(turnController, actionController);
     	MoveView.getInstance().setController(turnController, actionController);
     	ShoreupView.getInstance().setController(actionController);
     	PlayCardView.getInstance().setController(actionController);
+    	HelicopterView.getInstance().setController(CardActionController.getInstance(), actionController, turnController); // TODO Cat put cardAction controller in params ? 
     }
     
 	
