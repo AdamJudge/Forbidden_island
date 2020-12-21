@@ -81,7 +81,7 @@ public class TurnView {
 		controller.pilotReset(player); // checks if the player is a pilot, so can be called regardless
 	}
 	
-	
+	// TODO Cat pilot reset is wrong
 	
 	public void doDiscard(Player player) {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
