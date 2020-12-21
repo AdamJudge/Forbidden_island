@@ -60,7 +60,8 @@ public class PlayCardView  {
 	}
 	
 	private void playCard(Player player, TreasureCardTypes cardType) {
-		for (Card card : player.getHand().getCards()) {
+		for(int i = 0; i<player.getHand().getCards().size(); i++) {
+			Card card = player.getHand().getCards().get(i);
 			if (((TreasureCard)card).getCardType() == cardType) {
 				actionController.playCard(card, player, user);
 			}
