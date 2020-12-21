@@ -48,18 +48,6 @@ public class FloodTile{
 		
 		else if(tile.getStatus() == TileStatus.FLOODED) {
 			
-			if(tile.getTreasure() != null) {
-				for(Tile otherTile : Board.getInstance().getRemainingTiles()) {
-					if(tile.getTreasure() == otherTile.getTreasure()) {
-						// All good!
-					}
-				}
-				// TODO End Game BAD
-			}
-			
-			if(tile.getName() == TileNames.FOOLS_LANDING) {
-				//notifyAllObservers();
-			}
 			
 			tile.remove();
 			ArrayList<Player> playersToSwim = new ArrayList<Player>();

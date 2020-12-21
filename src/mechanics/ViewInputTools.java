@@ -21,7 +21,7 @@ public class ViewInputTools {
 	
 	public static boolean yesNo(Scanner user) {
 		String input=" ";
-		
+		// TODO cat "yes" "no"
 		while (!input.toLowerCase().equals("y") && !input.toLowerCase().equals("n")) {
 			input = user.next();
 			if(input.toLowerCase().equals("y")) {

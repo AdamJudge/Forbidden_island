@@ -113,10 +113,9 @@ public abstract class Pawn extends Subject{
 		if(currentTile.getStatus() == TileStatus.REMOVED) {
 			validTiles = moveCheck();				
 		}
-		if (validTiles.size() == 0) { // TODO Discuss - probably to be done elsewhere 
+		if (validTiles.size() == 0) { 
 			//Can't swim
 			notifyAllObservers();
-			// TODO If someone can't swim, we should check if they have a helicopter card?
 		}
 		return validTiles;
 	}

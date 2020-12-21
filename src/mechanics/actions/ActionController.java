@@ -55,8 +55,6 @@ public class ActionController {
 	}
 	
 	
-	// TODO should this be in separate files per action type? 
-	
 	/**
 	 * getClaimTreasureCheck
 	 * 	Returns the treasure the given player is able to capture
@@ -185,11 +183,7 @@ public class ActionController {
 		// check that all players can swim somewhere first
 		
 		for(Player player : players) {
-			if(player.getPawn().swimCheck() == null) {
-				moveView.doSwim(null, null);	// TODO Maybe not needed
-				// TODO End game observer
-				return;
-			}
+			player.getPawn().swimCheck();  // if anyone can't swim, observer will update.
 		}
 		
 		for(Player player : players) {

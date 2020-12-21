@@ -16,10 +16,6 @@ import elements.board.TileNames;
  *  Last modified: 03/12/20
  */
 public class Messenger extends Pawn {
-
-	// normal pawn (?)
-	
-	// TODO IMPORTANT disappears when giving another player a card? ? 
 	
 	/**
 	 * toInitialTile

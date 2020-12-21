@@ -56,7 +56,7 @@ public class Tile extends Subject{
 			treasure = null;
 		}
 		
-		// TODO IMPORTANT We need to discuss this, looks like it's in the wrong place
+		// TODO - Adam (move to board? or remove? )
 		observeTiles.add(TileNames.FOOLS_LANDING);
 		observeTiles.add(TileNames.WHISPERING_GARDEN);
 		observeTiles.add(TileNames.HOWLING_GARDEN);

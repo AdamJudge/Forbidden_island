@@ -12,7 +12,7 @@ import mechanics.actions.ActionView;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.List;
 
 import players.*;
@@ -143,7 +143,7 @@ public class SetupView {
 	private PlayerList getPlayerNames(int numPlayers, Scanner user) {
 		//Sets players names
 		boolean duplicate;
-		Set<String> names = new HashSet<String>();		// TODO is hashset okay here? or does it need to be ordered? 
+		Set<String> names = new TreeSet<String>();		// TODO check order
 		String name;
 		for(int i=1; i <= numPlayers; i++) {
 			duplicate=true;

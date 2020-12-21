@@ -45,7 +45,7 @@ public class Turn {
 	 */
 	public void doTurn(Player player, Scanner user) {
 		
-		TurnView.getInstance().run(player, user);		// TODO find a better way to organise this
+		TurnView.getInstance().run(player, user);		// TODO CAT find a better way to organise this
 	}
 	
 

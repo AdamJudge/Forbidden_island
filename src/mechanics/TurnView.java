@@ -111,8 +111,6 @@ public class TurnView {
 		
 		int actionNum = ViewInputTools.numbers(user, 1, 6);
 		
-		// TODO should allow for discard at end of turn regardless!! bc it doesn't cost an action 
-		
 		switch(actionNum) {
 		case 1:
 			if( MoveView.getInstance().doAction(currentPlayer, user)) {
@@ -151,8 +149,7 @@ public class TurnView {
 			if(PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
 				return 1;				
 			}
-
-			/// TODO why does parse inputs have a main? 
+ 
 		}
 		
 		return 0; 

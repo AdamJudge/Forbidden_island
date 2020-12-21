@@ -76,7 +76,7 @@ public class Diver extends Pawn {
 			nextRound = null;
 			
 		}
-		if (validTiles.size()==0) { 	// TODO Discuss - this should probably be checked in the controller instead
+		if (validTiles.size()==0) { 	
 			notifyAllObservers();
 		}
 		return validTiles;

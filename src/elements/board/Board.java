@@ -29,7 +29,7 @@ public class Board {
 	private static Board board = null;
 	private Set<Tile> allTiles;
 	private ArrayList<Tile> sortedTiles;
-	private Map<TreasureNames, Treasure> allTreasures; // TODO should this be done in a separate class? 
+	private Map<TreasureNames, Treasure> allTreasures; 
 	
 	/**
 	 * getInstance
