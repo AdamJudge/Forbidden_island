@@ -177,7 +177,7 @@ public class ActionController {
 	 * @param player 
 	 * @return	list of possible tiles
 	 */
-	public ArrayList<Tile> getShoreupCheck(Player player){	// TODO should be done in model ?
+	public ArrayList<Tile> getShoreupCheck(Player player){	
 		return player.getPawn().shoreupCheck();
 	}
 	
@@ -218,7 +218,7 @@ public class ActionController {
 	 * @param destination
 	 * @return
 	 */
-	public Tile move(Player player, Tile destination) { // TODO should this be more abstract? 
+	public Tile move(Player player, Tile destination) { 
 		player.getPawn().move(destination);
 		return player.getPawn().getTile();
 	}
@@ -228,7 +228,7 @@ public class ActionController {
 	 * 	Shore up a given tile
 	 * @param tile
 	 */
-	public void shoreup(Player player, Tile tile) { // TODO should this be more abstract? 
+	public void shoreup(Tile tile) { 
 		tile.shoreup();
 	}
 	
@@ -238,7 +238,7 @@ public class ActionController {
 			HelicopterView.getInstance().play(card, player, user);
 		}
 		else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
-			SandbagsView.play(card, user);
+			SandbagsView.getInstance().play(player, card, user);
 		}
 	}
 }
