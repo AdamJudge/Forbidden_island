@@ -21,6 +21,7 @@ import mechanics.actions.ActionController;
 import mechanics.actions.PlayCardView;
 import mechanics.cardActions.CardActionController;
 import mechanics.cardActions.HelicopterView;
+import mechanics.cardActions.SandbagsView;
 import players.*;
 
 public class PlayableCardsTest {
@@ -60,6 +61,7 @@ public class PlayableCardsTest {
 		TurnController turnController = TurnController.getInstance();
 		PlayCardView.getInstance().setController(actionController);		
 		HelicopterView.getInstance().setController(cardController, actionController, turnController);
+		SandbagsView.getInstance().setController(cardController, actionController, turnController);
 	}
 	
 	public void floodATile() {
