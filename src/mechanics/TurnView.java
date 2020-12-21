@@ -1,12 +1,12 @@
 package mechanics;
 
 import java.util.Scanner;
-import java.util.Set;
 import java.util.ArrayList;
 
 import players.Player;
 import players.PlayerList;
 import elements.board.Board;
+import elements.board.Tile;
 import elements.cards.*;
 import mechanics.actions.*;
 
@@ -65,19 +65,21 @@ public class TurnView {
 			}
 		}
 		
+		Card cardDrawn;
 		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
-			Card cardDrawn = controller.drawTreasureCard(player);
+			 cardDrawn = controller.drawTreasureCard(player);
 			System.out.println(player + " drew a " + cardDrawn + " card.");
 		}
-		
-		Set<Card> cardsDrawn = controller.drawFloodCards();
-		System.out.println("Flood cards drawn: " + cardsDrawn);
-		// TODO could be nice to print new status of relevant tiles, but not completely necessary since board is printed
-		// TODO draw one card at a time to print out each card when it's drawn instead of all together
-		
+
 		System.out.println("Your cards are : " + controller.getHand(player));
 		
+		for (int i = 0; i< controller.getNbrCards(); i++) {
+			cardDrawn = controller.drawFloodCards();
+			System.out.println("Flood card drawn: " + cardDrawn);
+			Tile tileFlooded = controller.getFloodCardTile(cardDrawn);
+			System.out.println(tileFlooded + " status: " + controller.getTileStatus(tileFlooded));
+		}
 		controller.pilotReset(player); // checks if the player is a pilot, so can be called regardless
 	}
 	
