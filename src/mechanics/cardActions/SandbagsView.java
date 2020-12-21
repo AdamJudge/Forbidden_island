@@ -22,7 +22,7 @@ import mechanics.ViewInputTools;
  * Last modified:25/11/20
  *
  */
-public class Sandbags {
+public class SandbagsView {
 	
 	/**
 	 * play 

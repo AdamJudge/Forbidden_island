@@ -26,7 +26,7 @@ import java.io.IOException;
  * Last modified:17/12/20
  *
  */
-public class FloodTile{
+public class FloodTileView{
 	
 	/**
 	 * floodTile
