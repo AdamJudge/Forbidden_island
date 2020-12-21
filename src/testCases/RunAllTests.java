@@ -1,0 +1,22 @@
+package testCases;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)
+@SuiteClasses({ 
+    BoardTest.class, 
+    CaptureTreasure.class,
+    DeckTest.class,
+    MovementTests.class,
+    PlayableCardsTest.class,
+    PlayerTests.class,
+    ShoreUpTests.class,
+    UserInputTest.class,
+    WinConditionTests.class
+})
+
+public class RunAllTests {
+
+}
