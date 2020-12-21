@@ -115,6 +115,7 @@ public class MoveView {
 		
 		ViewDisplayTools.printTileList(possibleTiles);
 		
+		//TODO discuss do we not need a scanner here?
 		int userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
 		
 		controller.move(player, possibleTiles.get(userNum-1));

@@ -26,9 +26,7 @@ public class Tile extends Subject{
 	private TileNames name;			// location name on the tile
 	private TileStatus status;		// tile status
 	private Treasure treasure;		// treasure associated with the tile
-	
-	private Set<TileNames> observeTiles = new TreeSet<TileNames>();
-	
+		
 	/**
 	 * Tile constructor
 	 * @param name
@@ -55,17 +53,6 @@ public class Tile extends Subject{
 		else {
 			treasure = null;
 		}
-		
-		// TODO - Adam (move to board? or remove? )
-		observeTiles.add(TileNames.FOOLS_LANDING);
-		observeTiles.add(TileNames.WHISPERING_GARDEN);
-		observeTiles.add(TileNames.HOWLING_GARDEN);
-		observeTiles.add(TileNames.TIDAL_PALACE);
-		observeTiles.add(TileNames.CORAL_PALACE);
-		observeTiles.add(TileNames.TEMPLE_OF_THE_MOON);
-		observeTiles.add(TileNames.TEMPLE_OF_THE_SUN);
-		observeTiles.add(TileNames.CAVE_OF_EMBERS);
-		observeTiles.add(TileNames.CAVE_OF_SHADOWS);
 	}
 	
 	/**

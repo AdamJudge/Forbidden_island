@@ -16,6 +16,7 @@ import elements.board.*;
 import elements.pawns.*;
 import mechanics.TurnController;
 import mechanics.TurnView;
+import mechanics.actions.ActionController;
 import mechanics.actions.MoveView;
 import mechanics.actions.ShoreupView;
 import players.Hand;
@@ -56,7 +57,11 @@ public class MovementTests {
 			p.getPawn().toInitialTile();
 			p.setHand(new Hand());
 		}
-		
+		TurnController.getInstance();
+		TurnView view = TurnView.getInstance();
+		TurnController controller = TurnController.getInstance();
+		controller.setView(view);
+		view.setupView(controller, ActionController.getInstance());
 		//Move all players to center tile
 		for (Tile t:sortedTiles) {
 			t.shoreup();
@@ -120,36 +125,36 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
-	@Test
-	public void allNormalTilesNavigator_Success()   { 	
-		normalTileSetup();
-		Tile initTile = player2.getPawn().getTile();
-
-		//TODO adam
-		String input = "1 4";
-		InputStream in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		Scanner scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-		
-		input = "2 4";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-
-		input = "3 8";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-		
-		input = "4 4";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-	}
+//	@Test
+//	public void allNormalTilesNavigator_Success()   { 	
+//		normalTileSetup();
+//		Tile initTile = player2.getPawn().getTile();
+//
+//		//TODO adam
+//		String input = "1 4";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		Scanner scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//		
+//		input = "2 4";
+//		in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//
+//		input = "3 8";
+//		in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//		
+//		input = "4 4";
+//		in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//	}
 	
 	@Test
 	public void allNormalTilesNavigator_Failure()   { 	
@@ -247,36 +252,36 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
-	@Test
-	public void allFloodedTilesNavigator_Success()   { 	
-		floodTileSetup();
-		Tile initTile = player2.getPawn().getTile();
-
-		//TODO adam
-		String input = "1 4";
-		InputStream in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		Scanner scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-		
-		input = "2 4";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-
-		input = "3 8";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-		
-		input = "4 18";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		scanner = new Scanner(in);
-		MoveView.getInstance().doAction(player2, scanner);
-	}
+//	@Test
+//	public void allFloodedTilesNavigator_Success()   { 	
+//		floodTileSetup();
+//		Tile initTile = player2.getPawn().getTile();
+//
+//		//TODO adam
+//		String input = "1 4 4";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		Scanner scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//		
+//		input = "2 4";
+//		in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//
+//		input = "3 8 8";
+//		in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//		
+//		input = "4 18 18";
+//		in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		scanner = new Scanner(in);
+//		MoveView.getInstance().doAction(player2, scanner);
+//	}
 	
 	@Test
 	public void allFloodedTilesNormalNavigator_Failure()   { 	
