@@ -1,8 +1,6 @@
 package elements.cards;
 
 import java.util.Collections;
-import java.util.Stack;
-import java.io.IOException;
 
 /**
  * Deck class (abstract)
@@ -10,25 +8,14 @@ import java.io.IOException;
  * Contains general deck methods
  * 
  * @author Catherine Waechter
- * @version 1.3
- * 	Added getSize method
+ * @version 2.0
+ * 	general methods moved to CardStack superclass
  * Date Created: 26/10/20
- * Last Modified: 16/12/20
+ * Last Modified: 21/12/20
  *
  */
-public abstract class Deck {
+public abstract class Deck extends CardStack {
 
-	protected Stack<Card> cards;
-	
-	/**
-	 * addCard
-	 * 	adds a card to the deck
-	 * @param card
-	 */
-	public void addCard(Card card) {
-		cards.push(card);
-	}
-	
 	/**
 	 * shuffleDeck()
 	 * 
@@ -46,28 +33,6 @@ public abstract class Deck {
 	public Card draw() {
 		Card cardDrawn = cards.pop();
 		return cardDrawn;
-	}
-	
-	/**
-	 * getSize
-	 * @return size of deck
-	 */
-	public int getSize() {
-		return cards.size();
-	}
-	
-	/**
-	 * isEmpty
-	 * 	returns whether or not the deck is empty
-	 * @return
-	 */
-	public boolean isEmpty() {
-		if (cards.size() == 0) {
-			return true;
-		}
-		else return false;
 	}	
-	
-	public abstract void tearDown();
 	
 }

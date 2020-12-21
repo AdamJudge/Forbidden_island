@@ -34,7 +34,7 @@ public class TreasureDiscard extends DiscardPile {
 	 * TreasureDiscard constructor
 	 */
 	private TreasureDiscard() {
-		discardedCards = new Stack<Card>();
+		cards = new Stack<Card>();
 		deckInstance = TreasureDeck.getInstance();
 	}
 	

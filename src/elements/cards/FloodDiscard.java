@@ -34,7 +34,7 @@ public class FloodDiscard extends DiscardPile {
 	 * FloodDiscard constructor
 	 */
 	private FloodDiscard() {
-		discardedCards = new Stack<Card>();
+		cards = new Stack<Card>();
 		deckInstance = FloodDeck.getInstance();
 	}
 	
