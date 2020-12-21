@@ -5,6 +5,7 @@ import java.util.Set;
 
 import elements.board.Board;
 import elements.board.Tile;
+import elements.board.TileStatus;
 import elements.pawns.Pawn;
 import elements.pawns.Pilot;
 import mechanics.GamePlay;
@@ -62,6 +63,23 @@ public class CardActionController {
 		return sortedTiles;
 	}
 	
+	/**
+	 * getFloodedTiles
+	 * 	returns list of tiles that can be shored up
+	 * @return floodedTiles
+	 */
+	public ArrayList<Tile> getFloodedTiles(){
+		ArrayList<Tile> floodedTiles = new ArrayList<Tile>();
+		
+		for(Tile tile : Board.getInstance().getRemainingTiles()) {
+			if(tile.getStatus() == TileStatus.FLOODED) {
+				floodedTiles.add(tile);
+				System.out.println("[" + floodedTiles.size() + "] " + tile);
+			}
+		}
+		
+		return floodedTiles;
+	}
 	
 	
 }
