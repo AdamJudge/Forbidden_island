@@ -18,12 +18,11 @@ import players.Player;
 import elements.treasures.Treasure;
 import mechanics.ViewInputTools;
 
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 
 
-public class ClaimTreasureView extends ActionView{
+public class ClaimTreasureView {
 
 	private static ClaimTreasureView claimTreasureView = null;
 	private ActionController controller;

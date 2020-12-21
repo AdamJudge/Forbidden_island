@@ -11,7 +11,6 @@
 
 package mechanics.actions;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -26,7 +25,7 @@ import mechanics.cardActions.Helicopter;
 import mechanics.cardActions.Sandbags;
 import players.Player;
 
-public class PlayCardView  extends ActionView{
+public class PlayCardView  {
 
 	private static PlayCardView playCardView = null;
 	private TurnController controller;
