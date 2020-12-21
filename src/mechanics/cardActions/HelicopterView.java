@@ -6,9 +6,12 @@ import elements.board.Tile;
 import elements.pawns.Pawn;
 import elements.pawns.Pilot;
 import mechanics.GamePlay;
+import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
+import mechanics.actions.ActionController;
+import mechanics.TurnController;
 
 import java.util.Set;
 import java.io.IOException;
@@ -26,65 +29,74 @@ import java.util.Scanner;
  * Last modified:25/11/20
  *
  */
-public class Helicopter {
+public class HelicopterView {
 
+	private static HelicopterView hView = null;
+	private CardActionController cardController;
+	private ActionController actionController;
+	private TurnController turnController;
+	
+	/**
+	 * getInstance
+	 * 	get singleton instance of HelicopterView
+	 * @return actionController (singleton instance)
+	 */
+	public static HelicopterView getInstance() {
+		if(hView == null) { 
+			hView = new HelicopterView();
+		}
+		return hView;
+	}
+	
+	public void setController(CardActionController cardController, ActionController actionController, TurnController turnController) {
+		this.cardController = cardController;
+		this.actionController = actionController;
+		this.turnController = turnController;
+	}
+	
 	/**
 	 * play
 	 * 	moves given player's pawn to a requested tile
 	 * @param player
 	 */
-	public static void play(Card card, Player player, Scanner user) {
+	public void play(Card card, Player player, Scanner user) {
 		
-		Pawn pawn = player.getPawn();
+		ArrayList<Tile> possibleTiles = cardController.getHelicopterTiles(player);
 		
-		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
-		remainingTiles.remove(pawn.getTile());	// pawn can't fly to its current tile
+		System.out.println("Which tile do you want get a helicopter lift to? (0 to Cancel)");
+		ViewDisplayTools.printTileList(possibleTiles);
+		int leaveIndex = possibleTiles.size()+1;
+		System.out.println("[" + leaveIndex + "]: Try to leave Forbidden Island!");
 		
-		ArrayList<Tile> sortedTiles = new ArrayList<Tile>();
-		sortedTiles.addAll(remainingTiles);
+		int input=leaveIndex;
 		
-		//for(int i = 0; i<sortedTiles.size(); i++) {
-		//	System.out.println("[" + i + "]: " + sortedTiles.get(i));
-		//}
-
-		// Get user Input
-		int iter=1;
-		
-		System.out.println("Which tile do you want get a helicopter lift to?");
-		for (Tile t:sortedTiles) {
-			System.out.println("["+iter+"]: " + t.getName());
-			iter+=1;
-		}
-		System.out.println("[" + (sortedTiles.size()+1) + "]: Try Leave Forbidden Island!");
-		int input=sortedTiles.size()+1;
-		//If can't leave pick different option.
-		while (input ==sortedTiles.size()+1) {
-			input = ViewInputTools.numbers(user, 1, sortedTiles.size()+1);
-			
-			if (input == sortedTiles.size()+1) {
-				System.out.println("Trying to leave!");
-				GamePlay.getInstance().tryLeave();
-				//If unable to leave
-				if (!GamePlay.getInstance().canLeave()) {
-					System.out.println("Conditions not met for leaving!");
-				}
-				
-			} else {
-				pawn.move(sortedTiles.get(input-1));
-			}
-		}
 		// if pawn is a pilot, check if it has flown before the helicopter lift
-		boolean flown=false;
-		if(pawn instanceof Pilot) {
-			flown = ((Pilot)pawn).getHasFlown();
+		boolean flown=cardController.pilotFlown(player);
+			
+		//If can't leave pick different option.
+		while (input ==possibleTiles.size()+1) {
+			input = ViewInputTools.numbers(user, 0, possibleTiles.size()+1);
+			if(input == 0) {
+				return; // exit without using the card
+			}
+			
+			if (input == possibleTiles.size()+1) {
+				System.out.println("Trying to leave!");
+				boolean leaving = cardController.tryLeave();
+				if(leaving == false) {
+					System.out.println("Conditions not met for leaving! Enter another number to fly to a tile, or 0 to cancel.");
+				}
+			}
+			
+			else {
+				actionController.move(player, possibleTiles.get(input-1));
+			}
 		}
 		
 		// if pilot hadn't flown, reset the hasFlown flag
-		if(!flown && pawn instanceof Pilot) {
-			((Pilot)pawn).resetHasFlown();
-		}
-		
-		TreasureDiscard.getInstance().addCard(card); 	// discard helicopter lift card
+		cardController.pilotFixFlown(player, flown);
+
+		turnController.discard(player, card); // discard helicopter lift card
 		
 	}
 	
