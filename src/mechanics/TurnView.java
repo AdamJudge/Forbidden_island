@@ -82,6 +82,7 @@ public class TurnView {
 	}
 	
 	// TODO Cat pilot reset is wrong
+	// TODO Cat pilot printouts are all over the place
 	
 	public void doDiscard(Player player) {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
