@@ -16,8 +16,11 @@ import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
 import mechanics.TurnController;
+<<<<<<< HEAD
+=======
 import mechanics.TurnView;
 import mechanics.actions.ActionController;
+>>>>>>> e309806c74f79b1d5d17f08f2245fb105774ec14
 import mechanics.actions.PlayCardView;
 import players.*;
 
@@ -96,8 +99,12 @@ public class PlayableCardsTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
+<<<<<<< HEAD
 		TileNames originalTile = player1.getPawn().getTile().getName();
+		PlayCardView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
+=======
 		PlayCardView.getInstance().doAction(player1, scanner);
+>>>>>>> e309806c74f79b1d5d17f08f2245fb105774ec14
 		
 		//The player should have now moved to a different tile
 		assertFalse(player1.getPawn().getTile().getName().equals(originalTile));

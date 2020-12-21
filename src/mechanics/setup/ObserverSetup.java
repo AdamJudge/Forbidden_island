@@ -101,4 +101,8 @@ public class ObserverSetup {
 		new HelicopterLiftWinObserver(GamePlay.getInstance());
 		// Game Win Observer
 	}
+	
+	public void tearDown() {
+		observerSetup=null;
+	}
 }

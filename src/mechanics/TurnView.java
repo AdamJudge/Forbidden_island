@@ -1,6 +1,8 @@
 package mechanics;
 
 import java.util.Scanner;
+import java.util.Set;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import players.Player;
@@ -52,12 +54,22 @@ public class TurnView {
 		this.user = user;
 	
 		currentPlayer = player;
+		if (GamePlay.getInstance().getGameOver()) {
+			return;
+		}
 		System.out.println("It's your turn " + player + "!");
 		System.out.println("Your cards are : " + controller.getHand(player));
 		System.out.println("Your " + player.getPawn() + " is on " + player.getPawn().getTile());
 		int actionCount = 3;
 		int actionReturn;
 		while(actionCount > 0) {
+			/////////////////////
+			//TODO Cat, need to check this flag in a controller, should be checked and then a return should happen to prevent further stuff from happening. It might be good to have this check after notifying observers??
+			if (GamePlay.getInstance().getGameOver()) {
+				return;
+			}
+			////////////////////
+			
 			actionReturn = selectAction(user);
 			if(actionReturn == 1) {
 				actionCount--;
@@ -88,7 +100,7 @@ public class TurnView {
 	// TODO Cat pilot reset is wrong
 	// TODO Cat pilot printouts are all over the place
 	
-	public void doDiscard(Player player) {
+	public void doDiscard(Player player){
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
 		ArrayList<Card> cards = new ArrayList<Card>();
 		cards.addAll(controller.getHandCards(player));
