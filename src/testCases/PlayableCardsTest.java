@@ -3,7 +3,6 @@ package testCases;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
 import mechanics.TurnController;
-import mechanics.TurnView;
 import mechanics.actions.PlayCardView;
 import players.*;
 
@@ -94,10 +92,11 @@ public class PlayableCardsTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
+		TileNames originalTile = player1.getPawn().getTile().getName();
 		PlayCardView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
 		
-		//TODO better than this
-		assertTrue(player1.getPawn().getTile().getName().equals(TileNames.CAVE_OF_EMBERS));
+		//The player should have now moved to a different tile
+		assertFalse(player1.getPawn().getTile().getName().equals(originalTile));
 		
 		//Only card in hand is sandbag
 		assertEquals("Hand should be size 1", player1.getHand().getCards().size(), 1);
