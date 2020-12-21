@@ -23,6 +23,7 @@ public class ForbiddenIsland {
 		Setup.getInstance().setupAll(inScan);
 		
 		GamePlay.getInstance().playGame(inScan);
+		System.out.println("Thanks for Playing!");
         inScan.close();
 	}
 }
