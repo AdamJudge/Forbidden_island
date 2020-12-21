@@ -19,6 +19,8 @@ import mechanics.TurnController;
 import mechanics.TurnView;
 import mechanics.actions.ActionController;
 import mechanics.actions.PlayCardView;
+import mechanics.cardActions.CardActionController;
+import mechanics.cardActions.HelicopterView;
 import players.*;
 
 public class PlayableCardsTest {
@@ -51,7 +53,13 @@ public class PlayableCardsTest {
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.SANDBAGS, null));
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.HELICOPTER, null));
 		
-		PlayCardView.getInstance().setController(ActionController.getInstance());		// TODO Adam : I think this is right but not 100% sure! -Cat
+		// TODO Adam : I think this is right but not 100% sure! -Cat
+		// TODO Cat change all this when improving view setup method!
+		ActionController actionController = ActionController.getInstance();
+		CardActionController cardController = CardActionController.getInstance();
+		TurnController turnController = TurnController.getInstance();
+		PlayCardView.getInstance().setController(actionController);		
+		HelicopterView.getInstance().setController(cardController, actionController, turnController);
 	}
 	
 	public void floodATile() {
