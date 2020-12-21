@@ -115,7 +115,7 @@ public class SetupView {
 		difficulty = difficultyList.get(input-1);
 		controller.setGameDifficulty(difficulty);
 		
-		System.out.println("Water level has been set to: "+ difficulty); 	// TODO might need to fix up for printout of difficulty
+		System.out.println("Difficulty has been set to: "+ difficulty); 
 	}
 	
 	/**
