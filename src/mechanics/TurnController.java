@@ -1,23 +1,16 @@
 package mechanics;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
-import java.io.IOException;
 
-import elements.board.Board;
 import elements.board.Tile;
+import elements.board.TileStatus;
 import elements.board.WaterLevel;
 import players.Player;
 import players.PlayerList;
 import elements.cards.*;
-import elements.pawns.Messenger;
 import elements.pawns.Pilot;
 import players.Hand;
-import elements.treasures.Treasure;
-import elements.treasures.TreasureNames;
 
 /**
  * TurnController
@@ -25,7 +18,7 @@ import elements.treasures.TreasureNames;
  * 
  * @author Catherine Waechter
  * @version 2.0
- * 	Put all action related methods into ActionCotroller
+ * 	Put all action related methods into ActionController
  *
  *	Date created: 03/12/20
  *	Last modified: 17/12/20
@@ -101,23 +94,44 @@ public class TurnController {
 	}
 	
 	/**
-	 * drawFloodCards
-	 * 	Draw flood cards according to water level
+	 * drawFloodCard
+	 * 	Draw a flood card
 	 */
-	public Set<Card> drawFloodCards() {			// TODO should this be more abstract? 
-		Set<Card> cardsDrawn = new HashSet<Card>();
-		for(int i=0; i< WaterLevel.getInstance().getNbrCards(); i++) {
-			cardsDrawn.add(FloodDeck.getInstance().draw()); 	// cards drawn will automatically flood
-		}
-		return cardsDrawn;
+	public Card drawFloodCards() {			
+		return FloodDeck.getInstance().draw(); 	// cards drawn will automatically flood
 	} 
 	
 	/**
-	 * drawTreasureCards
-	 * 	draw two treasure cards. Add to player's hand
+	 * getNbrCards
+	 * @return number of flood cards to be drawn for current water level
+	 */
+	public int getNbrCards() {
+		return WaterLevel.getInstance().getNbrCards();
+	}
+	
+	/**
+	 * getFloodCardTile
+	 * 	
+	 * @param card
+	 * @return tile corresponding to card
+	 */
+	public Tile getFloodCardTile(Card card) {
+		if(card instanceof FloodCard) {
+			return ((FloodCard)card).getTile();
+		}
+		else return null;
+	}
+	
+	public TileStatus getTileStatus(Tile tile) {
+		return tile.getStatus();
+	}
+	
+	/**
+	 * drawTreasureCard
+	 * 	draw a treasure cards. Add to player's hand
 	 * @param player
 	 */
-	public Card drawTreasureCard(Player player) {	// TODO should this be more abstract? 
+	public Card drawTreasureCard(Player player) {	
 		Card card;
 		card = TreasureDeck.getInstance().draw();
 		if(((TreasureCard)card).getCardType() != TreasureCardTypes.WATERSRISE) {		

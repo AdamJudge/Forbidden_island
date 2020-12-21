@@ -1,13 +1,17 @@
 package mechanics;
 
 import java.util.Scanner;
+<<<<<<< HEAD
 import java.util.Set;
 import java.io.IOException;
+=======
+>>>>>>> e309806c74f79b1d5d17f08f2245fb105774ec14
 import java.util.ArrayList;
 
 import players.Player;
 import players.PlayerList;
 import elements.board.Board;
+import elements.board.Tile;
 import elements.cards.*;
 import mechanics.actions.*;
 
@@ -76,23 +80,26 @@ public class TurnView {
 			}
 		}
 		
+		Card cardDrawn;
 		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
-			Card cardDrawn = controller.drawTreasureCard(player);
+			 cardDrawn = controller.drawTreasureCard(player);
 			System.out.println(player + " drew a " + cardDrawn + " card.");
 		}
-		
-		Set<Card> cardsDrawn = controller.drawFloodCards();
-		System.out.println("Flood cards drawn: " + cardsDrawn);
-		// TODO could be nice to print new status of relevant tiles, but not completely necessary since board is printed
-		// TODO draw one card at a time to print out each card when it's drawn instead of all together
-		
+
 		System.out.println("Your cards are : " + controller.getHand(player));
 		
+		for (int i = 0; i< controller.getNbrCards(); i++) {
+			cardDrawn = controller.drawFloodCards();
+			System.out.println("Flood card drawn: " + cardDrawn);
+			Tile tileFlooded = controller.getFloodCardTile(cardDrawn);
+			System.out.println(tileFlooded + " status: " + controller.getTileStatus(tileFlooded));
+		}
 		controller.pilotReset(player); // checks if the player is a pilot, so can be called regardless
 	}
 	
 	// TODO Cat pilot reset is wrong
+	// TODO Cat pilot printouts are all over the place
 	
 	public void doDiscard(Player player){
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
@@ -157,7 +164,7 @@ public class TurnView {
 			
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
 			
-			if(PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
+			if(PlayCardView.getInstance().doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
 				return 1;				
 			}
  
@@ -177,10 +184,11 @@ public class TurnView {
      */
     public void setupView(TurnController turnController, ActionController actionController) {
     	this.controller = turnController;
-    	ClaimTreasureView.getInstance().setController(actionController);
+    	ClaimTreasureView.getInstance().setController(actionController);			// TODO Cat Probably shouldn't all be here
     	GiveCardView.getInstance().setController(turnController, actionController);
     	MoveView.getInstance().setController(turnController, actionController);
     	ShoreupView.getInstance().setController(actionController);
+    	PlayCardView.getInstance().setController(actionController);
     }
     
 	

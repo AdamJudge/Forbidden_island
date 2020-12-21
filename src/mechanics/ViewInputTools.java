@@ -21,19 +21,18 @@ public class ViewInputTools {
 	
 	public static boolean yesNo(Scanner user) {
 		String input=" ";
-		// TODO cat "yes" "no"
-		while (!input.toLowerCase().equals("y") && !input.toLowerCase().equals("n")) {
+		
+		while (true) {
 			input = user.next();
-			if(input.toLowerCase().equals("y")) {
+			if(input.toLowerCase().equals("y") || input.toLowerCase().equals("yes")) {
 				return true;
 			}
-			else if (input.toLowerCase().equals("n")){
+			else if (input.toLowerCase().equals("n") || input.toLowerCase().equals("no")){
 				return false;
 			}
 			System.out.println("Please enter \"y\" or \"n\"");
 		}
-		return false;
-		
+
 	}
 	
 	public static int numbers(Scanner user, int low, int high) {

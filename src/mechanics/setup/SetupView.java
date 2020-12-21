@@ -1,13 +1,11 @@
 package mechanics.setup;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import elements.board.Difficulty;
 import elements.board.Board;
 import elements.cards.Card;
 import mechanics.ViewInputTools;
-import mechanics.actions.ActionView;
 
 import java.util.Set;
 import java.util.ArrayList;

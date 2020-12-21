@@ -18,13 +18,12 @@ import mechanics.TurnController;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import elements.cards.Card;
 
-public class GiveCardView  extends ActionView{
+public class GiveCardView  {
 
 	private static GiveCardView giveCardView = null;
 	private ActionController controller;

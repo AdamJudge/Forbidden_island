@@ -1,35 +1,33 @@
 /**
- * Class Name: ShoreUp
+ * PlayCardView
  *
- * DETAILS
+ * 	Display and get user input for playable cards
  * 
- * Author: @author adamj
- * Version: @version 
+ * @author Adam Judge, Catherine Waechter
+ * @version 2.0
+ * 	Rewritten to ensure only one instance of each card is displayed
+ * 	Refactored into smaller methods
+ * 
  * Creation Date: 22/10/20
- * Last Modified: 23/11/20
+ * Last Modified: 21/12/20
  */
 
 package mechanics.actions;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import elements.cards.Card;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 
-import mechanics.TurnController;
 import mechanics.ViewInputTools;
-import mechanics.cardActions.Helicopter;
-import mechanics.cardActions.Sandbags;
 import players.Player;
 
-public class PlayCardView  extends ActionView{
+public class PlayCardView  {
 
 	private static PlayCardView playCardView = null;
-	private TurnController controller;
+	private ActionController actionController;
+	private Scanner user;
 	
 	/**
 	 * getInstance
@@ -37,55 +35,80 @@ public class PlayCardView  extends ActionView{
 	 * @param controller - controller associated with the view
 	 * @return shoreupView (singleton instance)
 	 */
-	public static PlayCardView getInstance(TurnController controller) {
+	public static PlayCardView getInstance() {
 		if(playCardView == null) { 
-			playCardView = new PlayCardView(controller);
+			playCardView = new PlayCardView();
 		}
 		return playCardView;
 	}
-	
-	/**
-	 * ShoreupView Constructor
-	 * @param controller	 - turn controller 
-	 */
-	private PlayCardView(TurnController controller) {
-		this.controller = controller;
-	}
 
-	public boolean doAction(Player player, Scanner user) { // TODO Discuss - Can I rewrite some of this? 
-		int iter=0;
-		int iter2=0;
-		Map<Integer, Integer> handNumConv = new HashMap<Integer, Integer>();
-		String cardName;
-		System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
-		String helicopter = TreasureCardTypes.HELICOPTER.toString();
-		String sandbags = TreasureCardTypes.SANDBAGS.toString();
-		for (Card c: player.getHand().getCards()) {
-			iter2+=1;
-			if( c instanceof TreasureCard) { //It always is but to be safe 	// TODO Discuss - should we do this for all cards all the time? 
-				cardName=((TreasureCard)c).toString();
-				if (cardName.equals(helicopter) || cardName.equals(sandbags)) {
-					iter+=1;
-					handNumConv.put(iter, iter2);
-					System.out.println("["+iter+"]: " + c.toString());
-				}
-			}
-		}
-		int cardNum = ViewInputTools.numbers(user, 0, iter);
+	public void setController(ActionController actionController) {
+		this.actionController = actionController;
+	}
+	
+	public boolean doAction(Player player, Scanner user) { 
+		this.user = user;
 		
-		if (cardNum == 0){
-			//Cancel
+		TreasureCardTypes cardType = getCardType(player);
+		if(cardType == null) {
 			return false;
 		}
-		Card cardToPlay = player.getHand().getCards().get(handNumConv.get(cardNum)-1);
-		System.out.println("Card picked: "+cardToPlay.toString());
-		player.getHand().takeCard(cardToPlay);
-		if (cardToPlay.toString().equals(helicopter)) {
-			Helicopter.play(cardToPlay, player, user);		 // TODO should be done by controller
-		} else if (cardToPlay.toString().equals(sandbags)) {
-			Sandbags.play(cardToPlay, user);				// TODO should be done by controller
-		}
+		
+		playCard(player, cardType);
+
 		return false;
 	}
+	
+	private void playCard(Player player, TreasureCardTypes cardType) {
+		for (Card card : player.getHand().getCards()) {
+			if (((TreasureCard)card).getCardType() == cardType) {
+				actionController.playCard(card, player, user);
+			}
+		}
+	}
+	
+	private TreasureCardTypes getCardType(Player player) {
+		System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
+		
+		int hIndex = 0, sIndex = 0, userIndex = 0;
+		
+		for (Card card: player.getHand().getCards()) {
+		
+			if( card instanceof TreasureCard) { //It always is but to be safe 	// TODO General - check instances when casting
+				
+				if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER && hIndex == 0) {
+					userIndex++;
+					hIndex = userIndex;
+					System.out.println("["+userIndex+"]: " + card);
+				}
+				
+				else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS && hIndex == 0) {
+					userIndex++;
+					sIndex = userIndex;
+					System.out.println("["+userIndex+"]: " + card);
+				}	
+			}
+		}
+		
+		if(userIndex == 0) {
+			System.out.println("No cards to play!");
+			return null;
+		}
+		
+		int cardNum = ViewInputTools.numbers(user, 0, userIndex);
+		
+		if(cardNum == 0) {
+			return null;
+		}
+		else if(cardNum == hIndex) {
+			return TreasureCardTypes.HELICOPTER;
+		}
+		else if(cardNum == sIndex) {
+			return TreasureCardTypes.SANDBAGS;
+		}
+		return null;
+		
+	}
+	
 }
 

@@ -12,7 +12,6 @@
 
 package mechanics.actions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,7 +24,7 @@ import players.Player;
 import players.PlayerList;
 
 
-public class MoveView extends ActionView{
+public class MoveView {
 	
 	private Player playerToMove;
 	private Scanner user;
@@ -129,7 +128,7 @@ public class MoveView extends ActionView{
 	 * @param currentPlayer
 	 * @return player to be moved
 	 */
-	private Player navigatorException(Player currentPlayer) {		// TODO Important - navigator can move player 2 tiles
+	private Player navigatorException(Player currentPlayer) {
 		
 		System.out.println("Who would you like to move?");
 		

@@ -13,7 +13,6 @@
 
 package mechanics.actions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,7 +22,7 @@ import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import players.Player;
 
-public class ShoreupView  extends ActionView{
+public class ShoreupView {
 
 	private static ShoreupView shoreupView = null;
 	private ActionController controller;
