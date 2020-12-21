@@ -32,7 +32,6 @@ public class Helicopter {
 	 * play
 	 * 	moves given player's pawn to a requested tile
 	 * @param player
-	 * @throws IOException 
 	 */
 	public static void play(Card card, Player player, Scanner user) {
 		
@@ -60,12 +59,7 @@ public class Helicopter {
 		int input=sortedTiles.size()+1;
 		//If can't leave pick different option.
 		while (input ==sortedTiles.size()+1) {
-			
-			try{
-				input = ViewInputTools.numbers(user, 1, sortedTiles.size()+1);
-			}catch (IOException ioe) {
-		        System.out.println("Trouble reading user input: " + ioe.getMessage());
-		    } 
+			input = ViewInputTools.numbers(user, 1, sortedTiles.size()+1);
 			
 			if (input == sortedTiles.size()+1) {
 				System.out.println("Trying to leave!");

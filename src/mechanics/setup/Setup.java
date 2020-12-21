@@ -64,9 +64,8 @@ public class Setup {
 	 * 	Creates instances of Player and Game setup, starts the view and controller
 	 * 
 	 * @param user - user input scanner
-	 * @throws IOException
 	 */
-	public void setupAll(Scanner user) throws IOException {
+	public void setupAll(Scanner user) {
 		this.playerSetup = PlayerSetup.getInstance();		// create PlayerSetup instance
 		this.gameSetup = GameSetup.getInstance();			// create GameSetup instance
 		this.observerSetup = ObserverSetup.getInstance();  	// create ObserverSetup instance

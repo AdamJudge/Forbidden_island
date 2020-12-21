@@ -89,7 +89,7 @@ public class MovementTests {
 	// NORMAL
 	// Shoreup tiles for normal pawn. Tile above below left and right of pawn will be normal, remaining 5 flooded.
 	@Test
-	public void allNormalTilesNormalPawn_Success() throws IOException { 	
+	public void allNormalTilesNormalPawn_Success()   { 	
 		normalTileSetup();
 		Tile initTile = player1.getPawn().getTile();
 
@@ -105,7 +105,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allNormalTilesNormalPawn_Failure() throws IOException { 	
+	public void allNormalTilesNormalPawn_Failure()   { 	
 		normalTileSetup();
 		Tile initTile = player1.getPawn().getTile();
 
@@ -121,7 +121,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allNormalTilesNavigator_Success() throws IOException { 	
+	public void allNormalTilesNavigator_Success()   { 	
 		normalTileSetup();
 		Tile initTile = player2.getPawn().getTile();
 
@@ -152,7 +152,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allNormalTilesNavigator_Failure() throws IOException { 	
+	public void allNormalTilesNavigator_Failure()   { 	
 		normalTileSetup();
 		Tile initTile = player2.getPawn().getTile();
 
@@ -183,7 +183,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allNormalTilesExplorer_Success() throws IOException { 	
+	public void allNormalTilesExplorer_Success()   { 	
 		normalTileSetup();
 		Tile initTile = player3.getPawn().getTile();
 
@@ -198,7 +198,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allNormalTilesExplorer_Failure() throws IOException { 	
+	public void allNormalTilesExplorer_Failure()   { 	
 		normalTileSetup();
 		Tile initTile = player3.getPawn().getTile();
 
@@ -216,7 +216,7 @@ public class MovementTests {
 	// FLOODED
 	// Shoreup tiles for normal pawn. Tile above below left and right of pawn will be normal, remaining 5 flooded.
 	@Test
-	public void allFloodedTilesNormalPawn_Success() throws IOException { 	
+	public void allFloodedTilesNormalPawn_Success()   { 	
 		floodTileSetup();
 		Tile initTile = player1.getPawn().getTile();
 
@@ -232,7 +232,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesNormalPawn_Failure() throws IOException { 	
+	public void allFloodedTilesNormalPawn_Failure()   { 	
 		floodTileSetup();
 		Tile initTile = player1.getPawn().getTile();
 
@@ -248,7 +248,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesNavigator_Success() throws IOException { 	
+	public void allFloodedTilesNavigator_Success()   { 	
 		floodTileSetup();
 		Tile initTile = player2.getPawn().getTile();
 
@@ -279,7 +279,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesNormalNavigator_Failure() throws IOException { 	
+	public void allFloodedTilesNormalNavigator_Failure()   { 	
 		floodTileSetup();
 
 		//TODO adam
@@ -309,7 +309,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesExplorer_Success() throws IOException { 	
+	public void allFloodedTilesExplorer_Success()   { 	
 		floodTileSetup();
 		Tile initTile = player3.getPawn().getTile();
 
@@ -325,7 +325,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesExplorer_Failure() throws IOException { 	
+	public void allFloodedTilesExplorer_Failure()   { 	
 		floodTileSetup();
 		Tile initTile = player3.getPawn().getTile();
 
@@ -342,7 +342,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesDiver_Success() throws IOException { 	
+	public void allFloodedTilesDiver_Success()   { 	
 		floodTileSetup();
 		Tile initTile = player4.getPawn().getTile();
 
@@ -358,7 +358,7 @@ public class MovementTests {
 	}
 	
 	@Test
-	public void allFloodedTilesDiver_Failure() throws IOException { 	
+	public void allFloodedTilesDiver_Failure()   { 	
 		floodTileSetup();
 		TileNames initTile = player4.getPawn().getTile().getName();
 		

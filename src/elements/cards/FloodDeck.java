@@ -47,7 +47,6 @@ public class FloodDeck extends Deck{
 	 * draw
 	 * 	draws a floodcard and carries out required flooding. Card is discarded in floodTile method
 	 * return card - Note card has been either used or discarded, does not need to be added back to deck
-	 * @throws IOException 
 	 */
 	@Override
 	public Card draw() {

@@ -21,7 +21,7 @@ public abstract class ActionView{
 	
 	// TODO Discuss - Possibly remove
 	
-	public abstract boolean doAction(Player currentPlayer, Scanner user) throws IOException;
+	public abstract boolean doAction(Player currentPlayer, Scanner user);
 	
 	
 	

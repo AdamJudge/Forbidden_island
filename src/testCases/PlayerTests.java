@@ -30,7 +30,7 @@ public class PlayerTests {
 	}
 	
 	@Test
-	public void fullHandtest() throws IOException {
+	public void fullHandtest()   {
 		
 		PlayerList.getInstance().addPlayer(new Player("Adam"));
 		

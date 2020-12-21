@@ -18,7 +18,7 @@ import mechanics.GamePlay;
 import mechanics.setup.Setup;
 
 public class ForbiddenIsland {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		Scanner inScan = new Scanner(System.in);
 		Setup.getInstance().setupAll(inScan);
 		

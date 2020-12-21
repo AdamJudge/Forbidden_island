@@ -19,7 +19,7 @@ import elements.board.TileStatus;
 public class DeckTest {
 
 	@Test
-	public void treasureDeckContents() throws IOException {
+	public void treasureDeckContents() {
 		
 		TreasureDeck tdeck = TreasureDeck.getInstance();
 			
@@ -72,7 +72,7 @@ public class DeckTest {
 	}
 	
 	@Test
-	public void floodDeckContents() throws IOException {
+	public void floodDeckContents() {
 		
 		FloodDeck fdeck = FloodDeck.getInstance();
 		Set<Tile> usedTiles = new HashSet<Tile>();
@@ -99,7 +99,7 @@ public class DeckTest {
 	}
 
 	@Test
-	public void drawFloodCard() throws IOException {
+	public void drawFloodCard() {
 		
 		FloodDeck.getInstance().tearDown();
 		FloodDiscard.getInstance().tearDown();

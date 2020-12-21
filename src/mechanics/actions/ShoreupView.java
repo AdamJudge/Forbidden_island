@@ -70,12 +70,8 @@ public class ShoreupView  extends ActionView{
 			}
 			ViewDisplayTools.printTileList(possibleTiles);
 		
-			int userNum = 0;
-			try {
-				userNum=ViewInputTools.numbers(user, 0, limit);
-		    } catch (IOException ioe) {
-		        System.out.println("Trouble reading user input: " + ioe.getMessage());
-		    } 
+			int userNum=ViewInputTools.numbers(user, 0, limit);
+
 
 			
 			if(userNum == 0) {

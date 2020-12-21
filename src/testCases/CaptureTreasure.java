@@ -28,7 +28,7 @@ public class CaptureTreasure {
 	private Player player1, player2, player3, player4;
 	
 	@Before
-	public void setup() throws IOException {
+	public void setup() {
 		// Get board
 		testBoard = Board.getInstance();
 		
@@ -107,7 +107,7 @@ public class CaptureTreasure {
 		}
 	}
 	
-	public void giveAnotherCard() throws IOException {
+	public void giveAnotherCard() {
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
 		player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
 		player3.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
@@ -115,7 +115,7 @@ public class CaptureTreasure {
 	}
 	
 	@Test
-	public void failToCaptureAllTreasures() throws IOException {
+	public void failToCaptureAllTreasures() {
 		//Move to correct tile without enough cards
 		moveToCorrectTreasureTiles();
 		//Play sandbag on tile
@@ -148,7 +148,7 @@ public class CaptureTreasure {
 	}
 	
 	@Test
-	public void CaptureAllTreasures() throws IOException {
+	public void CaptureAllTreasures() {
 		//Move to correct tile and obtain correct number of tiles
 		moveToCorrectTreasureTiles();
 		giveAnotherCard();

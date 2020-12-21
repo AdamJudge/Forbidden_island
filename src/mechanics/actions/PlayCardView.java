@@ -71,12 +71,8 @@ public class PlayCardView  extends ActionView{
 				}
 			}
 		}
-		int cardNum = 0;
-		try{
-			cardNum = ViewInputTools.numbers(user, 0, iter);
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
+		int cardNum = ViewInputTools.numbers(user, 0, iter);
+		
 		if (cardNum == 0){
 			//Cancel
 			return false;

@@ -1,12 +1,11 @@
 package mechanics;
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ViewInputTools {
 
-	public static String letters(Scanner user) throws IOException {
+	public static String letters(Scanner user) {
 		String input=null;
 		String pattern="[a-zA-Z]+";
 		while (input==null) {
@@ -37,7 +36,7 @@ public class ViewInputTools {
 		
 	}
 	
-	public static int numbers(Scanner user, int low, int high) throws IOException {
+	public static int numbers(Scanner user, int low, int high) {
 		int inputNum=low-1;
 		while (inputNum <low || inputNum > high) {
 			System.out.println("Enter a number [" + low +"-" +high + "]");

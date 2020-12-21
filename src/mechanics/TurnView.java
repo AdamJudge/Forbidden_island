@@ -1,19 +1,14 @@
 package mechanics;
 
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import players.Player;
 import players.PlayerList;
 import elements.board.Board;
-import elements.board.Tile;
 import elements.cards.*;
-import elements.board.WaterLevel;
 import mechanics.actions.*;
-import mechanics.setup.SetupController;
 
 /**
  * TurnView
@@ -48,7 +43,6 @@ public class TurnView {
 	 * 
 	 * @param player
 	 * @param user
-	 * @throws IOException 
 	 */
 	public void run(Player player, Scanner user) {
 		System.out.println(Board.getInstance());
@@ -95,13 +89,8 @@ public class TurnView {
 		cards.addAll(controller.getHandCards(player));
 		ViewDisplayTools.printCardList(cards);
 		
-		int cardNum = 0;
-		try{
-			ViewInputTools.numbers(user, 1, 6);
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
-		
+		int cardNum = ViewInputTools.numbers(user, 1, 6);
+
 		controller.discard(player, cards.get(cardNum-1));
 	}
 	
@@ -110,7 +99,6 @@ public class TurnView {
 	 * 	Allow user to select desired action. calls each action
 	 * @param user
 	 * @return whether an action was used (0 - no, 1 - yes, -1 - cancel further actions)
-	 * @throws IOException
 	 */
 	private int selectAction(Scanner user) {
 		System.out.println("Select action : ");
@@ -120,12 +108,8 @@ public class TurnView {
 		System.out.println("[4]: Claim a treasure");
 		System.out.println("[5]: Finish turn without another action");
 		System.out.println("[6]: Play a card (Any Player)");
-		int actionNum = 0;
-		try{
-			actionNum = ViewInputTools.numbers(user, 1, 6);
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
+		
+		int actionNum = ViewInputTools.numbers(user, 1, 6);
 		
 		// TODO should allow for discard at end of turn regardless!! bc it doesn't cost an action 
 		
@@ -159,12 +143,8 @@ public class TurnView {
 				iter+=1;
 				System.out.println("["+iter+"]: " + p.getName());
 			}
-			int playerNum = 0;
-			try{
-				playerNum = ViewInputTools.numbers(user, 1, iter);
-			}catch (IOException ioe) {
-		        System.out.println("Trouble reading user input: " + ioe.getMessage());
-		    } 
+			
+			int playerNum = ViewInputTools.numbers(user, 1, iter);
 			
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
 			

@@ -27,7 +27,6 @@ public class Sandbags {
 	/**
 	 * play 
 	 * 	asks for user input and shores up the requested tile
-	 * @throws IOException 
 	 */
 	public static void play(Card card, Scanner user) {
 		
@@ -38,12 +37,8 @@ public class Sandbags {
 			System.out.println("["+iter+"]: " + t.getName());
 			iter+=1;
 		}
-		int input = 0;
-		try{
-			input = ViewInputTools.numbers(user, 1, floodedTiles.size());
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
+		int input = ViewInputTools.numbers(user, 1, floodedTiles.size());
+		
 		//input minus one as start from 0
 		floodedTiles.get(input-1).shoreup();
 		

@@ -69,13 +69,8 @@ public class MoveView extends ActionView{
 		// Get destination from user
 		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
 		ViewDisplayTools.printTileList(possibleTiles);
-		int userNum=0;
-		try{
-			userNum = ViewInputTools.numbers(user, 0, possibleTiles.size());
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
-		
+		int userNum = ViewInputTools.numbers(user, 0, possibleTiles.size());
+		 
 		if(userNum == 0) {
 			return false;
 		}
@@ -93,7 +88,6 @@ public class MoveView extends ActionView{
 	 * 	display and get user input to get a pawn to swim
 	 * @param player
 	 * @param possibleTiles
-	 * @throws IOException
 	 */
 	public void doSwim(Player player, ArrayList<Tile> possibleTiles) {
 		System.out.println("The tile " + player + " was on sank!");
@@ -101,12 +95,8 @@ public class MoveView extends ActionView{
 		
 		ViewDisplayTools.printTileList(possibleTiles);
 		
-		int userNum = 0;
-		try{
-			userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
+		int userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
+		
 		controller.move(player, possibleTiles.get(userNum-1));
 	}
 	
@@ -117,7 +107,6 @@ public class MoveView extends ActionView{
 	 * 
 	 * @param currentPlayer
 	 * @return player to be moved
-	 * @throws IOException
 	 */
 	private Player navigatorException(Player currentPlayer) {		// TODO Important - navigator can move player 2 tiles
 		
@@ -126,12 +115,8 @@ public class MoveView extends ActionView{
 		ArrayList<Player> validPlayers = turnController.getPlayers();
 		ViewDisplayTools.printPlayerList(validPlayers, currentPlayer);
 
-		int input=0;
-		try{
-			input = ViewInputTools.numbers(user, 1, validPlayers.size());
-		}catch (IOException ioe) {
-	        System.out.println("Trouble reading user input: " + ioe.getMessage());
-	    } 
+		int input = ViewInputTools.numbers(user, 1, validPlayers.size());
+		
 		return PlayerList.getInstance().getPlayers().get(input-1);
 	}
 	

@@ -86,7 +86,7 @@ public class ShoreUpTests {
 
 	// Shoreup tiles for normal pawn. Tile above below left and right of pawn will be normal, remaining 5 flooded.
 	@Test
-	public void normalPawnShoreUp() throws IOException { 	
+	public void normalPawnShoreUp()   { 	
 		floodSurroundingTiles();
 		
 		int actionsRequired=4;
@@ -104,7 +104,7 @@ public class ShoreUpTests {
 	
 	// Shoreup tiles for explorer. Can shoreup in all directions. Only tile underneath pawn remains.
 	@Test
-	public void explorerShoreUp() throws IOException { 	//p2 explorer
+	public void explorerShoreUp()   { 	//p2 explorer
 		floodSurroundingTiles();
 		int actionsRequired=8;
 		String input = "1";
@@ -121,7 +121,7 @@ public class ShoreUpTests {
 	
 	// Shoreup tiles for engineer. Tile above below left and right of pawn will be normal, remaining 5 flooded. Less actions required
 	@Test
-	public void engineerPawnShoreUp() throws IOException { //p3 engineer
+	public void engineerPawnShoreUp()   { //p3 engineer
 		floodSurroundingTiles();
 		int actionsRequired=2;
 		

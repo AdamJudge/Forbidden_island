@@ -14,31 +14,45 @@ import mechanics.ViewInputTools;
 public class UserInputTest {
 
 	@Test
-	public void stringInput() throws IOException{
+	public void stringInput()  {
 		String input = "Adam";
+		
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		
 		String output = ViewInputTools.letters(scanner);
-		
+	    
 		assertEquals("Input read by parser should equal user input", input, output);
 	}
 	
 	@Test
-	public void stringInputNumber() throws IOException{
+	public void stringInputNumber()  {
 		String input = "2 \n Adam";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		
-		String output = ViewInputTools.letters(scanner);
+	    String output = ViewInputTools.letters(scanner);
 		
 		assertEquals("Input should not contain numbers", "Adam", output);
 	}
 	
 	@Test
-	public void stringInputWithNumber() throws IOException{
+	public void stringInputBlank()  {
+		String input = "  ";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scanner scanner = new Scanner(in);
+		
+		String output = ViewInputTools.letters(scanner);
+		
+		assertEquals("Input should not contain numbers", " ", output);
+	}
+	
+	
+	@Test
+	public void stringInputWithNumber()  {
 		String input = "Adam2\n Adam";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -50,7 +64,7 @@ public class UserInputTest {
 	}
 
 	@Test
-	public void numberInputInBounds() throws IOException{
+	public void numberInputInBounds()  {
 		String input = "1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -62,7 +76,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void numberInputOutBounds() throws IOException{
+	public void numberInputOutBounds()  {
 		String input = "6\n2"; // first out of bounds, second in bounds. Out of bounds should ask user to input again
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -74,19 +88,19 @@ public class UserInputTest {
 	}
 
 	@Test
-	public void numberInputLetters() throws IOException{
-		String input = "six \n 2"; 
+	public void numberInputLetters()  {
+		String input = "six"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		
-		int output = ViewInputTools.numbers(scanner, 1, 5);
-		
-		assertEquals("Input should not contain letters", 2, output);
+	    assertThrows("Should throw exception", java.util.NoSuchElementException.class, () -> {
+		      ViewInputTools.numbers(scanner, 0, 5);
+		    });
 	}
 	
 	@Test
-	public void numberInputLowLim() throws IOException{
+	public void numberInputLowLim()  {
 		String input = "6"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -98,7 +112,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void numberInputUpperLim() throws IOException{
+	public void numberInputUpperLim()  {
 		String input = "4"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -110,7 +124,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void yesInput() throws IOException{
+	public void yesInput()  {
 		String input = "y"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -122,7 +136,7 @@ public class UserInputTest {
 	}
 		
 	@Test
-	public void noInput() throws IOException{
+	public void noInput()  {
 		String input = "n"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -134,7 +148,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void yesNoInputWrong() throws IOException{
+	public void yesNoInputWrong()  {
 		String input = "yn \n n"; 	// yn should count as a wrong input, only n will be counted
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -146,7 +160,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void yesInputWrong() throws IOException{
+	public void yesInputWrong()  {
 		String input = "e \n y"; 	// e should count as a wrong input, only n will be counted
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);

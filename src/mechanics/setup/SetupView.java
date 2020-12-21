@@ -47,9 +47,8 @@ public class SetupView {
 	 * run
 	 * 	handles steps of setup
 	 * @param user - input scanner
-	 * @throws IOException
 	 */
-	public void run(Scanner user) throws IOException {
+	public void run(Scanner user) {
 		
 		controller.startSetup();	// sets flag to indicate the game is in setup
 		
@@ -97,9 +96,8 @@ public class SetupView {
 	 * 	request difficulty level from user, and send to controller
 	 * 
 	 * @param user - input scanner
-	 * @throws IOException
 	 */
-	private void setupWaterLevel(Scanner user) throws IOException {
+	private void setupWaterLevel(Scanner user) {
 		
 		System.out.println("Which difficulty do you want to play?");
 		
@@ -141,9 +139,8 @@ public class SetupView {
 	 * @param numPlayers - number of players indicated by user
 	 * @param user - input scanner
 	 * @return list of players
-	 * @throws IOException
 	 */
-	private PlayerList getPlayerNames(int numPlayers, Scanner user) throws IOException {
+	private PlayerList getPlayerNames(int numPlayers, Scanner user) {
 		//Sets players names
 		boolean duplicate;
 		Set<String> names = new HashSet<String>();		// TODO is hashset okay here? or does it need to be ordered? 
@@ -171,9 +168,8 @@ public class SetupView {
 	 * 
 	 * @param user - input scanner
 	 * @return inputNum - number of players indicated by user
-	 * @throws IOException
 	 */
-	private int getPlayerNum(Scanner user) throws IOException {
+	private int getPlayerNum(Scanner user) {
 		int inputNum;
 		System.out.println("How many players?");
 		inputNum = ViewInputTools.numbers(user, 2, 4);

@@ -60,7 +60,7 @@ public class GameSetup {
 	 * 	draw 6 flood cards
 	 * @return drawnCards - set of flood cards drawn
 	 */
-	public Set<Card> drawFloodCards() throws IOException{
+	public Set<Card> drawFloodCards() {
 		Set<Card> drawnCards = new HashSet<Card>();
 		for(int i = 0; i<6; i++) {
 			drawnCards.add(FloodDeck.getInstance().draw());

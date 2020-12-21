@@ -42,9 +42,8 @@ public class Turn {
 	 * 	Creates instances of Player and Game setup, starts the view and controller
 	 * 
 	 * @param user - user input scanner
-	 * @throws IOException
 	 */
-	public void doTurn(Player player, Scanner user) throws IOException {
+	public void doTurn(Player player, Scanner user) {
 		
 		TurnView.getInstance().run(player, user);		// TODO find a better way to organise this
 	}

@@ -42,13 +42,12 @@ public class GamePlay extends Subject{
 		return canLeave;
 	}
 	
-	public void playGame(Scanner user) throws IOException {
+	public void playGame(Scanner user) {
 		ArrayList<Player> players = playerList.getPlayers();
 		while (true) {
 			for (int i = 0; i< players.size(); i++) {
 				Turn.getInstance().doTurn(players.get(i), user);	
 			}
-//			this.gameOver=true;
 		}
 	}
 }

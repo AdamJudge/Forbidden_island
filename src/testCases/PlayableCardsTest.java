@@ -30,7 +30,7 @@ public class PlayableCardsTest {
 	private Player player1;
 	
 	@Before
-	public void setup() throws IOException {
+	public void setup()   {
 		testBoard = Board.getInstance();
 		boardTiles = testBoard.getSortedTiles();
 		WaterLevel.getInstance().setDifficulty(Difficulty.NOVICE);
@@ -64,7 +64,7 @@ public class PlayableCardsTest {
 	}
 	
 	@Test
-	public void testSandbags() throws IOException{
+	public void testSandbags()  {
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		// Flood Tile
 		floodATile();
@@ -87,7 +87,7 @@ public class PlayableCardsTest {
 	}
 
 	@Test
-	public void testHelicopter() throws IOException{
+	public void testHelicopter()  {
 		
 		//Try helicopter lift to different tile
 		String input = "2\n 1";
