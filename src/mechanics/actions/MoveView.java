@@ -62,23 +62,44 @@ public class MoveView extends ActionView{
 			playerToMove = navigatorException(currentPlayer);
 		}
 		
-		// Print tiles the player can move to
-		System.out.println(playerToMove + " can move to ");
-		ArrayList<Tile> possibleTiles = controller.getMoveCheck(playerToMove);
-		
-		// Get destination from user
-		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
-		ViewDisplayTools.printTileList(possibleTiles);
-		int userNum = ViewInputTools.numbers(user, 0, possibleTiles.size());
-		 
-		if(userNum == 0) {
-			return false;
+		int moves = 1;
+		if(currentPlayer != playerToMove) {
+			moves = 2;
 		}
 		
-		// move pawn
-		Tile newTile = controller.move(playerToMove, possibleTiles.get(userNum-1));
-		System.out.println(playerToMove + " has moved to " + newTile);		// TODO should we check the destination rather than just assuming ? 
-		
+		for(int i = 0; i<moves; i++) {
+			// Print tiles the player can move to
+			System.out.println(playerToMove + " can move to ");
+			
+			ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
+			if(playerToMove == currentPlayer) {
+				 possibleTiles = controller.getMoveCheck(playerToMove);
+			}
+			else {
+				possibleTiles = controller.getMoveOtherCheck(playerToMove, currentPlayer);
+			}
+			// Get destination from user
+			System.out.println("Which tile do you want to move to?");
+			if(i == 0) {
+				System.out.println("(Enter 0 to cancel and pick another action)");
+			}
+			else {
+				System.out.println("Enter 0 to stop moving " + playerToMove + ". Action will still be used for 1st move.");
+			}
+			ViewDisplayTools.printTileList(possibleTiles);
+			int userNum = ViewInputTools.numbers(user, 0, possibleTiles.size());
+			 
+			if(userNum == 0 && i == 0) {
+				return false;
+			}
+			else if(userNum == 0) {
+				break;
+			}
+			// move pawn
+			Tile newTile = controller.move(playerToMove, possibleTiles.get(userNum-1));
+			
+			System.out.println(playerToMove + " has moved to " + newTile);	 
+		}
 		return true;
 	}
 	

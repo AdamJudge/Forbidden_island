@@ -12,6 +12,7 @@ import elements.cards.Card;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 import elements.pawns.Messenger;
+import elements.pawns.Navigator;
 import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
 import mechanics.TurnController;
@@ -191,6 +192,21 @@ public class ActionController {
 			moveView.doSwim(player, possibleTiles);
 		}
 
+	}
+	
+	/**
+	 * moveOtherCheck
+	 * 	For navigator to move other players
+	 * @param playerToMove
+	 * @param navigatorPlayer
+	 * @param destination
+	 * @return tile the other player is now on
+	 */
+	public ArrayList<Tile> getMoveOtherCheck(Player playerToMove, Player navigatorPlayer) {
+		if(navigatorPlayer.getPawn() instanceof Navigator) {
+			return ((Navigator)navigatorPlayer.getPawn()).moveOtherCheck(playerToMove.getPawn());	
+		}
+		return null;
 	}
 	
 	/**

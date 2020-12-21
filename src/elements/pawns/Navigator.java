@@ -23,24 +23,13 @@ public class Navigator extends Pawn {
 	/**
 	 * moveOtherCheck
 	 * 	Returns set of tiles another pawn can move to (only adjacent tiles) 
-	 * ------------------------------------- NOTE: can do this twice for one action, but will need to be checked again after moving once ------------------!!
 	 * @param otherPawn - pawn we want the navigator to move
 	 * @param allTiles 	
 	 * @return set of valid tiles for the other pawn 
 	 */
 	public ArrayList<Tile> moveOtherCheck(Pawn otherPawn) {
-		ArrayList<Tile> validTiles = otherPawn.moveCheck(); 	// only adjacent tiles, regardless of pawn type
+		ArrayList<Tile> validTiles = otherPawn.getAdjacent(); 	// only adjacent tiles, regardless of pawn type
 		return validTiles;
-	}
-	
-	/**
-	 * moveOther
-	 * 	moves given pawn to a destination tile
-	 * @param otherPawn
-	 * @param destination
-	 */
-	public void moveOther(Pawn otherPawn, Tile destination) {
-		((Pawn)otherPawn).move(destination);		// TODO needs to use super version of move (this doesn't work)
 	}
 	
 	/**
