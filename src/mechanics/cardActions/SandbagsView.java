@@ -1,15 +1,15 @@
 package mechanics.cardActions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import elements.board.Board;
 import elements.board.Tile;
-import elements.board.TileStatus;
 import elements.cards.Card;
-import elements.cards.TreasureDiscard;
+import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
+import mechanics.actions.ActionController;
+import mechanics.TurnController;
+import players.Player;
 
 /**
  * Sandbags
@@ -22,46 +22,51 @@ import mechanics.ViewInputTools;
  * Last modified:25/11/20
  *
  */
-public class SandbagsView {
+public class SandbagsView {		// TODO combine helicopter and sandbags? 
+	
+	private CardActionController controller;
+	private ActionController actionController;
+	private TurnController turnController;
+	public static SandbagsView sView = null;
+	
+	/**
+	 * getInstance
+	 * 	get singleton instance of HelicopterView
+	 * @return actionController (singleton instance)
+	 */
+	public static SandbagsView getInstance() {
+		if(sView == null) { 
+			sView = new SandbagsView();
+		}
+		return sView;
+	}
+	
+	public void setController(CardActionController cardController, ActionController actionController, TurnController turnController) {
+		this.controller = cardController;
+		this.actionController = actionController;
+		this.turnController = turnController;
+	}
 	
 	/**
 	 * play 
 	 * 	asks for user input and shores up the requested tile
 	 */
-	public static void play(Card card, Scanner user) {
+	public void play(Player player, Card card, Scanner user) {
 		
-		ArrayList<Tile> floodedTiles = getFloodedTiles();
-		int iter=1;
-		System.out.println("Which tile do you want to shore up?");
-		for (Tile t:floodedTiles) {
-			System.out.println("["+iter+"]: " + t.getName());
-			iter+=1;
-		}
-		int input = ViewInputTools.numbers(user, 1, floodedTiles.size());
+		ArrayList<Tile> floodedTiles = controller.getFloodedTiles();
+		System.out.println("Which tile do you want to shore up? (0 to cancel)");
+		ViewDisplayTools.printTileList(floodedTiles);
+		
+		int input = ViewInputTools.numbers(user, 0, floodedTiles.size());
 		
 		//input minus one as start from 0
-		floodedTiles.get(input-1).shoreup();
 		
-		TreasureDiscard.getInstance().addCard(card);
+		actionController.shoreup(floodedTiles.get(input-1));
 		
+		turnController.discard(player, card);
+				
 	}
 	
-	/**
-	 * getFloodedTiles
-	 * 	returns list of tiles that can be shored up
-	 * @return floodedTiles
-	 */
-	private static ArrayList<Tile> getFloodedTiles(){
-		ArrayList<Tile> floodedTiles = new ArrayList<Tile>();
-		
-		for(Tile tile : Board.getInstance().getRemainingTiles()) {
-			if(tile.getStatus() == TileStatus.FLOODED) {
-				floodedTiles.add(tile);
-				System.out.println("[" + floodedTiles.size() + "] " + tile);
-			}
-		}
-		
-		return floodedTiles;
-	}
+	
 
 }
