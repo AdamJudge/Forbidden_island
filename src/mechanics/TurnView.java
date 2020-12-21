@@ -149,7 +149,7 @@ public class TurnView {
 			
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
 			
-			if(PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
+			if(PlayCardView.getInstance().doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
 				return 1;				
 			}
  
@@ -169,10 +169,11 @@ public class TurnView {
      */
     public void setupView(TurnController turnController, ActionController actionController) {
     	this.controller = turnController;
-    	ClaimTreasureView.getInstance().setController(actionController);
+    	ClaimTreasureView.getInstance().setController(actionController);			// TODO Cat Probably shouldn't all be here
     	GiveCardView.getInstance().setController(turnController, actionController);
     	MoveView.getInstance().setController(turnController, actionController);
     	ShoreupView.getInstance().setController(actionController);
+    	PlayCardView.getInstance().setController(actionController);
     }
     
 	

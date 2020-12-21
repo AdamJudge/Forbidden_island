@@ -1,10 +1,10 @@
 package mechanics.actions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Scanner;
 
 import elements.board.Board;
 import elements.board.Tile;
@@ -16,6 +16,8 @@ import elements.pawns.Navigator;
 import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
 import mechanics.TurnController;
+import mechanics.cardActions.Helicopter;
+import mechanics.cardActions.Sandbags;
 import players.Player;
 
 /**
@@ -230,4 +232,13 @@ public class ActionController {
 		tile.shoreup();
 	}
 	
+	
+	public void playCard(Card card, Player player, Scanner user) {
+		if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER) {
+			Helicopter.play(card, player, user);
+		}
+		else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
+			Sandbags.play(card, user);
+		}
+	}
 }

@@ -18,6 +18,7 @@ import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
 import mechanics.TurnController;
 import mechanics.TurnView;
+import mechanics.actions.ActionController;
 import mechanics.actions.PlayCardView;
 import players.*;
 
@@ -50,6 +51,8 @@ public class PlayableCardsTest {
 		player1.setHand(new Hand());
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.SANDBAGS, null));
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.HELICOPTER, null));
+		
+		PlayCardView.getInstance().setController(ActionController.getInstance());		// TODO Adam : I think this is right but not 100% sure! -Cat
 	}
 	
 	public void floodATile() {
@@ -76,7 +79,7 @@ public class PlayableCardsTest {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 
-		PlayCardView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
+		PlayCardView.getInstance().doAction(player1, scanner);
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		
 		int handSize=player1.getHand().getCards().size();
@@ -94,7 +97,7 @@ public class PlayableCardsTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
-		PlayCardView.getInstance(TurnController.getInstance()).doAction(player1, scanner);
+		PlayCardView.getInstance().doAction(player1, scanner);
 		
 		//TODO better than this
 		assertTrue(player1.getPawn().getTile().getName().equals(TileNames.CAVE_OF_EMBERS));
