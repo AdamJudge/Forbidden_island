@@ -1,11 +1,8 @@
 package mechanics;
 
 import java.util.Scanner;
-<<<<<<< HEAD
 import java.util.Set;
 import java.io.IOException;
-=======
->>>>>>> e309806c74f79b1d5d17f08f2245fb105774ec14
 import java.util.ArrayList;
 
 import players.Player;
