@@ -78,7 +78,7 @@ public class ShoreupView {
 			}
 			
 			Tile chosenTile = possibleTiles.get(userNum-1);
-			controller.shoreup(player, chosenTile);
+			controller.shoreup(chosenTile);
 			actionUsed = true;
 			
 			System.out.println("Tile : " + chosenTile + " Status: " + chosenTile.getStatus().name()); 		// TODO do in controller
