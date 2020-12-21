@@ -34,7 +34,7 @@ public class FloodTile{
 	 * 	if tile is flooded, remove tile, and remove card (ie don't add to discard)
 	 * @param card
 	 */
-	public static void floodTile(FloodCard card, ActionController controller) throws IOException {
+	public static void floodTile(FloodCard card, ActionController controller) {
 		
 		Tile tile = card.getTile();
 		

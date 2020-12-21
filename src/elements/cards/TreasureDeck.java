@@ -44,7 +44,7 @@ public class TreasureDeck extends Deck {
 	 *	otherwise the card is returned
 	 *	@return card
 	 */
-	public Card draw() throws IOException {
+	public Card draw() {
 		TreasureCard card = (TreasureCard)super.draw();
 		
 		// if in setup mode, waters rise cards drawn are returned to the deck, which is then shuffled

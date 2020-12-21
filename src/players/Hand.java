@@ -13,8 +13,6 @@
 
 package players;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class Hand {
 		hand = new ArrayList<Card>();
 	}
 	
-	public void addCard(Card card) throws IOException {
+	public void addCard(Card card) {
 		this.hand.add(card);
 		if(hand.size() >= 6) {
 			TurnController.getInstance().doDiscard();

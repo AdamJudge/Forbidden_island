@@ -52,7 +52,7 @@ public class MoveView extends ActionView{
 	 * 	display and get inputs for movement action
 	 * 
 	 */
-	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
+	public boolean doAction(Player currentPlayer, Scanner user) {
 		
 		this.user = user;
 		playerToMove = currentPlayer;
@@ -69,7 +69,13 @@ public class MoveView extends ActionView{
 		// Get destination from user
 		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
 		ViewDisplayTools.printTileList(possibleTiles);
-		int userNum=ViewInputTools.numbers(user, 0, possibleTiles.size());
+		int userNum=0;
+		try{
+			userNum = ViewInputTools.numbers(user, 0, possibleTiles.size());
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
+		
 		if(userNum == 0) {
 			return false;
 		}
@@ -89,13 +95,18 @@ public class MoveView extends ActionView{
 	 * @param possibleTiles
 	 * @throws IOException
 	 */
-	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
+	public void doSwim(Player player, ArrayList<Tile> possibleTiles) {
 		System.out.println("The tile " + player + " was on sank!");
 		System.out.println("Where would you like to swim? ");
 		
 		ViewDisplayTools.printTileList(possibleTiles);
 		
-		int userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
+		int userNum = 0;
+		try{
+			userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
 		controller.move(player, possibleTiles.get(userNum-1));
 	}
 	
@@ -108,14 +119,19 @@ public class MoveView extends ActionView{
 	 * @return player to be moved
 	 * @throws IOException
 	 */
-	private Player navigatorException(Player currentPlayer) throws IOException{		// TODO Important - navigator can move player 2 tiles
+	private Player navigatorException(Player currentPlayer) {		// TODO Important - navigator can move player 2 tiles
 		
 		System.out.println("Who would you like to move?");
 		
 		ArrayList<Player> validPlayers = turnController.getPlayers();
 		ViewDisplayTools.printPlayerList(validPlayers, currentPlayer);
 
-		int input=ViewInputTools.numbers(user, 1, validPlayers.size());
+		int input=0;
+		try{
+			input = ViewInputTools.numbers(user, 1, validPlayers.size());
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
 		return PlayerList.getInstance().getPlayers().get(input-1);
 	}
 	

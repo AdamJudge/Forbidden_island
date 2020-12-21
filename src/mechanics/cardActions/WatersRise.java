@@ -22,7 +22,7 @@ import elements.cards.TreasureDiscard;
  */
 public class WatersRise {
 
-	public static void play(Card card) throws IOException {
+	public static void play(Card card) {
 		WaterLevel.getInstance().raise_level();
 		
 		// shuffle and return to top of the deck

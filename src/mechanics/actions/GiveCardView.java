@@ -32,7 +32,7 @@ public class GiveCardView  extends ActionView{
 	
 	private Scanner user; 
 	
-	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
+	public boolean doAction(Player currentPlayer, Scanner user) {
 		
 		this.user = user;
 		
@@ -50,7 +50,13 @@ public class GiveCardView  extends ActionView{
 
 		// able to proceed
 		// get card to be given to playerToGive
-		Card selectedCard = getCardToGive(currentPlayer, playerToGive);
+		Card selectedCard = null;
+		try {
+			selectedCard = getCardToGive(currentPlayer, playerToGive);
+		} catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
+		
 		if(selectedCard == null) {
 			return false;
 		}
@@ -89,14 +95,18 @@ public class GiveCardView  extends ActionView{
 		return cardsToGive.get(userNum-1);
 	}
 	
-	private Player getPlayerToGive(Player currentPlayer) throws IOException {
+	private Player getPlayerToGive(Player currentPlayer) {
 		System.out.println("Who would you like to give a card to? (Enter 0 to cancel and pick another action)");
 		
 		ArrayList<Player> possiblePlayers = controller.getGiveCardCheck(currentPlayer);
 		ViewDisplayTools.printPlayerList(possiblePlayers, currentPlayer);
 		
-		int userNum=ViewInputTools.numbers(user, 0, possiblePlayers.size());
-		
+		int userNum = 0;
+		try {
+			userNum=ViewInputTools.numbers(user, 0, possiblePlayers.size());
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
 		if(userNum == 0) {
 			return null;	// return null player if none selected
 		}

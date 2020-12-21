@@ -43,7 +43,7 @@ public abstract class Deck {
 	 * 	returns the top card of the deck
 	 * @return
 	 */
-	public Card draw() throws IOException {
+	public Card draw() {
 		Card cardDrawn = cards.pop();
 		return cardDrawn;
 	}

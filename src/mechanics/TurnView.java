@@ -50,7 +50,7 @@ public class TurnView {
 	 * @param user
 	 * @throws IOException 
 	 */
-	public void run(Player player, Scanner user) throws IOException  {
+	public void run(Player player, Scanner user) {
 		System.out.println(Board.getInstance());
 
 		this.user = user;
@@ -89,13 +89,18 @@ public class TurnView {
 	
 	
 	
-	public void doDiscard(Player player) throws IOException {
+	public void doDiscard(Player player) {
 		System.out.println(player + "'s hand is full! Please select a card to discard: ");
 		ArrayList<Card> cards = new ArrayList<Card>();
 		cards.addAll(controller.getHandCards(player));
 		ViewDisplayTools.printCardList(cards);
 		
-		int cardNum = ViewInputTools.numbers(user, 1, 6);
+		int cardNum = 0;
+		try{
+			ViewInputTools.numbers(user, 1, 6);
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
 		
 		controller.discard(player, cards.get(cardNum-1));
 	}
@@ -107,7 +112,7 @@ public class TurnView {
 	 * @return whether an action was used (0 - no, 1 - yes, -1 - cancel further actions)
 	 * @throws IOException
 	 */
-	private int selectAction(Scanner user) throws IOException {
+	private int selectAction(Scanner user) {
 		System.out.println("Select action : ");
 		System.out.println("[1]: Move");
 		System.out.println("[2]: Shore-up a tile");
@@ -115,7 +120,12 @@ public class TurnView {
 		System.out.println("[4]: Claim a treasure");
 		System.out.println("[5]: Finish turn without another action");
 		System.out.println("[6]: Play a card (Any Player)");
-		int actionNum = ViewInputTools.numbers(user, 1, 6);
+		int actionNum = 0;
+		try{
+			actionNum = ViewInputTools.numbers(user, 1, 6);
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
 		
 		// TODO should allow for discard at end of turn regardless!! bc it doesn't cost an action 
 		
@@ -149,7 +159,13 @@ public class TurnView {
 				iter+=1;
 				System.out.println("["+iter+"]: " + p.getName());
 			}
-			int playerNum = ViewInputTools.numbers(user, 1, iter);
+			int playerNum = 0;
+			try{
+				playerNum = ViewInputTools.numbers(user, 1, iter);
+			}catch (IOException ioe) {
+		        System.out.println("Trouble reading user input: " + ioe.getMessage());
+		    } 
+			
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
 			
 			if(PlayCardView.getInstance(controller).doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {

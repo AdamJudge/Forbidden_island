@@ -58,7 +58,7 @@ public class TurnController {
 		}
 	}
 	
-	public void doDiscard() throws IOException{
+	public void doDiscard() {
 		
 		for(Player player : PlayerList.getInstance().getPlayers()) {
 			if(player.getHand().getCards().size() == 6) {
@@ -104,7 +104,7 @@ public class TurnController {
 	 * drawFloodCards
 	 * 	Draw flood cards according to water level
 	 */
-	public Set<Card> drawFloodCards() throws IOException {			// TODO should this be more abstract? 
+	public Set<Card> drawFloodCards() {			// TODO should this be more abstract? 
 		Set<Card> cardsDrawn = new HashSet<Card>();
 		for(int i=0; i< WaterLevel.getInstance().getNbrCards(); i++) {
 			cardsDrawn.add(FloodDeck.getInstance().draw()); 	// cards drawn will automatically flood
@@ -117,7 +117,7 @@ public class TurnController {
 	 * 	draw two treasure cards. Add to player's hand
 	 * @param player
 	 */
-	public Card drawTreasureCard(Player player) throws IOException {	// TODO should this be more abstract? 
+	public Card drawTreasureCard(Player player) {	// TODO should this be more abstract? 
 		Card card;
 		card = TreasureDeck.getInstance().draw();
 		if(((TreasureCard)card).getCardType() != TreasureCardTypes.WATERSRISE) {		

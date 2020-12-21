@@ -50,7 +50,7 @@ public class FloodDeck extends Deck{
 	 * @throws IOException 
 	 */
 	@Override
-	public Card draw() throws IOException {
+	public Card draw() {
 		FloodCard card = (FloodCard)super.draw();
 		FloodTile.floodTile(card, controller);
 		

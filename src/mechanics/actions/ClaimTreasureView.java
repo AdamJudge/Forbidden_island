@@ -39,7 +39,7 @@ public class ClaimTreasureView extends ActionView{
 	 * @param scanner
 	 * @return true if action was carried out, false if cancelled 
 	 */
-	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
+	public boolean doAction(Player currentPlayer, Scanner user) {
 	
 		this.user = user;
 		

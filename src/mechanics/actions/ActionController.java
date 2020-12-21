@@ -154,7 +154,7 @@ public class ActionController {
 		}
 	}
 	
-	public void giveCard(Player playerFrom, Player playerTo, Card card) throws IOException {
+	public void giveCard(Player playerFrom, Player playerTo, Card card) {
 		playerFrom.getHand().takeCard(card);
 		playerTo.getHand().addCard(card);
 	}
@@ -181,7 +181,7 @@ public class ActionController {
 	}
 	
 
-	public void doSwim(ArrayList<Player> players) throws IOException {
+	public void doSwim(ArrayList<Player> players) {
 		// check that all players can swim somewhere first
 		
 		for(Player player : players) {

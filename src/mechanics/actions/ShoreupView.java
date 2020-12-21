@@ -51,8 +51,8 @@ public class ShoreupView  extends ActionView{
 	 * 	Engineer can shore up twice
 	 * 
 	 */
-	public boolean doAction(Player player, Scanner user) throws IOException {	// TODO can we refactor this into smaller functions?? 
-		int limit, userNum;
+	public boolean doAction(Player player, Scanner user) {	// TODO can we refactor this into smaller functions?? 
+		int limit;
 		
 		boolean actionUsed = false;
 		for(int i = 0; i<2; i++) {
@@ -70,7 +70,13 @@ public class ShoreupView  extends ActionView{
 			}
 			ViewDisplayTools.printTileList(possibleTiles);
 		
-			userNum=ViewInputTools.numbers(user, 0, limit);
+			int userNum = 0;
+			try {
+				userNum=ViewInputTools.numbers(user, 0, limit);
+		    } catch (IOException ioe) {
+		        System.out.println("Trouble reading user input: " + ioe.getMessage());
+		    } 
+
 			
 			if(userNum == 0) {
 				return actionUsed;

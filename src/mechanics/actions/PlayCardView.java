@@ -52,7 +52,7 @@ public class PlayCardView  extends ActionView{
 		this.controller = controller;
 	}
 
-	public boolean doAction(Player player, Scanner user) throws IOException { // TODO Discuss - Can I rewrite some of this? 
+	public boolean doAction(Player player, Scanner user) { // TODO Discuss - Can I rewrite some of this? 
 		int iter=0;
 		int iter2=0;
 		Map<Integer, Integer> handNumConv = new HashMap<Integer, Integer>();
@@ -71,7 +71,12 @@ public class PlayCardView  extends ActionView{
 				}
 			}
 		}
-		int cardNum = ViewInputTools.numbers(user, 0, iter);
+		int cardNum = 0;
+		try{
+			cardNum = ViewInputTools.numbers(user, 0, iter);
+		}catch (IOException ioe) {
+	        System.out.println("Trouble reading user input: " + ioe.getMessage());
+	    } 
 		if (cardNum == 0){
 			//Cancel
 			return false;
