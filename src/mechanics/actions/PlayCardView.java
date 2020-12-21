@@ -12,19 +12,14 @@
 package mechanics.actions;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
-import elements.board.Tile;
 import elements.cards.Card;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
-import elements.pawns.Engineer;
-import elements.pawns.Pawn;
+
 import mechanics.TurnController;
 import mechanics.ViewInputTools;
 import mechanics.cardActions.Helicopter;
@@ -57,17 +52,17 @@ public class PlayCardView  extends ActionView{
 		this.controller = controller;
 	}
 
-	public boolean doAction(Player player, Scanner user) throws IOException {
+	public boolean doAction(Player player, Scanner user) throws IOException { // TODO Discuss - Can I rewrite some of this? 
 		int iter=0;
 		int iter2=0;
 		Map<Integer, Integer> handNumConv = new HashMap<Integer, Integer>();
 		String cardName;
-		System.out.println("Which card do you want to play " + player.getName() +"? (0 to cancel)");
+		System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
 		String helicopter = TreasureCardTypes.HELICOPTER.toString();
 		String sandbags = TreasureCardTypes.SANDBAGS.toString();
 		for (Card c: player.getHand().getCards()) {
 			iter2+=1;
-			if( c instanceof TreasureCard) { //It always is but to be safe
+			if( c instanceof TreasureCard) { //It always is but to be safe 	// TODO Discuss - should we do this for all cards all the time? 
 				cardName=((TreasureCard)c).toString();
 				if (cardName.equals(helicopter) || cardName.equals(sandbags)) {
 					iter+=1;

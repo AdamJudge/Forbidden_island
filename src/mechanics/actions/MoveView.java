@@ -5,10 +5,9 @@
  * 
  * @author Adam Judge, Catherine Waechter
  * @version 2.2
- * 	adjusted for ActionController
  * 	
  * Creation Date: 22/10/20
- * Last Modified: 04/12/20
+ * Last Modified: 19/12/20
  */
 
 package mechanics.actions;
@@ -48,11 +47,48 @@ public class MoveView extends ActionView{
 		return moveView;
 	}
 	
-	public void setController(TurnController turnController, ActionController controller) {
-		this.controller = controller;
-		this.turnController = turnController;
+	/**
+	 * doAction
+	 * 	display and get inputs for movement action
+	 * 
+	 */
+	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
+		
+		this.user = user;
+		playerToMove = currentPlayer;
+	
+		// Navigator exception
+		if(currentPlayer.getPawn() instanceof Navigator) {  // TODO do the check in controller?  
+			playerToMove = navigatorException(currentPlayer);
+		}
+		
+		// Print tiles the player can move to
+		System.out.println(playerToMove + " can move to ");
+		ArrayList<Tile> possibleTiles = controller.getMoveCheck(playerToMove);
+		
+		// Get destination from user
+		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
+		ViewDisplayTools.printTileList(possibleTiles);
+		int userNum=ViewInputTools.numbers(user, 0, possibleTiles.size());
+		if(userNum == 0) {
+			return false;
+		}
+		
+		// move pawn
+		Tile newTile = controller.move(playerToMove, possibleTiles.get(userNum-1));
+		System.out.println(playerToMove + " has moved to " + newTile);		// TODO should we check the destination rather than just assuming ? 
+		
+		return true;
 	}
 	
+	
+	/**
+	 * doSwim
+	 * 	display and get user input to get a pawn to swim
+	 * @param player
+	 * @param possibleTiles
+	 * @throws IOException
+	 */
 	public void doSwim(Player player, ArrayList<Tile> possibleTiles) throws IOException {
 		System.out.println("The tile " + player + " was on sank!");
 		System.out.println("Where would you like to swim? ");
@@ -61,36 +97,18 @@ public class MoveView extends ActionView{
 		
 		int userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
 		controller.move(player, possibleTiles.get(userNum-1));
-		
 	}
 	
-	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
-		
-		this.user = user;
-		playerToMove = currentPlayer;
 	
-		// Navigator exception
-		if(currentPlayer.getPawn() instanceof Navigator) {  // TODO do the check in controller? 
-			playerToMove = navigatorException(currentPlayer);
-		}
-		
-		System.out.println(playerToMove + " can move to ");
-		ArrayList<Tile> possibleTiles = controller.getMoveCheck(playerToMove);
-		int limit = possibleTiles.size();
-		
-		System.out.println("Which tile do you want to move to? (Enter 0 to cancel and pick another action)");
-		ViewDisplayTools.printTileList(possibleTiles);
-		int userNum=ViewInputTools.numbers(user, 0, limit);
-		if(userNum == 0) {
-			return false;
-		}
-		Tile newTile = controller.move(playerToMove, possibleTiles.get(userNum-1));
-		System.out.println(playerToMove + " has moved to " + newTile);
-		
-		return true;
-	}
-	
-	private Player navigatorException(Player currentPlayer) throws IOException{
+	/**
+	 * navigatorException
+	 * 	Navigator can move another player. need to get required player from user
+	 * 
+	 * @param currentPlayer
+	 * @return player to be moved
+	 * @throws IOException
+	 */
+	private Player navigatorException(Player currentPlayer) throws IOException{		// TODO Important - navigator can move player 2 tiles
 		
 		System.out.println("Who would you like to move?");
 		
@@ -99,6 +117,16 @@ public class MoveView extends ActionView{
 
 		int input=ViewInputTools.numbers(user, 1, validPlayers.size());
 		return PlayerList.getInstance().getPlayers().get(input-1);
+	}
 	
+	/**
+	 * setController
+	 * 	set action and turn controllers
+	 * @param turnController
+	 * @param controller
+	 */
+	public void setController(TurnController turnController, ActionController controller) {
+		this.controller = controller;
+		this.turnController = turnController;
 	}
 }

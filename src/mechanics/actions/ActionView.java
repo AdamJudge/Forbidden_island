@@ -14,16 +14,12 @@
 package mechanics.actions;
 
 import players.Player;
-import elements.board.Tile;
-import elements.cards.Card;
-
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.IOException;
 
 public abstract class ActionView{
 	
-	// TODO put printing functions in some static ViewTools class or smth
+	// TODO Discuss - Possibly remove
 	
 	public abstract boolean doAction(Player currentPlayer, Scanner user) throws IOException;
 	

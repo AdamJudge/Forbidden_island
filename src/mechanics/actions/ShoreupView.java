@@ -4,8 +4,8 @@
  * View for shoring up action
  * 
  * @author Adam Judege, Catherine Waechter
- * @version 2.1
- *  adjusted for ActionController
+ * @version 2.2
+ *  simplified checks on doAction returns with actionUsed variable
  * 
  * Creation Date: 22/10/20
  * Last Modified: 17/12/20
@@ -15,12 +15,10 @@ package mechanics.actions;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import elements.board.Tile;
 import elements.pawns.Engineer;
-import elements.pawns.Pawn;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import players.Player;
@@ -47,11 +45,24 @@ public class ShoreupView  extends ActionView{
 		controller = actionController;
 	}
 
-	public boolean doAction(Player player, Scanner user) throws IOException {
+	/**
+	 * doAction
+	 * 	carries out shoreUp
+	 * 	Engineer can shore up twice
+	 * 
+	 */
+	public boolean doAction(Player player, Scanner user) throws IOException {	// TODO can we refactor this into smaller functions?? 
 		int limit, userNum;
 		
+		boolean actionUsed = false;
 		for(int i = 0; i<2; i++) {
 			ArrayList<Tile> possibleTiles = controller.getShoreupCheck(player);
+			
+			// if no tiles can be shored up
+			if(possibleTiles.isEmpty()) {
+				System.out.println("No tiles to shore up!");
+				return actionUsed;		
+			}
 			
 			limit = possibleTiles.size();
 			if(i == 0) {	// printout is different if there is another shore up
@@ -60,27 +71,26 @@ public class ShoreupView  extends ActionView{
 			ViewDisplayTools.printTileList(possibleTiles);
 		
 			userNum=ViewInputTools.numbers(user, 0, limit);
-			if(userNum == 0 && i == 0) {
-				return false;
-			}
-			else if(userNum == 0 && i == 1) {
-				break;
+			
+			if(userNum == 0) {
+				return actionUsed;
 			}
 			
 			Tile chosenTile = possibleTiles.get(userNum-1);
 			controller.shoreup(player, chosenTile);
+			actionUsed = true;
 			
-			System.out.println("Tile : " + chosenTile + " Status: " + chosenTile.getStatus().name());
+			System.out.println("Tile : " + chosenTile + " Status: " + chosenTile.getStatus().name()); 		// TODO do in controller
 			
-			if(player.getPawn() instanceof Engineer && i==0) {
+			if(player.getPawn() instanceof Engineer && i==0) { 		// TODO should this be checked in controller?
 				System.out.println("You can shore up another tile for no additional actions!");
-				System.out.println("Which tile do you want to shore up? [1-9] (Enter 0 if you don't want to shore up another tile. Will still use an action for first shore-up)");
+				System.out.println("Which tile do you want to shore up? (Enter 0 if you don't want to shore up another tile. Will still use an action for first shore-up)");
 			}
 			else {	// other pawns don't get a second shore up
 				break;
 			}
 		}	
-		return true;
+		return actionUsed;
 	}
 }
 

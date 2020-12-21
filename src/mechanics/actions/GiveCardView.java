@@ -4,11 +4,11 @@
  *  View to display action of giving a card
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 2.1
- * 	adjusted for ActionController
+ * @version 2.2
+ * 	Cleaned up doAction with private methods
  * 
  * Creation Date: 22/10/20
- * Last Modified: 17/12/20
+ * Last Modified: 19/12/20
  */
 
 package mechanics.actions;
@@ -22,9 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import players.Player;
 import elements.cards.Card;
-import elements.pawns.Messenger;
 
 public class GiveCardView  extends ActionView{
 
@@ -32,43 +30,30 @@ public class GiveCardView  extends ActionView{
 	private ActionController controller;
 	private TurnController turnController;
 	
-	private Scanner user;
+	private Scanner user; 
 	
 	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
 		
 		this.user = user;
 		
-		ArrayList<Player> possiblePlayers = controller.getGiveCardCheck(currentPlayer);
-
-		int limit = possiblePlayers.size();
-		System.out.println("Who would you like to give a card to? (Enter 0 to cancel and pick another action)");
-		ViewDisplayTools.printPlayerList(possiblePlayers, currentPlayer);
-		int userNum=ViewInputTools.numbers(user, 0, limit);
-		if(userNum == 0) {
+		// Get player to give a card to 
+		Player playerToGive = getPlayerToGive(currentPlayer);
+		if (playerToGive == null) {
 			return false;
 		}
 		
-		Player playerToGive = possiblePlayers.get(userNum-1);
-		
-		if(turnController.handSize(playerToGive) == 5) {
-			System.out.println(playerToGive + "'s hand is full, they will need to discard a card. Proceed anyway? [y/n]");
-			
-			boolean userAns = ViewInputTools.yesNo(user);
-			if(userAns == false) {
-				return false;
-			}
-
-		}
-		
-		System.out.println("Which card would you like to give " + playerToGive + " ?");
-		ArrayList<Card> cardsToGive = new ArrayList<>();
-		cardsToGive.addAll(turnController.getHandCards(currentPlayer));
-		ViewDisplayTools.printCardList(cardsToGive);
-		userNum=ViewInputTools.numbers(user, 0, cardsToGive.size());
-		if(userNum == 0) {
+		// Notify player if the player they are giving a card to has a full hand
+		boolean proceed = fullHandCheck(playerToGive);
+		if(proceed == false) {
 			return false;
 		}
-		Card selectedCard = cardsToGive.get(userNum-1);
+
+		// able to proceed
+		// get card to be given to playerToGive
+		Card selectedCard = getCardToGive(currentPlayer, playerToGive);
+		if(selectedCard == null) {
+			return false;
+		}
 		
 		controller.giveCard(currentPlayer, playerToGive, selectedCard);
 
@@ -78,6 +63,46 @@ public class GiveCardView  extends ActionView{
 		return true;
 	}
 
+	private boolean fullHandCheck(Player playerToGive) {
+		if(turnController.handSize(playerToGive) == 5) {
+			System.out.println(playerToGive + "'s hand is full, they will need to discard a card.");
+			System.out.println(playerToGive + "'s hand: " + turnController.getHandCards(playerToGive));
+			System.out.println("Proceed anyway? [y/n]");
+			
+			boolean userAns = ViewInputTools.yesNo(user);
+			return userAns; // can proceed if user allows
+		}
+		else {
+			return true; // can proceed
+		}
+	}
+	
+	private Card getCardToGive(Player currentPlayer, Player playerToGive) throws IOException {
+		System.out.println("Which card would you like to give " + playerToGive + " ?");
+		ArrayList<Card> cardsToGive = new ArrayList<>();
+		cardsToGive.addAll(turnController.getHandCards(currentPlayer));
+		ViewDisplayTools.printCardList(cardsToGive);
+		int userNum=ViewInputTools.numbers(user, 0, cardsToGive.size());
+		if(userNum == 0) {
+			return null;
+		}
+		return cardsToGive.get(userNum-1);
+	}
+	
+	private Player getPlayerToGive(Player currentPlayer) throws IOException {
+		System.out.println("Who would you like to give a card to? (Enter 0 to cancel and pick another action)");
+		
+		ArrayList<Player> possiblePlayers = controller.getGiveCardCheck(currentPlayer);
+		ViewDisplayTools.printPlayerList(possiblePlayers, currentPlayer);
+		
+		int userNum=ViewInputTools.numbers(user, 0, possiblePlayers.size());
+		
+		if(userNum == 0) {
+			return null;	// return null player if none selected
+		}
+		
+		return possiblePlayers.get(userNum-1); // selected player
+	}
 	
 	/**
 	 * getInstance

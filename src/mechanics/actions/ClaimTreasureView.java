@@ -1,15 +1,15 @@
 /**
- * Class Name: ClaimTreasureView
+ * ClaimTreasureView
  *
  * 	View to display action of claiming a treasure
  * 
  * @author Adam Judge, Catherine Waechter
  * 
- * @version 1.3
- * 	adjusted for ActionController
+ * @version 1.5
+ * 	Cleaned up doAction with private methods
  * 
  * Creation Date: 22/10/20
- * Last Modified: 17/12/20
+ * Last Modified: 19/12/20
  */
 
 package mechanics.actions;
@@ -28,6 +28,7 @@ public class ClaimTreasureView extends ActionView{
 	private static ClaimTreasureView claimTreasureView = null;
 	private ActionController controller;
 	
+	Scanner user;
 	/**
 	 * doAction
 	 * 	Display Treasure that can be claimed 
@@ -40,6 +41,8 @@ public class ClaimTreasureView extends ActionView{
 	 */
 	public boolean doAction(Player currentPlayer, Scanner user) throws IOException {
 	
+		this.user = user;
+		
 		Treasure possibleTreasure = controller.getClaimTreasureCheck(currentPlayer); 
 		
 		// If no treasure can be claimed
@@ -48,34 +51,50 @@ public class ClaimTreasureView extends ActionView{
 			return false;
 		}
 		
-		// Print Treasure to be claimed and ask for confirmation
+		// get user confirmation
+		boolean proceed = getConfirmation(possibleTreasure);
+		if(proceed == false) {
+			return false;
+		}
+				
+		
+		controller.claimTreasure(currentPlayer, possibleTreasure);
+		System.out.println(possibleTreasure + " has been captured!");
+		
+		printUnclaimed();
+		
+		return true;
+	}
+	
+	/**
+	 * printUnclaimed
+	 * 	Print unclaimed treasures
+	 */
+	private void printUnclaimed() {
+		Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
+		if(unClaimed.isEmpty()) {
+			System.out.println("You've claimed all treasures! Make your way to Fools' landing to get off the island!");
+		}
+		else {
+			System.out.println("You still need to claim " + unClaimed);
+		}
+	}
+
+	/**
+	 * getConfirmation
+	 * 	Make sure the user wants to claim this treasure
+	 * @param possibleTreasure
+	 * @return true if user wants to continue
+	 */
+	private boolean getConfirmation(Treasure possibleTreasure) {
 		System.out.println("You can claim the " + possibleTreasure );
 		System.out.println("Would you like to do so? [y/n]");
 		
 		boolean userAns = ViewInputTools.yesNo(user);
-		
-		if(userAns == false) {
-			return false;
-		}
-		
-		// Get controller to claim treasure
-		// Display remaining treasures
-		else if(userAns == true) {
-			controller.claimTreasure(currentPlayer, possibleTreasure);
-			System.out.println(possibleTreasure + " has been captured!");
-			Set<Treasure> unClaimed = controller.getUnclaimedTreasures();
-			if(unClaimed.isEmpty()) {
-				System.out.println("You've claimed all treasures! Make your way to Fools' landing to get off the island!");
-			}
-			else {
-				System.out.println("You still need to claim " + unClaimed);
-			}
-			return true;
-		}
-		
-		return false;	
-	}
 
+		return userAns;
+	}
+	
 	/**
 	 * getInstance
 	 * 	get singleton instance of ClaimTreasureView
@@ -89,6 +108,11 @@ public class ClaimTreasureView extends ActionView{
 		return claimTreasureView;
 	}
 	
+	/**
+	 * setController
+	 * 	assign action controller
+	 * @param controller
+	 */
 	public void setController(ActionController controller) {
 		this.controller = controller;
 	}
