@@ -18,6 +18,7 @@ import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
 import elements.treasures.*;
 import mechanics.actions.ClaimTreasureView;
+import mechanics.setup.Setup;
 import players.*;
 
 public class CaptureTreasure {
@@ -29,6 +30,7 @@ public class CaptureTreasure {
 	
 	@Before
 	public void setup() {
+		Setup.setupOnly(); // Setup MVCs 
 		// Get board
 		testBoard = Board.getInstance();
 		
