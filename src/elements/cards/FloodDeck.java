@@ -51,7 +51,7 @@ public class FloodDeck extends Deck{
 	@Override
 	public Card draw() {
 		FloodCard card = (FloodCard)super.draw();
-		FloodTileView.floodTile(card, controller);
+		FloodTileView.floodTile(card, controller);	// TODO cat check this
 		
 		if (cards.isEmpty()) {
 			FloodDiscard.getInstance().toDeck();
