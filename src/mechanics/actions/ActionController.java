@@ -15,6 +15,7 @@ import elements.pawns.Messenger;
 import elements.pawns.Navigator;
 import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
+import mechanics.GamePlay;
 import mechanics.TurnController;
 import mechanics.cardActions.HelicopterView;
 import mechanics.cardActions.SandbagsView;
@@ -187,6 +188,10 @@ public class ActionController {
 		
 		for(Player player : players) {
 			player.getPawn().swimCheck();  // if anyone can't swim, observer will update.
+		}
+		
+		if (GamePlay.getInstance().getGameOver()) {
+			return;
 		}
 		
 		for(Player player : players) {
