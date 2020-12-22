@@ -74,7 +74,6 @@ public class CardActionController {
 		for(Tile tile : Board.getInstance().getRemainingTiles()) {
 			if(tile.getStatus() == TileStatus.FLOODED) {
 				floodedTiles.add(tile);
-				System.out.println("[" + floodedTiles.size() + "] " + tile);
 			}
 		}
 		

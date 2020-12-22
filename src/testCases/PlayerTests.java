@@ -30,7 +30,7 @@ public class PlayerTests {
 		
 		Player adam = PlayerList.getInstance().getPlayers().get(0);
 		
-		String input = "1";
+		String input = "n 1";		 // n because we don't want to play a card when the hand gets full. If not prompted, will just count as a wrong input and take the 1
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));

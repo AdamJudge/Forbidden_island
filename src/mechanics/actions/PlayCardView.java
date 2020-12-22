@@ -15,17 +15,22 @@
 package mechanics.actions;
 
 import mechanics.Scan;
+import mechanics.ViewDisplayTools;
+
+import java.util.ArrayList;
+
 import elements.cards.Card;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
-
+import mechanics.TurnController;
 import mechanics.ViewInputTools;
 import players.Player;
 
-public class PlayCardView  {
+public class PlayCardView  {		 // TODO move to cardActions ?? 
 
 	private static PlayCardView playCardView = null;
 	private ActionController actionController;
+	private TurnController turnController;
 	private Scan user;
 	
 	/**
@@ -41,12 +46,22 @@ public class PlayCardView  {
 		return playCardView;
 	}
 
-	public void setup(Scan user, ActionController actionController) {
+	public void setup(Scan user, TurnController turnController, ActionController actionController) {
 		this.user = user;
+		this.turnController = turnController;
 		this.actionController = actionController;
 	}
 	
-	public boolean doAction(Player player) { 
+	/**
+	 * doAction 
+	 * @param player - null if player needs to be selected
+	 * @return false (never uses an action)
+	 */
+	public boolean doAction(Player player) { 	// TODO make void? 
+		
+		if(player == null) {
+			player = getPlayer();
+		}
 		
 		TreasureCardTypes cardType = getCardType(player);
 		if(cardType == null) {
@@ -58,40 +73,77 @@ public class PlayCardView  {
 		return false;
 	}
 	
+	/**
+	 * getPlayer
+	 * 	get the player who wants to play a card
+	 * @return player who will play a card
+	 */
+	private Player getPlayer() {
+		System.out.println("Which player?");
+		ArrayList<Player> validPlayers = turnController.getPlayers();
+		ViewDisplayTools.printPlayerList(validPlayers, null); // playing cards doesn't have a current player
+		
+		int playerNum = ViewInputTools.numbers(user, 1, validPlayers.size());
+		
+		return  validPlayers.get(playerNum-1);
+		
+	}
+	
+	/**
+	 * playCard
+	 * 	play a card of the required type
+	 * 
+	 * @param player
+	 * @param cardType
+	 */
 	private void playCard(Player player, TreasureCardTypes cardType) {
-		for(int i = 0; i<player.getHand().getCards().size(); i++) {
-			Card card = player.getHand().getCards().get(i);
+		for(int i = 0; i< turnController.getHandCards(player).size(); i++) {
+			Card card = turnController.getHandCards(player).get(i);
 			if (((TreasureCard)card).getCardType() == cardType) {
 				actionController.playCard(card, player);
 			}
 		}
 	}
 	
+	/**
+	 * getCardType
+	 * 	get card type the player wants to play
+	 * 
+	 * @param player
+	 * @return card type to play. null if none can be played
+	 */
 	private TreasureCardTypes getCardType(Player player) {
-		System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
 		
 		int hIndex = 0, sIndex = 0, userIndex = 0;
+		boolean playable = false;
 		
 		for (Card card: player.getHand().getCards()) {
 		
 			if( card instanceof TreasureCard) { //It always is but to be safe 	// TODO General - check instances when casting
-				
+				playable = false;
 				if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER && hIndex == 0) {
 					userIndex++;
 					hIndex = userIndex;
-					System.out.println("["+userIndex+"]: " + card);
+					playable = true;
 				}
 				
 				else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS && hIndex == 0) {
 					userIndex++;
 					sIndex = userIndex;
-					System.out.println("["+userIndex+"]: " + card);
+					playable = true;
 				}	
+				
+				if(playable) {
+					if(userIndex == 1) {
+						System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
+					}
+					System.out.println("["+userIndex+"]: " + card);
+				}
 			}
 		}
 		
 		if(userIndex == 0) {
-			System.out.println("No cards to play!");
+			System.out.println(player + " has no cards to play!");
 			return null;
 		}
 		

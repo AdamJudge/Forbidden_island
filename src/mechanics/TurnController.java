@@ -3,6 +3,7 @@ package mechanics;
 import java.util.ArrayList;
 import java.util.List;
 
+import elements.board.Board;
 import elements.board.Tile;
 import elements.board.TileStatus;
 import elements.board.WaterLevel;
@@ -28,6 +29,18 @@ public class TurnController {
 	private static TurnController turnController = null;
 	//private Turn model;	// TODO what is the model here, It's not actually turn
 	private TurnView view;
+	
+	public Board getBoard() {
+		return Board.getInstance();
+	}
+	
+	/**
+	 * gameOver
+	 * @return	true if game is over
+	 */
+	public boolean gameOver() {
+		return GamePlay.getInstance().getGameOver();
+	}
 	
 	/**
 	 * getInstance
@@ -61,7 +74,23 @@ public class TurnController {
 		}
 	}
 	
-	
+	public boolean playable(Card card) { // TODO Put elsewhere?? 
+		if(card instanceof TreasureCard) {
+			if(((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER || ((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
+				return true;
+			}
+		}
+		return false;
+	}
+	// TODO use in playable card view
+	public boolean playable(ArrayList<Card> cards) { // TODO Put elsewhere?? 
+		for(Card card : cards) {
+			if(playable(card)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	/**
 	 * getPlayers
@@ -89,7 +118,7 @@ public class TurnController {
 		return player.getHand();
 	}
 	
-	public List<Card> getHandCards(Player player){
+	public ArrayList<Card> getHandCards(Player player){
 		return player.getHand().getCards();
 	}
 	

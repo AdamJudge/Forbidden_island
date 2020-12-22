@@ -72,12 +72,12 @@ public class PlayableCardsTest {
 		assertEquals("Tile should have normal status.", TileStatus.FLOODED, toFlood.getStatus());
 		
 		//Play sandbag on tile
-		String input = "1\n1";
+		String input = "1\n1\n1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		
 		int handSize=player1.getHand().getCards().size();
@@ -91,13 +91,13 @@ public class PlayableCardsTest {
 	public void testHelicopter()  {
 		
 		//Try helicopter lift to different tile
-		String input = "2\n 1";
+		String input = "1\n 2\n 1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 
 		TileNames originalTile = player1.getPawn().getTile().getName();
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		
 		//The player should have now moved to a different tile
 		assertFalse(player1.getPawn().getTile().getName().equals(originalTile));
