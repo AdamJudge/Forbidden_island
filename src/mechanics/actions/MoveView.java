@@ -65,6 +65,8 @@ public class MoveView {
 			moves = 2;
 		}
 		
+		// TODO pilot print walk vs fly ? 
+		
 		for(int i = 0; i<moves; i++) {
 			// Print tiles the player can move to
 			System.out.println(playerToMove + " can move to ");
@@ -137,7 +139,7 @@ public class MoveView {
 
 		int input = ViewInputTools.numbers(user, 1, validPlayers.size());
 		
-		return PlayerList.getInstance().getPlayers().get(input-1);
+		return turnController.getPlayers().get(input-1);
 	}
 	
 	/**
