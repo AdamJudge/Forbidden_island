@@ -14,11 +14,11 @@ import players.PlayerList;
  * 	canLeave and gameOver modified by observers to trigger winning or losing
  * 
  * @author Adam Judge
- * @version 2.1
- * 	Made observable
+ * @version 2.2
+ * 	Turn loop uses TurnView directly
  * 
  * Date created: 09/12/20
- * Last modified: 21/12/20
+ * Last modified: 22/12/20
  *
  */
 public class GamePlay extends Subject{
@@ -37,7 +37,7 @@ public class GamePlay extends Subject{
 		ArrayList<Player> players = playerList.getPlayers();
 		while (!gameOver) {
 			for (int i = 0; i< players.size(); i++) {
-				Turn.getInstance().doTurn(players.get(i));	
+				TurnView.getInstance().run(players.get(i));	
 				if (this.gameOver) {
 					break;
 				}
