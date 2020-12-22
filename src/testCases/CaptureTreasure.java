@@ -125,7 +125,7 @@ public class CaptureTreasure {
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
 		
-		Boolean result;
+		boolean result;
 		for (Player p:playerList.getPlayers()) {
 			result = ClaimTreasureView.getInstance().doAction(p, scanner);
 			assertFalse("Player should not be able to claim treasure", result);
@@ -153,7 +153,7 @@ public class CaptureTreasure {
 		moveToCorrectTreasureTiles();
 		giveAnotherCard();
 		String input = "y";
-		Boolean result;
+		boolean result;
 
 		//All players should be able to capture a treasure now.
 		for (Player p:playerList.getPlayers()) {

@@ -25,7 +25,7 @@ public class HelicopterLiftWinObserver extends Observer {
 	@Override
 	public void update() {
 		System.out.println("Checking conditions for leaving!");
-		Boolean onFoolsIsland=true, treasuresCaptured=true;
+		boolean onFoolsIsland=true, treasuresCaptured=true;
 		String notOnFI=" ";
 		String notCaptured=" ";
 		for (Player p:PlayerList.getInstance().getPlayers())
