@@ -83,6 +83,15 @@ public class MovementTests {
 		System.out.println(testBoard.toString());
 	}
 
+	//Flood tile setup
+	public void sunkenTileSetup() {
+		int[] floodMe = new int[] {3,9,14};
+		for (int i:floodMe) {
+			sortedTiles.get(i).remove();
+		}
+		System.out.println(testBoard.toString());
+	}
+	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// NORMAL
 	// Shoreup tiles for normal pawn. Tile above below left and right of pawn will be normal, remaining 5 flooded.
@@ -118,66 +127,94 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
-//	@Test
-//	public void allNormalTilesNavigator_Success()   { 	
-//		normalTileSetup();
-//		Tile initTile = player2.getPawn().getTile();
-//
-//		//TODO adam
-//		String input = "1 4";
-//		InputStream in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		Scanner scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//		
-//		input = "2 4";
-//		in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//
-//		input = "3 8";
-//		in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//		
-//		input = "4 4";
-//		in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//	}
+	@Test
+	public void allNormalTilesNavigator_Success()   { 	
+		normalTileSetup();
+		Tile initTileP1 = player1.getPawn().getTile();	//Engineer
+		Tile initTileP2 = player2.getPawn().getTile();	//Navigator
+		Tile initTileP3 = player3.getPawn().getTile();	//Explorer
+		Tile initTileP4 = player4.getPawn().getTile();	//Diver
+
+		//Move player 1 one space
+		String input = "1 4 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP1 = player1.getPawn().getTile();
+		assertNotEquals("The Normal Pawn should have moved up to a 4th tile", initTileP1, finalTileP1);
+
+		//Move self
+		input = "2 4";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP2 = player2.getPawn().getTile();
+		assertNotEquals("The Engineer should have moved up to a 4th tile", initTileP2, finalTileP2);
+		
+		//Move player 3 one space
+		input = "3 4 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP3 = player3.getPawn().getTile();
+		assertNotEquals("The Explorer should have moved up to a 4th tile, not an 8th as if the explorer moved himself.", initTileP3, finalTileP3);
+		
+		//Move player 4 one space
+		input = "4 4 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP4 = player4.getPawn().getTile();
+		assertNotEquals("The Diver should have moved up to a 4th tile", initTileP4, finalTileP4);
+	}
 	
 	@Test
 	public void allNormalTilesNavigator_Failure()   { 	
 		normalTileSetup();
-		Tile initTile = player2.getPawn().getTile();		// TODO not used? 
+		Tile initTileP1 = player1.getPawn().getTile();	//Engineer
+		Tile initTileP2 = player2.getPawn().getTile();	//Navigator
+		Tile initTileP3 = player3.getPawn().getTile();	//Explorer
+		Tile initTileP4 = player4.getPawn().getTile();	//Diver
 
-		//TODO adam
+		//Move player 1 one space
 		String input = "1 5 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
-		
+		Tile finalTileP1 = player1.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP1, finalTileP1);
+
+		//Move self
 		input = "2 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
-
-		input = "3 9 0";
+		Tile finalTileP2 = player2.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP2, finalTileP2);
+		
+		//Move player 3 one space
+		input = "3 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
+		Tile finalTileP3 = player3.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently, not an 8th as if the explorer moved himself.", initTileP3, finalTileP3);
 		
+		//Move player 4 one space
 		input = "4 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
+		Tile finalTileP4 = player4.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP4, finalTileP4);
 	}
 	
 	@Test
@@ -245,65 +282,94 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
-//	@Test
-//	public void allFloodedTilesNavigator_Success()   { 	
-//		floodTileSetup();
-//		Tile initTile = player2.getPawn().getTile();
-//
-//		//TODO adam
-//		String input = "1 4 4";
-//		InputStream in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		Scanner scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//		
-//		input = "2 4";
-//		in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//
-//		input = "3 8 8";
-//		in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//		
-//		input = "4 18 18";
-//		in = new ByteArrayInputStream(input.getBytes());
-//		System.setIn(in);
-//		scanner = new Scanner(in);
-//		MoveView.getInstance().doAction(player2, scanner);
-//	}
+	@Test
+	public void allFloodedTilesNavigator_Success()   { 	
+		floodTileSetup();
+		Tile initTileP1 = player1.getPawn().getTile();	//Engineer
+		Tile initTileP2 = player2.getPawn().getTile();	//Navigator
+		Tile initTileP3 = player3.getPawn().getTile();	//Explorer
+		Tile initTileP4 = player4.getPawn().getTile();	//Diver
+
+		//Move player 1 one space
+		String input = "1 4 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP1 = player1.getPawn().getTile();
+		assertNotEquals("The Normal Pawn should have moved up to a 4th tile", initTileP1, finalTileP1);
+
+		//Move self
+		input = "2 4";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP2 = player2.getPawn().getTile();
+		assertNotEquals("The Engineer should have moved up to a 4th tile", initTileP2, finalTileP2);
+		
+		//Move player 3 one space
+		input = "3 4 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP3 = player3.getPawn().getTile();
+		assertNotEquals("The Explorer should have moved up to a 4th tile, not an 8th as if the explorer moved himself.", initTileP3, finalTileP3);
+		
+		//Move player 4 one space
+		input = "4 4 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP4 = player4.getPawn().getTile();
+		assertNotEquals("The Diver should have moved up to a 4th tile", initTileP4, finalTileP4);
+	}
 	
 	@Test
-	public void allFloodedTilesNormalNavigator_Failure()   { 	
+	public void allFloodedTilesNavigator_Failure()   { 	
 		floodTileSetup();
+		Tile initTileP1 = player1.getPawn().getTile();	//Engineer
+		Tile initTileP2 = player2.getPawn().getTile();	//Navigator
+		Tile initTileP3 = player3.getPawn().getTile();	//Explorer
+		Tile initTileP4 = player4.getPawn().getTile();	//Diver
 
-		//TODO adam
+		//Move player 1 one space
 		String input = "1 5 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
-		
-		input = "2 9 0";
+		Tile finalTileP1 = player1.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP1, finalTileP1);
+
+		//Move self
+		input = "2 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
-
+		Tile finalTileP2 = player2.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP2, finalTileP2);
+		
+		//Move player 3 one space
 		input = "3 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
+		Tile finalTileP3 = player3.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently, not an 8th as if the explorer moved himself.", initTileP3, finalTileP3);
 		
-		input = "4 19 0";
+		//Move player 4 one space
+		input = "4 5 0";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		MoveView.getInstance().doAction(player2);
+		Tile finalTileP4 = player4.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently, diver unable to swim through flooded tiles by navigator.", initTileP4, finalTileP4);
 	}
 	
 	@Test
@@ -370,6 +436,198 @@ public class MovementTests {
 		
 		TileNames finalTile = player4.getPawn().getTile().getName();
 		assertEquals("The Diver should not be able to move to a 19th tile with this board setup", initTile, finalTile);
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// REMOVED
+	// Tiles above below and to the right of pawns removed.
+	
+	@Test
+	public void sunkenTilesNormalPawn_Success()   { 	
+		sunkenTileSetup();
+		Tile initTile = player1.getPawn().getTile();
+
+		//Possible
+		String input = "1";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+		
+		Tile finalTile = player1.getPawn().getTile();
+		assertNotEquals("The Normal Pawn should be able to move to up to a 4th, different tile with this board setup", initTile, finalTile);
+	}
+	
+	@Test
+	public void sunkenTilesNormalPawn_Failure()   { 	
+		sunkenTileSetup();
+		Tile initTile = player1.getPawn().getTile();
+
+		//Not Possible
+		String input = "2 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+		
+		Tile finalTile = player1.getPawn().getTile();
+		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
+	}
+	
+	@Test
+	public void sunkenTilesNavigator_Success()   { 	
+		sunkenTileSetup();
+		Tile initTileP1 = player1.getPawn().getTile();	//Engineer
+		Tile initTileP2 = player2.getPawn().getTile();	//Navigator
+		Tile initTileP3 = player3.getPawn().getTile();	//Explorer
+		Tile initTileP4 = player4.getPawn().getTile();	//Diver
+
+		//Move player 1 one space
+		String input = "1 1 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP1 = player1.getPawn().getTile();
+		assertNotEquals("The Normal Pawn should have moved up to only available tile", initTileP1, finalTileP1);
+
+		//Move self
+		input = "2 1";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP2 = player2.getPawn().getTile();
+		assertNotEquals("The Engineer should have moved up to only available tile", initTileP2, finalTileP2);
+		
+		//Move player 3 one space
+		input = "3 1 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP3 = player3.getPawn().getTile();
+		assertNotEquals("The Explorer should have moved up to only available tile, not a 5th as if the explorer moved himself.", initTileP3, finalTileP3);
+		
+		//Move player 4 one space
+		input = "4 1 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP4 = player4.getPawn().getTile();
+		assertNotEquals("The Diver should have moved to only available tile", initTileP4, finalTileP4);
+	}
+	
+	@Test
+	public void sunkenTilesNavigator_Failure()   { 	
+		sunkenTileSetup();
+		Tile initTileP1 = player1.getPawn().getTile();	//Engineer
+		Tile initTileP2 = player2.getPawn().getTile();	//Navigator
+		Tile initTileP3 = player3.getPawn().getTile();	//Explorer
+		Tile initTileP4 = player4.getPawn().getTile();	//Diver
+
+		//Move player 1 one space
+		String input = "1 2 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP1 = player1.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP1, finalTileP1);
+
+		//Move self
+		input = "2 2 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP2 = player2.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP2, finalTileP2);
+		
+		//Move player 3 one space
+		input = "3 2 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP3 = player3.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently, not an 5th as if the explorer moved himself.", initTileP3, finalTileP3);
+		
+		//Move player 4 one space
+		input = "4 2 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player2);
+		Tile finalTileP4 = player4.getPawn().getTile();
+		assertEquals("All pawns moved by the navigator can only move adjacently, diver unable to swim through flooded tiles by navigator.", initTileP4, finalTileP4);
+	}
+	
+	@Test
+	public void sunkenTilesExplorer_Success()   { 	
+		sunkenTileSetup();
+		Tile initTile = player3.getPawn().getTile();
+
+		// Possible
+		String input = "5";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player3);
+		
+		Tile finalTile = player3.getPawn().getTile();
+		assertNotEquals("The Explorer should be able to move up to an 5th, different tile with this board setup", initTile, finalTile);
+	}
+	
+	@Test
+	public void sunkenTilesExplorer_Failure()   { 	
+		sunkenTileSetup();
+		Tile initTile = player3.getPawn().getTile();
+
+		// Not Possible
+		String input = "6 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		
+		MoveView.getInstance().doAction(player3);
+		
+		Tile finalTile = player3.getPawn().getTile();
+		assertEquals("The Explorer should not be able to move to a 6th tile with this board setup", initTile, finalTile);
+	}
+	
+	@Test
+	public void sunkenTilesDiver_Success()   { 	
+		sunkenTileSetup();
+		Tile initTile = player4.getPawn().getTile();
+
+		// Possible
+		String input = "8";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		
+		MoveView.getInstance().doAction(player4);
+
+		Tile finalTile = player4.getPawn().getTile();
+		assertNotEquals("The Diver should be able to move up to an 8th, different tile with this board setup", initTile, finalTile);
+	}
+	
+	@Test
+	public void sunkenTilesDiver_Failure()   { 	
+		sunkenTileSetup();
+		TileNames initTile = player4.getPawn().getTile().getName();
+		
+		// Not Possible
+		String input = "9 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player4);
+		
+		TileNames finalTile = player4.getPawn().getTile().getName();
+		assertEquals("The Diver should not be able to move to a 9th tile with this board setup", initTile, finalTile);
 	}
 
 	@After
