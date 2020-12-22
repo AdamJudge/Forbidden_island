@@ -1,7 +1,5 @@
 package mechanics.setup;
-import java.util.Scanner;
 
-import elements.cards.FloodDeck;
 import mechanics.Scan;
 import mechanics.TurnController;
 import mechanics.actions.ActionController;
@@ -14,6 +12,7 @@ import mechanics.cardActions.CardActionController;
 import mechanics.cardActions.HelicopterView;
 import mechanics.cardActions.SandbagsView;
 import mechanics.TurnView;
+import mechanics.cardActions.FloodTileView;
 
 /**
  * Setup 
@@ -99,13 +98,13 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 		ClaimTreasureView.getInstance().setup(user, actionController);
     	GiveCardView.getInstance().setup(user, turnController, actionController);
     	MoveView.getInstance().setup(user, turnController, actionController);
-    	ShoreupView.getInstance().setup(user, actionController);
+    	ShoreupView.getInstance().setup(user, turnController, actionController);
     	PlayCardView.getInstance().setup(user, turnController, actionController);
     	HelicopterView.getInstance().setup(user, cardController, actionController, turnController); 
     	SandbagsView.getInstance().setup(user, cardController, actionController, turnController); 
 		
 		// Other classes that need access to a controller
-		FloodDeck.getInstance().setController(actionController);
+		FloodTileView.setController(actionController);	 
 	}
 	
 	/**
