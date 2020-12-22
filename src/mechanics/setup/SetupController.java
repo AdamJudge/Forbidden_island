@@ -9,8 +9,10 @@ import elements.board.Difficulty;
 import elements.cards.Card;
 
 /**
- * SetupController
+ * SetupController (singleton)
+ * 
  * 	Controller to handle game setup (implements MVC)
+ * 	Model is split into two models : the player setup and the game setup
  * 
  * @author Catherine Waechter
  * @version 1.1
@@ -22,22 +24,8 @@ import elements.cards.Card;
 public class SetupController {
 
 	private static SetupController setupController = null; // singleton instance
-	private SetupView view;				
 	private PlayerSetup playerSetup; 	// model for player setup
 	private GameSetup gameSetup; 		// model for game setup
-	
-	/**
-	 * getInstance
-	 * @param view 
-	 * @param setup - will be the model
-	 * @return setupController singleton Instance of SetupController
-	 */
-	public static SetupController getInstance(SetupView view, PlayerSetup playerSetup, GameSetup gameSetup) {
-		if(setupController == null) {
-			setupController = new SetupController(view, playerSetup, gameSetup);
-		}
-		return setupController;
-	}
 	
 	/**
 	 * startSetup
@@ -53,18 +41,6 @@ public class SetupController {
 	 */
 	public void endSetup() {
 		gameSetup.setSetup(false);
-	}
-	
-	/**
-	 * SetupController Constructor
-	 * 	assigns view and model for MVC
-	 * @param view
-	 * @param setup (model)
-	 */
-	public SetupController(SetupView view, PlayerSetup playerSetup, GameSetup gameSetup) {
-		this.view = view;
-		this.playerSetup = playerSetup;
-		this.gameSetup  = gameSetup;
 	}
 	
 	/**
@@ -116,5 +92,30 @@ public class SetupController {
 	public Set<Card> drawFloodCards() {
 		return gameSetup.drawFloodCards();
 	}
+	
+	/**
+	 * SetupController Constructor
+	 * 	assigns view and model for MVC
+	 * @param view
+	 * @param setup (model)
+	 */
+	public SetupController(PlayerSetup playerSetup, GameSetup gameSetup) { 	
+		this.playerSetup = playerSetup;
+		this.gameSetup  = gameSetup;
+	}
+	
+	/**
+	 * getInstance
+	 * @param view 
+	 * @param setup - will be the model
+	 * @return setupController singleton Instance of SetupController
+	 */
+	public static SetupController getInstance(PlayerSetup playerSetup, GameSetup gameSetup) {
+		if(setupController == null) {
+			setupController = new SetupController(playerSetup, gameSetup);
+		}
+		return setupController;
+	}
+	
 	
 }

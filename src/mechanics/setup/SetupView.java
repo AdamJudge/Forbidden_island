@@ -3,7 +3,6 @@ package mechanics.setup;
 import java.util.Scanner;
 
 import elements.board.Difficulty;
-import elements.board.Board;
 import elements.cards.Card;
 import mechanics.ViewInputTools;
 
@@ -26,20 +25,9 @@ import players.*;
  * Last Modified: 03/12/20
  */
 public class SetupView {
-
-	private SetupController controller;
 	
 	private static SetupView setupView = null;	// singleton instance of the view
-
-	/**
-	 * getInstance
-	 * @return setupView - singleton instance of SetupView
-	 */
-	public static SetupView getInstance() {
-		if(setupView == null)
-			setupView = new SetupView();
-		return setupView;
-	}
+	private SetupController controller;
 	
 	/**
 	 * run
@@ -69,64 +57,6 @@ public class SetupView {
 		System.out.println("Tiles initially flooded: " + floodCardsDrawn);
 		
 		controller.endSetup();	// indicate game is no longer in setup
-	}
-	
-	/**
-	 * setupCards
-	 * 	get controller to create decks and print progress
-	 */
-	private void setupCards() {
-		controller.createDecks();
-		System.out.println("Decks created and shuffled! ");
-	}
-	
-	/**
-	 * setupBoard
-	 * 	get controller to create the board and print it
-	 */
-	private void setupBoard() {
-		Board board = controller.getBoard();
-		System.out.println("Board has been set up"); 
-	}
-	
-	/**
-	 * setupWaterLevel
-	 * 	request difficulty level from user, and send to controller
-	 * 
-	 * @param user - input scanner
-	 */
-	private void setupWaterLevel(Scanner user) {
-		
-		System.out.println("Which difficulty do you want to play?");
-		
-		int i = 1;
-		Difficulty difficulty;
-		int input;
-		
-		List<Difficulty> difficultyList = new ArrayList<Difficulty>(EnumSet.allOf(Difficulty.class)); // need the enum to be listed in order
-		for (Difficulty d: difficultyList) {
-			System.out.println("[" + i + "]: "+ d);
-			i+=1;
-		}
-		
-		input=ViewInputTools.numbers(user, 1, i-1);
-		difficulty = difficultyList.get(input-1);
-		controller.setGameDifficulty(difficulty);
-		
-		System.out.println("Difficulty has been set to: "+ difficulty); 
-	}
-	
-	/**
-	 * outputPlayerInfo
-	 * 	print player info given player list
-	 * @param players - list of players
-	 */
-	private void outputPlayerInfo(PlayerList players) {
-		for(Player player : players.getPlayers()) {
-			System.out.println(player.getName() + " got the " + player.getPawn() + " role");
-			System.out.println(player.getName() + " starting hand: ");
-			System.out.println(player.getHand());
-		}
 	}
 	
 	/**
@@ -177,6 +107,33 @@ public class SetupView {
 	}
 	
 	/**
+	 * setupWaterLevel
+	 * 	request difficulty level from user, and send to controller
+	 * 
+	 * @param user - input scanner
+	 */
+	private void setupWaterLevel(Scanner user) {
+		
+		System.out.println("Which difficulty do you want to play?");
+		
+		int i = 1;
+		Difficulty difficulty;
+		int input;
+		
+		List<Difficulty> difficultyList = new ArrayList<Difficulty>(EnumSet.allOf(Difficulty.class)); // need the enum to be listed in order
+		for (Difficulty d: difficultyList) {
+			System.out.println("[" + i + "]: "+ d);
+			i+=1;
+		}
+		
+		input=ViewInputTools.numbers(user, 1, i-1);
+		difficulty = difficultyList.get(input-1);
+		controller.setGameDifficulty(difficulty);
+		
+		System.out.println("Difficulty has been set to: "+ difficulty); 
+	}
+	
+	/**
 	 * welcomeScreen
 	 * 	print welcome screen
 	 */
@@ -190,6 +147,37 @@ public class SetupView {
     }
     
     /**
+	 * outputPlayerInfo
+	 * 	print player info given player list
+	 * @param players - list of players
+	 */
+	private void outputPlayerInfo(PlayerList players) {
+		for(Player player : players.getPlayers()) {
+			System.out.println(player.getName() + " got the " + player.getPawn() + " role");
+			System.out.println(player.getName() + " starting hand: ");
+			System.out.println(player.getHand());
+		}
+	}
+	
+    /**
+	 * setupCards
+	 * 	get controller to create decks and print progress
+	 */
+	private void setupCards() {
+		controller.createDecks();
+		System.out.println("Decks created and shuffled! ");
+	}
+	
+	/**
+	 * setupBoard
+	 * 	get controller to create the board and print it
+	 */
+	private void setupBoard() {
+		controller.getBoard();
+		System.out.println("Board has been set up"); 
+	}
+    
+    /**
      * setController
      * 	assign controller instance
      * @param controller
@@ -197,5 +185,15 @@ public class SetupView {
     public void setController(SetupController controller) {
     	this.controller = controller;
     }
+    
+    /**
+	 * getInstance
+	 * @return setupView - singleton instance of SetupView
+	 */
+	public static SetupView getInstance() {
+		if(setupView == null)
+			setupView = new SetupView();
+		return setupView;
+	}
     
 }

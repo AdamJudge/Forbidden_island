@@ -39,7 +39,7 @@ public class PlayerSetup {
 	}
 	
 	/**
-	 * PlayerSetup Contructor
+	 * PlayerSetup Constructor
 	 * 	Initialise numPlayers to 0, Initialise playerList
 	 */
 	private PlayerSetup() {

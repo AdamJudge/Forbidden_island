@@ -15,16 +15,18 @@ import mechanics.cardActions.SandbagsView;
 import mechanics.TurnView;
 
 /**
- * Setup (Singleton)
+ * Setup 
  * 
  * 	Sets up Setup classes (MVC) to carry out player and game setup
  * 
  * @author Adam Judge, Catherine Waechter
- * @version 3.0
- * 	adjusted for ActionController
+ * @version 4.0
+ * 	Changed to have static function instead of be a singleton
+ * 	refactored setup into smaller functions
+ * 	added setupOnly() for testing (doesn't run the setup)
  * 
  * Date created: 23/11/20 
- * Last modified: 17/12/20
+ * Last modified: 22/12/20
  *
  */
 
@@ -40,7 +42,7 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	public static void setupAndRun(Scanner user) {
 		SetupView view = setupOnly();
 		
-		view.run(user);		// run the view
+		view.run(user);
 	}
 	
 	/**
@@ -104,12 +106,18 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 		FloodDeck.getInstance().setController(actionController);
 	}
 	
+	/**
+	 * setupMVC
+	 * 	Sets up the setup MVC
+	 * 
+	 * @return setupView instance (with setup completed)
+	 */
 	private static SetupView setupMVC() {
 		PlayerSetup playerSetup = PlayerSetup.getInstance();	// create PlayerSetup instance
 		GameSetup gameSetup = GameSetup.getInstance();			// create GameSetup instance
 		SetupView view = SetupView.getInstance();				// create SetupView instance
 		
-		SetupController controller = SetupController.getInstance(view, playerSetup, gameSetup);	// create SetupController instance, assign it view and model instances
+		SetupController controller = SetupController.getInstance(playerSetup, gameSetup);	// create SetupController instance, assign it view and model instances
 		view.setController(controller);		// assign controller to view instance
 		return view;
 	}
