@@ -1,15 +1,23 @@
 package mechanics.setup;
-import java.io.IOException;
 import java.util.Scanner;
 
 import elements.cards.FloodDeck;
 import mechanics.TurnController;
 import mechanics.actions.ActionController;
+import mechanics.actions.ClaimTreasureView;
+import mechanics.actions.GiveCardView;
+import mechanics.actions.MoveView;
+import mechanics.actions.PlayCardView;
+import mechanics.actions.ShoreupView;
+import mechanics.cardActions.CardActionController;
+import mechanics.cardActions.HelicopterView;
+import mechanics.cardActions.SandbagsView;
 import mechanics.TurnView;
 
 /**
- * Setup
- * 	Sets up MVC and Setup classes to carry out player and game setup
+ * Setup (Singleton)
+ * 
+ * 	Sets up Setup classes (MVC) to carry out player and game setup
  * 
  * @author Adam Judge, Catherine Waechter
  * @version 3.0
@@ -21,70 +29,88 @@ import mechanics.TurnView;
  */
 
 
-public class Setup {
-	private static Setup setup = null;
-	
-	private PlayerSetup playerSetup; 
-	private GameSetup gameSetup;
-	private ObserverSetup observerSetup;
-	
-	// Singleton Instance
-	public static Setup getInstance() {
-		if(setup == null) {
-			setup = new Setup();
-		}
-		return setup;
-	}
-	
+public class Setup {						// TODO Discuss -  singleton or static function ?
 	/**
-	 * getPlayerSetup
-	 * @return playerSetup instance
-	 */
-	public PlayerSetup getPlayerSetup() {
-		return playerSetup;
-	}
-
-	/**
-	 * getGameSetup
-	 * @return gameSetup instance
-	 */
-	public GameSetup getGameSetup() {
-		return gameSetup;
-	}
-	
-	/**
-	 * getObservverSetup
-	 * @return observerSetup instance
-	 */
-	public ObserverSetup getObserverSetup() {
-		return observerSetup;
-	}
-	/**
-	 * setupAll
-	 * 	Creates instances of Player and Game setup, starts the view and controller
+	 * setupAndRun
+	 * 	Setup MVC singletons
+	 * 	Run the view for the setup
 	 * 
 	 * @param user - user input scanner
 	 */
-	public void setupAll(Scanner user) {
-		this.playerSetup = PlayerSetup.getInstance();		// create PlayerSetup instance
-		this.gameSetup = GameSetup.getInstance();			// create GameSetup instance
-		this.observerSetup = ObserverSetup.getInstance();  	// create ObserverSetup instance
+	public static void setupAndRun(Scanner user) {
+		SetupView view = setupOnly();
 		
-		SetupView view = SetupView.getInstance();			// create SetupView instance
-		SetupController controller = SetupController.getInstance(view, setup);	// create SetupController instance, assign it view and setup instances
-		view.setController(controller);		// assign controller to view instance
 		view.run(user);		// run the view
-		
-		// Set up turn MVC
-		TurnView turnView = TurnView.getInstance();			// create SetupView instance
-		TurnController turnController = TurnController.getInstance();	// create SetupController instance, assign it view and setup instances
-		ActionController actionController = ActionController.getInstance();
-		turnView.setupView(turnController, actionController);		// assign controller to view instance
-		turnController.setView(turnView);
-		FloodDeck.getInstance().setController(actionController);
-		
-		ObserverSetup.getInstance().attachObservers();
 	}
 	
-
+	/**
+	 * setupOnly
+	 * 	setup MVC controllers but don't run the setup
+	 * 	Used in testing (sections done when running setup done manually)
+	 * @return
+	 */
+	public static SetupView setupOnly(){
+		SetupView view = setupMVC();
+		
+		TurnController turnController = setupTurn();
+		setupActions(turnController);
+		
+		ObserverSetup.getInstance().attachObservers();
+		return view;
+	}
+	
+	/**
+	 * setupTurn
+	 * 	create view and controller instances for turns and set them up
+	 * 
+	 * @return turnController (with setup completed)
+	 */
+	private static TurnController setupTurn() {
+		TurnView turnView = TurnView.getInstance();			// create view instance
+		
+		// create controller instances
+		TurnController turnController = TurnController.getInstance();	
+		turnView.setController(turnController);
+		turnController.setView(turnView);
+		
+		return turnController;
+	}
+	
+	/**
+	 * setupActions
+	 * 	create action views, action controller and card controller
+	 * 	Assign controllers to views and views to controllers
+	 * 
+	 * @param turnController
+	 */
+	private static void setupActions(TurnController turnController) {
+		// Create action controllers
+		ActionController actionController = ActionController.getInstance();
+		CardActionController cardController = CardActionController.getInstance();
+		
+		// setup controllers
+		actionController.setupController(turnController, MoveView.getInstance());
+		
+		// Set controllers for all views (Action views and card views)
+		ClaimTreasureView.getInstance().setController(actionController);
+    	GiveCardView.getInstance().setController(turnController, actionController);
+    	MoveView.getInstance().setController(turnController, actionController);
+    	ShoreupView.getInstance().setController(actionController);
+    	PlayCardView.getInstance().setController(actionController);
+    	HelicopterView.getInstance().setController(cardController, actionController, turnController); 
+    	SandbagsView.getInstance().setController(cardController, actionController, turnController); 
+		
+		// Other classes that need access to a controller
+		FloodDeck.getInstance().setController(actionController);
+	}
+	
+	private static SetupView setupMVC() {
+		PlayerSetup playerSetup = PlayerSetup.getInstance();	// create PlayerSetup instance
+		GameSetup gameSetup = GameSetup.getInstance();			// create GameSetup instance
+		SetupView view = SetupView.getInstance();				// create SetupView instance
+		
+		SetupController controller = SetupController.getInstance(view, playerSetup, gameSetup);	// create SetupController instance, assign it view and model instances
+		view.setController(controller);		// assign controller to view instance
+		return view;
+	}
 }
