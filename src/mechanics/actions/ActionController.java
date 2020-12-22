@@ -52,9 +52,9 @@ public class ActionController {
 		return actionController;
 	}
 	
-	public ActionController() {		// TODO is this okay? (possibly not, maybe make a function) 
-		turnController = TurnController.getInstance();
-		moveView = MoveView.getInstance();
+	public void setupController(TurnController turnController, MoveView moveView) {		
+		this.turnController = turnController;
+		this.moveView = moveView ;
 	}
 	
 	

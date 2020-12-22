@@ -22,8 +22,9 @@ import elements.cards.Card;
 public class SetupController {
 
 	private static SetupController setupController = null; // singleton instance
-	private SetupView view;	
-	private Setup model;
+	private SetupView view;				
+	private PlayerSetup playerSetup; 	// model for player setup
+	private GameSetup gameSetup; 		// model for game setup
 	
 	/**
 	 * getInstance
@@ -31,9 +32,9 @@ public class SetupController {
 	 * @param setup - will be the model
 	 * @return setupController singleton Instance of SetupController
 	 */
-	public static SetupController getInstance(SetupView view, Setup setup) {
+	public static SetupController getInstance(SetupView view, PlayerSetup playerSetup, GameSetup gameSetup) {
 		if(setupController == null) {
-			setupController = new SetupController(view, setup);
+			setupController = new SetupController(view, playerSetup, gameSetup);
 		}
 		return setupController;
 	}
@@ -43,7 +44,7 @@ public class SetupController {
 	 * 	indicates beginning of setup (set flag in model)
 	 */
 	public void startSetup() {
-		model.getGameSetup().setSetup(true);
+		gameSetup.setSetup(true);
 	}
 	
 	/**
@@ -51,7 +52,7 @@ public class SetupController {
 	 * 	indicated end of setup (reset flag in model)
 	 */
 	public void endSetup() {
-		model.getGameSetup().setSetup(false);
+		gameSetup.setSetup(false);
 	}
 	
 	/**
@@ -60,9 +61,10 @@ public class SetupController {
 	 * @param view
 	 * @param setup (model)
 	 */
-	public SetupController(SetupView view, Setup setup) {
+	public SetupController(SetupView view, PlayerSetup playerSetup, GameSetup gameSetup) {
 		this.view = view;
-		this.model = setup;
+		this.playerSetup = playerSetup;
+		this.gameSetup  = gameSetup;
 	}
 	
 	/**
@@ -70,7 +72,7 @@ public class SetupController {
 	 * @return singleton board instance
 	 */
 	public Board getBoard() {
-		return model.getGameSetup().getBoard();
+		return gameSetup.getBoard();
 	}
 	
 	/**
@@ -78,7 +80,7 @@ public class SetupController {
 	 * 	call model to create treasure and flood decks
 	 */
 	public void createDecks() {
-		model.getGameSetup().createDecks();
+		gameSetup.createDecks();
 	}
 	
 	/**
@@ -86,7 +88,7 @@ public class SetupController {
 	 * @param numPlayers - number of players indicated by user
 	 */
 	public void setNumPlayers(int numPlayers) {
-		model.getPlayerSetup().setNumPlayers(numPlayers);
+		playerSetup.setNumPlayers(numPlayers);
 	}
 
 	/**
@@ -95,7 +97,7 @@ public class SetupController {
 	 * @return List of players (names, pawns, and hands initialised)
 	 */
 	public PlayerList setupPlayers(Set<String> names) {
-		return model.getPlayerSetup().setupPlayerList(names);
+		return playerSetup.setupPlayerList(names);
 	}
 	
 	/**
@@ -103,7 +105,7 @@ public class SetupController {
 	 * @param selectedDifficulty - game difficulty indicated by user
 	 */
 	public void setGameDifficulty(Difficulty selectedDifficulty) {
-		model.getGameSetup().setupWaterLevel(selectedDifficulty);
+		gameSetup.setupWaterLevel(selectedDifficulty);
 	}
 	
 	/**
@@ -112,7 +114,7 @@ public class SetupController {
 	 * @return Set of flood cards drawn
 	 */
 	public Set<Card> drawFloodCards() {
-		return model.getGameSetup().drawFloodCards();
+		return gameSetup.drawFloodCards();
 	}
 	
 }
