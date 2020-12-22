@@ -9,19 +9,16 @@ import elements.board.Board;
 import elements.board.Tile;
 import elements.cards.*;
 import mechanics.actions.*;
-import mechanics.cardActions.CardActionController;
-import mechanics.cardActions.HelicopterView;
-import mechanics.cardActions.SandbagsView;
 
 /**
  * TurnView
  * 	View to display turn events
  * @author Catherine Waechter
- * @version 1.5
+ * @version 1.6
  * 	adjusted for ActionController
  * 
  * Date Created:  03/12/20
- * Last Modified: 17/12/20
+ * Last Modified: 22/12/20
  */
 public class TurnView {
 
@@ -180,16 +177,8 @@ public class TurnView {
      * 	assign controller instance
      * @param controller
      */
-    public void setupView(TurnController turnController, ActionController actionController) {
+    public void setController(TurnController turnController) {
     	this.controller = turnController;
-    	
-    	ClaimTreasureView.getInstance().setController(actionController);			// TODO Cat Probably shouldn't all be here
-    	GiveCardView.getInstance().setController(turnController, actionController);
-    	MoveView.getInstance().setController(turnController, actionController);
-    	ShoreupView.getInstance().setController(actionController);
-    	PlayCardView.getInstance().setController(actionController);
-    	HelicopterView.getInstance().setController(CardActionController.getInstance(), actionController, turnController); // TODO Cat put cardAction controller in params ? 
-    	SandbagsView.getInstance().setController(CardActionController.getInstance(), actionController, turnController); // TODO Cat put cardAction controller in params ? 
     }
     
 	
