@@ -26,7 +26,7 @@ import java.io.IOException;
  * Last modified:17/12/20
  *
  */
-public class FloodTileView{
+public class FloodTileView{ 		 // TODO it's not a view! find a better way to organise? 
 	
 	/**
 	 * floodTile

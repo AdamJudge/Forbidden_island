@@ -17,7 +17,7 @@ import elements.board.Board;
 import elements.board.WaterLevel;
 import players.Player;
 
-public class Game {
+public class Game {						// TODO delete? 
 	protected Set<Player> playerList;
 	protected Board board;
 	protected WaterLevel waterLevel;
