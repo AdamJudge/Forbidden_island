@@ -43,7 +43,7 @@ public class TurnView {
 		
 		System.out.println("It's your turn " + currentPlayer + "!");
 		System.out.println("Your cards are : " + controller.getHand(currentPlayer));
-		System.out.println("Your " + player.getPawn() + " is on " + player.getPawn().getTile()); 	// TODO do in controller
+		System.out.println("Your " + player.getPawn() + " is on " + controller.getCurrentTile(player));
 		
 		statusOK = doActions();
 		if (!statusOK) {
