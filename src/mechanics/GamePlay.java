@@ -39,6 +39,9 @@ public class GamePlay extends Subject{
 		while (!gameOver) {
 			for (int i = 0; i< players.size(); i++) {
 				Turn.getInstance().doTurn(players.get(i), user);	
+				if (this.gameOver) {
+					break;
+				}
 			}
 		}
 	}

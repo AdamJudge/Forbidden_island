@@ -74,7 +74,9 @@ public class TurnView {
 				actionCount = 0;
 			}
 		}
-		
+		if (GamePlay.getInstance().getGameOver()) {
+			return;
+		}
 		Card cardDrawn;
 		// TODO should still be able to play cards in here (especially when hand becomes full!)
 		for(int i = 0; i<2; i++) {
@@ -86,6 +88,9 @@ public class TurnView {
 		
 		for (int i = 0; i< controller.getNbrCards(); i++) {
 			cardDrawn = controller.drawFloodCards();
+			if (GamePlay.getInstance().getGameOver()) {
+				return;
+			}
 			System.out.println("Flood card drawn: " + cardDrawn);
 			Tile tileFlooded = controller.getFloodCardTile(cardDrawn);
 			System.out.println(tileFlooded + " status: " + controller.getTileStatus(tileFlooded));
