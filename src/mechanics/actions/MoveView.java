@@ -56,7 +56,7 @@ public class MoveView {
 		playerToMove = currentPlayer;
 	
 		// Navigator exception
-		if(currentPlayer.getPawn() instanceof Navigator) {  // TODO do the check in controller?  
+		if(turnController.isNavigator(currentPlayer)) { 
 			playerToMove = navigatorException(currentPlayer);
 		}
 		
@@ -116,7 +116,6 @@ public class MoveView {
 		
 		ViewDisplayTools.printTileList(possibleTiles);
 		
-		//TODO discuss do we not need a scanner here?
 		int userNum = ViewInputTools.numbers(user, 1, possibleTiles.size());
 		
 		controller.move(player, possibleTiles.get(userNum-1));

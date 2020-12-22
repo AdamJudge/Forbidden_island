@@ -21,11 +21,13 @@ import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import players.Player;
 import mechanics.Scan;
+import mechanics.TurnController;
 
 public class ShoreupView {
 
 	private static ShoreupView shoreupView = null;
 	private ActionController controller;
+	private TurnController turnController;
 	private Scan user;
 	
 	/**
@@ -41,8 +43,9 @@ public class ShoreupView {
 		return shoreupView;
 	}
 	
-	public void setup(Scan user, ActionController actionController) {
+	public void setup(Scan user, TurnController turnController, ActionController actionController) {
 		this.user = user;
+		this.turnController = turnController;
 		controller = actionController;
 	}
 
@@ -83,9 +86,9 @@ public class ShoreupView {
 			controller.shoreup(chosenTile);
 			actionUsed = true;
 			
-			System.out.println("Tile : " + chosenTile + " Status: " + chosenTile.getStatus().name()); 		// TODO do in controller
+			System.out.println("Tile : " + chosenTile + " Status: " + turnController.getTileStatus(chosenTile)); 	
 			
-			if(player.getPawn() instanceof Engineer && i==0) { 		// TODO should this be checked in controller?
+			if(turnController.isEngineer(player)&& i==0) { 		
 				System.out.println("You can shore up another tile for no additional actions!");
 				System.out.println("Which tile do you want to shore up? (Enter 0 if you don't want to shore up another tile. Will still use an action for first shore-up)");
 			}
