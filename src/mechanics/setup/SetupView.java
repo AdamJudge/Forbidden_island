@@ -8,8 +8,9 @@ import mechanics.ViewInputTools;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.TreeSet;
 import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import players.*;
 
@@ -18,10 +19,11 @@ import players.*;
  * 	View to display game setup (implements MVC)
  * 
  * @author Catherine Waechter
- * @version 1.0
+ * @version 2.2
+ * 	Player list ordered
  * 
  * Date created: 30/11/20
- * Last Modified: 03/12/20
+ * Last Modified: 22/12/20
  */
 public class SetupView {
 	
@@ -45,7 +47,7 @@ public class SetupView {
 		setupCards();
 		
 		// Setup players 
-		int numPlayers = this.getPlayerNum();
+		int numPlayers = getPlayerNum();
 		PlayerList players = getPlayerNames(numPlayers);
 		outputPlayerInfo(players);
 		
@@ -71,7 +73,8 @@ public class SetupView {
 	private PlayerList getPlayerNames(int numPlayers) {
 		//Sets players names
 		boolean duplicate;
-		Set<String> names = new TreeSet<String>();		// TODO check order
+		Queue<String> names = new LinkedList<String>();
+		//Set<String> names = new TreeSet<String>();		// TODO check order
 		String name;
 		for(int i=1; i <= numPlayers; i++) {
 			duplicate=true;

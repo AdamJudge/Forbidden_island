@@ -2,7 +2,6 @@
 
 package mechanics.setup;
 
-import java.io.IOException;
 import java.util.*;
 import players.Player;
 import players.PlayerList;
@@ -14,11 +13,11 @@ import elements.cards.TreasureDeck;
  * PlayerSetup
  * 	Handles setup of the players (name, role (pawn), hand)
  * @author Adam Judge, Catherine Waechter
- * @version 2.0
- * 	Edited to suit MVC
+ * @version 2.1
+ * 	Player list ordered
  * 
  * Date created: 23/11/20 
- * Last modified: 30/11/20
+ * Last modified: 22/12/20
  *
  */
 public class PlayerSetup {
@@ -54,10 +53,10 @@ public class PlayerSetup {
 	 * @param playerNames - set of player names
 	 * @return playerList - list of players
 	 */
-	public PlayerList setupPlayerList(Set<String> playerNames) {
+	public PlayerList setupPlayerList(Queue<String> playerNames) {
 		// set player names
-		for (String p : playerNames) {
-			Player player = new Player(p);
+		while (!playerNames.isEmpty()){
+			Player player = new Player(playerNames.remove());
 			playerList.addPlayer(player);	
 		}
 		

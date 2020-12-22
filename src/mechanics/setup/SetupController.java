@@ -1,12 +1,13 @@
 package mechanics.setup;
 
-import java.io.IOException;
 import java.util.Set;
+import java.util.Queue;
 
 import players.PlayerList;
 import elements.board.Board;
 import elements.board.Difficulty;
 import elements.cards.Card;
+
 
 /**
  * SetupController (singleton)
@@ -15,11 +16,11 @@ import elements.cards.Card;
  * 	Model is split into two models : the player setup and the game setup
  * 
  * @author Catherine Waechter
- * @version 1.1
- * 	getBoard calls model instead of calling board directly
+ * @version 1.2
+ * 	Player list ordered
  * 
  * Date created: 30/11/20
- * Last Modified: 03/12/20
+ * Last Modified: 22/12/20
  */
 public class SetupController {
 
@@ -72,7 +73,7 @@ public class SetupController {
 	 * @param names - names of players
 	 * @return List of players (names, pawns, and hands initialised)
 	 */
-	public PlayerList setupPlayers(Set<String> names) {
+	public PlayerList setupPlayers(Queue<String> names) {
 		return playerSetup.setupPlayerList(names);
 	}
 	
