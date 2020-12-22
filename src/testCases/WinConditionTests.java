@@ -114,7 +114,7 @@ public class WinConditionTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(player1);		// TODO this doesn't work with null, not sure why
 		assertTrue("GamePlay should now have GameOver set to true", gp.getGameOver());
 	}
 	
@@ -127,7 +127,7 @@ public class WinConditionTests {
 		captureTreasures(TreasureNames.STATUE_OF_THE_WIND);
 		
 		// Try leave with player
-		String input = "1 24 0";
+		String input = "1 1 24 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
@@ -135,25 +135,25 @@ public class WinConditionTests {
 		givePlayerHelicopter(player1);
 
 		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if 3 players are missing from fools landing", gp.getGameOver());
 		
 		in = new ByteArrayInputStream(input.getBytes());
 		Scan.getInstance().setScanner(new Scanner(in));
 		movePlayerToTile(player2, TileNames.FOOLS_LANDING);
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if 2 players are missing from fools landing", gp.getGameOver());
 		
 		in = new ByteArrayInputStream(input.getBytes());
 		Scan.getInstance().setScanner(new Scanner(in));
 		movePlayerToTile(player3, TileNames.FOOLS_LANDING);
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if 1 player is missing from fools landing", gp.getGameOver());
 		
 		in = new ByteArrayInputStream(input.getBytes());
 		Scan.getInstance().setScanner(new Scanner(in));
 		movePlayerToTile(player4, TileNames.FOOLS_LANDING);
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertTrue("Win condition met if no players are missing from fools landing", gp.getGameOver());
 	}
 	
@@ -166,38 +166,38 @@ public class WinConditionTests {
 		movePlayerToTile(player4, TileNames.FOOLS_LANDING);
 		
 		// Try leave fools landing
-		String input = "1 24 0";
+		String input = "1 1 24 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		givePlayerHelicopter(player1);
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 		
 		//Capture 1 trasure at a time and retest leave
 		captureTreasures(TreasureNames.CRYSTAL_OF_FIRE);
-		in = new ByteArrayInputStream(input.getBytes());
+		in = new ByteArrayInputStream(input.getBytes());		// TODO does this need to be done again every time? 
 		Scan.getInstance().setScanner(new Scanner(in));
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 		
 		captureTreasures(TreasureNames.EARTH_STONE);
 		in = new ByteArrayInputStream(input.getBytes());
 		Scan.getInstance().setScanner(new Scanner(in));
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 
 		
 		captureTreasures(TreasureNames.OCEAN_CHALICE);
 		in = new ByteArrayInputStream(input.getBytes());
 		Scan.getInstance().setScanner(new Scanner(in));
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 	
 		captureTreasures(TreasureNames.STATUE_OF_THE_WIND);
 		in = new ByteArrayInputStream(input.getBytes());
 		Scan.getInstance().setScanner(new Scanner(in));
-		PlayCardView.getInstance().doAction(player1);
+		PlayCardView.getInstance().doAction(null);
 		assertTrue("Win condition met if all treasures captured", gp.getGameOver());
 }
 	
