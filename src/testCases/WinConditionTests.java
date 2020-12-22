@@ -125,7 +125,7 @@ public class WinConditionTests {
 		captureTreasures(TreasureNames.STATUE_OF_THE_WIND);
 		
 		// Try leave with player
-		String input = "1 24 1";
+		String input = "1 24 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scanner scanner = new Scanner(in);
@@ -137,30 +137,21 @@ public class WinConditionTests {
 		
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
 		movePlayerToTile(player2, TileNames.FOOLS_LANDING);
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertFalse("Win condition not met if 2 players are missing from fools landing", gp.getGameOver());
 		
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		movePlayerToTile(player2, TileNames.FOOLS_LANDING);
 		movePlayerToTile(player3, TileNames.FOOLS_LANDING);
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertFalse("Win condition not met if 1 player is missing from fools landing", gp.getGameOver());
 		
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		movePlayerToTile(player2, TileNames.FOOLS_LANDING);
-		movePlayerToTile(player3, TileNames.FOOLS_LANDING);
 		movePlayerToTile(player4, TileNames.FOOLS_LANDING);
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
-		assertTrue("Win condition  met if no players are missing from fools landing", gp.getGameOver());
+		assertTrue("Win condition met if no players are missing from fools landing", gp.getGameOver());
 	}
 	
 	@Test
@@ -172,7 +163,7 @@ public class WinConditionTests {
 		movePlayerToTile(player4, TileNames.FOOLS_LANDING);
 		
 		// Try leave fools landing
-		String input = "1 24 1";
+		String input = "1 24 0";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		scanner = new Scanner(in);
@@ -180,21 +171,16 @@ public class WinConditionTests {
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 		
+		//Capture 1 trasure at a time and retest leave
 		captureTreasures(TreasureNames.CRYSTAL_OF_FIRE);
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		// move back to fools landing
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		//give helicopter card to use
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 		
 		captureTreasures(TreasureNames.EARTH_STONE);
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 
@@ -202,16 +188,12 @@ public class WinConditionTests {
 		captureTreasures(TreasureNames.OCEAN_CHALICE);
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 	
 		captureTreasures(TreasureNames.STATUE_OF_THE_WIND);
 		in = new ByteArrayInputStream(input.getBytes());
 		scanner = new Scanner(in);
-		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
-		givePlayerHelicopter(player1);
 		PlayCardView.getInstance().doAction(player1, scanner);
 		assertTrue("Win condition met if all treasures captured", gp.getGameOver());
 }

@@ -220,11 +220,14 @@ public class LoseConditionTests {
 		
 		// Move to top left of board
 		player2.getPawn().move(testBoard.getSortedTiles().get(0));
+		System.out.println(testBoard.toString());
 		// Perform swim check. Observers are notified via this function and game over will be true if the player is unable to swim
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())), ActionController.getInstance());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())), ActionController.getInstance());
+		System.out.println(testBoard.toString());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())), ActionController.getInstance());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())), ActionController.getInstance());
+		System.out.println(testBoard.toString());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())), ActionController.getInstance());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())), ActionController.getInstance());
 		player2.getPawn().swimCheck();
