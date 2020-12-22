@@ -176,7 +176,7 @@ public class WinConditionTests {
 		
 		//Capture 1 trasure at a time and retest leave
 		captureTreasures(TreasureNames.CRYSTAL_OF_FIRE);
-		in = new ByteArrayInputStream(input.getBytes());		// TODO does this need to be done again every time? 
+		in = new ByteArrayInputStream(input.getBytes());		// TODO Adam does this need to be done again every time? -Cat
 		Scan.getInstance().setScanner(new Scanner(in));
 		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());

@@ -65,7 +65,6 @@ public class LoseConditionTests {
 		
 		//Setup Observers
 		gp=GamePlay.getInstance();
-//		ObserverSetup.getInstance().attachObservers();		// TODO I think this is done in Setup.setupOnly 
 	} 
 	
 	public void movePlayerToTile(Player player, TileNames tilename) {
