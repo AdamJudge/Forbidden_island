@@ -39,10 +39,6 @@ public class FloodDeck extends Deck{
 		return floodDeck;
 	}
 	
-	public void setController(ActionController controller) {
-		this.controller = controller; 
-	}
-	
 	/**
 	 * draw
 	 * 	draws a floodcard and carries out required flooding. Card is discarded in floodTile method
@@ -51,7 +47,7 @@ public class FloodDeck extends Deck{
 	@Override
 	public Card draw() {
 		FloodCard card = (FloodCard)super.draw();
-		FloodTileView.floodTile(card, controller);	// TODO cat check this
+		FloodTileView.floodTile(card);	
 		
 		if (cards.isEmpty()) {
 			FloodDiscard.getInstance().toDeck();
