@@ -73,8 +73,8 @@ public class SetupView {
 	private PlayerList getPlayerNames(int numPlayers) {
 		//Sets players names
 		boolean duplicate;
-		Queue<String> names = new LinkedList<String>();
-		//Set<String> names = new TreeSet<String>();		// TODO check order
+		Queue<String> names = new LinkedList<String>();	// Queue to keep order the names were given in
+		
 		String name;
 		for(int i=1; i <= numPlayers; i++) {
 			duplicate=true;

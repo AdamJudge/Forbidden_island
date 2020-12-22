@@ -1,15 +1,11 @@
 package mechanics.setup;
-import elements.board.WaterLevel;
-import elements.pawns.Pawn;
-import mechanics.GamePlay;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
+import elements.board.WaterLevel;
+import mechanics.GamePlay;
 import elements.board.Board;
 import elements.board.Tile;
-import elements.board.TileNames;
 import observers.*;
 import players.Player;
 import players.PlayerList;
@@ -24,20 +20,13 @@ import players.PlayerList;
  *
  */
 
-public class ObserverSetup {
+public class ObserverSetup {								// TODO does this need to be a singleton? 
 	private static ObserverSetup observerSetup = null;
 
-	public static ObserverSetup getInstance() {
-		if (observerSetup == null) {
-			observerSetup = new ObserverSetup();
-		}
-		return observerSetup;
-	}
-	
-	private ObserverSetup() {
-		
-	}
-	
+	/**
+	 * attachObservers
+	 * 	attach observers to pawns and tiles that need to be observed
+	 */
 	public void attachObservers() {
 		Set<Tile> tileList = Board.getInstance().getAllTiles();
 		Tile foolsLanding = null;
@@ -98,10 +87,25 @@ public class ObserverSetup {
 		new TreasureObserver(tidalPalace, coralPalace, tidalPalace.getTreasure());	
 		new TreasureObserver(templeOfTheSun, templeOfTheMoon, templeOfTheSun.getTreasure());	
 		new TreasureObserver(caveOfEmbers, caveOfShadows, caveOfEmbers.getTreasure());	
-		new HelicopterLiftWinObserver(GamePlay.getInstance());
+		
 		// Game Win Observer
+		new HelicopterLiftWinObserver(GamePlay.getInstance());
+	}
+	/**
+	 * getInstance
+	 * @return singleton instance of Observer setup
+	 */
+	public static ObserverSetup getInstance() {
+		if (observerSetup == null) {
+			observerSetup = new ObserverSetup();
+		}
+		return observerSetup;
 	}
 	
+	/**
+	 * tearDown
+	 * 	used for testing
+	 */
 	public void tearDown() {
 		observerSetup=null;
 	}

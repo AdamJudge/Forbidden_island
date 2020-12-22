@@ -1,7 +1,6 @@
 package mechanics.setup;
 
 import java.util.Set;
-import java.io.IOException;
 import java.util.HashSet;
 
 import elements.board.WaterLevel;
