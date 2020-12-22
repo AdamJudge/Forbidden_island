@@ -27,7 +27,7 @@ public class GamePlay extends Subject{
 	private boolean canLeave;			// true if players can leave the island (win condition)
 	private Board board;				// TODO Adam - I think this can be removed (Also from constructor)
 	private PlayerList playerList;		// List of players in the game
-	private Boolean gameOver;			// true if the game is over (lose condition)
+	private boolean gameOver;			// true if the game is over (lose condition)
 	
 	/**
 	 * playGame
@@ -58,7 +58,7 @@ public class GamePlay extends Subject{
 	 * 	Observer will update this when updated in tryLeave
 	 * @param bool - true if players can leave
 	 */
-	public void setLeave(Boolean bool) {
+	public void setLeave(boolean bool) {
 		canLeave=bool;
 	}
 	
@@ -66,7 +66,7 @@ public class GamePlay extends Subject{
 	 * canLeave
 	 * @return canLeave 
 	 */
-	public Boolean canLeave() {
+	public boolean canLeave() {
 		return canLeave;
 	}
 	
@@ -75,7 +75,7 @@ public class GamePlay extends Subject{
 	 * 	Set by observer when lose conditions are met
 	 * @param bool - true if players have lost
 	 */
-	public void setGameOver(Boolean bool) {
+	public void setGameOver(boolean bool) {
 		gameOver=bool;
 	}
 	
@@ -83,7 +83,7 @@ public class GamePlay extends Subject{
 	 * getGameOver 
 	 * @return gameOver - true if players have lost
 	 */
-	public Boolean getGameOver() {
+	public boolean getGameOver() {
 		return gameOver;
 	}
 	

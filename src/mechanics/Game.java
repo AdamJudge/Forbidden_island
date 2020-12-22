@@ -25,7 +25,7 @@ public class Game {						// TODO delete?
 	public Game() {	
 	}
 	
-	public Boolean isOver() {
+	public boolean isOver() {
 		// O B S E R V E 	M E
 		return true;
 	}

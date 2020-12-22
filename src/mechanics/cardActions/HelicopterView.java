@@ -85,6 +85,8 @@ public class HelicopterView {
 				boolean leaving = cardController.tryLeave();
 				if(leaving == false) {
 					System.out.println("Conditions not met for leaving! Enter another number to fly to a tile, or 0 to cancel.");
+				} else {
+					break;
 				}
 			}
 			

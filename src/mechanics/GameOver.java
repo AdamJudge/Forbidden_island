@@ -1,11 +1,11 @@
 package mechanics;
 
 public class GameOver{	
-	public GameOver(Boolean gameVictory){
+	public GameOver(boolean gameVictory){
 		endGame(gameVictory);
 	}
 	
-	private void endGame(Boolean gameVictory) {
+	private void endGame(boolean gameVictory) {
 		//If win else lose
 		String resultString;
 		if (gameVictory) {
