@@ -49,7 +49,7 @@ public class Diver extends Pawn {
 		
 		thisRound.add(currentTile);
 		
-		for(int i = 0; i<6; i++) { // TODO check this value!
+		for(int i = 0; i<7; i++) { // 7 is the max distance between tiles on the board
 			// check if any tiles in this round can be landed on
 			for(Tile tile : thisRound) {
 				if(tile.getStatus() != TileStatus.REMOVED) {
@@ -105,9 +105,7 @@ public class Diver extends Pawn {
 		ArrayList<Tile> checkTiles = new ArrayList<Tile>();			// tiles to be "checked"
 		ArrayList<Tile> validTiles = new ArrayList<Tile>();			// tiles that can be landed on
 		// checking a tile = checking status, adding to valid tiles if the diver can land on it, checking adjacent tiles if diver can swim through it
-		
-		// TODO see if this can be done with smth that isn't arrayList. Should be doable with TreeSet if we can get Tile to be sortable? 
-		
+			
 		checkTiles = adjacentNewTiles(currentTile, checkedTiles, checkTiles);	// initial list of tiles to check are adjacent to current tile
 		checkedTiles.add(currentTile);
 		
