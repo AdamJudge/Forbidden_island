@@ -69,7 +69,6 @@ public class Pilot extends Pawn {
 				}
 			}
 		}
-		System.out.println("Pilot can fly to these tiles (will not be able to fly again this turn)");
 		
 		return validTiles;
 	}
