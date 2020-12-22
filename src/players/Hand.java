@@ -14,14 +14,13 @@
 package players;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
 import mechanics.TurnController;
 
 public class Hand {
-	protected List<Card> hand;
+	protected ArrayList<Card> hand;
 	
 	public Hand() {
 		hand = new ArrayList<Card>();
@@ -34,7 +33,7 @@ public class Hand {
 		}
 	}
 	
-	public List<Card> getCards(){
+	public ArrayList<Card> getCards(){
 		return hand;
 	}
 	
