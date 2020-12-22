@@ -11,9 +11,6 @@
  */
 
 package main;
-
-import java.util.Scanner;
-
 import mechanics.GamePlay;
 import mechanics.Scan;
 import mechanics.setup.Setup;

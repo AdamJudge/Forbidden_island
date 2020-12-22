@@ -23,6 +23,7 @@ public class Scan {
 	 * getInstance
 	 * @return setupView - singleton instance of Scan
 	 */
+	
 	public static Scan getInstance() {
 		if(scan == null)
 			scan= new Scan();

@@ -2,29 +2,20 @@ package testCases;
 
 import static org.junit.Assert.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import elements.board.*;
 import elements.cards.FloodCard;
-import elements.cards.TreasureCard;
-import elements.cards.TreasureCardTypes;
 import elements.pawns.Diver;
 import elements.pawns.Engineer;
 import elements.pawns.Explorer;
 import elements.pawns.Navigator;
-import elements.treasures.*;
 import mechanics.GamePlay;
-import mechanics.TurnController;
-import mechanics.TurnView;
 import mechanics.actions.ActionController;
-import mechanics.actions.PlayCardView;
 import mechanics.cardActions.FloodTileView;
 import mechanics.setup.ObserverSetup;
 import mechanics.setup.Setup;
@@ -40,8 +31,6 @@ public class LoseConditionTests {
 	private Player player1, player2, player3, player4;
 	private PlayerList playerList;
 	private GamePlay gp;
-	private Scanner scanner;
-
 	
 	@Before
 	public void setup() {
@@ -221,16 +210,21 @@ public class LoseConditionTests {
 		// Move to top left of board
 		player2.getPawn().move(testBoard.getSortedTiles().get(0));
 		System.out.println(testBoard.toString());
-		// Perform swim check. Observers are notified via this function and game over will be true if the player is unable to swim
+		// Remove tile to right of player
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())), ActionController.getInstance());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())), ActionController.getInstance());
-		System.out.println(testBoard.toString());
+		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
+
+		// Remove tile below player. Player will have nowhere to swim to if tile is removed
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())), ActionController.getInstance());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())), ActionController.getInstance());
-		System.out.println(testBoard.toString());
+		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
+
+		// Remove tile player is standing on
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())), ActionController.getInstance());
 		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())), ActionController.getInstance());
-		player2.getPawn().swimCheck();
+		assertTrue("The player should have no tiles available to swim to and will drown", player2.getPawn().swimCheck().isEmpty());
+		assertTrue("Game is over if player drowns", GamePlay.getInstance().getGameOver());
 	}
 	
 	@After
