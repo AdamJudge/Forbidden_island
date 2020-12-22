@@ -28,13 +28,19 @@ import java.io.IOException;
  */
 public class FloodTileView{ 		 // TODO it's not a view! find a better way to organise? 
 	
+	private static ActionController controller;		// TODO static things? 
+	
+	public static void setController(ActionController actionController) {
+		controller = actionController;
+	}
+	
 	/**
 	 * floodTile
 	 * 	if tile is normal, flood the tile and add card to discard pile
 	 * 	if tile is flooded, remove tile, and remove card (ie don't add to discard)
 	 * @param card
 	 */
-	public static void floodTile(FloodCard card, ActionController controller) {
+	public static void floodTile(FloodCard card) {
 		
 		Tile tile = card.getTile();
 		
