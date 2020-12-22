@@ -10,6 +10,8 @@ import elements.board.WaterLevel;
 import players.Player;
 import players.PlayerList;
 import elements.cards.*;
+import elements.pawns.Engineer;
+import elements.pawns.Navigator;
 import elements.pawns.Pilot;
 import players.Hand;
 
@@ -27,7 +29,6 @@ import players.Hand;
 public class TurnController {
 	
 	private static TurnController turnController = null;
-	//private Turn model;	// TODO what is the model here, It's not actually turn
 	private TurnView view;
 	
 	public Board getBoard() {
@@ -149,6 +150,18 @@ public class TurnController {
 			return ((FloodCard)card).getTile();
 		}
 		else return null;
+	}
+	
+	public Tile getCurrentTile(Player player) {
+		return player.getPawn().getTile();
+	}
+	
+	public boolean isEngineer(Player player) {
+		return (player.getPawn() instanceof Engineer);
+	}
+	
+	public boolean isNavigator(Player player) {
+		return (player.getPawn() instanceof Navigator);
 	}
 	
 	public TileStatus getTileStatus(Tile tile) {
