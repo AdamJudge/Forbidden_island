@@ -3,7 +3,6 @@ package testCases;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -12,21 +11,15 @@ import org.junit.Test;
 import org.junit.After;
 
 import elements.cards.TreasureDeck;
-import mechanics.TurnController;
 import mechanics.TurnView;
-import mechanics.actions.ActionController;
+import mechanics.setup.Setup;
 import players.*;
 
 public class PlayerTests {
 
 	@Before 
 	public void testSetup() {
-		TurnController.getInstance();
-		TurnView view = TurnView.getInstance();
-		TurnController controller = TurnController.getInstance();
-		
-		controller.setView(view);
-		view.setupView(controller, ActionController.getInstance());
+		Setup.setupOnly();
 	}
 	
 	@Test

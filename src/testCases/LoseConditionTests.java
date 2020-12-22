@@ -27,6 +27,7 @@ import mechanics.actions.ActionController;
 import mechanics.actions.PlayCardView;
 import mechanics.cardActions.FloodTileView;
 import mechanics.setup.ObserverSetup;
+import mechanics.setup.Setup;
 import observers.PawnObserver;
 import players.Hand;
 import players.Player;
@@ -48,11 +49,7 @@ public class LoseConditionTests {
 		wl=WaterLevel.getInstance();
 		wl.setDifficulty(Difficulty.LEGENDARY);
 		boardTiles = testBoard.getSortedTiles();
-		TurnController.getInstance();
-		TurnView view = TurnView.getInstance();
-		TurnController controller = TurnController.getInstance();
-		controller.setView(view);
-		view.setupView(controller, ActionController.getInstance());
+		Setup.setupOnly();
 		
 		//Setup Players
 		player1 = new Player("player 1");
@@ -79,7 +76,7 @@ public class LoseConditionTests {
 		
 		//Setup Observers
 		gp=GamePlay.getInstance();
-		ObserverSetup.getInstance().attachObservers();
+//		ObserverSetup.getInstance().attachObservers();		// TODO I think this is done in Setup.setupOnly 
 	} 
 	
 	public void movePlayerToTile(Player player, TileNames tilename) {

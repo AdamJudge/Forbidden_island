@@ -25,6 +25,7 @@ import mechanics.TurnView;
 import mechanics.actions.ActionController;
 import mechanics.actions.PlayCardView;
 import mechanics.setup.ObserverSetup;
+import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;
 import players.PlayerList;
@@ -43,11 +44,7 @@ public class WinConditionTests {
 		testBoard = Board.getInstance();
 		WaterLevel.getInstance().setDifficulty(Difficulty.NORMAL);
 		boardTiles = testBoard.getSortedTiles();
-		TurnController.getInstance();
-		TurnView view = TurnView.getInstance();
-		TurnController controller = TurnController.getInstance();
-		controller.setView(view);
-		view.setupView(controller, ActionController.getInstance());
+		Setup.setupOnly();
 		
 		//Setup Players
 		player1 = new Player("player 1");
@@ -74,7 +71,6 @@ public class WinConditionTests {
 		
 		//Setup Observers
 		gp=GamePlay.getInstance();
-		ObserverSetup.getInstance().attachObservers();
 	} 
 	
 	public void givePlayerHelicopter(Player player) {

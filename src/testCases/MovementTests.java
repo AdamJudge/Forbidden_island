@@ -19,6 +19,7 @@ import mechanics.TurnView;
 import mechanics.actions.ActionController;
 import mechanics.actions.MoveView;
 import mechanics.actions.ShoreupView;
+import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;
 import players.PlayerList;
@@ -57,11 +58,7 @@ public class MovementTests {
 			p.getPawn().toInitialTile();
 			p.setHand(new Hand());
 		}
-		TurnController.getInstance();
-		TurnView view = TurnView.getInstance();
-		TurnController controller = TurnController.getInstance();
-		controller.setView(view);
-		view.setupView(controller, ActionController.getInstance());
+		Setup.setupOnly();
 		//Move all players to center tile
 		for (Tile t:sortedTiles) {
 			t.shoreup();
