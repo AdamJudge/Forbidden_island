@@ -2,6 +2,7 @@ package mechanics.setup;
 import java.util.Scanner;
 
 import elements.cards.FloodDeck;
+import mechanics.Scan;
 import mechanics.TurnController;
 import mechanics.actions.ActionController;
 import mechanics.actions.ClaimTreasureView;
@@ -39,10 +40,10 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	 * 
 	 * @param user - user input scanner
 	 */
-	public static void setupAndRun(Scanner user) {
+	public static void setupAndRun() {
 		SetupView view = setupOnly();
 		
-		view.run(user);
+		view.run();
 	}
 	
 	/**
@@ -52,10 +53,11 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	 * @return
 	 */
 	public static SetupView setupOnly(){
-		SetupView view = setupMVC();
+		Scan user = Scan.getInstance();
+		SetupView view = setupMVC(user);
 		
-		TurnController turnController = setupTurn();
-		setupActions(turnController);
+		TurnController turnController = setupTurn(user);
+		setupActions(user, turnController);
 		
 		ObserverSetup.getInstance().attachObservers();
 		return view;
@@ -67,12 +69,12 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	 * 
 	 * @return turnController (with setup completed)
 	 */
-	private static TurnController setupTurn() {
+	private static TurnController setupTurn(Scan user) {
 		TurnView turnView = TurnView.getInstance();			// create view instance
 		
 		// create controller instances
 		TurnController turnController = TurnController.getInstance();	
-		turnView.setController(turnController);
+		turnView.setup(user, turnController);
 		turnController.setView(turnView);
 		
 		return turnController;
@@ -85,7 +87,7 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	 * 
 	 * @param turnController
 	 */
-	private static void setupActions(TurnController turnController) {
+	private static void setupActions(Scan user, TurnController turnController) {
 		// Create action controllers
 		ActionController actionController = ActionController.getInstance();
 		CardActionController cardController = CardActionController.getInstance();
@@ -94,13 +96,13 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 		actionController.setupController(turnController, MoveView.getInstance());
 		
 		// Set controllers for all views (Action views and card views)
-		ClaimTreasureView.getInstance().setController(actionController);
-    	GiveCardView.getInstance().setController(turnController, actionController);
-    	MoveView.getInstance().setController(turnController, actionController);
-    	ShoreupView.getInstance().setController(actionController);
-    	PlayCardView.getInstance().setController(actionController);
-    	HelicopterView.getInstance().setController(cardController, actionController, turnController); 
-    	SandbagsView.getInstance().setController(cardController, actionController, turnController); 
+		ClaimTreasureView.getInstance().setup(user, actionController);
+    	GiveCardView.getInstance().setup(user, turnController, actionController);
+    	MoveView.getInstance().setup(user, turnController, actionController);
+    	ShoreupView.getInstance().setup(user, actionController);
+    	PlayCardView.getInstance().setup(user, actionController);
+    	HelicopterView.getInstance().setup(user, cardController, actionController, turnController); 
+    	SandbagsView.getInstance().setup(user, cardController, actionController, turnController); 
 		
 		// Other classes that need access to a controller
 		FloodDeck.getInstance().setController(actionController);
@@ -112,13 +114,13 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	 * 
 	 * @return setupView instance (with setup completed)
 	 */
-	private static SetupView setupMVC() {
+	private static SetupView setupMVC(Scan user) {
 		PlayerSetup playerSetup = PlayerSetup.getInstance();	// create PlayerSetup instance
 		GameSetup gameSetup = GameSetup.getInstance();			// create GameSetup instance
 		SetupView view = SetupView.getInstance();				// create SetupView instance
 		
 		SetupController controller = SetupController.getInstance(playerSetup, gameSetup);	// create SetupController instance, assign it view and model instances
-		view.setController(controller);		// assign controller to view instance
+		view.setup(user, controller);		// assign controller to view instance
 		return view;
 	}
 }

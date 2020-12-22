@@ -14,18 +14,19 @@
 package mechanics.actions;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import elements.board.Tile;
 import elements.pawns.Engineer;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import players.Player;
+import mechanics.Scan;
 
 public class ShoreupView {
 
 	private static ShoreupView shoreupView = null;
 	private ActionController controller;
+	private Scan user;
 	
 	/**
 	 * getInstance
@@ -40,7 +41,8 @@ public class ShoreupView {
 		return shoreupView;
 	}
 	
-	public void setController(ActionController actionController) {
+	public void setup(Scan user, ActionController actionController) {
+		this.user = user;
 		controller = actionController;
 	}
 
@@ -50,7 +52,7 @@ public class ShoreupView {
 	 * 	Engineer can shore up twice
 	 * 
 	 */
-	public boolean doAction(Player player, Scanner user) {	// TODO can we refactor this into smaller functions?? 
+	public boolean doAction(Player player) {	// TODO can we refactor this into smaller functions?? 
 		int limit;
 		
 		boolean actionUsed = false;

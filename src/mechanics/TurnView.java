@@ -1,8 +1,8 @@
 package mechanics;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 
+import mechanics.Scan;
 import players.Player;
 import players.PlayerList;
 import elements.board.Board;
@@ -25,7 +25,7 @@ public class TurnView {
 	private static TurnView turnView = null;
 	private TurnController controller;
 	private Player currentPlayer;
-	private Scanner user;
+	private Scan user;
 	
 	/**
 	 * getInstance
@@ -44,10 +44,8 @@ public class TurnView {
 	 * @param player
 	 * @param user
 	 */
-	public void run(Player player, Scanner user) {
+	public void run(Player player) {
 		System.out.println(Board.getInstance());
-
-		this.user = user;
 	
 		currentPlayer = player;
 		if (GamePlay.getInstance().getGameOver()) {
@@ -66,7 +64,7 @@ public class TurnView {
 			}
 			////////////////////
 			
-			actionReturn = selectAction(user);
+			actionReturn = selectAction();
 			if(actionReturn == 1) {
 				actionCount--;
 			}
@@ -118,7 +116,7 @@ public class TurnView {
 	 * @param user
 	 * @return whether an action was used (0 - no, 1 - yes, -1 - cancel further actions)
 	 */
-	private int selectAction(Scanner user) {
+	private int selectAction() {
 		System.out.println("Select action : ");
 		System.out.println("[1]: Move");
 		System.out.println("[2]: Shore-up a tile");
@@ -131,23 +129,23 @@ public class TurnView {
 		
 		switch(actionNum) {
 		case 1:
-			if( MoveView.getInstance().doAction(currentPlayer, user)) {
+			if( MoveView.getInstance().doAction(currentPlayer)) {
 				return 1;
 			}
 			break;
 		case 2:
-			if( ShoreupView.getInstance().doAction(currentPlayer, user)) {
+			if( ShoreupView.getInstance().doAction(currentPlayer)) {
 				return 1;
 			}
 			break;
 		case 3: 
 			int actionResult = 0;
-			if(GiveCardView.getInstance().doAction(currentPlayer, user)) {
+			if(GiveCardView.getInstance().doAction(currentPlayer)) {
 				actionResult = 1;
 			}
 			return actionResult;
 		case 4:
-			if(ClaimTreasureView.getInstance().doAction(currentPlayer, user)) {
+			if(ClaimTreasureView.getInstance().doAction(currentPlayer)) {
 				return 1;
 			}
 		case 5:
@@ -164,7 +162,7 @@ public class TurnView {
 			
 			System.out.println(PlayerList.getInstance().getPlayers().get(playerNum-1).toString());
 			
-			if(PlayCardView.getInstance().doAction(PlayerList.getInstance().getPlayers().get(playerNum-1), user)) {
+			if(PlayCardView.getInstance().doAction(PlayerList.getInstance().getPlayers().get(playerNum-1))) {
 				return 1;				
 			}
  
@@ -173,16 +171,13 @@ public class TurnView {
 		return 0; 
 	}
 	
-	public void setScanner(Scanner user) {
-		this.user = user;
-	}
-
     /**
      * setController
      * 	assign controller instance
      * @param controller
      */
-    public void setController(TurnController turnController) {
+    public void setup(Scan user, TurnController turnController) {
+    	this.user = user;
     	this.controller = turnController;
     }
     

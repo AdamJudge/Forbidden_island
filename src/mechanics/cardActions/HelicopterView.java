@@ -1,22 +1,15 @@
 package mechanics.cardActions;
 
 import players.Player;
-import elements.board.Board;
 import elements.board.Tile;
-import elements.pawns.Pawn;
-import elements.pawns.Pilot;
-import mechanics.GamePlay;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import elements.cards.Card;
-import elements.cards.TreasureDiscard;
 import mechanics.actions.ActionController;
 import mechanics.TurnController;
+import mechanics.Scan;
 
-import java.util.Set;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Helicopter
@@ -35,6 +28,7 @@ public class HelicopterView {
 	private CardActionController cardController;
 	private ActionController actionController;
 	private TurnController turnController;
+	private Scan user;
 	
 	/**
 	 * getInstance
@@ -48,7 +42,8 @@ public class HelicopterView {
 		return hView;
 	}
 	
-	public void setController(CardActionController cardController, ActionController actionController, TurnController turnController) {
+	public void setup(Scan user, CardActionController cardController, ActionController actionController, TurnController turnController) {
+		this.user = user;
 		this.cardController = cardController;
 		this.actionController = actionController;
 		this.turnController = turnController;
@@ -59,7 +54,7 @@ public class HelicopterView {
 	 * 	moves given player's pawn to a requested tile
 	 * @param player
 	 */
-	public void play(Card card, Player player, Scanner user) {
+	public void play(Card card, Player player) {
 		
 		ArrayList<Tile> possibleTiles = cardController.getHelicopterTiles(player);
 		

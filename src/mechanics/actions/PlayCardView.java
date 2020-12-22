@@ -14,8 +14,7 @@
 
 package mechanics.actions;
 
-import java.util.Scanner;
-
+import mechanics.Scan;
 import elements.cards.Card;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
@@ -27,7 +26,7 @@ public class PlayCardView  {
 
 	private static PlayCardView playCardView = null;
 	private ActionController actionController;
-	private Scanner user;
+	private Scan user;
 	
 	/**
 	 * getInstance
@@ -42,12 +41,12 @@ public class PlayCardView  {
 		return playCardView;
 	}
 
-	public void setController(ActionController actionController) {
+	public void setup(Scan user, ActionController actionController) {
+		this.user = user;
 		this.actionController = actionController;
 	}
 	
-	public boolean doAction(Player player, Scanner user) { 
-		this.user = user;
+	public boolean doAction(Player player) { 
 		
 		TreasureCardTypes cardType = getCardType(player);
 		if(cardType == null) {
@@ -63,7 +62,7 @@ public class PlayCardView  {
 		for(int i = 0; i<player.getHand().getCards().size(); i++) {
 			Card card = player.getHand().getCards().get(i);
 			if (((TreasureCard)card).getCardType() == cardType) {
-				actionController.playCard(card, player, user);
+				actionController.playCard(card, player);
 			}
 		}
 	}

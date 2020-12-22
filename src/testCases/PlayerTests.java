@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.After;
 
 import elements.cards.TreasureDeck;
+import mechanics.Scan;
 import mechanics.TurnView;
 import mechanics.setup.Setup;
 import players.*;
@@ -32,9 +33,7 @@ public class PlayerTests {
 		String input = "1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
-		
-		TurnView.getInstance().setScanner(scanner);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
 		for(int i=0; i<6; i++) {
 			adam.getHand().addCard(TreasureDeck.getInstance().draw());

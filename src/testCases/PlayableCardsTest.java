@@ -15,13 +15,9 @@ import elements.board.*;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
-import mechanics.TurnController;
-import mechanics.TurnView;
-import mechanics.actions.ActionController;
+import mechanics.Scan;
 import mechanics.actions.PlayCardView;
-import mechanics.cardActions.CardActionController;
-import mechanics.cardActions.HelicopterView;
-import mechanics.cardActions.SandbagsView;
+import mechanics.setup.Setup;
 import players.*;
 
 public class PlayableCardsTest {
@@ -54,14 +50,7 @@ public class PlayableCardsTest {
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.SANDBAGS, null));
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.HELICOPTER, null));
 		
-		// TODO Adam : I think this is right but not 100% sure! -Cat
-		// TODO Cat change all this when improving view setup method!
-		ActionController actionController = ActionController.getInstance();
-		CardActionController cardController = CardActionController.getInstance();
-		TurnController turnController = TurnController.getInstance();
-		PlayCardView.getInstance().setController(actionController);		
-		HelicopterView.getInstance().setController(cardController, actionController, turnController);
-		SandbagsView.getInstance().setController(cardController, actionController, turnController);
+		Setup.setupOnly();
 	}
 	
 	public void floodATile() {
@@ -86,9 +75,9 @@ public class PlayableCardsTest {
 		String input = "1\n1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 
-		PlayCardView.getInstance().doAction(player1, scanner);
+		PlayCardView.getInstance().doAction(player1);
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		
 		int handSize=player1.getHand().getCards().size();
@@ -105,9 +94,10 @@ public class PlayableCardsTest {
 		String input = "2\n 1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+
 		TileNames originalTile = player1.getPawn().getTile().getName();
-		PlayCardView.getInstance().doAction(player1, scanner);
+		PlayCardView.getInstance().doAction(player1);
 		
 		//The player should have now moved to a different tile
 		assertFalse(player1.getPawn().getTile().getName().equals(originalTile));

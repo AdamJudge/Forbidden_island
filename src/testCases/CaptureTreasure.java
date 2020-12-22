@@ -3,7 +3,6 @@ package testCases;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,8 @@ import java.util.Scanner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import mechanics.Scan;
 import elements.board.*;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
@@ -125,25 +126,25 @@ public class CaptureTreasure {
 		String input = "";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
 		boolean result;
 		for (Player p:playerList.getPlayers()) {
-			result = ClaimTreasureView.getInstance().doAction(p, scanner);
+			result = ClaimTreasureView.getInstance().doAction(p);
 			assertFalse("Player should not be able to claim treasure", result);
 			}
 
 		//Move to wrong tile and try capture wrong treasure with wrong amount of cards
 		moveToIncorrectTreasureTiles();
 		for (Player p:playerList.getPlayers()) {
-			result = ClaimTreasureView.getInstance().doAction(p, scanner);
+			result = ClaimTreasureView.getInstance().doAction(p);
 			assertFalse("Player should not be able to claim treasure", result);
 		}
 
 		//Correct number of cards but wrong treasure type
 		giveAnotherCard();
 		for (Player p:playerList.getPlayers()) {
-			result=ClaimTreasureView.getInstance().doAction(p, scanner);
+			result=ClaimTreasureView.getInstance().doAction(p);
 			assertFalse("Player should not be able to claim treasure", result);
 		}
 
@@ -163,16 +164,16 @@ public class CaptureTreasure {
 			//Input for capture action
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			Scanner scanner = new Scanner(in);
+			Scan.getInstance().setScanner(new Scanner(in));
 			
 			//Try Claim
-			result=ClaimTreasureView.getInstance().doAction(p, scanner);
+			result=ClaimTreasureView.getInstance().doAction(p);
 			assertTrue("Player should not be able to claim treasure", result);
 			
 			//Check if claimed
 			result=p.getPawn().getTile().getTreasure().isCaptured();
 			assertTrue(result);
-			scanner = null;
+			Scan.getInstance().setScanner(null); // TODO is this necessary ? was scanner = null;
 		}
 	}
 

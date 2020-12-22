@@ -1,8 +1,8 @@
 package mechanics.cardActions;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
+import mechanics.Scan;
 import elements.board.Tile;
 import elements.cards.Card;
 import mechanics.ViewDisplayTools;
@@ -27,6 +27,7 @@ public class SandbagsView {		// TODO combine helicopter and sandbags?
 	private CardActionController controller;
 	private ActionController actionController;
 	private TurnController turnController;
+	private Scan user;
 	public static SandbagsView sView = null;
 	
 	/**
@@ -41,7 +42,8 @@ public class SandbagsView {		// TODO combine helicopter and sandbags?
 		return sView;
 	}
 	
-	public void setController(CardActionController cardController, ActionController actionController, TurnController turnController) {
+	public void setup(Scan user, CardActionController cardController, ActionController actionController, TurnController turnController) {
+		this.user = user;
 		this.controller = cardController;
 		this.actionController = actionController;
 		this.turnController = turnController;
@@ -51,7 +53,7 @@ public class SandbagsView {		// TODO combine helicopter and sandbags?
 	 * play 
 	 * 	asks for user input and shores up the requested tile
 	 */
-	public void play(Player player, Card card, Scanner user) {
+	public void play(Player player, Card card) {
 		
 		ArrayList<Tile> floodedTiles = controller.getFloodedTiles();
 		System.out.println("Which tile do you want to shore up? (0 to cancel)");

@@ -1,7 +1,6 @@
 package mechanics.setup;
 
-import java.util.Scanner;
-
+import mechanics.Scan;
 import elements.board.Difficulty;
 import elements.cards.Card;
 import mechanics.ViewInputTools;
@@ -28,13 +27,14 @@ public class SetupView {
 	
 	private static SetupView setupView = null;	// singleton instance of the view
 	private SetupController controller;
+	private Scan user;
 	
 	/**
 	 * run
 	 * 	handles steps of setup
 	 * @param user - input scanner
 	 */
-	public void run(Scanner user) {
+	public void run() {
 		
 		controller.startSetup();	// sets flag to indicate the game is in setup
 		
@@ -45,12 +45,12 @@ public class SetupView {
 		setupCards();
 		
 		// Setup players 
-		int numPlayers = this.getPlayerNum(user);
-		PlayerList players = getPlayerNames(numPlayers, user);
+		int numPlayers = this.getPlayerNum();
+		PlayerList players = getPlayerNames(numPlayers);
 		outputPlayerInfo(players);
 		
 		// set up difficulty from water level
-		setupWaterLevel(user);
+		setupWaterLevel();
 		
 		// draw initial flood cards (6)
 		Set<Card> floodCardsDrawn = controller.drawFloodCards();
@@ -68,7 +68,7 @@ public class SetupView {
 	 * @param user - input scanner
 	 * @return list of players
 	 */
-	private PlayerList getPlayerNames(int numPlayers, Scanner user) {
+	private PlayerList getPlayerNames(int numPlayers) {
 		//Sets players names
 		boolean duplicate;
 		Set<String> names = new TreeSet<String>();		// TODO check order
@@ -97,7 +97,7 @@ public class SetupView {
 	 * @param user - input scanner
 	 * @return inputNum - number of players indicated by user
 	 */
-	private int getPlayerNum(Scanner user) {
+	private int getPlayerNum() {
 		int inputNum;
 		System.out.println("How many players?");
 		inputNum = ViewInputTools.numbers(user, 2, 4);
@@ -112,7 +112,7 @@ public class SetupView {
 	 * 
 	 * @param user - input scanner
 	 */
-	private void setupWaterLevel(Scanner user) {
+	private void setupWaterLevel() {
 		
 		System.out.println("Which difficulty do you want to play?");
 		
@@ -182,7 +182,8 @@ public class SetupView {
      * 	assign controller instance
      * @param controller
      */
-    public void setController(SetupController controller) {
+    public void setup(Scan user, SetupController controller) {
+    	this.user = user;
     	this.controller = controller;
     }
     

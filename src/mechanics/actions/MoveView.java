@@ -13,10 +13,10 @@
 package mechanics.actions;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import elements.board.Tile;
 import elements.pawns.*;
+import mechanics.Scan;
 import mechanics.TurnController;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
@@ -27,7 +27,7 @@ import players.PlayerList;
 public class MoveView {
 	
 	private Player playerToMove;
-	private Scanner user;
+	private Scan user;
 	
 	private static MoveView moveView = null;
 	private ActionController controller;
@@ -51,9 +51,8 @@ public class MoveView {
 	 * 	display and get inputs for movement action
 	 * 
 	 */
-	public boolean doAction(Player currentPlayer, Scanner user) {
+	public boolean doAction(Player currentPlayer) {
 		
-		this.user = user;
 		playerToMove = currentPlayer;
 	
 		// Navigator exception
@@ -147,7 +146,8 @@ public class MoveView {
 	 * @param turnController
 	 * @param controller
 	 */
-	public void setController(TurnController turnController, ActionController controller) {
+	public void setup(Scan user, TurnController turnController, ActionController controller) {
+		this.user = user;
 		this.controller = controller;
 		this.turnController = turnController;
 	}

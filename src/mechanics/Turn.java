@@ -13,11 +13,7 @@
  */
 package mechanics;
 
-import java.util.ArrayList;
-import java.io.IOException;
-import java.util.Scanner;
 
-import elements.board.Tile;
 import players.Player;
 
 public class Turn {
@@ -43,8 +39,8 @@ public class Turn {
 	 * 
 	 * @param user - user input scanner
 	 */
-	public void doTurn(Player player, Scanner user) {
-		TurnView.getInstance().run(player, user);		// TODO CAT find a better way to organise this
+	public void doTurn(Player player) {
+		TurnView.getInstance().run(player);		// TODO CAT find a better way to organise this
 	}
 	
 

@@ -1,7 +1,6 @@
 package mechanics;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import elements.board.Board;
 import observers.Subject;
@@ -34,11 +33,11 @@ public class GamePlay extends Subject{
 	 * 	Carries out turns as long as gameOver is not true
 	 * @param user
 	 */
-	public void playGame(Scanner user) {
+	public void playGame() {
 		ArrayList<Player> players = playerList.getPlayers();
 		while (!gameOver) {
 			for (int i = 0; i< players.size(); i++) {
-				Turn.getInstance().doTurn(players.get(i), user);	
+				Turn.getInstance().doTurn(players.get(i));	
 				if (this.gameOver) {
 					break;
 				}

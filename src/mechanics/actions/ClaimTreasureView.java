@@ -17,8 +17,8 @@ package mechanics.actions;
 import players.Player;
 import elements.treasures.Treasure;
 import mechanics.ViewInputTools;
+import mechanics.Scan;
 
-import java.util.Scanner;
 import java.util.Set;
 
 
@@ -27,7 +27,7 @@ public class ClaimTreasureView {
 	private static ClaimTreasureView claimTreasureView = null;
 	private ActionController controller;
 	
-	Scanner user;
+	Scan user;
 	/**
 	 * doAction
 	 * 	Display Treasure that can be claimed 
@@ -38,9 +38,7 @@ public class ClaimTreasureView {
 	 * @param scanner
 	 * @return true if action was carried out, false if cancelled 
 	 */
-	public boolean doAction(Player currentPlayer, Scanner user) {
-	
-		this.user = user;
+	public boolean doAction(Player currentPlayer) {
 		
 		Treasure possibleTreasure = controller.getClaimTreasureCheck(currentPlayer); 
 		
@@ -112,7 +110,8 @@ public class ClaimTreasureView {
 	 * 	assign action controller
 	 * @param controller
 	 */
-	public void setController(ActionController controller) {
+	public void setup(Scan user, ActionController controller) {
+		this.user = user;
 		this.controller = controller;
 	}
 	

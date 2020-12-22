@@ -15,6 +15,7 @@ package main;
 import java.util.Scanner;
 
 import mechanics.GamePlay;
+import mechanics.Scan;
 import mechanics.setup.Setup;
 
 public class ForbiddenIsland {
@@ -27,11 +28,11 @@ public class ForbiddenIsland {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Scanner inScan = new Scanner(System.in);
-		Setup.setupAndRun(inScan);		
+		Scan.getInstance();		// set Scanner to System.in (default in constructor)
+		Setup.setupAndRun();		
 		
-		GamePlay.getInstance().playGame(inScan);
+		GamePlay.getInstance().playGame();
 		System.out.println("Thanks for Playing!");		// TODO Remove when we've figured out all win / lose conditions ? 
-        inScan.close();
+        Scan.getInstance().close();
 	}
 }

@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
-import java.io.IOException;
 
 import org.junit.Test;
 
+import mechanics.Scan;
 import mechanics.ViewInputTools;
 
 public class UserInputTest {
@@ -19,9 +19,9 @@ public class UserInputTest {
 		
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		String output = ViewInputTools.letters(scanner);
+		String output = ViewInputTools.letters(Scan.getInstance());
 	    
 		assertEquals("Input read by parser should equal user input", input, output);
 	}
@@ -31,9 +31,9 @@ public class UserInputTest {
 		String input = "2 \n Adam";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-	    String output = ViewInputTools.letters(scanner);
+	    String output = ViewInputTools.letters(Scan.getInstance());
 		
 		assertEquals("Input should not contain numbers", "Adam", output);
 	}
@@ -43,9 +43,9 @@ public class UserInputTest {
 		String input = "  ";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		String output = ViewInputTools.letters(scanner);
+		String output = ViewInputTools.letters(Scan.getInstance());
 		
 		assertEquals("Input should not contain numbers", " ", output);
 	}
@@ -56,9 +56,9 @@ public class UserInputTest {
 		String input = "Adam2\n Adam";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		String output = ViewInputTools.letters(scanner);
+		String output = ViewInputTools.letters(Scan.getInstance());
 		
 		assertEquals("Input should not contain numbers", "Adam", output);
 	}
@@ -68,9 +68,9 @@ public class UserInputTest {
 		String input = "1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		int output = ViewInputTools.numbers(scanner, 0, 5);
+		int output = ViewInputTools.numbers(Scan.getInstance(), 0, 5);
 		
 		assertEquals("Input read by parser should equal user input", 1, output);
 	}
@@ -80,9 +80,9 @@ public class UserInputTest {
 		String input = "6\n2"; // first out of bounds, second in bounds. Out of bounds should ask user to input again
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		int output = ViewInputTools.numbers(scanner, 1, 5);
+		int output = ViewInputTools.numbers(Scan.getInstance(), 1, 5);
 		
 		assertEquals("Input read by parser should equal second user input", 2, output);
 	}
@@ -92,10 +92,10 @@ public class UserInputTest {
 		String input = "six"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
 	    assertThrows("Should throw exception", java.util.NoSuchElementException.class, () -> {
-		      ViewInputTools.numbers(scanner, 0, 5);
+		      ViewInputTools.numbers(Scan.getInstance(), 0, 5);
 		    });
 	}
 	
@@ -104,9 +104,9 @@ public class UserInputTest {
 		String input = "6"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		int output = ViewInputTools.numbers(scanner, 0, 6);
+		int output = ViewInputTools.numbers(Scan.getInstance(), 0, 6);
 		
 		assertEquals("Input read by parser should equal user input", 6, output);
 	}
@@ -116,9 +116,9 @@ public class UserInputTest {
 		String input = "4"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		int output = ViewInputTools.numbers(scanner, 4, 10);
+		int output = ViewInputTools.numbers(Scan.getInstance(), 4, 10);
 		
 		assertEquals("Input read by parser should equal user input", 4, output);
 	}
@@ -128,9 +128,9 @@ public class UserInputTest {
 		String input = "y"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		boolean output = ViewInputTools.yesNo(scanner);
+		boolean output = ViewInputTools.yesNo(Scan.getInstance());
 		
 		assertEquals("Parser should return True for \"y\" input", true, output);
 	}
@@ -140,9 +140,9 @@ public class UserInputTest {
 		String input = "n"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		boolean output = ViewInputTools.yesNo(scanner);
+		boolean output = ViewInputTools.yesNo(Scan.getInstance());
 		
 		assertEquals("Parser should return False for \"n\" input", false, output);
 	}
@@ -152,9 +152,9 @@ public class UserInputTest {
 		String input = "yn \n n"; 	// yn should count as a wrong input, only n will be counted
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		boolean output = ViewInputTools.yesNo(scanner);
+		boolean output = ViewInputTools.yesNo(Scan.getInstance());
 		
 		assertEquals("Parser should return False for \"n\" input", false, output);
 	}
@@ -164,9 +164,9 @@ public class UserInputTest {
 		String input = "e \n y"; 	// e should count as a wrong input, only n will be counted
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
-		Scanner scanner = new Scanner(in);
+		Scan.getInstance().setScanner(new Scanner(in));
 		
-		boolean output = ViewInputTools.yesNo(scanner);
+		boolean output = ViewInputTools.yesNo(Scan.getInstance());
 		
 		assertEquals("Parser should return False for \"n\" input", true, output);
 	}

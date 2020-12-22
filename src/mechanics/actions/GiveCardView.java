@@ -17,9 +17,9 @@ import players.Player;
 import mechanics.TurnController;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
+import mechanics.Scan;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import elements.cards.Card;
 
@@ -29,11 +29,9 @@ public class GiveCardView  {
 	private ActionController controller;
 	private TurnController turnController;
 	
-	private Scanner user; 
+	private Scan user; 
 	
-	public boolean doAction(Player currentPlayer, Scanner user) {
-		
-		this.user = user;
+	public boolean doAction(Player currentPlayer) {
 		
 		// Get player to give a card to 
 		Player playerToGive = getPlayerToGive(currentPlayer);
@@ -118,7 +116,8 @@ public class GiveCardView  {
 		return giveCardView;
 	}
 	
-	public void setController(TurnController turnController, ActionController actionController) {
+	public void setup(Scan user, TurnController turnController, ActionController actionController) {
+		this.user = user;
 		this.turnController = turnController;
 		this.controller = actionController;
 	}

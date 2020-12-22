@@ -14,9 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 import elements.board.*;
 import elements.pawns.*;
+import mechanics.Scan;
 import mechanics.TurnController;
 import mechanics.TurnView;
 import mechanics.actions.ShoreupView;
+import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;
 import players.PlayerList;
@@ -30,6 +32,7 @@ public class ShoreUpTests {
 	@Before
 	public void setup() {
 		PlayerList.getInstance().tearDown();
+		Setup.setupOnly();
 		testBoard = Board.getInstance();
 		WaterLevel.getInstance().setDifficulty(Difficulty.NOVICE);
 		sortedTiles = testBoard.getSortedTiles();
@@ -95,8 +98,9 @@ public class ShoreUpTests {
 		for (int i=0;i<actionsRequired;i++) {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			Scanner scanner = new Scanner(in);
-			ShoreupView.getInstance().doAction(player1, scanner);
+			Scan.getInstance().setScanner(new Scanner(in));
+			
+			ShoreupView.getInstance().doAction(player1);
 		}
 		int floodedTileNum = numRemainingFloodedTiles();
 		assertEquals("Only four of nine tiles can be shored up", 5, floodedTileNum);
@@ -112,8 +116,8 @@ public class ShoreUpTests {
 		for (int i=0;i<actionsRequired;i++) {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			Scanner scanner = new Scanner(in);
-			ShoreupView.getInstance().doAction(player2, scanner);
+			Scan.getInstance().setScanner(new Scanner(in));
+			ShoreupView.getInstance().doAction(player2);
 		}
 		int floodedTileNum = numRemainingFloodedTiles();
 		assertEquals("Only tile underneath players remain.", 1, floodedTileNum);
@@ -131,8 +135,9 @@ public class ShoreUpTests {
 		for (int i=0;i<actionsRequired;i++) {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
-			Scanner scanner = new Scanner(in);
-			ShoreupView.getInstance().doAction(player3, scanner);
+			Scan.getInstance().setScanner(new Scanner(in));
+			
+			ShoreupView.getInstance().doAction(player3);
 		}
 		int floodedTileNum = numRemainingFloodedTiles();
 		assertEquals("Only four of nine tiles can be shored up", 5, floodedTileNum);

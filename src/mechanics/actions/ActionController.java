@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Scanner;
 
 import elements.board.Board;
 import elements.board.Tile;
@@ -238,12 +237,12 @@ public class ActionController {
 	}
 	
 	
-	public void playCard(Card card, Player player, Scanner user) {
+	public void playCard(Card card, Player player) {
 		if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER) {
-			HelicopterView.getInstance().play(card, player, user);
+			HelicopterView.getInstance().play(card, player);
 		}
 		else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
-			SandbagsView.getInstance().play(player, card, user);
+			SandbagsView.getInstance().play(player, card);
 		}
 	}
 }

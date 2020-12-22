@@ -5,25 +5,25 @@ import java.util.Scanner;
 
 public class ViewInputTools {
 
-	public static String letters(Scanner user) {
+	public static String letters(Scan user) {
 		String input=null;
 		String pattern="[a-zA-Z]+";
 		while (input==null) {
 			try {	
-				input = user.next(pattern);
+				input = user.getScanner().next(pattern);
 			} catch (NoSuchElementException e){
 				System.out.println("Only letters permitted!");
-				user.next();
+				user.getScanner().next();
 			}
 		}
 		return input;	
 	}
 	
-	public static boolean yesNo(Scanner user) {
+	public static boolean yesNo(Scan user) {
 		String input=" ";
 		
 		while (true) {
-			input = user.next();
+			input = user.getScanner().next();
 			if(input.toLowerCase().equals("y") || input.toLowerCase().equals("yes")) {
 				return true;
 			}
@@ -35,14 +35,14 @@ public class ViewInputTools {
 
 	}
 	
-	public static int numbers(Scanner user, int low, int high) {
+	public static int numbers(Scan user, int low, int high) {
 		int inputNum=low-1;
 		while (inputNum <low || inputNum > high) {
 			System.out.println("Enter a number [" + low +"-" +high + "]");
 			try {	
-				inputNum = user.nextInt();
+				inputNum = user.getScanner().nextInt();
 			} catch (NoSuchElementException e){System.out.println("An integer must be inputted!");				
-			user.next();
+			user.getScanner().next();
 			}
 		}
 		return inputNum;	
