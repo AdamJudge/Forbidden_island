@@ -25,29 +25,10 @@ import java.util.ArrayList;
 public class HelicopterView {
 
 	private static HelicopterView hView = null;
-	private CardActionController cardController;
+	private HelicopterController hController;
 	private ActionController actionController;
 	private TurnController turnController;
 	private Scan user;
-	
-	/**
-	 * getInstance
-	 * 	get singleton instance of HelicopterView
-	 * @return actionController (singleton instance)
-	 */
-	public static HelicopterView getInstance() {
-		if(hView == null) { 
-			hView = new HelicopterView();
-		}
-		return hView;
-	}
-	
-	public void setup(Scan user, CardActionController cardController, ActionController actionController, TurnController turnController) {
-		this.user = user;
-		this.cardController = cardController;
-		this.actionController = actionController;
-		this.turnController = turnController;
-	}
 	
 	/**
 	 * play
@@ -56,7 +37,7 @@ public class HelicopterView {
 	 */
 	public void play(Card card, Player player) {
 		
-		ArrayList<Tile> possibleTiles = cardController.getHelicopterTiles(player);
+		ArrayList<Tile> possibleTiles = hController.getHelicopterTiles(player);
 		
 		System.out.println("Which tile do you want get a helicopter lift to? (0 to Cancel)");
 		ViewDisplayTools.printTileList(possibleTiles);
@@ -66,7 +47,7 @@ public class HelicopterView {
 		int input=leaveIndex;
 		
 		// if pawn is a pilot, check if it has flown before the helicopter lift
-		boolean flown=cardController.pilotFlown(player);
+		hController.checkPilotFlown(player);
 			
 		//If can't leave pick different option.
 		while (input ==possibleTiles.size()+1) {
@@ -77,7 +58,7 @@ public class HelicopterView {
 			
 			if (input == possibleTiles.size()+1) {
 				System.out.println("Trying to leave!");
-				boolean leaving = cardController.tryLeave();
+				boolean leaving = hController.tryLeave();
 				if(leaving == false) {
 					System.out.println("Conditions not met for leaving! Enter another number to fly to a tile, or 0 to cancel.");
 				} else {
@@ -91,10 +72,29 @@ public class HelicopterView {
 		}
 		
 		// if pilot hadn't flown, reset the hasFlown flag
-		cardController.pilotFixFlown(player, flown);
+		hController.pilotFixFlown(player);
 
 		turnController.discard(player, card); // discard helicopter lift card
 		
+	}
+	
+	/**
+	 * getInstance
+	 * 	get singleton instance of HelicopterView
+	 * @return actionController (singleton instance)
+	 */
+	public static HelicopterView getInstance() {
+		if(hView == null) { 
+			hView = new HelicopterView();
+		}
+		return hView;
+	}
+	
+	public void setup(Scan user, HelicopterController hController, ActionController actionController, TurnController turnController) {
+		this.user = user;
+		this.hController = hController;
+		this.actionController = actionController;
+		this.turnController = turnController;
 	}
 	
 }
