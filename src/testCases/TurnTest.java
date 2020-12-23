@@ -35,7 +35,7 @@ import elements.pawns.*;
  */
 public class TurnTest {
 
-	private Player engPlayer, navPlayer, expPlayer, divPlayer, pilPlayer, mesPlayer;
+	private Player engPlayer, expPlayer;
 	
 	@Before
 	public void setup() {
