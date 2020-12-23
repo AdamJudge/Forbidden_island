@@ -11,8 +11,10 @@ import elements.cards.Card;
 import elements.board.Board;
 
 /**
- * GameSetup
- * 	Handles setup of the board, water level, and decks
+ * GameSetup (Singleton, MVC)
+ * 
+ * 	Model to handle setup of the board, water level, and decks
+ * 
  * @author Adam Judge, Catherine Waechter
  * @version 2.2
  * 	initialise inSetup to false
@@ -25,7 +27,7 @@ import elements.board.Board;
 public class GameSetup {
 	public static GameSetup gameSetup=null;
 	
-	private boolean inSetup = false; 	// flag to set the setup mode // TODO maybe put in Setup instead
+	private boolean inSetup = false; 	// flag to set the setup mode
 	
 	/**
 	 * getInstance

@@ -15,7 +15,7 @@ import java.util.Queue;
 import players.*;
 
 /**
- * SetupView
+ * SetupView (Singleton, MVC)
  * 	View to display game setup (implements MVC)
  * 
  * @author Catherine Waechter

@@ -1,13 +1,34 @@
 package mechanics;
 
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
+/**
+ * ViewInputTools
+ * 
+ * Input parsers commonly used by views
+ * 
+ * @author Catherine Waechter
+ * @version 1.2
+ *	Methods used to be in separate classes
+ *	Implement Scan class
+ *
+ *	Date created: 20/12/20
+ *	Last modified: 22/12/20
+ */
 public class ViewInputTools {
 
+	/**
+	 * letters
+	 * 	String parser
+	 * 	only accepts letters, will prompt user to enter something else if numbers or special characters are inputted
+	 * 
+	 * @param user
+	 * @return String entered by user 
+	 */
 	public static String letters(Scan user) {
 		String input=null;
-		String pattern="[a-zA-Z]+";
+		String pattern="[a-zA-Z]+";	// allow lower case and upper case letters
+		
 		while (input==null) {
 			try {	
 				input = user.getScanner().next(pattern);
@@ -19,6 +40,13 @@ public class ViewInputTools {
 		return input;	
 	}
 	
+	/**
+	 * yesNo
+	 * 	Yes or no parser. Accepts y,Y,yes,Yes as yes, n,N,no,No as no
+	 * 	treat yes as true, no as false
+	 * @param user
+	 * @return t/f
+	 */
 	public static boolean yesNo(Scan user) {
 		String input=" ";
 		

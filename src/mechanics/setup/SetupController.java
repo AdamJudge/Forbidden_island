@@ -10,7 +10,7 @@ import elements.cards.Card;
 
 
 /**
- * SetupController (singleton)
+ * SetupController (singleton, MVC)
  * 
  * 	Controller to handle game setup (implements MVC)
  * 	Model is split into two models : the player setup and the game setup

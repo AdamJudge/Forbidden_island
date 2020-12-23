@@ -2,7 +2,6 @@ package mechanics;
 
 import java.util.ArrayList;
 
-import elements.board.Board;
 import observers.Subject;
 import players.Player;
 import players.PlayerList;
@@ -34,6 +33,7 @@ public class GamePlay extends Subject{
 	 */
 	public void playGame() {
 		ArrayList<Player> players = playerList.getPlayers();
+		
 		while (!gameOver) {
 			for (int i = 0; i< players.size(); i++) {
 				TurnView.getInstance().run(players.get(i));	

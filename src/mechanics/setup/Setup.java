@@ -22,6 +22,7 @@ import mechanics.TurnView;
  * Setup 
  * 
  * 	Sets up Setup classes (MVC) to carry out player and game setup
+ * 	Sets up MVC for turn (including action MVCs)
  * 
  * @author Adam Judge, Catherine Waechter
  * @version 4.0

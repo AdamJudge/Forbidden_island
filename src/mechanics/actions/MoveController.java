@@ -56,6 +56,9 @@ public class MoveController {
 		
 		for(Player player : players) {
 			ArrayList<Tile> possibleTiles = player.getPawn().swimCheck();
+			if (possibleTiles.isEmpty()) {
+			    return;
+			}
 			moveView.doSwim(player, possibleTiles);
 		}
 

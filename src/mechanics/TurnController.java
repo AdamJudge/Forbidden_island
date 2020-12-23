@@ -23,6 +23,8 @@ import players.Hand;
  *  	Get players, tiles etc for view
  *  	check game over status
  *  
+ *  Note: model is all the elements and players
+ *  
  * @author Catherine Waechter
  * @version 2.0
  * 	Put all action related methods into ActionController
@@ -72,8 +74,6 @@ public class TurnController {
 		}
 	}
 	
-	
-	
 	/**
 	 * gameOver
 	 * @return	true if game is over
@@ -82,26 +82,53 @@ public class TurnController {
 		return GamePlay.getInstance().getGameOver();
 	}
 	
-	
-	
+	/**
+	 * pilotReset
+	 * 	reset pilot's flight status at end of turn
+	 * @param player
+	 */
 	public void pilotReset(Player player){
 		if(player.getPawn() instanceof Pilot) {
 			((Pilot)player.getPawn()).resetHasFlown();
 		}
 	}
 	
-
+	/**
+	 * discard
+	 * @param player  	- player discarding the card
+	 * @param card  	- card to be discarded
+	 */
+	public void discard(Player player, Card card) {
+		player.getHand().discardCard(card); 
+	}
 	
+	/**
+	 * isEngineer
+	 * @param player
+	 * @return true if player's pawn is the engineer
+	 */
+	public boolean isEngineer(Player player) {
+		return (player.getPawn() instanceof Engineer);
+	}
+	
+	/**
+	 * isNavigator
+	 * @param player
+	 * @return true if the player's pawn is the navigator
+	 */
+	public boolean isNavigator(Player player) {
+		return (player.getPawn() instanceof Navigator);
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////
+	// 		"get" methods to allow view to display key aspects of the model
+	/////////////////////////////////////////////////////////////////////////////
 	/**
 	 * getPlayers
 	 * 	@return list of players in the game
 	 */
 	public ArrayList<Player> getPlayers(){
 		return PlayerList.getInstance().getPlayers();
-	}
-
-	public void discard(Player player, Card card) {
-		player.getHand().discardCard(card); 
 	}
 	
 	/**
@@ -113,16 +140,13 @@ public class TurnController {
 		return player.getHand();
 	}
 	
+	/**
+	 * getHandCards
+	 * @param player
+	 * @return list of cards in the player's hand
+	 */
 	public ArrayList<Card> getHandCards(Player player){
 		return player.getHand().getCards();
-	}
-	
-	public boolean isEngineer(Player player) {
-		return (player.getPawn() instanceof Engineer);
-	}
-	
-	public boolean isNavigator(Player player) {
-		return (player.getPawn() instanceof Navigator);
 	}
 	
 	/**
@@ -146,20 +170,31 @@ public class TurnController {
 		else return null;
 	}
 	
+	/**
+	 * getCurrentTile
+	 * @param player
+	 * @return tile the player's pawn is on
+	 */
 	public Tile getCurrentTile(Player player) {
 		return player.getPawn().getTile();
 	}
 	
-	
-	
+	/**
+	 * getTileStatus
+	 * @param tile
+	 * @return tile's status
+	 */
 	public TileStatus getTileStatus(Tile tile) {
 		return tile.getStatus();
 	}
 	
+	/**
+	 * getBoard
+	 * @return board instance
+	 */
 	public Board getBoard() {
 		return Board.getInstance();
 	}
-	
 	
 	/**
 	 * getInstance
@@ -173,6 +208,11 @@ public class TurnController {
 		return turnController;
 	}
 	
+	/**
+	 * setView
+	 * assign turn view
+	 * @param view
+	 */
 	public void setView(TurnView view) {
 		this.view = view;
 	}

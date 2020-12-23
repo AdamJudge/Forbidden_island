@@ -10,15 +10,16 @@ import elements.pawns.*;
 import elements.cards.TreasureDeck;
 
 /**
- * PlayerSetup
- * 	Handles setup of the players (name, role (pawn), hand)
+ * PlayerSetup (Singleton, MVC)
+ * 
+ *  Model to handle setup of the players (name, role (pawn), hand)
+ * 
  * @author Adam Judge, Catherine Waechter
  * @version 2.1
  * 	Player list ordered
  * 
  * Date created: 23/11/20 
  * Last modified: 22/12/20
- *
  */
 public class PlayerSetup {
 	private static PlayerSetup playerSetup = null;	// singleton PlayerSetup instance

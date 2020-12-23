@@ -11,8 +11,10 @@ import players.Player;
 import players.PlayerList;
 
 /**
- * ObserverSetup
+ * ObserverSetup (Singleton)
+ * 
  * 	Handles setting up and attachment of observers
+ * 
  * @author Adam Judge
  * @version 1
  * Date created: 10/12/20 
