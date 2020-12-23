@@ -9,6 +9,7 @@ import org.junit.runners.Suite.SuiteClasses;
     BoardTest.class, 
     CaptureTreasure.class,
     DeckTest.class,
+    GiveCardTests.class,
     LoseConditionTests.class,
     MovementTests.class,
     PlayableCardsTest.class,

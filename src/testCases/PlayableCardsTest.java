@@ -93,7 +93,6 @@ public class PlayableCardsTest {
 
 	@Test
 	public void testHelicopter()  {
-		
 		//Try helicopter lift to different tile
 		String input = "1\n 2\n 1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -106,7 +105,7 @@ public class PlayableCardsTest {
 		//The player should have now moved to a different tile
 		assertFalse(player1.getPawn().getTile().getName().equals(originalTile));
 		
-		//Only card in hand is sandbag
+		//Only card in hand is sandbag, shows card was discarded
 		assertEquals("Hand should be size 1", player1.getHand().getCards().size(), 1);
 		assertEquals("Card in hand should be a sandbag",((TreasureCard)player1.getHand().getCards().get(0)).getCardType(), TreasureCardTypes.SANDBAGS);
 	}
