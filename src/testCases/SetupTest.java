@@ -7,12 +7,17 @@ import java.io.InputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import org.junit.After;
 import org.junit.Test;
 
+import elements.board.Board;
 import elements.board.WaterLevel;
 import elements.cards.FloodDeck;
+import elements.cards.FloodDiscard;
 import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 import mechanics.Scan;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 
@@ -49,6 +54,19 @@ public class SetupTest {
 		assertEquals("Treasure Deck should have 22 cards left (28 - 3x2)", 22, TreasureDeck.getInstance().getSize());
 		assertEquals("Flood Deck should have 18 cards left (6 taken in setup)", 18, FloodDeck.getInstance().getSize());
 		
+	}
+	
+	@After
+	public void tearDown() {
+		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
 	}
 
 }
