@@ -23,6 +23,8 @@ import players.*;
 
 public class SetupTest {
 
+	// TODO duplicate names
+	
 	@Test
 	public void setupTest() {
 		
@@ -53,7 +55,6 @@ public class SetupTest {
 
 		assertEquals("Treasure Deck should have 22 cards left (28 - 3x2)", 22, TreasureDeck.getInstance().getSize());
 		assertEquals("Flood Deck should have 18 cards left (6 taken in setup)", 18, FloodDeck.getInstance().getSize());
-		
 	}
 	
 	@After
