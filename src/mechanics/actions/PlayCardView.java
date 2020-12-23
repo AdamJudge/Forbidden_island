@@ -161,6 +161,10 @@ public class PlayCardView  {		 // TODO move to cardActions ??
 		return null;
 		
 	}
+
+	public void tearDown() {
+		playCardView=null;
+	}
 	
 }
 

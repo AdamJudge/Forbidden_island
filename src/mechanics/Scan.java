@@ -33,4 +33,8 @@ public class Scan {
 	private Scan() {
 		scanner = new Scanner(System.in);
 	}
+
+	public void tearDown() {
+		scan=null;
+	}
 }

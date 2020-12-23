@@ -13,9 +13,14 @@ import org.junit.Test;
 
 import elements.board.*;
 import elements.cards.FloodCard;
+import elements.cards.FloodDeck;
+import elements.cards.FloodDiscard;
+import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import mechanics.GamePlay;
 import mechanics.Scan;
+import mechanics.actions.PlayCardView;
 import mechanics.cardActions.CardActionController;
 import mechanics.setup.Setup;
 import players.Hand;
@@ -25,7 +30,7 @@ import players.PlayerList;
 public class SwimTests {
 	private Board testBoard;
 	private List<Tile> sortedTiles = new ArrayList<Tile>();
-	private Player player1, player2, player3, player4;
+	private Player player1;
 	private Tile startingTile;
 	private CardActionController  cardController; // TODO Adam - I think this is okay? avoids having to get instance all the time (get instance in setup)
 
@@ -47,6 +52,7 @@ public class SwimTests {
 		player1.setHand(new Hand());
 		Setup.setupOnly();
 		cardController = CardActionController.getInstance(); 	
+		PlayCardView.getInstance();
 		
 		//Move player to center tile
 		for (Tile t:sortedTiles) {
@@ -57,6 +63,7 @@ public class SwimTests {
 		}
 		//Not testing lose conditions. These will render the test impossible.
 		removeObservers();
+		GamePlay.getInstance();
 	}
 
 	public void removeObservers() {
@@ -158,6 +165,8 @@ public class SwimTests {
 
 	@Test
 	public void sunkenDiverSwimCheck1_Success() {
+		System.out.println("\n \n \n \n \n \n \n \n \n \n \n \n \n  H E R E \n\n\n\n\n\n\n\n\n");
+
 		sunkenTileSetupSurvivable();
 		player1.setPawn(new Diver());
 		moveToCenter();
@@ -228,8 +237,14 @@ public class SwimTests {
 	
 	@After
 	public void tearDown() {
-		GamePlay.getInstance().tearDown();
-		testBoard.tearDown();
 		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
 	}
 }

@@ -10,10 +10,14 @@ import java.util.Set;
 import java.util.HashSet;
 import elements.cards.*;
 import elements.treasures.*;
+import mechanics.Scan;
+import mechanics.actions.PlayCardView;
 import mechanics.setup.Setup;
+import players.PlayerList;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.board.TileStatus;
+import elements.board.WaterLevel;
 
 public class DeckTest {
 
@@ -136,10 +140,14 @@ public class DeckTest {
 	
 	@After
 	public void tearDown() {
+		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
 		Board.getInstance().tearDown();
 		TreasureDeck.getInstance().tearDown();
 		TreasureDiscard.getInstance().tearDown();
 		FloodDeck.getInstance().tearDown();
 		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
 	}
 }

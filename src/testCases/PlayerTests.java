@@ -10,9 +10,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
 
+import elements.board.Board;
+import elements.board.WaterLevel;
+import elements.cards.FloodDeck;
+import elements.cards.FloodDiscard;
 import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 import mechanics.Scan;
 import mechanics.TurnView;
+import mechanics.actions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 
@@ -42,5 +48,16 @@ public class PlayerTests {
 		assertEquals("Hand should not exceed 5", 5, adam.getHand().getCards().size());
 	}
 
-	
+	@After
+	public void tearDown() {
+		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
+	}
 }

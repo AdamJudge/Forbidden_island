@@ -12,9 +12,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import elements.board.*;
+import elements.cards.FloodDeck;
+import elements.cards.FloodDiscard;
+import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import mechanics.Scan;
 import mechanics.actions.MoveView;
+import mechanics.actions.PlayCardView;
 import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;
@@ -632,7 +637,14 @@ public class MovementTests {
 
 	@After
 	public void tearDown() {
-		testBoard.tearDown();
 		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
 	}
 }

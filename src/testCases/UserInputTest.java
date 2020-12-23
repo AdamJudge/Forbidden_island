@@ -6,10 +6,19 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import org.junit.After;
 import org.junit.Test;
 
+import elements.board.Board;
+import elements.board.WaterLevel;
+import elements.cards.FloodDeck;
+import elements.cards.FloodDiscard;
+import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 import mechanics.Scan;
 import mechanics.ViewInputTools;
+import mechanics.actions.PlayCardView;
+import players.PlayerList;
 
 public class UserInputTest {
 
@@ -169,5 +178,18 @@ public class UserInputTest {
 		boolean output = ViewInputTools.yesNo(Scan.getInstance());
 		
 		assertEquals("Parser should return False for \"n\" input", true, output);
+	}
+	
+	@After
+	public void tearDown() {
+		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
 	}
 }

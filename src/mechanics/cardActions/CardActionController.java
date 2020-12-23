@@ -87,5 +87,9 @@ public class CardActionController {
 		}
 		return cardController;
 	}
+
+	public void tearDown() {
+		cardController=null;
+	}
 	
 }

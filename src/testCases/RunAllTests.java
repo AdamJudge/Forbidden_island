@@ -14,6 +14,7 @@ import org.junit.runners.Suite.SuiteClasses;
     PlayableCardsTest.class,
     PlayerTests.class,
     ShoreUpTests.class,
+    SwimTests.class,
     UserInputTest.class,
     WinConditionTests.class
 })
