@@ -109,7 +109,7 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
     	SandbagsView.getInstance().setup(user, cardController, shoreupController, turnController); 
     	
     	// setup controllers
-		cardController.setup(HelicopterView.getInstance(), SandbagsView.getInstance(), moveController);
+		cardController.setup(HelicopterView.getInstance(), SandbagsView.getInstance(), PlayCardView.getInstance(), moveController);
 		giveCardController.setup(turnController);
 		moveController.setup(MoveView.getInstance());
 		
