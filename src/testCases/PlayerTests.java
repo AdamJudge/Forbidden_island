@@ -17,7 +17,6 @@ import elements.cards.FloodDiscard;
 import elements.cards.TreasureDeck;
 import elements.cards.TreasureDiscard;
 import mechanics.Scan;
-import mechanics.TurnView;
 import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
