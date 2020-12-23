@@ -11,6 +11,6 @@ public class WaterLevelObserver extends Observer {
 	@Override
 	public void update() {
 		System.out.println("The Water Level has risen too high!");
-		new GameOver(false);
+		GameOver.endGame(false);
 	}
 }

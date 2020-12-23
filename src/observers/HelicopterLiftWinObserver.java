@@ -53,7 +53,7 @@ public class HelicopterLiftWinObserver extends Observer {
 		if (onFoolsIsland && treasuresCaptured) {
 			System.out.println("Safe flight! x");
 			GamePlay.getInstance().setLeave(true);
-			new GameOver(true);
+			GameOver.endGame(true);
 		} else {
 			GamePlay.getInstance().setLeave(false);
 		}

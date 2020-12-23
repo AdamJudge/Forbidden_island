@@ -21,7 +21,7 @@ public class TreasureObserver extends Observer {
 	public void update() {
 		if (((Tile)subject).getStatus().equals(TileStatus.REMOVED) && ((Tile)subject2).getStatus().equals(TileStatus.REMOVED) && ! treasureName.isCaptured()) {
 			System.out.println("Both "+ treasureName.toString()+" treasure tiles have sunken without the treasure being captured!");
-			new GameOver(false);
+			GameOver.endGame(false);
 		}
 	}
 }
