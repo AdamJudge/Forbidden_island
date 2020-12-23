@@ -37,26 +37,27 @@ public class UserInputTest {
 	
 	@Test
 	public void stringInputNumber()  {
-		String input = "2 \n Adam";
+		String input = "2";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-	    String output = ViewInputTools.letters(Scan.getInstance());
+		assertThrows("Should throw exception", java.util.NoSuchElementException.class, () -> {
+		      ViewInputTools.letters(Scan.getInstance());
+		    });		
 		
-		assertEquals("Input should not contain numbers", "Adam", output);
 	}
 	
 	@Test
 	public void stringInputWithNumber()  {
-		String input = "Adam2\n Adam";
+		String input = "Adam2";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		String output = ViewInputTools.letters(Scan.getInstance());
-		
-		assertEquals("Input should not contain numbers", "Adam", output);
+		assertThrows("Should throw exception", java.util.NoSuchElementException.class, () -> {
+		      ViewInputTools.letters(Scan.getInstance());
+		    });		
 	}
 
 	@Test
@@ -96,7 +97,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void numberInputLowLim()  {
+	public void numberInputUpperLim()  {
 		String input = "6"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -108,7 +109,7 @@ public class UserInputTest {
 	}
 	
 	@Test
-	public void numberInputUpperLim()  {
+	public void numberInputLowLim()  {
 		String input = "4"; 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
