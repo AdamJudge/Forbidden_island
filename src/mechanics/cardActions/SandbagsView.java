@@ -22,7 +22,7 @@ import players.Player;
  * Last modified:25/11/20
  *
  */
-public class SandbagsView {		// TODO combine helicopter and sandbags? 
+public class SandbagsView {		 
 	
 	private CardActionController controller;
 	private ShoreupController shoreupController;

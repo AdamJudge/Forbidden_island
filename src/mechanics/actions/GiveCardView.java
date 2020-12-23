@@ -63,7 +63,7 @@ public class GiveCardView  {
 	}
 
 	private boolean fullHandCheck(Player playerToGive) {
-		if(turnController.handSize(playerToGive) == 5) {
+		if(controller.handSize(playerToGive) == 5) {
 			System.out.println(playerToGive + "'s hand is full, they will need to discard a card.");
 			System.out.println(playerToGive + "'s hand: " + turnController.getHandCards(playerToGive));
 			System.out.println("Proceed anyway? [y/n]");

@@ -77,7 +77,7 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 		
 		// create controller instances
 		TurnController turnController = TurnController.getInstance();	
-		turnView.setup(user, turnController);
+		turnView.setup(user, turnController, CardActionController.getInstance());
 		turnController.setView(turnView);
 		
 		return turnController;

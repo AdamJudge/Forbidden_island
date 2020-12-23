@@ -55,10 +55,15 @@ public class GiveCardController {
 		playerFrom.getHand().takeCard(card);
 		playerTo.getHand().addCard(card);
 	}
+	
+	public int handSize(Player player) {
+		return player.getHand().getCards().size();
+	}
 		
 	public void setup(TurnController turnController) {
 		this.turnController = turnController;
 	}
+	
 	/**
 	 * getInstance
 	 * 	get singleton instance of GiveCardController

@@ -3,11 +3,11 @@ package mechanics;
 import java.util.ArrayList;
 
 import players.Player;
-import players.PlayerList;
 import elements.board.Tile;
 import elements.cards.*;
 import mechanics.actions.*;
 import mechanics.cardActions.PlayCardView;
+import mechanics.cardActions.CardActionController;
 
 /**
  * TurnView (Singleton)
@@ -23,6 +23,7 @@ public class TurnView {
 
 	private static TurnView turnView = null;
 	private TurnController controller;
+	private CardActionController cardController;
 	private Player currentPlayer;
 	private Scan user;
 	
@@ -139,7 +140,7 @@ public class TurnView {
 		boolean playable = false;
 		for(int i = 0; i<2; i++) {
 			cardDrawn = controller.drawTreasureCard(currentPlayer);
-			if(controller.playable(cardDrawn)){ 	
+			if(cardController.playable(cardDrawn)){ 	
 				playable = true;
 			}
 			System.out.println(currentPlayer + " drew a " + cardDrawn + " card.");
@@ -158,7 +159,7 @@ public class TurnView {
 		System.out.println(player + "'s hand is full! ");
 		System.out.println(player + "'s current hand is: " + controller.getHand(player));
 		
-		if(controller.playable(controller.getHandCards(player))){ // If any cards in the player's hand are playable
+		if(cardController.playable(controller.getHandCards(player))){ // If any cards in the player's hand are playable
 			System.out.println("Would you like to play a card before you discard? [y/n]");
 			if(ViewInputTools.yesNo(user)) {
 				PlayCardView.getInstance().doAction(player);
@@ -235,9 +236,10 @@ public class TurnView {
      * 	assign controller instance
      * @param controller
      */
-    public void setup(Scan user, TurnController turnController) {
+    public void setup(Scan user, TurnController turnController, CardActionController cardController) {
     	this.user = user;
     	this.controller = turnController;
+    	this.cardController = cardController;
     }
     
     /**

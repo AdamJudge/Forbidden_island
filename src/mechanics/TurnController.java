@@ -1,7 +1,6 @@
 package mechanics;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import elements.board.Board;
 import elements.board.Tile;
@@ -75,23 +74,6 @@ public class TurnController {
 		}
 	}
 	
-	public boolean playable(Card card) { // TODO Put elsewhere?? 
-		if(card instanceof TreasureCard) {
-			if(((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER || ((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
-				return true;
-			}
-		}
-		return false;
-	}
-	// TODO use in playable card view
-	public boolean playable(ArrayList<Card> cards) { // TODO Put elsewhere?? 
-		for(Card card : cards) {
-			if(playable(card)) {
-				return true;
-			}
-		}
-		return false;
-	}
 	
 	/**
 	 * getPlayers
@@ -100,12 +82,7 @@ public class TurnController {
 	public ArrayList<Player> getPlayers(){
 		return PlayerList.getInstance().getPlayers();
 	}
-	
 
-	public int handSize(Player player) {
-		return player.getHand().getCards().size();
-	}
-	
 	public void discard(Player player, Card card) {
 		player.getHand().discardCard(card); 
 	}
