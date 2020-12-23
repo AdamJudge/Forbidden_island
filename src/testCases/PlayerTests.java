@@ -18,7 +18,7 @@ import elements.cards.TreasureDeck;
 import elements.cards.TreasureDiscard;
 import mechanics.Scan;
 import mechanics.TurnView;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 

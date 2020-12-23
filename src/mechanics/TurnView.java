@@ -88,7 +88,6 @@ public class TurnView {
 		int actionCount = 3;	// player starts turn with 3 actions
 		int actionReturn;		// value returned from action	
 		
-		// TODO It might be good to have this check after notifying observers??
 		if (controller.gameOver()) {	// Check if game is over before asking for next action
 			return false;
 		}

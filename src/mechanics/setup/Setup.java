@@ -35,7 +35,7 @@ import mechanics.TurnView;
  */
 
 
-public class Setup {						// TODO Discuss -  singleton or static function ?
+public class Setup {	
 	/**
 	 * setupAndRun
 	 * 	Setup MVC singletons

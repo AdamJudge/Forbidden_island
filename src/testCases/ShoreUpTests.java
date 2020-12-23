@@ -18,10 +18,11 @@ import elements.cards.FloodDiscard;
 import elements.cards.TreasureDeck;
 import elements.cards.TreasureDiscard;
 import elements.pawns.*;
+import mechanics.GamePlay;
 import mechanics.Scan;
 import mechanics.TurnController;
 import mechanics.TurnView;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.actions.ShoreupView;
 import mechanics.setup.Setup;
 import players.Hand;
@@ -158,5 +159,7 @@ public class ShoreUpTests {
 		FloodDeck.getInstance().tearDown();
 		FloodDiscard.getInstance().tearDown();
 		Scan.getInstance().tearDown();
-		PlayCardView.getInstance().tearDown();	}
+		PlayCardView.getInstance().tearDown();
+		GamePlay.getInstance().tearDown();
+	}
 }

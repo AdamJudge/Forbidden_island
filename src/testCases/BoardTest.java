@@ -17,7 +17,7 @@ import elements.cards.TreasureDeck;
 import elements.cards.TreasureDiscard;
 import elements.treasures.*;
 import mechanics.Scan;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import players.PlayerList;
 
 public class BoardTest {

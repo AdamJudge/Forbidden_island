@@ -109,7 +109,7 @@ public class WinConditionTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		PlayCardView.getInstance().doAction(player1);		// TODO this doesn't work with null, not sure why
+		PlayCardView.getInstance().doAction(player1);
 		assertTrue("GamePlay should now have GameOver set to true", gp.getGameOver());
 	}
 	
@@ -171,7 +171,7 @@ public class WinConditionTests {
 		
 		//Capture 1 trasure at a time and retest leave
 		captureTreasures(TreasureNames.CRYSTAL_OF_FIRE);
-		in = new ByteArrayInputStream(input.getBytes());		// TODO Adam does this need to be done again every time? -Cat
+		in = new ByteArrayInputStream(input.getBytes());		
 		Scan.getInstance().setScanner(new Scanner(in));
 		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());

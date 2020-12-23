@@ -23,7 +23,7 @@ import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import elements.treasures.*;
 import mechanics.actions.ClaimTreasureView;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 
@@ -178,7 +178,6 @@ public class CaptureTreasure {
 			//Check if claimed
 			result=p.getPawn().getTile().getTreasure().isCaptured();
 			assertTrue(result);
-			Scan.getInstance().setScanner(null); // TODO is this necessary ? was scanner = null;
 		}
 	}
 

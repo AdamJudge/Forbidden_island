@@ -19,7 +19,7 @@ import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import mechanics.Scan;
 import mechanics.actions.MoveView;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;

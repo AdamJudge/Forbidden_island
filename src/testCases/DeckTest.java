@@ -10,8 +10,9 @@ import java.util.Set;
 import java.util.HashSet;
 import elements.cards.*;
 import elements.treasures.*;
+import mechanics.GamePlay;
 import mechanics.Scan;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.PlayerList;
 import elements.board.Board;
@@ -149,5 +150,6 @@ public class DeckTest {
 		FloodDiscard.getInstance().tearDown();
 		Scan.getInstance().tearDown();
 		PlayCardView.getInstance().tearDown();
+		GamePlay.getInstance().tearDown();
 	}
 }

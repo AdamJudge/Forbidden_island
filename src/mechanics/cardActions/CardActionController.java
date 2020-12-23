@@ -33,14 +33,14 @@ public class CardActionController {
 	}
 	
 	public boolean playable(Card card) { 
-		if(card instanceof TreasureCard) {
-			if(((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER || ((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
-				return true;
-			}
+		
+		if(isHelicopter(card) || isSandbags(card)) {
+			return true;
 		}
+		
 		return false;
 	}
-	// TODO use in playable card view
+	
 	public boolean playable(ArrayList<Card> cards) { 
 		for(Card card : cards) {
 			if(playable(card)) {

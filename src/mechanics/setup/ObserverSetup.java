@@ -20,7 +20,7 @@ import players.PlayerList;
  *
  */
 
-public class ObserverSetup {								// TODO does this need to be a singleton? 
+public class ObserverSetup {		
 	private static ObserverSetup observerSetup = null;
 
 	/**

@@ -24,7 +24,6 @@ import players.PlayerList;
 public class GamePlay extends Subject{
 	private static GamePlay gp=null;	// singleton instance of GamPlay
 	private boolean canLeave;			// true if players can leave the island (win condition)
-	private Board board;				// TODO Adam - I think this can be removed (Also from constructor)
 	private PlayerList playerList;		// List of players in the game
 	private boolean gameOver;			// true if the game is over (lose condition)
 	
@@ -51,7 +50,6 @@ public class GamePlay extends Subject{
 	 * 	Notifies observers, which will change canLeave if conditions are met
 	 */
 	public void tryLeave() {
-		System.out.println("Notifying");		// TODO Adam - remove when ready :) 
 		notifyAllObservers();
 	}
 	
@@ -108,8 +106,7 @@ public class GamePlay extends Subject{
 	private GamePlay() {
 		this.canLeave=false;
 		this.gameOver=false;
-		this.board=Board.getInstance();
-		this.playerList=PlayerList.getInstance();		// TODO should this be passed to the constructor maybe? not sure which is cleaner
+		this.playerList=PlayerList.getInstance();
 	}
 	
 	/**

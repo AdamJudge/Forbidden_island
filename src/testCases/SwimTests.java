@@ -20,7 +20,7 @@ import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import mechanics.GamePlay;
 import mechanics.Scan;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.cardActions.CardActionController;
 import mechanics.setup.Setup;
 import players.Hand;
@@ -32,7 +32,7 @@ public class SwimTests {
 	private List<Tile> sortedTiles = new ArrayList<Tile>();
 	private Player player1;
 	private Tile startingTile;
-	private CardActionController  cardController; // TODO Adam - I think this is okay? avoids having to get instance all the time (get instance in setup)
+	private CardActionController  cardController; 
 
 	
 	@Before
@@ -165,8 +165,7 @@ public class SwimTests {
 
 	@Test
 	public void sunkenDiverSwimCheck1_Success() {
-		System.out.println("\n \n \n \n \n \n \n \n \n \n \n \n \n  H E R E \n\n\n\n\n\n\n\n\n");
-
+		
 		sunkenTileSetupSurvivable();
 		player1.setPawn(new Diver());
 		moveToCenter();

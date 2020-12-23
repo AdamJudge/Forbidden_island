@@ -57,7 +57,7 @@ public class PlayCardView  {
 	 * @param player - null if player needs to be selected
 	 * @return false (never uses an action)
 	 */
-	public boolean doAction(Player player) { 	// TODO make void? 
+	public boolean doAction(Player player) { 
 		
 		if(player == null) {
 			player = getPlayer();
