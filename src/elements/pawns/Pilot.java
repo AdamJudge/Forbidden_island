@@ -12,12 +12,11 @@ import elements.board.TileNames;
  * 	Represents the pilot pawn (Blue)
  * 
  * @author Catherine Waechter
- * @version 2.4
- * 	added toInitialTile method
- * 	no longer check flight for initial tile placement
+ * @version 2.5
+ * 	can't fly to current tile
  * 
  *  Date created: 26/10/20
- *  Last modified: 03/12/20
+ *  Last modified: 23/12/20
  */
 public class Pilot extends Pawn {
 	private boolean hasFlown; 	
@@ -64,7 +63,7 @@ public class Pilot extends Pawn {
 		
 		if(!hasFlown){
 			for(Tile tile : remainingTiles) {
-				if(!validTiles.contains(tile)) {
+				if(!validTiles.contains(tile) && tile != currentTile) {
 					validTiles.add(tile);
 				}
 			}
