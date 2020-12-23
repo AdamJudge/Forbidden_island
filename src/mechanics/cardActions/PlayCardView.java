@@ -115,36 +115,29 @@ public class PlayCardView  {
 	private TreasureCardTypes getCardType(Player player) {
 		
 		int hIndex = 0, sIndex = 0, userIndex = 0;
-		boolean playable = false;
+		ArrayList<Card> playerCards = turnController.getHandCards(player);
 		
-		for (Card card: player.getHand().getCards()) {
+		if(!cardController.playable(playerCards)) {
+			System.out.println(player + " has no cards to play!");
+			return null;
+		}
+		
+		System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
+		for (Card card: playerCards) {
 		
 			if( card instanceof TreasureCard) { //It always is but to be safe 	// TODO General - check instances when casting
-				playable = false;
 				if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER && hIndex == 0) {
 					userIndex++;
 					hIndex = userIndex;
-					playable = true;
+					System.out.println("["+userIndex+"]: " + card);
 				}
 				
 				else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS && hIndex == 0) {
 					userIndex++;
 					sIndex = userIndex;
-					playable = true;
-				}	
-				
-				if(playable) {
-					if(userIndex == 1) {
-						System.out.println("Which card do you want to play " + player +"? (0 to cancel)");
-					}
 					System.out.println("["+userIndex+"]: " + card);
-				}
+				}	
 			}
-		}
-		
-		if(userIndex == 0) {
-			System.out.println(player + " has no cards to play!");
-			return null;
 		}
 		
 		int cardNum = ViewInputTools.numbers(user, 0, userIndex);
