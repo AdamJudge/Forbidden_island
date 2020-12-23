@@ -12,9 +12,7 @@ package elements.board;
 public class Position {
 
 	private int x;	// x position
-	private int y;	// y position
-	
-	// TODO Cat make a private class for Tiles ? 
+	private int y;	// y position 
 	
 	/**
 	 * get the x position

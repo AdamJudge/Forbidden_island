@@ -10,6 +10,7 @@ import mechanics.actions.MoveView;
 import mechanics.actions.PlayCardView;
 import mechanics.actions.ShoreupView;
 import mechanics.cardActions.CardActionController;
+import mechanics.cardActions.HelicopterController;
 import mechanics.cardActions.HelicopterView;
 import mechanics.cardActions.SandbagsView;
 import mechanics.TurnView;
@@ -101,7 +102,7 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
     	MoveView.getInstance().setup(user, turnController, actionController);
     	ShoreupView.getInstance().setup(user, turnController, actionController);
     	PlayCardView.getInstance().setup(user, turnController, actionController);
-    	HelicopterView.getInstance().setup(user, cardController, actionController, turnController); 
+    	HelicopterView.getInstance().setup(user, HelicopterController.getInstance(), actionController, turnController); 
     	SandbagsView.getInstance().setup(user, cardController, actionController, turnController); 
 		
 		// Other classes that need access to a controller
