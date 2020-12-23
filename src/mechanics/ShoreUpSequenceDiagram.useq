@@ -4,51 +4,38 @@
     file="/Forbidden_island/src/mechanics/GamePlay.java" binary="false" label="gamePlay" type="class" autoSize="true">    
     <position height="-1" width="-1" x="674" y="0"/>    
     <execution id="2">      
-      <position height="328" width="0" x="0" y="90"/>    
+      <position height="464" width="0" x="0" y="90"/>    
     </execution>    
     <execution id="4">      
-      <position height="265" width="0" x="0" y="132"/>    
+      <position height="401" width="0" x="0" y="132"/>    
     </execution>  
   </object>  
-  <object id="13" language="java" name="players.PlayerList" project="Forbidden_island" 
-    file="/Forbidden_island/src/players/PlayerList.java" binary="false" label="playerList" type="class" autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="6">      
-      <position height="21" width="0" x="0" y="163"/>    
-    </execution>  
-  </object>  
-  <object id="14" language="java" name="mechanics.TurnView" project="Forbidden_island" 
-    file="/Forbidden_island/src/mechanics/TurnView.java" binary="false" label="&lt;static&gt;" type="class" 
-    autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="8">      
-      <position height="21" width="0" x="0" y="271"/>    
-    </execution>  
-  </object>  
-  <object id="15" language="java" name="java.util.ArrayList" project="Cluedo_Cards" 
-    file="C:/Users/adamj/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/lib/jrt-fs.jar" 
-    binary="true" label="players" type="class" autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="10">      
-      <position height="21" width="0" x="0" y="313"/>    
-    </execution>  
-  </object>  
-  <object id="16" language="java" name="mechanics.TurnView" project="Forbidden_island" 
+  <object id="7" language="java" name="mechanics.TurnView" project="Forbidden_island" 
     file="/Forbidden_island/src/mechanics/TurnView.java" binary="false" type="class" autoSize="true">    
     <position height="0" width="0" x="0" y="0"/>    
-    <execution id="12">      
-      <position height="21" width="0" x="0" y="355"/>    
+    <execution id="6">      
+      <position height="157" width="0" x="0" y="355"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="21" width="0" x="0" y="412"/>    
     </execution>  
   </object>  
-  <combined-fragment id="17" interaction-operator="LOOP">    
-    <interaction-operand id="18" constraint="while: !gameOver">      
-      <fragment refId="19"/>    
+  <object id="12" language="java" name="mechanics.actions.PlayCardView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/actions/PlayCardView.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="11">      
+      <position height="21" width="0" x="0" y="470"/>    
+    </execution>  
+  </object>  
+  <combined-fragment id="13" interaction-operator="LOOP">    
+    <interaction-operand id="14" constraint="while: !gameOver">      
+      <fragment refId="15"/>    
     </interaction-operand>    
-    <combined-fragment id="19" interaction-operator="LOOP">      
-      <interaction-operand id="20" constraint="for:i&lt; players.size()">        
-        <fragment refId="9"/>        
-        <fragment refId="11"/>        
-        <fragment refId="7"/>      
+    <combined-fragment id="15" interaction-operator="LOOP">      
+      <interaction-operand id="16" constraint="for:i&lt; players.size()">        
+        <fragment refId="8"/>        
+        <fragment refId="10"/>        
+        <fragment refId="5"/>      
       </interaction-operand>    
     </combined-fragment>  
   </combined-fragment>  
@@ -56,20 +43,16 @@
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </message>  
-  <message id="5" operation="getPlayers():java.util.ArrayList&lt;Player&gt;" asynchronous="false">    
+  <message id="5" operation="run(players.Player):void" asynchronous="false">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
   </message>  
-  <message id="7" operation="getInstance():mechanics.TurnView" asynchronous="false">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
+  <message id="8" operation="doActions():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
   </message>  
-  <message id="9" operation="get(int):E" asynchronous="false">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="10"/>  
-  </message>  
-  <message id="11" operation="run(players.Player):void" asynchronous="false">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="12"/>  
+  <message id="10" operation="doAction(players.Player):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
   </message>
 </sequence-diagram>

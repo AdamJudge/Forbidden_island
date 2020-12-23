@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="elements.pawns.Navigator" project="Forbidden_island" 
     file="/Forbidden_island/src/elements/pawns/Navigator.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="118" y="277"/>    
@@ -65,11 +65,11 @@
     </display>  
   </class>  
   <generalization id="8">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="9">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="10">    
@@ -77,11 +77,11 @@
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="11">    
-    <end type="SOURCE" refId="7"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="12">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="13">    
