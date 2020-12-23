@@ -68,37 +68,43 @@ public class PlayableCardsTest {
 		}
 	}
 	
+	// Check that all tiles are normal, before flooding a tile, checking status, and shoring up.
 	@Test
 	public void testSandbags()  {
 		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
 		// Flood Tile
 		floodATile();
-		assertEquals("Tile should have normal status.", TileStatus.FLOODED, toFlood.getStatus());
+		assertEquals("Tile should have flooded status.", TileStatus.FLOODED, toFlood.getStatus());
 		
-		//Play sandbag on tile
-		String input = "1\n1\n1";
+		//Player 1 players 1st card on tile 1
+		String input = "1 1 1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 
+		//Shoreup takes place here
 		PlayCardView.getInstance().doAction(null);
-		assertEquals("Tile should have normal status.", TileStatus.NORMAL, toFlood.getStatus());
+		assertEquals("Tile should have normal status after being shorn up.", TileStatus.NORMAL, toFlood.getStatus());
 		
+		//Player should discard this card
 		int handSize=player1.getHand().getCards().size();
 		assertEquals("Hand should be size 1", 1, handSize);
 		
+		// Only card left should be helicopter
 		TreasureCardTypes cardType = ((TreasureCard)player1.getHand().getCards().get(0)).getCardType();
 		assertEquals("Card in hand should be a helicopter", TreasureCardTypes.HELICOPTER, cardType);
 	}
 
+	//Test helicopter card being played
 	@Test
 	public void testHelicopter()  {
 		//Try helicopter lift to different tile
-		String input = "1\n 2\n 1";
+		String input = "1  2  1";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 
+		//Get starting tile
 		TileNames originalTile = player1.getPawn().getTile().getName();
 		PlayCardView.getInstance().doAction(null);
 		

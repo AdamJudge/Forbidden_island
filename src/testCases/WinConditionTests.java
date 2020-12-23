@@ -86,6 +86,7 @@ public class WinConditionTests {
 		testBoard.getTreasures().get(treasureName).captureTreasure();
 	}
 	
+	// Test win condition when all requirements met
 	@Test
 	public void SuccessfulEscape() {
 		// Move all players to fools landing
@@ -107,9 +108,10 @@ public class WinConditionTests {
 		Scan.getInstance().setScanner(new Scanner(in));
 		
 		PlayCardView.getInstance().doAction(player1);
-		assertTrue("GamePlay should now have GameOver set to true", gp.getGameOver());
+		assertTrue("GamePlay should now have GameOver set to true as win condition reached", gp.getGameOver());
 	}
 	
+	//Test having between 1 and 4 missing players from fools landing while having all treasures captured
 	@Test
 	public void MissingPlayers() {
 		// Capture All Treasures
@@ -124,8 +126,8 @@ public class WinConditionTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
+		
 		givePlayerHelicopter(player1);
-
 		movePlayerToTile(player1, TileNames.FOOLS_LANDING);
 		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if 3 players are missing from fools landing", gp.getGameOver());
@@ -149,6 +151,7 @@ public class WinConditionTests {
 		assertTrue("Win condition met if no players are missing from fools landing", gp.getGameOver());
 	}
 	
+	// Try leave with victory when 1-4 treasures are not captured
 	@Test
 	public void MissingTreasures() {	
 		//Move all to fools landing
@@ -166,7 +169,7 @@ public class WinConditionTests {
 		PlayCardView.getInstance().doAction(null);
 		assertFalse("Win condition not met if not all treasures captured", gp.getGameOver());
 		
-		//Capture 1 trasure at a time and retest leave
+		//Capture 1 treasure at a time and retest leave
 		captureTreasures(TreasureNames.CRYSTAL_OF_FIRE);
 		in = new ByteArrayInputStream(input.getBytes());		
 		Scan.getInstance().setScanner(new Scanner(in));

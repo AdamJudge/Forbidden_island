@@ -11,14 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import elements.board.*;
-import elements.cards.FloodDeck;
-import elements.cards.FloodDiscard;
-import elements.cards.TreasureDeck;
-import elements.cards.TreasureDiscard;
 import elements.treasures.*;
-import mechanics.Scan;
-import mechanics.cardActions.PlayCardView;
-import players.PlayerList;
 
 public class BoardTest {
 	private Board testBoard;

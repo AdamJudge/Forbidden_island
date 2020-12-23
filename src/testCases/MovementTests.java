@@ -99,7 +99,7 @@ public class MovementTests {
 		System.out.println(testBoard.toString());
 	}
 
-	//Flood tile setup
+	//Flood tile setup 2
 	public void sunkenTileSetup() {
 		int[] floodMe = new int[] {3,9,14};
 		for (int i:floodMe) {
@@ -111,6 +111,8 @@ public class MovementTests {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// NORMAL
 	// Shoreup tiles for normal pawn. Tile above below left and right of pawn will be normal, remaining 5 flooded.
+	
+	//Normal Pawn should be able to move to 4 different spots as normal
 	@Test
 	public void allNormalTilesNormalPawn_Success()   { 	
 		normalTileSetup();
@@ -127,6 +129,7 @@ public class MovementTests {
 		assertNotEquals("The Normal Pawn should be able to move to up to a 4th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// Try move to a 5th tile, should not be possible
 	@Test
 	public void allNormalTilesNormalPawn_Failure()   { 	
 		normalTileSetup();
@@ -143,6 +146,7 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
+	//Test that navigator can move all pawns ADJACENTLY, diver and explorer can't be moved specially.
 	@Test
 	public void allNormalTilesNavigator_Success()   { 	
 		normalTileSetup();
@@ -188,6 +192,7 @@ public class MovementTests {
 		assertNotEquals("The Diver should have moved up to a 4th tile", initTileP4, finalTileP4);
 	}
 	
+	//Try move any pawn by navigator to a 5th tile, should be impossible
 	@Test
 	public void allNormalTilesNavigator_Failure()   { 	
 		normalTileSetup();
@@ -233,6 +238,7 @@ public class MovementTests {
 		assertEquals("All pawns moved by the navigator can only move adjacently", initTileP4, finalTileP4);
 	}
 	
+	// Explorer can move adjacently/diagonally, to 8 spaces when surrounded
 	@Test
 	public void allNormalTilesExplorer_Success()   { 	
 		normalTileSetup();
@@ -248,6 +254,7 @@ public class MovementTests {
 		assertNotEquals("The Explorer should be able to move up to an 8th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	//Explorer can not move to up to a 9th tile
 	@Test
 	public void allNormalTilesExplorer_Failure()   { 	
 		normalTileSetup();
@@ -263,6 +270,7 @@ public class MovementTests {
 		assertEquals("The Explorer should not be able to move to an 9th with this board setup", initTile, finalTile);
 	}
 	
+	//Check that pilot can fly anywhere then move normally
 	@Test 
 	public void allNormalPilot_Success() {
 		normalTileSetup();
@@ -293,6 +301,7 @@ public class MovementTests {
 		assertNotEquals("The Pilot should not be able to move to a 4th Tile on their second go", initTile, finalTile);
 	}
 	
+	//Check that pilot can fly correct number of tiles, and can only move up to a 4th after flying once
 	@Test 
 	public void allNormalPilot_Failure() {
 		normalTileSetup();
@@ -335,6 +344,7 @@ public class MovementTests {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// FLOODED
 	// Shoreup tiles for normal pawn. Tile above below left and right of pawn will be normal, remaining 5 flooded.
+	// Normal movement as before
 	@Test
 	public void allFloodedTilesNormalPawn_Success()   { 	
 		floodTileSetup();
@@ -351,6 +361,7 @@ public class MovementTests {
 		assertNotEquals("The Normal Pawn should be able to move to up to a 4th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// Normal movement as before
 	@Test
 	public void allFloodedTilesNormalPawn_Failure()   { 	
 		floodTileSetup();
@@ -367,6 +378,7 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
+	// Normal movement as before
 	@Test
 	public void allFloodedTilesNavigator_Success()   { 	
 		floodTileSetup();
@@ -412,6 +424,7 @@ public class MovementTests {
 		assertNotEquals("The Diver should have moved up to a 4th tile", initTileP4, finalTileP4);
 	}
 	
+	// Normal movement as before
 	@Test
 	public void allFloodedTilesNavigator_Failure()   { 	
 		floodTileSetup();
@@ -457,6 +470,7 @@ public class MovementTests {
 		assertEquals("All pawns moved by the navigator can only move adjacently, diver unable to swim through flooded tiles by navigator.", initTileP4, finalTileP4);
 	}
 	
+	// Normal movement as before
 	@Test
 	public void allFloodedTilesExplorer_Success()   { 	
 		floodTileSetup();
@@ -473,6 +487,7 @@ public class MovementTests {
 		assertNotEquals("The Explorer should be able to move up to an 8th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// Normal movement as before
 	@Test
 	public void allFloodedTilesExplorer_Failure()   { 	
 		floodTileSetup();
@@ -490,6 +505,7 @@ public class MovementTests {
 		assertEquals("The Explorer should not be able to move to a 9th tile with this board setup", initTile, finalTile);
 	}
 	
+	// Diver can move through flooded tiles AND turn, should reach 18 tiles based on board setup.
 	@Test
 	public void allFloodedTilesDiver_Success()   { 	
 		floodTileSetup();
@@ -507,6 +523,7 @@ public class MovementTests {
 		assertNotEquals("The Diver should be able to move up to an 18th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// Diver can't move to a 19th tile with this setup
 	@Test
 	public void allFloodedTilesDiver_Failure()   { 	
 		floodTileSetup();
@@ -527,6 +544,7 @@ public class MovementTests {
 	// REMOVED
 	// Tiles above below and to the right of pawns removed.
 	
+	// Only one tile available
 	@Test
 	public void sunkenTilesNormalPawn_Success()   { 	
 		sunkenTileSetup();
@@ -543,6 +561,7 @@ public class MovementTests {
 		assertNotEquals("The Normal Pawn should be able to move to up to a 4th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// Only one tile available
 	@Test
 	public void sunkenTilesNormalPawn_Failure()   { 	
 		sunkenTileSetup();
@@ -559,6 +578,7 @@ public class MovementTests {
 		assertEquals("The Normal Pawn should not be able to move to a 5th tile with this board setup", initTile, finalTile);
 	}
 	
+	// Only one tile available
 	@Test
 	public void sunkenTilesNavigator_Success()   { 	
 		sunkenTileSetup();
@@ -604,6 +624,7 @@ public class MovementTests {
 		assertNotEquals("The Diver should have moved to only available tile", initTileP4, finalTileP4);
 	}
 	
+	// Only one tile available
 	@Test
 	public void sunkenTilesNavigator_Failure()   { 	
 		sunkenTileSetup();
@@ -649,6 +670,7 @@ public class MovementTests {
 		assertEquals("All pawns moved by the navigator can only move adjacently, diver unable to swim through flooded tiles by navigator.", initTileP4, finalTileP4);
 	}
 	
+	// 5 tiles available to explorer
 	@Test
 	public void sunkenTilesExplorer_Success()   { 	
 		sunkenTileSetup();
@@ -665,6 +687,7 @@ public class MovementTests {
 		assertNotEquals("The Explorer should be able to move up to an 5th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// 6 tiles unavailable
 	@Test
 	public void sunkenTilesExplorer_Failure()   { 	
 		sunkenTileSetup();
@@ -682,6 +705,7 @@ public class MovementTests {
 		assertEquals("The Explorer should not be able to move to a 6th tile with this board setup", initTile, finalTile);
 	}
 	
+	//Diver can move to 8 tiles on this setup, through sunken tiles
 	@Test
 	public void sunkenTilesDiver_Success()   { 	
 		sunkenTileSetup();
@@ -699,6 +723,7 @@ public class MovementTests {
 		assertNotEquals("The Diver should be able to move up to an 8th, different tile with this board setup", initTile, finalTile);
 	}
 	
+	// Diver cant move to a 9th tile with this board setup
 	@Test
 	public void sunkenTilesDiver_Failure()   { 	
 		sunkenTileSetup();

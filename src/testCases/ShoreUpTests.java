@@ -3,7 +3,6 @@ package testCases;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +19,6 @@ import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import mechanics.GamePlay;
 import mechanics.Scan;
-import mechanics.TurnController;
-import mechanics.TurnView;
 import mechanics.cardActions.PlayCardView;
 import mechanics.actions.ShoreupView;
 import mechanics.setup.Setup;
@@ -34,7 +31,6 @@ public class ShoreUpTests {
 	private List<Tile> sortedTiles = new ArrayList<Tile>();
 	private Player player1, player2, player3;
 
-	
 	@Before
 	public void setup() {
 		PlayerList.getInstance().tearDown();
@@ -73,7 +69,7 @@ public class ShoreUpTests {
 		}
 	}
 
-	//Flood all surrounding tiles
+	//Flood all surrounding tiles 
 	public void floodSurroundingTiles() {
 		int[] floodMe = new int[] {2,3,4,7,8,9,13,14,15};
 		for (int i:floodMe) {
@@ -82,6 +78,7 @@ public class ShoreUpTests {
 		System.out.println(testBoard.toString());
 	}
 	
+	//Count number of currently flooded tiles
 	public int numRemainingFloodedTiles() {
 		int num=0;
 		for (Tile t:sortedTiles) {
@@ -101,6 +98,7 @@ public class ShoreUpTests {
 		int actionsRequired=4;
 		String input = "1";
 		
+		// Pawn should be able to shoreup all adjacent tiles in four actions, leaving diagonal tiles flooded and tile currently on
 		for (int i=0;i<actionsRequired;i++) {
 			InputStream in = new ByteArrayInputStream(input.getBytes());
 			System.setIn(in);
@@ -135,7 +133,7 @@ public class ShoreUpTests {
 		floodSurroundingTiles();
 		int actionsRequired=2;
 		
-		// Two tiles shored up in one action
+		// Two tiles shored up in one action, half the actions required
 		String input = "1 1";
 		
 		for (int i=0;i<actionsRequired;i++) {
