@@ -253,6 +253,10 @@ public class TurnView {
 		}
 		return turnView;
 	}
+
+	public void tearDown() {
+		turnView=null;		
+	}
 	
 	
 }

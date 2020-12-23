@@ -18,6 +18,7 @@ import elements.cards.TreasureDeck;
 import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import mechanics.Scan;
+import mechanics.TurnView;
 import mechanics.actions.MoveView;
 import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
@@ -28,6 +29,7 @@ import players.PlayerList;
 public class MovementTests {
 	private Board testBoard;
 	private List<Tile> sortedTiles = new ArrayList<Tile>();
+	private Tile midTile;
 	private Player player1, player2, player3, player4;
 
 	
@@ -66,11 +68,20 @@ public class MovementTests {
 			if (t.getX()==2 && t.getY()==2) {
 				for (Player p:PlayerList.getInstance().getPlayers()) {
 					p.getPawn().move(t);
+					midTile=t;
 				}
 			}
 		}
 	}
 
+	// Test pilots flying/movements
+	public void setP1ToPilot() {
+		player1.setPawn(new Pilot());
+		player1.getPawn().toInitialTile();
+		player1.getPawn().move(midTile);
+		((Pilot)player1.getPawn()).resetHasFlown();
+	}
+	
 	// Make all tiles Normal
 	public void normalTileSetup() {
 		for (Tile t:sortedTiles) {
@@ -251,6 +262,75 @@ public class MovementTests {
 		Tile finalTile = player3.getPawn().getTile();
 		assertEquals("The Explorer should not be able to move to an 9th with this board setup", initTile, finalTile);
 	}
+	
+	@Test 
+	public void allNormalPilot_Success() {
+		normalTileSetup();
+		setP1ToPilot();
+		System.out.println(testBoard.toString());
+		
+		Tile initTile = player1.getPawn().getTile();
+		//Pilot can fly to any tile on first turn
+		String input = "23";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+
+		Tile finalTile = player1.getPawn().getTile();
+		assertNotEquals("The Pilot should be able to move to a 23rd Tile", initTile, finalTile);
+		
+		//Manually move pawn back to start to get predictable second turn
+		player1.getPawn().move(midTile);
+		//Move normally on second turn
+		input = "4";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+
+		finalTile = player1.getPawn().getTile();
+		assertNotEquals("The Pilot should not be able to move to a 4th Tile on their second go", initTile, finalTile);
+	}
+	
+	@Test 
+	public void allNormalPilot_Failure() {
+		normalTileSetup();
+		setP1ToPilot();
+		
+		Tile initTile = player1.getPawn().getTile();
+		//Pilot cant fly to a 24th tile
+		String input = "24 0";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+
+		Tile finalTile = player1.getPawn().getTile();
+		assertEquals("The Pilot should not be able to move to a 24th Tile", initTile, finalTile);
+		
+		//Move to 23rd tile to use first move, second move should only be able to move to 4.
+		input = "23";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+
+		finalTile = player1.getPawn().getTile();
+		assertNotEquals("The Pilot should have moved to a 24th tile", initTile, finalTile);
+		
+		//Manually move pawn back to start to get predictable second turn
+		player1.getPawn().move(midTile);
+		// Pilots movements restricted to up to 4 after flying
+		input = "5 0";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		MoveView.getInstance().doAction(player1);
+		finalTile = player1.getPawn().getTile();
+		assertEquals("The Pilot should not be able to move to a 5th Tile on their second go", initTile, finalTile);
+	}
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// FLOODED
@@ -646,5 +726,6 @@ public class MovementTests {
 		FloodDiscard.getInstance().tearDown();
 		Scan.getInstance().tearDown();
 		PlayCardView.getInstance().tearDown();
+		TurnView.getInstance().tearDown();
 	}
 }
