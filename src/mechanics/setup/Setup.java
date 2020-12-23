@@ -3,15 +3,18 @@ package mechanics.setup;
 import elements.cards.FloodDeck;
 import mechanics.Scan;
 import mechanics.TurnController;
-import mechanics.actions.ActionController;
+import mechanics.actions.ClaimTreasureController;
 import mechanics.actions.ClaimTreasureView;
+import mechanics.actions.GiveCardController;
 import mechanics.actions.GiveCardView;
+import mechanics.actions.MoveController;
 import mechanics.actions.MoveView;
-import mechanics.actions.PlayCardView;
+import mechanics.actions.ShoreupController;
 import mechanics.actions.ShoreupView;
 import mechanics.cardActions.CardActionController;
 import mechanics.cardActions.HelicopterController;
 import mechanics.cardActions.HelicopterView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.cardActions.SandbagsView;
 import mechanics.TurnView;
 
@@ -89,22 +92,28 @@ public class Setup {						// TODO Discuss -  singleton or static function ?
 	 */
 	private static void setupActions(Scan user, TurnController turnController) {
 		// Create action controllers
-		ActionController actionController = ActionController.getInstance();
+		ClaimTreasureController claimTreasureController = ClaimTreasureController.getInstance();
+		GiveCardController giveCardController = GiveCardController.getInstance();
+		MoveController moveController = MoveController.getInstance();
+		ShoreupController shoreupController = ShoreupController.getInstance();
 		CardActionController cardController = CardActionController.getInstance();
-		
-		// setup controllers
-		actionController.setupController(turnController, MoveView.getInstance());
-		cardController.setup(actionController);
+		HelicopterController helicopterController = HelicopterController.getInstance();
 		
 		// Set controllers for all views (Action views and card views)
-		ClaimTreasureView.getInstance().setup(user, actionController);
-    	GiveCardView.getInstance().setup(user, turnController, actionController);
-    	MoveView.getInstance().setup(user, turnController, actionController);
-    	ShoreupView.getInstance().setup(user, turnController, actionController);
-    	PlayCardView.getInstance().setup(user, turnController, actionController);
-    	HelicopterView.getInstance().setup(user, HelicopterController.getInstance(), actionController, turnController); 
-    	SandbagsView.getInstance().setup(user, cardController, actionController, turnController); 
+		ClaimTreasureView.getInstance().setup(user, claimTreasureController);
+    	GiveCardView.getInstance().setup(user, turnController, giveCardController);
+    	MoveView.getInstance().setup(user, turnController, moveController);
+    	ShoreupView.getInstance().setup(user, turnController, shoreupController);
+    	PlayCardView.getInstance().setup(user, turnController, cardController);
+    	HelicopterView.getInstance().setup(user, helicopterController, moveController, turnController); 
+    	SandbagsView.getInstance().setup(user, cardController, shoreupController, turnController); 
+    	
+    	// setup controllers
+		cardController.setup(HelicopterView.getInstance(), SandbagsView.getInstance(), moveController);
+		giveCardController.setup(turnController);
+		moveController.setup(MoveView.getInstance());
 		
+    			
 		// Other classes that need access to a controller
 		FloodDeck.getInstance().setup(cardController);	 
 	}
