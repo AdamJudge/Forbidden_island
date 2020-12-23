@@ -120,7 +120,7 @@ public class TurnView {
 	private boolean drawFloodCards() {
 		Card cardDrawn;
 		for (int i = 0; i< controller.getNbrCards(); i++) {
-			cardDrawn = controller.drawFloodCards();
+			cardDrawn = controller.drawFloodCard();
 			if (GamePlay.getInstance().getGameOver()) {
 				return false;
 			}

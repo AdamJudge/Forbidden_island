@@ -15,9 +15,14 @@ import elements.pawns.Pilot;
 import players.Hand;
 
 /**
- * TurnController
- * 	Controller to implement turn as MVC
+ * TurnController (Singleton, MVC)
  * 
+ * 	Controller to implement turn as MVC
+ *  Contains main functionality needed in a turn, excluding actions
+ *  	Drawing/discarding cards
+ *  	Get players, tiles etc for view
+ *  	check game over status
+ *  
  * @author Catherine Waechter
  * @version 2.0
  * 	Put all action related methods into ActionController
@@ -30,9 +35,44 @@ public class TurnController {
 	private static TurnController turnController = null;
 	private TurnView view;
 	
-	public Board getBoard() {
-		return Board.getInstance();
+	/**
+	 * drawTreasureCard
+	 * 	draw a treasure cards. Add to player's hand
+	 * @param player
+	 */
+	public Card drawTreasureCard(Player player) {	
+		Card card;
+		card = TreasureDeck.getInstance().draw();
+		if(((TreasureCard)card).getCardType() != TreasureCardTypes.WATERSRISE) {		
+			player.getHand().addCard(card);
+		}
+		return card;
+	} 
+	
+	/**
+	 * drawFloodCard
+	 * 	Draw a flood card
+	 */
+	public Card drawFloodCard() {			
+		return FloodDeck.getInstance().draw(); 	// cards drawn will automatically flood
+	} 
+	
+	/**
+	 * doDiscard
+	 * 	Called by a hand when it is full
+	 * 	Need to go through player list to find the hand that is full (hand doesn't know which player it belongs to)
+	 * 	Then call view to prompt that player to discard a card
+	 */
+	public void doDiscard() {
+		for(Player player : PlayerList.getInstance().getPlayers()) {
+			if(player.getHand().getCards().size() == 6) { 	// find the full hand
+				view.doDiscard(player);
+				break;
+			}
+		}
 	}
+	
+	
 	
 	/**
 	 * gameOver
@@ -42,21 +82,7 @@ public class TurnController {
 		return GamePlay.getInstance().getGameOver();
 	}
 	
-	/**
-	 * getInstance
-	 * 	get singleton instance of TurnController
-	 * @return turnController (singleton instance)
-	 */
-	public static TurnController getInstance() {
-		if(turnController == null) { 
-			turnController = new TurnController();
-		}
-		return turnController;
-	}
 	
-	public void setView(TurnView view) {
-		this.view = view;
-	}
 	
 	public void pilotReset(Player player){
 		if(player.getPawn() instanceof Pilot) {
@@ -64,16 +90,7 @@ public class TurnController {
 		}
 	}
 	
-	public void doDiscard() {
-		
-		for(Player player : PlayerList.getInstance().getPlayers()) {
-			if(player.getHand().getCards().size() == 6) {
-				view.doDiscard(player);
-				break;
-			}
-		}
-	}
-	
+
 	
 	/**
 	 * getPlayers
@@ -100,13 +117,13 @@ public class TurnController {
 		return player.getHand().getCards();
 	}
 	
-	/**
-	 * drawFloodCard
-	 * 	Draw a flood card
-	 */
-	public Card drawFloodCards() {			
-		return FloodDeck.getInstance().draw(); 	// cards drawn will automatically flood
-	} 
+	public boolean isEngineer(Player player) {
+		return (player.getPawn() instanceof Engineer);
+	}
+	
+	public boolean isNavigator(Player player) {
+		return (player.getPawn() instanceof Navigator);
+	}
 	
 	/**
 	 * getNbrCards
@@ -133,30 +150,31 @@ public class TurnController {
 		return player.getPawn().getTile();
 	}
 	
-	public boolean isEngineer(Player player) {
-		return (player.getPawn() instanceof Engineer);
-	}
 	
-	public boolean isNavigator(Player player) {
-		return (player.getPawn() instanceof Navigator);
-	}
 	
 	public TileStatus getTileStatus(Tile tile) {
 		return tile.getStatus();
 	}
 	
+	public Board getBoard() {
+		return Board.getInstance();
+	}
+	
+	
 	/**
-	 * drawTreasureCard
-	 * 	draw a treasure cards. Add to player's hand
-	 * @param player
+	 * getInstance
+	 * 	get singleton instance of TurnController
+	 * @return turnController (singleton instance)
 	 */
-	public Card drawTreasureCard(Player player) {	
-		Card card;
-		card = TreasureDeck.getInstance().draw();
-		if(((TreasureCard)card).getCardType() != TreasureCardTypes.WATERSRISE) {		
-			player.getHand().addCard(card);
+	public static TurnController getInstance() {
+		if(turnController == null) { 
+			turnController = new TurnController();
 		}
-		return card;
-	} 
+		return turnController;
+	}
+	
+	public void setView(TurnView view) {
+		this.view = view;
+	}
 	
 }
