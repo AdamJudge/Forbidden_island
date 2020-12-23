@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
+//Run all tests made
 @SuiteClasses({ 
 	SetupTest.class,
 	BoardTest.class, 

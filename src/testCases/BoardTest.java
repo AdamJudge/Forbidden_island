@@ -11,14 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import elements.board.*;
-import elements.cards.FloodDeck;
-import elements.cards.FloodDiscard;
-import elements.cards.TreasureDeck;
-import elements.cards.TreasureDiscard;
 import elements.treasures.*;
-import mechanics.Scan;
-import mechanics.cardActions.PlayCardView;
-import players.PlayerList;
 
 public class BoardTest {
 	private Board testBoard;
@@ -33,6 +26,7 @@ public class BoardTest {
 		testBoard = Board.getInstance();
 		boardTiles = testBoard.getSortedTiles();
 
+		//Manually add tiles in known order
 		tileList.add(TileNames.BREAKERS_BRIDGE);
 		tileList.add(TileNames.BRONZE_GATE);
 		tileList.add(TileNames.CAVE_OF_EMBERS);
@@ -58,6 +52,7 @@ public class BoardTest {
 		tileList.add(TileNames.WATCHTOWER);
 		tileList.add(TileNames.WHISPERING_GARDEN);
 		
+		//Add tiles with no treasure into map
 		treasureMap.put(TileNames.BREAKERS_BRIDGE, null);
 		treasureMap.put(TileNames.BRONZE_GATE, null);
 		treasureMap.put(TileNames.CLIFFS_OF_ABANDON, null);
@@ -75,6 +70,7 @@ public class BoardTest {
 		treasureMap.put(TileNames.TWILIGHT_HOLLOW, null);
 		treasureMap.put(TileNames.WATCHTOWER, null);
 		
+		//Add tiles with treasure into map
 		treasureMap.put(TileNames.CAVE_OF_EMBERS, TreasureNames.CRYSTAL_OF_FIRE);
 		treasureMap.put(TileNames.CAVE_OF_SHADOWS, TreasureNames.CRYSTAL_OF_FIRE);
 		treasureMap.put(TileNames.CORAL_PALACE, TreasureNames.OCEAN_CHALICE);
@@ -86,15 +82,16 @@ public class BoardTest {
 
 	}
 	
+	//Check that all tiles are used when a board is made
 	@Test
 	public void checkAllTilesUsed() {
-
 		for(Tile t:boardTiles) {
 			boardTileNames.add(t.getName());
 		}
 		assertTrue("All possible tiles should be on the board",boardTileNames.containsAll(tileList));
 	}
 	
+	//Check that treasure has been assigned to correct tiles
 	@Test
 	public void checkTileTreasures() {
 		for (Tile t:boardTiles) {
@@ -107,6 +104,7 @@ public class BoardTest {
 		}
 	}
 	
+	//Check that positions on board are valid
 	@Test
 	public void checkPositionsValid() {
 		for (Tile t:boardTiles) {

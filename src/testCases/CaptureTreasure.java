@@ -45,7 +45,7 @@ public class CaptureTreasure {
 		for(Tile t:boardTiles) {
 			boardTileNames.add(t.getName());
 		}
-		
+		//Make four players for testing purposes
 		player1 = new Player("player 1");
 		player2 = new Player("player 2");
 		player3 = new Player("player 3");
@@ -58,6 +58,7 @@ public class CaptureTreasure {
 		playerList.addPlayer(player3);
 		playerList.addPlayer(player4);
 		
+		//Assign random pawns
 		player1.setPawn(new Diver());
 		player2.setPawn(new Engineer());
 		player3.setPawn(new Explorer());
@@ -80,7 +81,7 @@ public class CaptureTreasure {
 	}
 	
 	public void moveToIncorrectTreasureTiles() {
-		//Move players to tile with relevant treasures
+		//Move players to incorrect tile wrt the players treasure cards
 		for (Tile t:boardTiles) {
 			if(t.getName().equals(TileNames.CAVE_OF_EMBERS)) {
 				player2.getPawn().move(t);
@@ -98,7 +99,7 @@ public class CaptureTreasure {
 	}
 	
 	public void moveToCorrectTreasureTiles() {
-		//Move players to tile with relevant treasures
+		//Move players to correct tile wrt the players treasure cards
 		for (Tile t:boardTiles) {
 			if(t.getName().equals(TileNames.CAVE_OF_EMBERS)) {
 				player1.getPawn().move(t);
@@ -115,6 +116,7 @@ public class CaptureTreasure {
 		}
 	}
 	
+	//Give fourth treasure card required to capture treasure to players
 	public void giveAnotherCard() {
 		player1.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.CRYSTAL_OF_FIRE)));
 		player2.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.EARTH_STONE)));
@@ -124,11 +126,10 @@ public class CaptureTreasure {
 	
 	@Test
 	public void failToCaptureAllTreasures() {
-		//Move to correct tile without enough cards
+		//Move to correct tile without enough treasure cards and try capture. No treasure should be captured by a player
 		moveToCorrectTreasureTiles();
-		//Play sandbag on tile
 		
-		String input = "";
+		String input = "y";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
@@ -155,9 +156,10 @@ public class CaptureTreasure {
 
 	}
 	
+	//Capture all treasures as conditions correct
 	@Test
 	public void CaptureAllTreasures() {
-		//Move to correct tile and obtain correct number of tiles
+		//Move to correct tile and obtain correct number of tiles and capture treasures
 		moveToCorrectTreasureTiles();
 		giveAnotherCard();
 		String input = "y";

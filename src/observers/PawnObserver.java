@@ -9,6 +9,7 @@ public class PawnObserver extends Observer {
 		this.subject.attach(this);
 	}
 	
+	// Triggers game loss and prints out the pawn which has drowned.
 	@Override
 	public void update() {
 		System.out.println(((Pawn)subject).toString() + " has drowned!");

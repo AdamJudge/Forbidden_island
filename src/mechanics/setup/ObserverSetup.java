@@ -41,7 +41,7 @@ public class ObserverSetup {
 		Tile caveOfEmbers = null;
 		Tile caveOfShadows = null;
 		
-		//Get relevant tiles
+		//Get relevant tiles to observer which can cause a loss or win
 		for(Tile t:tileList) {
 			switch (t.getName()){
 			case FOOLS_LANDING:
@@ -75,15 +75,16 @@ public class ObserverSetup {
 				break;			
 			}
 		}
+		
 		//Get all pawns in play to observe
 		for(Player p: PlayerList.getInstance().getPlayers()) {
 			new PawnObserver(p.getPawn());
 		}
-		// Game Over Observers
+		///// Game Over Observers //////
 		// Observer water level
 		new WaterLevelObserver(WaterLevel.getInstance());
-		// If fools landing sinks game over
-		new FoolsIslandObserver(foolsLanding);
+		// Fools Landing
+		new FoolsLandingObserver(foolsLanding);
 		// If any pair of treasure tiles sink with out treasure being captured then game over
 		new TreasureObserver(whisperingGarden, howlingGarden, howlingGarden.getTreasure());	
 		new TreasureObserver(tidalPalace, coralPalace, tidalPalace.getTreasure());	

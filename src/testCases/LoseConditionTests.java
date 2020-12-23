@@ -68,6 +68,7 @@ public class LoseConditionTests {
 		gp=GamePlay.getInstance();
 	} 
 	
+	//Move player to specified tile by name
 	public void movePlayerToTile(Player player, TileNames tilename) {
 		//Move player specified tile
 		for (Tile t:boardTiles) {
@@ -77,6 +78,7 @@ public class LoseConditionTests {
 		}
 	}
 	
+	//Get tile by name
 	public Tile getTile(TileNames tilename) {
 		for (Tile t:boardTiles) {
 			if(t.getName().equals(tilename)) {
@@ -153,7 +155,7 @@ public class LoseConditionTests {
 	}
 	
 	// THIRD LOSS CONDITION
-	// If WaterLevel hits 10 game over
+	// If WaterLevel hits 10 game over. 10 is used as the official game has ten increments.
 	@Test
 	public void waterLevelGameOver() {
 		//Start from minimum level 1, increase by 1 until 10 and check status throughout
@@ -193,7 +195,7 @@ public class LoseConditionTests {
 	// If player drowns then game is over
 	@Test
 	public void drownedPlayer() {
-		// Remove observers
+		// Remove observers to ignore other lose conditions
 		for (Tile t:boardTiles) {
 			t.removeObservers();
 		}
@@ -202,7 +204,7 @@ public class LoseConditionTests {
 		playerList=PlayerList.getInstance();
 		playerList.addPlayer(player2);
 		
-		// Add observer for pawns, normally done in observer but need to ignore other observers
+		// Add observer for pawns, normally done in observer but need to ignore other observers.
 		for (Player p:playerList.getPlayers()) {
 			new PawnObserver(p.getPawn());
 		}
@@ -223,8 +225,10 @@ public class LoseConditionTests {
 		// Remove tile player is standing on
 		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())));
 		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())));
-		assertTrue("The player should have no tiles available to swim to and will drown", player2.getPawn().swimCheck().isEmpty());
-		assertTrue("Game is over if player drowns", GamePlay.getInstance().getGameOver());
+		
+		boolean canPlayerSwim = player2.getPawn().swimCheck().isEmpty();
+		assertTrue("The player should have no tiles available to swim to and will drown", canPlayerSwim);
+		assertTrue("Game is over if player drowns", gp.getGameOver());
 	}
 	
 	@After

@@ -42,6 +42,8 @@ public class GiveCardTests {
 		testBoard = Board.getInstance();
 		WaterLevel.getInstance().setDifficulty(Difficulty.NOVICE);
 		sortedTiles = testBoard.getSortedTiles();
+		
+		//This will be upper left most tile. A distance from the testing tile in the center
 		distantTile=sortedTiles.get(0);
 		
 		player1 = new Player("player 1");
@@ -72,6 +74,7 @@ public class GiveCardTests {
 		}
 	}
 
+	//Give player 4 random treasure cards
 	public void setupHand_fewCards(Player p) {
 		p.getHand().addCard(new TreasureCard(TreasureCardTypes.HELICOPTER, null));
 		p.getHand().addCard(new TreasureCard(TreasureCardTypes.SANDBAGS, null));
@@ -79,6 +82,7 @@ public class GiveCardTests {
 		p.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.STATUE_OF_THE_WIND)));
 	}
 	
+	//Give player 5 treasure cards to fill hand
 	public void setupHand_full(Player p) {
 		p.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
 		p.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
@@ -87,6 +91,7 @@ public class GiveCardTests {
 		p.getHand().addCard(new TreasureCard(TreasureCardTypes.TREASURE, new Treasure(TreasureNames.OCEAN_CHALICE)));
 	}
 	
+	//Try to give a card from one player to the other while on the same tile
 	@Test
 	public void GiveCardOnSameTile()   { 	
 		setupHand_fewCards(player1);
@@ -109,7 +114,6 @@ public class GiveCardTests {
 		//Check player 1's hand size is 3
 		assertEquals("Player 1 should now have three cards",3, player1HandSize);
 		
-		
 		//Check that player 2 now has this card
 		cards = player2.getHand().getCards().toString();
 		assertEquals("Player 1 gave player 2 a helicopter!", "[HELICOPTER]", cards);
@@ -118,6 +122,7 @@ public class GiveCardTests {
 		assertEquals("Player 1 should now have one card",1, player2HandSize);
 	}
 	
+	//Try give card to other player while other players hand is full. Should discard and accept card
 	@Test
 	public void GiveCardOnSameTile_FullHand()   { 	
 		setupHand_fewCards(player1);
@@ -150,6 +155,7 @@ public class GiveCardTests {
 		assertEquals("Player 1 should now have five cards",5, player2HandSize);
 	}
 	
+	//Try give a card while noone has any cards
 	@Test
 	public void GiveCardOnSameTile_EmptyHand()   { 	
 		int player1HandSize = player1.getHand().getCards().size();
@@ -172,6 +178,7 @@ public class GiveCardTests {
 		assertEquals("Player 2 should now have no cards",0 , player2HandSize);
 	}
 
+	//Try give card from different tile when not playing as messenger
 	@Test
 	public void TryGiveCardOnDifferentTile_NotMessenger()   { 	
 		setupHand_fewCards(player1);
@@ -197,6 +204,7 @@ public class GiveCardTests {
 		assertEquals("Player 2 has no cards", "[]", cards);
 	}
 	
+	//Try messengers ability to give a card from a different tile
 	@Test
 	public void TryGiveCardOnDifferentTile_Messenger()   { 	
 		setupHand_fewCards(player2);
