@@ -2,10 +2,8 @@ package elements.cards;
 
 import elements.board.Board;
 import elements.board.Tile;
-import mechanics.cardActions.FloodTileView;
-import mechanics.actions.ActionController;
+import mechanics.cardActions.CardActionController;
 
-import java.io.IOException;
 import java.util.Stack;
 
 
@@ -25,19 +23,8 @@ import java.util.Stack;
 public class FloodDeck extends Deck{
 	
 	private static FloodDeck floodDeck = null;  	// singleton instance
-	private ActionController controller;
+	private CardActionController cardController;
 	
-	/**
-	 * getInstance
-	 * returns FloodDeck instance
-	 * @return
-	 */
-	public static FloodDeck getInstance() {	
-		if(floodDeck == null) {
-			floodDeck = new FloodDeck();
-		}
-		return floodDeck;
-	}
 	
 	/**
 	 * draw
@@ -47,7 +34,7 @@ public class FloodDeck extends Deck{
 	@Override
 	public Card draw() {
 		FloodCard card = (FloodCard)super.draw();
-		FloodTileView.floodTile(card);	
+		cardController.floodTile(card);	
 		
 		if (cards.isEmpty()) {
 			FloodDiscard.getInstance().toDeck();
@@ -67,6 +54,22 @@ public class FloodDeck extends Deck{
 		}
 		
 		shuffleDeck();
+	}
+	
+	public void setup(CardActionController cardController) {
+		this.cardController = cardController;
+	}
+	
+	/**
+	 * getInstance
+	 * returns FloodDeck instance
+	 * @return
+	 */
+	public static FloodDeck getInstance() {	
+		if(floodDeck == null) {
+			floodDeck = new FloodDeck();
+		}
+		return floodDeck;
 	}
 	
 	/**
