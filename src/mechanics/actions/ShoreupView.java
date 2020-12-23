@@ -56,9 +56,11 @@ public class ShoreupView {
 			
 			System.out.println("Tile : " + chosenTile + " Status: " + turnController.getTileStatus(chosenTile)); 	
 			
-			if(turnController.isEngineer(player)&& i==0) { 		
-				System.out.println("You can shore up another tile for no additional actions!");
-				System.out.println("Which tile do you want to shore up? (Enter 0 if you don't want to shore up another tile. Will still use an action for first shore-up)");
+			if(turnController.isEngineer(player)&& i==0) { 	
+				if(!controller.getShoreupCheck(player).isEmpty()) {	// Check if they have any other tiles to shore up before asking
+					System.out.println("You can shore up another tile for no additional actions!");
+					System.out.println("Which tile do you want to shore up? (Enter 0 if you don't want to shore up another tile. Will still use an action for first shore-up)");
+				}
 			}
 			else {	// other pawns don't get a second shore up
 				break;
