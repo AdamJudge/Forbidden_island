@@ -20,8 +20,20 @@ import mechanics.ViewInputTools;
 import mechanics.cardActions.PlayCardView;
 import players.PlayerList;
 
+/**
+ * UserInputTest
+ * 
+ * test user input methods (with correct and wrong inputs)
+ * 
+ * @author Catherine Waechter
+ *
+ */
 public class UserInputTest {
 
+	/**
+	 * stringInput
+	 * correct string input
+	 */
 	@Test
 	public void stringInput()  {
 		String input = "Adam";
@@ -35,6 +47,10 @@ public class UserInputTest {
 		assertEquals("Input read by parser should equal user input", input, output);
 	}
 	
+	/**
+	 * stringInputNumber
+	 * incorrect string input
+	 */
 	@Test
 	public void stringInputNumber()  {
 		String input = "2";
@@ -48,6 +64,10 @@ public class UserInputTest {
 		
 	}
 	
+	/**
+	 * stringInputWithNumber
+	 * incorrect string input
+	 */
 	@Test
 	public void stringInputWithNumber()  {
 		String input = "Adam2";
@@ -60,6 +80,10 @@ public class UserInputTest {
 		    });		
 	}
 
+	/**
+	 * numberInputInBounds
+	 * correct number input
+	 */
 	@Test
 	public void numberInputInBounds()  {
 		String input = "1";
@@ -84,6 +108,10 @@ public class UserInputTest {
 		assertEquals("Input read by parser should equal second user input", 2, output);
 	}
 
+	/**
+	 * numberInputInBounds
+	 * incorrect number input
+	 */
 	@Test
 	public void numberInputLetters()  {
 		String input = "six"; 
@@ -96,6 +124,10 @@ public class UserInputTest {
 		    });
 	}
 	
+	/**
+	 * numberInputInBounds
+	 * correct number input
+	 */
 	@Test
 	public void numberInputUpperLim()  {
 		String input = "6"; 
@@ -108,6 +140,10 @@ public class UserInputTest {
 		assertEquals("Input read by parser should equal user input", 6, output);
 	}
 	
+	/**
+	 * numberInputInBounds
+	 * correct number input
+	 */
 	@Test
 	public void numberInputLowLim()  {
 		String input = "4"; 

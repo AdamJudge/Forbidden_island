@@ -34,7 +34,7 @@ public class ShoreupView {
 	 * 	Engineer can shore up twice
 	 * 
 	 */
-	public boolean doAction(Player player) {	// TODO can we refactor this into smaller functions?? 
+	public boolean doAction(Player player) {	 
 		
 		boolean actionUsed = false;
 		for(int i = 0; i<2; i++) {		// i=0 for first shoreup, if engineer, can get second shoreup (i=1)

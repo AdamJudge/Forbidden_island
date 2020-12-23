@@ -20,13 +20,26 @@ import elements.board.Tile;
 import elements.board.TileStatus;
 import elements.board.WaterLevel;
 
+/**
+ * DeckTest 
+ * 
+ * 	Tests deck contents and drawing behaviour
+ * 
+ * @author Catherine Waechter
+ *	
+ */
 public class DeckTest {
 
 	@Before
 	public void setup() {
-		Setup.setupOnly();
+		Setup.setupOnly();	// carry out setup
 	}
 	
+	/**
+	 * treasureDeckContents
+	 * 
+	 * count up contents of treasure deck
+	 */
 	@Test
 	public void treasureDeckContents() {
 		
@@ -80,6 +93,11 @@ public class DeckTest {
 		assertEquals("Treasure Deck should have 5 Earth Stone cards", 5, earthCount);		
 	}
 	
+	/**
+	 * floodDeckContents
+	 * 
+	 * make sure there's a card for each tile
+	 */
 	@Test
 	public void floodDeckContents() {
 		
@@ -107,6 +125,11 @@ public class DeckTest {
 		
 	}
 
+	/**
+	 * drawFloodCard
+	 * 
+	 * Draw a flood card, make sure tile has been flooded and card was discarded
+	 */
 	@Test
 	public void drawFloodCard() {
 		

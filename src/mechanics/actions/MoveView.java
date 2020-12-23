@@ -49,7 +49,7 @@ public class MoveView {
 			moves = 2;
 		}
 		
-		// TODO pilot print walk vs fly ? 
+	 
 		
 		for(int i = 0; i<moves; i++) {
 			ArrayList<Tile> possibleTiles = getPossibleTiles();

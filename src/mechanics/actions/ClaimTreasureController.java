@@ -1,5 +1,6 @@
 package mechanics.actions;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -74,7 +75,12 @@ public class ClaimTreasureController {
 	public void claimTreasure(Player player, Treasure treasure) {
 		treasure.captureTreasure();
 		int discardedCount = 0;
-		for(Card card : player.getHand().getCards()) {
+		
+		// Need this because we can't iterate over the hand since we are discarding from it
+		ArrayList<Card> cardsForIteration = new ArrayList<Card>();
+		cardsForIteration.addAll(player.getHand().getCards());
+		
+		for(Card card : cardsForIteration) {
 			if(discardedCount == 4) {
 				break;
 			}
@@ -83,6 +89,7 @@ public class ClaimTreasureController {
 				discardedCount++;
 			}
 		}
+		
 	}
 			
 	/**

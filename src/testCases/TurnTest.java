@@ -25,6 +25,14 @@ import mechanics.setup.Setup;
 import players.*;
 import elements.pawns.*;
 
+/**
+ * TurnTest
+ * 
+ * test turn behaviour. We assume actions are tested in relevant tests, this only tests the number of actions done in turns
+ * 
+ * @author Catherine Waechter
+ *
+ */
 public class TurnTest {
 
 	private Player engPlayer, expPlayer;
@@ -284,10 +292,6 @@ public class TurnTest {
 		}
 	}
 
-	
-
-
-	
 	@After
 	public void tearDown() {
 		PlayerList.getInstance().tearDown();

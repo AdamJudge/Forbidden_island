@@ -1,10 +1,9 @@
 package players;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * PlayerList 
+ * PlayerList (Singleton)
  * 	Holds the list of players in the game in a singleton instance
  * 
  * @author Adam Judge, Catherine Waechter
@@ -17,13 +16,6 @@ import java.util.List;
 public class PlayerList {
 	public static PlayerList pl=null;
 	public ArrayList<Player> playerList;
-	
-	public static PlayerList getInstance() {
-		if (pl==null) {
-			pl=new PlayerList();
-		}
-		return pl;
-	}
 	
 	private PlayerList() {
 		playerList =new ArrayList<Player>();
@@ -42,6 +34,21 @@ public class PlayerList {
 		return (playerList.toString());
 	}
 	
+	/**
+	 * getInstance
+	 * @return singleton instance of the player list
+	 */
+	public static PlayerList getInstance() {
+		if (pl==null) {
+			pl=new PlayerList();
+		}
+		return pl;
+	}
+	
+	/**
+	 * tearDown
+	 * used in testing
+	 */
 	public void tearDown() {
 		pl=null;
 	}

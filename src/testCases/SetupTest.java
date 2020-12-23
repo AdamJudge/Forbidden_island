@@ -21,13 +21,24 @@ import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 
+/**
+ * SetupTest
+ * 
+ * Test that setup occurs according to inputs
+ * Check that each player has a different pawn
+ * 
+ * @author Catherine Waechter
+ *
+ */
 public class SetupTest {
 	
 	@Test
 	public void setupTest() {
-		PlayerList.getInstance().tearDown();
-		PlayerList.getInstance();
 		String input = "3 Adam Catherine Liliana 2";
+		// 3 players
+		// names
+		// water level 2
+		
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
