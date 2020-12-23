@@ -11,7 +11,6 @@ import org.junit.Test;
 import elements.board.Board;
 import elements.board.Difficulty;
 import elements.board.Tile;
-import elements.board.TileStatus;
 import elements.board.WaterLevel;
 import elements.cards.*;
 
@@ -21,7 +20,6 @@ import org.junit.After;
 import mechanics.GamePlay;
 import mechanics.Scan;
 import mechanics.TurnView;
-import mechanics.ViewInputTools;
 import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
@@ -29,7 +27,7 @@ import elements.pawns.*;
 
 public class TurnTest {
 
-	private Player engPlayer, navPlayer, expPlayer, divPlayer, pilPlayer, mesPlayer;
+	private Player engPlayer, expPlayer;
 	
 	@Before
 	public void setup() {
