@@ -11,9 +11,9 @@ import mechanics.GamePlay;
 import players.Player;
 
 /**
- * HelicopterController
+ * HelicopterController (Singleton, MVC)
  * 
- * 	Handles functionality required by the Helicopter View
+ * 	Controller to handle functionality required by the Helicopter View
  * 
  * @author Catherine Waechter
  * @version 1.0
@@ -27,6 +27,26 @@ public class HelicopterController {
 
 	private static HelicopterController hController = null;
 	private boolean flown; // True if a pilot has flown, false if no pilot or pilot has not flown
+	
+	/**
+	 * getHelicopterTiles
+	 * 
+	 * 	get tiles that can be flown to (all remaining tiles except current location)
+	 * 
+	 * @param player
+	 * @return list of possible tiles
+	 */
+	public ArrayList<Tile> getHelicopterTiles(Player player){
+		Pawn pawn = player.getPawn();
+		
+		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
+		
+		ArrayList<Tile> sortedTiles = new ArrayList<Tile>();
+		sortedTiles.addAll(remainingTiles);
+		sortedTiles.remove(pawn.getTile());	// pawn can't fly to its current tile
+		return sortedTiles;
+	}
+	
 	/**
 	 * tryLeave
 	 * 
@@ -73,26 +93,6 @@ public class HelicopterController {
 			((Pilot)pawn).resetHasFlown();
 		}
 	}
-	
-	/**
-	 * getHelicopterTiles
-	 * 
-	 * 	get tiles that can be flown to (all remaining tiles except current location)
-	 * 
-	 * @param player
-	 * @return list of possible tiles
-	 */
-	public ArrayList<Tile> getHelicopterTiles(Player player){
-		Pawn pawn = player.getPawn();
-		
-		Set<Tile> remainingTiles = Board.getInstance().getRemainingTiles();
-		
-		ArrayList<Tile> sortedTiles = new ArrayList<Tile>();
-		sortedTiles.addAll(remainingTiles);
-		sortedTiles.remove(pawn.getTile());	// pawn can't fly to its current tile
-		return sortedTiles;
-	}
-	
 	
 	/**
 	 * getInstance

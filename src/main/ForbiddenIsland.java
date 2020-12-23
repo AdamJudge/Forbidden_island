@@ -29,7 +29,7 @@ public class ForbiddenIsland {
 		Setup.setupAndRun();		
 		
 		GamePlay.getInstance().playGame();
-		System.out.println("Thanks for Playing!");		// TODO Remove when we've figured out all win / lose conditions ? 
+
         Scan.getInstance().close();
 	}
 }

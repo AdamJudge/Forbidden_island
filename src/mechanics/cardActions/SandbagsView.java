@@ -12,14 +12,15 @@ import mechanics.TurnController;
 import players.Player;
 
 /**
- * Sandbags
- * 	carries out mechanics of playing a sandbags card and discards the card. 
+ * Sandbags (Singelton, MVC)
+ * 	View to display mechanics of playing a sandbags card  
  * 
  * @author Catherine Waechter, Adam Judge
- * @version 1.0
- * 
+ * @version 2.2
+ * 	made into a view
+ * 	
  * Date created: 25/11/20
- * Last modified:25/11/20
+ * Last modified:22/12/20
  *
  */
 public class SandbagsView {		 
@@ -29,6 +30,32 @@ public class SandbagsView {
 	private TurnController turnController;
 	private Scan user;
 	public static SandbagsView sView = null;
+	
+	/**
+	 * play 
+	 * 	get possible tiles from controller
+	 * 	display possible tiles
+	 * 	get correct tile from user
+	 * 	shore up correct tile
+	 * 	discard
+	 * 
+	 * @param player - the one playing the card
+	 * @param card - card to be played and discarded
+	 */
+	public void play(Player player, Card card) {
+		
+		ArrayList<Tile> floodedTiles = controller.getFloodedTiles();
+		
+		System.out.println("Which tile do you want to shore up? (0 to cancel)");
+		ViewDisplayTools.printTileList(floodedTiles);
+		
+		int input = ViewInputTools.numbers(user, 0, floodedTiles.size());
+		
+		shoreupController.shoreup(floodedTiles.get(input-1));
+		
+		turnController.discard(player, card);
+				
+	}
 	
 	/**
 	 * getInstance
@@ -42,33 +69,19 @@ public class SandbagsView {
 		return sView;
 	}
 	
+	/**
+	 * setup
+	 * 	assign controllers
+	 * 
+	 * @param user
+	 * @param cardController
+	 * @param shoreupController
+	 * @param turnController
+	 */
 	public void setup(Scan user, CardActionController cardController, ShoreupController shoreupController, TurnController turnController) {
 		this.user = user;
 		this.controller = cardController;
 		this.shoreupController = shoreupController;
 		this.turnController = turnController;
 	}
-	
-	/**
-	 * play 
-	 * 	asks for user input and shores up the requested tile
-	 */
-	public void play(Player player, Card card) {
-		
-		ArrayList<Tile> floodedTiles = controller.getFloodedTiles();
-		System.out.println("Which tile do you want to shore up? (0 to cancel)");
-		ViewDisplayTools.printTileList(floodedTiles);
-		
-		int input = ViewInputTools.numbers(user, 0, floodedTiles.size());
-		
-		//input minus one as start from 0
-		
-		shoreupController.shoreup(floodedTiles.get(input-1));
-		
-		turnController.discard(player, card);
-				
-	}
-	
-	
-
 }

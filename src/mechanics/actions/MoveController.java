@@ -7,6 +7,19 @@ import elements.pawns.Navigator;
 import mechanics.GamePlay;
 import players.Player;
 
+/**
+ * MoveController (Singleton, MVC)
+ * 
+ * Controller to handle movement actions (and swimming)
+ * 
+ * @author Catherine Waechter
+ * @version 1.0 
+ * 	Methods were originally in ActionController
+ * 
+ * Date Created: 23/12/20
+ * Last Modified: 23/12/20
+ *
+ */
 public class MoveController {
 
 	private static MoveController moveController = null;
@@ -75,6 +88,11 @@ public class MoveController {
 		return player.getPawn().getTile();
 	}
 
+	/**
+	 * setup
+	 * assign view
+	 * @param moveView
+	 */
 	public void setup(MoveView moveView) {
 		this.moveView = moveView;
 	}

@@ -1,5 +1,16 @@
+package mechanics.actions;
+
+import java.util.ArrayList;
+
+import elements.board.Tile;
+import mechanics.Scan;
+import mechanics.TurnController;
+import mechanics.ViewDisplayTools;
+import mechanics.ViewInputTools;
+import players.Player;
+
 /**
- * Class Name: MoveView
+ * MoveView (Singleton, MVC)
  *
  * 	view to display move action
  * 
@@ -9,75 +20,40 @@
  * Creation Date: 22/10/20
  * Last Modified: 19/12/20
  */
-
-package mechanics.actions;
-
-import java.util.ArrayList;
-
-import elements.board.Tile;
-import elements.pawns.*;
-import mechanics.Scan;
-import mechanics.TurnController;
-import mechanics.ViewDisplayTools;
-import mechanics.ViewInputTools;
-import players.Player;
-import players.PlayerList;
-
-
 public class MoveView {
-	
-	private Player playerToMove;
-	private Scan user;
 	
 	private static MoveView moveView = null;
 	private MoveController controller;
 	private TurnController turnController;
-	
-	/**
-	 * getInstance
-	 * 	get singleton instance of MoveView
-	 * @param controller - controller associated with the view
-	 * @return moveView (singleton instance)
-	 */
-	public static MoveView getInstance() {
-		if(moveView == null) { 
-			moveView = new MoveView();
-		}
-		return moveView;
-	}
+	private Player playerToMove;
+	private Player currentPlayer;
+	private Scan user;
 	
 	/**
 	 * doAction
-	 * 	display and get inputs for movement action
+	 * 	
+	 * 	if Navigator, get the player that should be moved
+	 * 	get tiles the player to be moved can go to
+	 * 	get chosen tile from user
+	 * 	move player
 	 * 
+	 * @return true if an action is used, false if cancelled
 	 */
 	public boolean doAction(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
 		
-		playerToMove = currentPlayer;
-	
-		// Navigator exception
-		if(turnController.isNavigator(currentPlayer)) { 
-			playerToMove = navigatorException(currentPlayer);
-		}
+		playerToMove = getPlayerToMove(); // check if Navigator, if so ask which player should be moved
 		
-		int moves = 1;
-		if(currentPlayer != playerToMove) {
+		int moves = 1;	
+		if(currentPlayer != playerToMove) { 	// Navigator can move other players 2 adjacent tiles
 			moves = 2;
 		}
 		
 		// TODO pilot print walk vs fly ? 
 		
 		for(int i = 0; i<moves; i++) {
-			// Print tiles the player can move to
-			System.out.println(playerToMove + " can move to ");
+			ArrayList<Tile> possibleTiles = getPossibleTiles();
 			
-			ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
-			if(playerToMove == currentPlayer) {
-				 possibleTiles = controller.getMoveCheck(playerToMove);
-			}
-			else {
-				possibleTiles = controller.getMoveOtherCheck(playerToMove, currentPlayer);
-			}
 			// Get destination from user
 			System.out.println("Which tile do you want to move to?");
 			if(i == 0) {
@@ -86,9 +62,10 @@ public class MoveView {
 			else {
 				System.out.println("Enter 0 to stop moving " + playerToMove + ". Action will still be used for 1st move.");
 			}
+			
 			ViewDisplayTools.printTileList(possibleTiles);
-			int userNum = ViewInputTools.numbers(user, 0, possibleTiles.size());
-			 
+			
+			int userNum = ViewInputTools.numbers(user, 0, possibleTiles.size()); 
 			if(userNum == 0 && i == 0) {
 				return false;
 			}
@@ -102,7 +79,6 @@ public class MoveView {
 		}
 		return true;
 	}
-	
 	
 	/**
 	 * doSwim
@@ -121,24 +97,45 @@ public class MoveView {
 		controller.move(player, possibleTiles.get(userNum-1));
 	}
 	
+	/**
+	 * getPossibleTiles
+	 * 	
+	 * get tiles playerToMove can move to from controller
+	 * 
+	 * @return ArrayList of possible tiles
+	 */
+	private ArrayList<Tile> getPossibleTiles() {
+		System.out.println(playerToMove + " can move to ");
+		
+		ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
+		if(playerToMove == currentPlayer) {
+			 possibleTiles = controller.getMoveCheck(playerToMove);
+		}
+		else {
+			possibleTiles = controller.getMoveOtherCheck(playerToMove, currentPlayer);
+		}
+		return possibleTiles;
+	}
 	
 	/**
-	 * navigatorException
+	 * getPlayerToMove
 	 * 	Navigator can move another player. need to get required player from user
 	 * 
-	 * @param currentPlayer
 	 * @return player to be moved
 	 */
-	private Player navigatorException(Player currentPlayer) {
+	private Player getPlayerToMove() {
 		
-		System.out.println("Who would you like to move?");
-		
-		ArrayList<Player> validPlayers = turnController.getPlayers();
-		ViewDisplayTools.printPlayerList(validPlayers, currentPlayer);
+		if(turnController.isNavigator(currentPlayer)) { 
+			System.out.println("Who would you like to move?");
+			
+			ArrayList<Player> validPlayers = turnController.getPlayers();
+			ViewDisplayTools.printPlayerList(validPlayers, currentPlayer);
 
-		int input = ViewInputTools.numbers(user, 1, validPlayers.size());
-		
-		return turnController.getPlayers().get(input-1);
+			int input = ViewInputTools.numbers(user, 1, validPlayers.size());
+			
+			return turnController.getPlayers().get(input-1);
+		}
+		else return currentPlayer;
 	}
 	
 	/**
@@ -151,5 +148,18 @@ public class MoveView {
 		this.user = user;
 		this.controller = controller;
 		this.turnController = turnController;
+	}
+	
+	/**
+	 * getInstance
+	 * 	get singleton instance of MoveView
+	 * @param controller - controller associated with the view
+	 * @return moveView (singleton instance)
+	 */
+	public static MoveView getInstance() {
+		if(moveView == null) { 
+			moveView = new MoveView();
+		}
+		return moveView;
 	}
 }

@@ -1,9 +1,6 @@
 package mechanics.cardActions;
 
-import java.io.IOException;
-
 import elements.board.WaterLevel;
-import elements.cards.FloodDeck;
 import elements.cards.FloodDiscard;
 import elements.cards.Card;
 import elements.cards.TreasureDiscard;
@@ -22,6 +19,13 @@ import elements.cards.TreasureDiscard;
  */
 public class WatersRise {
 
+	/**
+	 * play
+	 * 	raise water level
+	 * 	put flood discard into deck
+	 * 	discard the card
+	 * @param card
+	 */
 	public static void play(Card card) {
 		WaterLevel.getInstance().raise_level();
 		

@@ -5,6 +5,19 @@ import java.util.ArrayList;
 import elements.board.Tile;
 import players.Player;
 
+/**
+ * ShoreupController (Singleton, MVC)
+ * 
+ * Controller to handle shore up actions
+ * 
+ * @author Catherine Waechter
+ * @version 1.0 
+ * 	Methods were originally in ActionController
+ * 
+ * Date Created: 23/12/20
+ * Last Modified: 23/12/20
+ *
+ */
 public class ShoreupController {
 
 	private static ShoreupController shoreupController = null;

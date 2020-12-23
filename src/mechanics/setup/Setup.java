@@ -110,7 +110,6 @@ public class Setup {
     	
     	// setup controllers
 		cardController.setup(HelicopterView.getInstance(), SandbagsView.getInstance(), PlayCardView.getInstance(), moveController);
-		giveCardController.setup(turnController);
 		moveController.setup(MoveView.getInstance());
 		
     			
