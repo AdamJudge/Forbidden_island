@@ -161,6 +161,10 @@ public class PlayCardView  {
 		return null;
 		
 	}
+
+	public void tearDown() {
+		playCardView=null;
+	}
 	
 }
 

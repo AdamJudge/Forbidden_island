@@ -14,11 +14,16 @@ import org.junit.Test;
 
 import mechanics.Scan;
 import elements.board.*;
+import elements.cards.FloodDeck;
+import elements.cards.FloodDiscard;
 import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
+import elements.cards.TreasureDeck;
+import elements.cards.TreasureDiscard;
 import elements.pawns.*;
 import elements.treasures.*;
 import mechanics.actions.ClaimTreasureView;
+import mechanics.actions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 
@@ -179,7 +184,14 @@ public class CaptureTreasure {
 
 	@After
 	public void tearDown() {
-		testBoard.tearDown();
-		playerList.tearDown();
+		PlayerList.getInstance().tearDown();
+		WaterLevel.getInstance().tearDown();
+		Board.getInstance().tearDown();
+		TreasureDeck.getInstance().tearDown();
+		TreasureDiscard.getInstance().tearDown();
+		FloodDeck.getInstance().tearDown();
+		FloodDiscard.getInstance().tearDown();
+		Scan.getInstance().tearDown();
+		PlayCardView.getInstance().tearDown();
 	}
 }

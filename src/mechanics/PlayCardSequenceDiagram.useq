@@ -4,72 +4,370 @@
     file="/Forbidden_island/src/mechanics/GamePlay.java" binary="false" label="gamePlay" type="class" autoSize="true">    
     <position height="-1" width="-1" x="649" y="0"/>    
     <execution id="2">      
-      <position height="328" width="0" x="0" y="90"/>    
+      <position height="1824" width="0" x="0" y="90"/>    
     </execution>    
     <execution id="4">      
-      <position height="265" width="0" x="0" y="132"/>    
+      <position height="1761" width="0" x="0" y="132"/>    
     </execution>  
   </object>  
-  <object id="13" language="java" name="players.PlayerList" project="Forbidden_island" 
-    file="/Forbidden_island/src/players/PlayerList.java" binary="false" label="playerList" type="class" autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="6">      
-      <position height="21" width="0" x="0" y="163"/>    
-    </execution>  
-  </object>  
-  <object id="14" language="java" name="mechanics.TurnView" project="Forbidden_island" 
-    file="/Forbidden_island/src/mechanics/TurnView.java" binary="false" label="&lt;static&gt;" type="class" 
-    autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="8">      
-      <position height="21" width="0" x="0" y="271"/>    
-    </execution>  
-  </object>  
-  <object id="15" language="java" name="java.util.ArrayList" project="Cluedo_Cards" 
-    file="C:/Users/adamj/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/lib/jrt-fs.jar" 
-    binary="true" label="players" type="class" autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="10">      
-      <position height="21" width="0" x="0" y="313"/>    
-    </execution>  
-  </object>  
-  <object id="16" language="java" name="mechanics.TurnView" project="Forbidden_island" 
+  <object id="7" language="java" name="mechanics.TurnView" project="Forbidden_island" 
     file="/Forbidden_island/src/mechanics/TurnView.java" binary="false" type="class" autoSize="true">    
     <position height="0" width="0" x="0" y="0"/>    
-    <execution id="12">      
-      <position height="21" width="0" x="0" y="355"/>    
+    <execution id="6">      
+      <position height="1647" width="0" x="0" y="225"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="21" width="0" x="0" y="282"/>    
     </execution>  
   </object>  
-  <combined-fragment id="17" interaction-operator="LOOP">    
-    <interaction-operand id="18" constraint="while: !gameOver">      
-      <fragment refId="19"/>    
+  <object id="12" language="java" name="mechanics.actions.PlayCardView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/actions/PlayCardView.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="11">      
+      <position height="1518" width="0" x="0" y="333"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="21" width="0" x="0" y="418"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="501"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="1277" width="0" x="0" y="553"/>    
+    </execution>  
+  </object>  
+  <object id="25" language="java" name="mechanics.TurnController" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/TurnController.java" binary="false" label="turnController" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="20">      
+      <position height="21" width="0" x="0" y="612"/>    
+    </execution>    
+    <execution id="26">      
+      <position height="21" width="0" x="0" y="1377"/>    
+    </execution>    
+    <execution id="27">      
+      <position height="21" width="0" x="0" y="1746"/>    
+    </execution>  
+  </object>  
+  <object id="28" language="java" name="java.util.ArrayList" project="Cluedo_Cards" 
+    file="C:/Users/adamj/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/lib/jrt-fs.jar" 
+    binary="true" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="22">      
+      <position height="21" width="0" x="0" y="654"/>    
+    </execution>  
+  </object>  
+  <object id="29" language="java" name="mechanics.actions.ActionController" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/actions/ActionController.java" binary="false" label="actionController" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="24">      
+      <position height="1075" width="0" x="0" y="734"/>    
+    </execution>    
+    <execution id="36">      
+      <position height="21" width="0" x="0" y="1198"/>    
+    </execution>    
+    <execution id="37">      
+      <position height="21" width="0" x="0" y="1685"/>    
+    </execution>  
+  </object>  
+  <object id="38" language="java" name="mechanics.cardActions.HelicopterView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/cardActions/HelicopterView.java" binary="false" label="&lt;static&gt;" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="31">      
+      <position height="21" width="0" x="0" y="798"/>    
+    </execution>  
+  </object>  
+  <object id="39" language="java" name="mechanics.cardActions.HelicopterView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/cardActions/HelicopterView.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="33">      
+      <position height="579" width="0" x="0" y="840"/>    
+    </execution>  
+  </object>  
+  <object id="60" language="java" name="mechanics.cardActions.CardActionController" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/cardActions/CardActionController.java" binary="false" label="cardController" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="41">      
+      <position height="21" width="0" x="0" y="861"/>    
+    </execution>    
+    <execution id="47">      
+      <position height="21" width="0" x="0" y="973"/>    
+    </execution>    
+    <execution id="53">      
+      <position height="21" width="0" x="0" y="1171"/>    
+    </execution>    
+    <execution id="58">      
+      <position height="21" width="0" x="0" y="1350"/>    
+    </execution>  
+  </object>  
+  <object id="61" language="java" name="mechanics.ViewDisplayTools" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/ViewDisplayTools.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="43">      
+      <position height="21" width="0" x="0" y="901"/>    
+    </execution>    
+    <execution id="62">      
+      <position height="21" width="0" x="0" y="1573"/>    
+    </execution>  
+  </object>  
+  <object id="63" language="java" name="java.util.ArrayList" project="Cluedo_Cards" 
+    file="C:/Users/adamj/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/lib/jrt-fs.jar" 
+    binary="true" label="possibleTiles" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="45">      
+      <position height="21" width="0" x="0" y="936"/>    
+    </execution>    
+    <execution id="51">      
+      <position height="21" width="0" x="0" y="1086"/>    
+    </execution>    
+    <execution id="56">      
+      <position height="21" width="0" x="0" y="1273"/>    
+    </execution>  
+  </object>  
+  <object id="64" language="java" name="mechanics.ViewInputTools" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/ViewInputTools.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="49">      
+      <position height="21" width="0" x="0" y="1056"/>    
+    </execution>    
+    <execution id="65">      
+      <position height="21" width="0" x="0" y="1615"/>    
+    </execution>  
+  </object>  
+  <object id="66" language="java" name="mechanics.cardActions.SandbagsView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/cardActions/SandbagsView.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="35">      
+      <position height="273" width="0" x="0" y="1515"/>    
+    </execution>  
+  </object>  
+  <object id="77" language="java" name="mechanics.cardActions.CardActionController" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/cardActions/CardActionController.java" binary="false" label="controller" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="68">      
+      <position height="21" width="0" x="0" y="1536"/>    
+    </execution>  
+  </object>  
+  <object id="78" language="java" name="java.util.ArrayList" project="Cluedo_Cards" 
+    file="C:/Users/adamj/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/lib/jrt-fs.jar" 
+    binary="true" label="floodedTiles" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="72">      
+      <position height="21" width="0" x="0" y="1647"/>    
+    </execution>    
+    <execution id="75">      
+      <position height="21" width="0" x="0" y="1713"/>    
+    </execution>  
+  </object>  
+  <combined-fragment id="79" interaction-operator="LOOP">    
+    <interaction-operand id="80" constraint="while: !gameOver">      
+      <fragment refId="81"/>    
     </interaction-operand>    
-    <combined-fragment id="19" interaction-operator="LOOP">      
-      <interaction-operand id="20" constraint="for:i&lt; players.size()">        
-        <fragment refId="11"/>        
-        <fragment refId="9"/>        
-        <fragment refId="7"/>      
-      </interaction-operand>    
+    <combined-fragment id="81" interaction-operator="LOOP">      
+      <interaction-operand id="82" constraint="for:i&lt; players.size()">        
+        <fragment refId="83"/>        
+        <fragment refId="17"/>        
+        <fragment refId="10"/>        
+        <fragment refId="15"/>        
+        <fragment refId="8"/>        
+        <fragment refId="84"/>        
+        <fragment refId="5"/>      
+      </interaction-operand>      
+      <combined-fragment id="83" interaction-operator="OPT">        
+        <interaction-operand id="85" constraint="player == null">          
+          <fragment refId="13"/>        
+        </interaction-operand>      
+      </combined-fragment>      
+      <combined-fragment id="84" interaction-operator="LOOP">        
+        <interaction-operand id="86" constraint="for:i&lt; turnController.getHandCards(player).size()">          
+          <fragment refId="21"/>          
+          <fragment refId="19"/>          
+          <fragment refId="87"/>        
+        </interaction-operand>        
+        <combined-fragment id="87" interaction-operator="OPT">          
+          <interaction-operand id="88" constraint="((TreasureCard)card).getCardType() == cardType">            
+            <fragment refId="89"/>            
+            <fragment refId="23"/>          
+          </interaction-operand>          
+          <combined-fragment id="89" interaction-operator="ALT">            
+            <interaction-operand id="90" constraint="((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER">              
+              <fragment refId="59"/>              
+              <fragment refId="44"/>              
+              <fragment refId="40"/>              
+              <fragment refId="91"/>              
+              <fragment refId="46"/>              
+              <fragment refId="57"/>              
+              <fragment refId="42"/>              
+              <fragment refId="30"/>              
+              <fragment refId="32"/>            
+            </interaction-operand>            
+            <interaction-operand id="92" constraint="else">              
+              <fragment refId="34"/>              
+              <fragment refId="93"/>            
+            </interaction-operand>            
+            <combined-fragment id="93" interaction-operator="OPT">              
+              <interaction-operand id="94" constraint="((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS">                
+                <fragment refId="73"/>                
+                <fragment refId="34"/>                
+                <fragment refId="67"/>                
+                <fragment refId="70"/>                
+                <fragment refId="76"/>                
+                <fragment refId="74"/>                
+                <fragment refId="71"/>                
+                <fragment refId="69"/>              
+              </interaction-operand>            
+            </combined-fragment>            
+            <combined-fragment id="91" interaction-operator="LOOP">              
+              <interaction-operand id="95" constraint="while: input ==possibleTiles.size()+1">                
+                <fragment refId="48"/>                
+                <fragment refId="50"/>                
+                <fragment refId="96"/>              
+              </interaction-operand>              
+              <combined-fragment id="96" interaction-operator="ALT">                
+                <interaction-operand id="97" constraint="input == possibleTiles.size()+1">                  
+                  <fragment refId="98"/>                  
+                  <fragment refId="52"/>                  
+                  <fragment refId="54"/>                
+                </interaction-operand>                
+                <interaction-operand id="99" constraint="else">                  
+                  <fragment refId="55"/>                
+                </interaction-operand>              
+              </combined-fragment>            
+            </combined-fragment>          
+          </combined-fragment>        
+        </combined-fragment>      
+      </combined-fragment>    
     </combined-fragment>  
   </combined-fragment>  
   <message id="3" operation="playGame():void" asynchronous="false">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </message>  
-  <message id="5" operation="getPlayers():java.util.ArrayList&lt;Player&gt;" asynchronous="false">    
+  <message id="5" operation="run(players.Player):void" asynchronous="false">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
   </message>  
-  <message id="7" operation="getInstance():mechanics.TurnView" asynchronous="false">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
+  <message id="8" operation="doActions():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
   </message>  
-  <message id="9" operation="get(int):E" asynchronous="false">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="10"/>  
+  <message id="10" operation="doAction(players.Player):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
   </message>  
-  <message id="11" operation="run(players.Player):void" asynchronous="false">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="12"/>  
+  <message id="13" operation="getPlayer():players.Player" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="getCardType(players.Player):elements.cards.TreasureCardTypes" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="playCard(players.Player,elements.cards.TreasureCardTypes):void" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="getHandCards(players.Player):java.util.ArrayList&lt;Card&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="21" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>  
+  <message id="23" operation="playCard(elements.cards.Card,players.Player):void" asynchronous="false">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </message>  
+  <message id="30" operation="getInstance():mechanics.cardActions.HelicopterView" asynchronous="false">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="31"/>  
+  </message>  
+  <message id="32" operation="play(elements.cards.Card,players.Player):void" asynchronous="false">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="33"/>  
+  </message>  
+  <message id="34" operation="play(players.Player,elements.cards.Card):void" asynchronous="false">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="35"/>  
+  </message>  
+  <message id="40" operation="getHelicopterTiles(players.Player):java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="41"/>  
+  </message>  
+  <message id="42" operation="printTileList(java.util.ArrayList&lt;elements.board.Tile&gt;):void" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="43"/>  
+  </message>  
+  <message id="44" operation="size():int" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="45"/>  
+  </message>  
+  <message id="46" operation="pilotFlown(players.Player):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="47"/>  
+  </message>  
+  <message id="48" operation="numbers(mechanics.Scan,int,int):int" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="49"/>  
+  </message>  
+  <message id="50" operation="size():int" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="51"/>  
+  </message>  
+  <message id="52" operation="tryLeave():boolean" asynchronous="false" x="777" y="1145">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="53"/>  
+  </message>  
+  <message id="54" operation="move(players.Player,elements.board.Tile):elements.board.Tile" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="36"/>  
+  </message>  
+  <message id="55" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="56"/>  
+  </message>  
+  <message id="57" operation="pilotFixFlown(players.Player,boolean):void" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="58"/>  
+  </message>  
+  <message id="59" operation="discard(players.Player,elements.cards.Card):void" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>  
+  <message id="67" operation="getFloodedTiles():java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="68"/>  
+  </message>  
+  <message id="69" operation="printTileList(java.util.ArrayList&lt;elements.board.Tile&gt;):void" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="62"/>  
+  </message>  
+  <message id="70" operation="numbers(mechanics.Scan,int,int):int" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="65"/>  
+  </message>  
+  <message id="71" operation="size():int" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="72"/>  
+  </message>  
+  <message id="73" operation="shoreup(elements.board.Tile):void" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="37"/>  
+  </message>  
+  <message id="74" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="75"/>  
+  </message>  
+  <message id="76" operation="discard(players.Player,elements.cards.Card):void" asynchronous="false">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="27"/>  
   </message>
 </sequence-diagram>

@@ -92,4 +92,8 @@ public class WaterLevel extends Subject{
 	public int getWaterLevel() {
 		return level;
 	}
+
+	public void tearDown() {
+		waterLevel=null;		
+	}
 }
