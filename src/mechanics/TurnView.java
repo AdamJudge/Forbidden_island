@@ -59,12 +59,14 @@ public class TurnView {
 		}
 		
 		// After all actions used, prompt for card playing (doesn't cost an action)
-		System.out.println("You've completed all your actions, but someone can still play a card. Would anyone like to do so? [y/n]");
-		if(ViewInputTools.yesNo(user)) {
-			cardController.doPlayCard(null);	
-			statusOK = !controller.gameOver();	// If a card was played, they might've won
-			if(!statusOK) {
-				return;
+		if(cardController.anyPlayable()) {
+			System.out.println("You've completed all your actions, but someone can still play a card. Would anyone like to do so? [y/n]");
+			if(ViewInputTools.yesNo(user)) {
+				cardController.doPlayCard(null);	
+				statusOK = !controller.gameOver();	// If a card was played, they might've won
+				if(!statusOK) {
+					return;
+				}
 			}
 		}
 		
@@ -186,6 +188,7 @@ public class TurnView {
 				}
 			}
 		}
+		
 		if(controller.getHandCards(player).size() < 6) {
 			System.out.println("You no longer need to discard a card!");
 			return true;	// return here as the player has reduced the size of their hand successfully
