@@ -54,6 +54,13 @@ public class CardActionController {
 		playCardView.doAction(player);
 	}
 	
+	public boolean isHelicopter(Card card) {
+		return (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER );
+	}
+	
+	public boolean isSandbags(Card card) {
+		return ((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS;
+	}
 	
 	/**
 	 * floodTile

@@ -126,13 +126,13 @@ public class PlayCardView  {
 		for (Card card: playerCards) {
 		
 			if( card instanceof TreasureCard) { //It always is but to be safe 	// TODO General - check instances when casting
-				if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER && hIndex == 0) {
+				if (cardController.isHelicopter(card)&& hIndex == 0) {
 					userIndex++;
 					hIndex = userIndex;
 					System.out.println("["+userIndex+"]: " + card);
 				}
 				
-				else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS && hIndex == 0) {
+				else if(cardController.isSandbags(card) && hIndex == 0) {
 					userIndex++;
 					sIndex = userIndex;
 					System.out.println("["+userIndex+"]: " + card);
