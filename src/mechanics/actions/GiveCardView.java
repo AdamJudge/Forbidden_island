@@ -26,7 +26,7 @@ import elements.cards.Card;
 public class GiveCardView  {
 
 	private static GiveCardView giveCardView = null;
-	private ActionController controller;
+	private GiveCardController controller;
 	private TurnController turnController;
 	
 	private Scan user; 
@@ -116,10 +116,10 @@ public class GiveCardView  {
 		return giveCardView;
 	}
 	
-	public void setup(Scan user, TurnController turnController, ActionController actionController) {
+	public void setup(Scan user, TurnController turnController, GiveCardController giveCardController) {
 		this.user = user;
 		this.turnController = turnController;
-		this.controller = actionController;
+		this.controller = giveCardController;
 	}
 	
 }

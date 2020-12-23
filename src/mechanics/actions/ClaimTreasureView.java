@@ -1,17 +1,3 @@
-/**
- * ClaimTreasureView
- *
- * 	View to display action of claiming a treasure
- * 
- * @author Adam Judge, Catherine Waechter
- * 
- * @version 1.5
- * 	Cleaned up doAction with private methods
- * 
- * Creation Date: 22/10/20
- * Last Modified: 19/12/20
- */
-
 package mechanics.actions;
 
 import players.Player;
@@ -21,13 +7,27 @@ import mechanics.Scan;
 
 import java.util.Set;
 
+/**
+ * ClaimTreasureView
+ *
+ * 	View to display action of claiming a treasure
+ * 
+ * @author Adam Judge, Catherine Waechter
+ * 
+ * @version 2.1
+ * 	Uses ClaimTreasureController now
+ * 
+ * Creation Date: 22/10/20
+ * Last Modified: 23/12/20
+ */
 
 public class ClaimTreasureView {
 
 	private static ClaimTreasureView claimTreasureView = null;
-	private ActionController controller;
+	private ClaimTreasureController controller;
 	
 	Scan user;
+	
 	/**
 	 * doAction
 	 * 	Display Treasure that can be claimed 
@@ -110,7 +110,7 @@ public class ClaimTreasureView {
 	 * 	assign action controller
 	 * @param controller
 	 */
-	public void setup(Scan user, ActionController controller) {
+	public void setup(Scan user, ClaimTreasureController controller) {
 		this.user = user;
 		this.controller = controller;
 	}

@@ -5,7 +5,7 @@ import elements.board.Tile;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import elements.cards.Card;
-import mechanics.actions.ActionController;
+import mechanics.actions.MoveController;
 import mechanics.TurnController;
 import mechanics.Scan;
 
@@ -26,7 +26,7 @@ public class HelicopterView {
 
 	private static HelicopterView hView = null;
 	private HelicopterController hController;
-	private ActionController actionController;
+	private MoveController moveController;
 	private TurnController turnController;
 	private Scan user;
 	
@@ -67,7 +67,7 @@ public class HelicopterView {
 			}
 			
 			else {
-				actionController.move(player, possibleTiles.get(input-1));
+				moveController.move(player, possibleTiles.get(input-1));
 			}
 		}
 		
@@ -90,10 +90,10 @@ public class HelicopterView {
 		return hView;
 	}
 	
-	public void setup(Scan user, HelicopterController hController, ActionController actionController, TurnController turnController) {
+	public void setup(Scan user, HelicopterController hController, MoveController moveController, TurnController turnController) {
 		this.user = user;
 		this.hController = hController;
-		this.actionController = actionController;
+		this.moveController = moveController;
 		this.turnController = turnController;
 	}
 	

@@ -21,10 +21,7 @@ import elements.pawns.Navigator;
 import elements.treasures.*;
 import mechanics.GamePlay;
 import mechanics.Scan;
-import mechanics.TurnController;
-import mechanics.TurnView;
-import mechanics.actions.ActionController;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.ObserverSetup;
 import mechanics.setup.Setup;
 import players.Hand;
@@ -37,9 +34,7 @@ public class WinConditionTests {
 	private Player player1, player2, player3, player4;
 	private PlayerList playerList;
 	private GamePlay gp;
-	private Scanner scanner;
-
-	
+		
 	@Before
 	public void setup() {
 		testBoard = Board.getInstance();

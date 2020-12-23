@@ -7,7 +7,7 @@ import elements.board.Tile;
 import elements.cards.Card;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
-import mechanics.actions.ActionController;
+import mechanics.actions.ShoreupController;
 import mechanics.TurnController;
 import players.Player;
 
@@ -25,7 +25,7 @@ import players.Player;
 public class SandbagsView {		// TODO combine helicopter and sandbags? 
 	
 	private CardActionController controller;
-	private ActionController actionController;
+	private ShoreupController shoreupController;
 	private TurnController turnController;
 	private Scan user;
 	public static SandbagsView sView = null;
@@ -42,10 +42,10 @@ public class SandbagsView {		// TODO combine helicopter and sandbags?
 		return sView;
 	}
 	
-	public void setup(Scan user, CardActionController cardController, ActionController actionController, TurnController turnController) {
+	public void setup(Scan user, CardActionController cardController, ShoreupController shoreupController, TurnController turnController) {
 		this.user = user;
 		this.controller = cardController;
-		this.actionController = actionController;
+		this.shoreupController = shoreupController;
 		this.turnController = turnController;
 	}
 	
@@ -63,7 +63,7 @@ public class SandbagsView {		// TODO combine helicopter and sandbags?
 		
 		//input minus one as start from 0
 		
-		actionController.shoreup(floodedTiles.get(input-1));
+		shoreupController.shoreup(floodedTiles.get(input-1));
 		
 		turnController.discard(player, card);
 				

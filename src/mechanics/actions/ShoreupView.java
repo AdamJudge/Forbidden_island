@@ -16,7 +16,6 @@ package mechanics.actions;
 import java.util.ArrayList;
 
 import elements.board.Tile;
-import elements.pawns.Engineer;
 import mechanics.ViewDisplayTools;
 import mechanics.ViewInputTools;
 import players.Player;
@@ -26,29 +25,10 @@ import mechanics.TurnController;
 public class ShoreupView {
 
 	private static ShoreupView shoreupView = null;
-	private ActionController controller;
+	private ShoreupController controller;
 	private TurnController turnController;
 	private Scan user;
 	
-	/**
-	 * getInstance
-	 * 	get singleton instance of ShoreupView
-	 * @param controller - controller associated with the view
-	 * @return shoreupView (singleton instance)
-	 */
-	public static ShoreupView getInstance() {
-		if(shoreupView == null) { 
-			shoreupView = new ShoreupView();
-		}
-		return shoreupView;
-	}
-	
-	public void setup(Scan user, TurnController turnController, ActionController actionController) {
-		this.user = user;
-		this.turnController = turnController;
-		controller = actionController;
-	}
-
 	/**
 	 * doAction
 	 * 	carries out shoreUp
@@ -97,6 +77,25 @@ public class ShoreupView {
 			}
 		}	
 		return actionUsed;
+	}
+	
+	/**
+	 * getInstance
+	 * 	get singleton instance of ShoreupView
+	 * @param controller - controller associated with the view
+	 * @return shoreupView (singleton instance)
+	 */
+	public static ShoreupView getInstance() {
+		if(shoreupView == null) { 
+			shoreupView = new ShoreupView();
+		}
+		return shoreupView;
+	}
+	
+	public void setup(Scan user, TurnController turnController, ShoreupController shoreupController) {
+		this.user = user;
+		this.turnController = turnController;
+		controller = shoreupController;
 	}
 }
 

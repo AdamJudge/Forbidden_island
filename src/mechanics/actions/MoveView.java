@@ -30,7 +30,7 @@ public class MoveView {
 	private Scan user;
 	
 	private static MoveView moveView = null;
-	private ActionController controller;
+	private MoveController controller;
 	private TurnController turnController;
 	
 	/**
@@ -147,7 +147,7 @@ public class MoveView {
 	 * @param turnController
 	 * @param controller
 	 */
-	public void setup(Scan user, TurnController turnController, ActionController controller) {
+	public void setup(Scan user, TurnController turnController, MoveController controller) {
 		this.user = user;
 		this.controller = controller;
 		this.turnController = turnController;

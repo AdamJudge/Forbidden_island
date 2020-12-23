@@ -6,37 +6,30 @@ import java.util.Set;
 import elements.board.Board;
 import elements.board.Tile;
 import elements.board.TileStatus;
+import elements.cards.Card;
 import elements.cards.FloodCard;
 import elements.cards.FloodDiscard;
-import elements.pawns.Pawn;
-import elements.pawns.Pilot;
-import mechanics.GamePlay;
-import mechanics.actions.ActionController;
+import elements.cards.TreasureCard;
+import elements.cards.TreasureCardTypes;
+import mechanics.actions.MoveController;
 import players.Player;
 import players.PlayerList;
 
 public class CardActionController {
 	
 	private static CardActionController cardController = null;
-	private ActionController actionController;
+	private MoveController moveController;
+	private HelicopterView hView;
+	private SandbagsView sView;
 	
 	
-	
-	/**
-	 * getFloodedTiles
-	 * 	returns list of tiles that can be shored up	 (For Sandbags View)
-	 * @return floodedTiles
-	 */
-	public ArrayList<Tile> getFloodedTiles(){
-		ArrayList<Tile> floodedTiles = new ArrayList<Tile>();
-		
-		for(Tile tile : Board.getInstance().getRemainingTiles()) {
-			if(tile.getStatus() == TileStatus.FLOODED) {
-				floodedTiles.add(tile);
-			}
+	public void playCard(Card card, Player player) {
+		if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER) {
+			hView.play(card, player);
 		}
-		
-		return floodedTiles;
+		else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
+			sView.play(player, card);
+		}
 	}
 	
 	/**
@@ -67,13 +60,34 @@ public class CardActionController {
 				}
 			}
 			if(playersToSwim.size() != 0) {
-				actionController.doSwim(playersToSwim);
+				moveController.doSwim(playersToSwim);
 			}
 		}
 	}
 	
-	public void setup(ActionController actionController) {
-		this.actionController = actionController;
+	/**
+	 * getFloodedTiles
+	 * 	returns list of tiles that can be shored up	 (For Sandbags View)
+	 * @return floodedTiles
+	 */
+	public ArrayList<Tile> getFloodedTiles(){
+		ArrayList<Tile> floodedTiles = new ArrayList<Tile>();
+		
+		for(Tile tile : Board.getInstance().getRemainingTiles()) {
+			if(tile.getStatus() == TileStatus.FLOODED) {
+				floodedTiles.add(tile);
+			}
+		}
+		
+		return floodedTiles;
+	}
+	
+
+	
+	public void setup(HelicopterView hView, SandbagsView sView, MoveController moveController) {
+		this.moveController = moveController;
+		this.hView = hView;
+		this.sView = sView;
 	}
 	
 	/**

@@ -16,7 +16,7 @@ import elements.cards.TreasureCard;
 import elements.cards.TreasureCardTypes;
 import elements.pawns.*;
 import mechanics.Scan;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 

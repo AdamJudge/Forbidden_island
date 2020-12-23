@@ -7,6 +7,7 @@ import players.PlayerList;
 import elements.board.Tile;
 import elements.cards.*;
 import mechanics.actions.*;
+import mechanics.cardActions.PlayCardView;
 
 /**
  * TurnView (Singleton)

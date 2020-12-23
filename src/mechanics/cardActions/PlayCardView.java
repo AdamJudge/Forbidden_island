@@ -12,7 +12,7 @@
  * Last Modified: 21/12/20
  */
 
-package mechanics.actions;
+package mechanics.cardActions;
 
 import mechanics.Scan;
 import mechanics.ViewDisplayTools;
@@ -26,10 +26,10 @@ import mechanics.TurnController;
 import mechanics.ViewInputTools;
 import players.Player;
 
-public class PlayCardView  {		 // TODO move to cardActions ?? 
+public class PlayCardView  {		  
 
 	private static PlayCardView playCardView = null;
-	private ActionController actionController;
+	private CardActionController cardController;
 	private TurnController turnController;
 	private Scan user;
 	
@@ -46,10 +46,10 @@ public class PlayCardView  {		 // TODO move to cardActions ??
 		return playCardView;
 	}
 
-	public void setup(Scan user, TurnController turnController, ActionController actionController) {
+	public void setup(Scan user, TurnController turnController, CardActionController cardController) {
 		this.user = user;
 		this.turnController = turnController;
-		this.actionController = actionController;
+		this.cardController = cardController;
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public class PlayCardView  {		 // TODO move to cardActions ??
 		for(int i = 0; i< turnController.getHandCards(player).size(); i++) {
 			Card card = turnController.getHandCards(player).get(i);
 			if (((TreasureCard)card).getCardType() == cardType) {
-				actionController.playCard(card, player);
+				cardController.playCard(card, player);
 			}
 		}
 	}
