@@ -8,7 +8,7 @@ import mechanics.Scan;
 import java.util.Set;
 
 /**
- * ClaimTreasureView
+ * ClaimTreasureView (Singleton, MVC)
  *
  * 	View to display action of claiming a treasure
  * 
@@ -54,7 +54,6 @@ public class ClaimTreasureView {
 			return false;
 		}
 				
-		
 		controller.claimTreasure(currentPlayer, possibleTreasure);
 		System.out.println(possibleTreasure + " has been captured!");
 		

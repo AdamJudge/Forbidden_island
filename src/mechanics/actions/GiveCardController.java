@@ -5,12 +5,24 @@ import java.util.ArrayList;
 import elements.cards.Card;
 import elements.pawns.Messenger;
 import players.Player;
-import mechanics.TurnController;
+import players.PlayerList;
 
+/**
+ * GiveCardController (Singleton, MVC)
+ * 
+ * Controller to handle the action of giving cards to another player
+ * 
+ * @author Catherine Waechter
+ * @version 1.0 
+ * 	Methods were originally in ActionController
+ * 
+ * Date Created: 23/12/20
+ * Last Modified: 23/12/20
+ *
+ */
 public class GiveCardController {
 
 	private static GiveCardController giveCardController = null;
-	private TurnController turnController;
 	
 	/**
 	 * getGiveCardCheck
@@ -23,7 +35,7 @@ public class GiveCardController {
 	public ArrayList<Player> getGiveCardCheck(Player player){
 		if(player.getPawn() instanceof Messenger) {
 			ArrayList<Player> validPlayers = new ArrayList<Player>();
-			for(Player otherPlayer : turnController.getPlayers()) {
+			for(Player otherPlayer : PlayerList.getInstance().getPlayers()) {
 				if (otherPlayer != player) {
 					validPlayers.add(otherPlayer);
 				}
@@ -32,7 +44,7 @@ public class GiveCardController {
 		}
 		else {
 			ArrayList<Player> validPlayers = new ArrayList<Player>();
-			for(Player otherPlayer : turnController.getPlayers()) {
+			for(Player otherPlayer : PlayerList.getInstance().getPlayers()) {
 				if(otherPlayer == player) {
 					// skip current player
 				}
@@ -56,14 +68,16 @@ public class GiveCardController {
 		playerTo.getHand().addCard(card);
 	}
 	
+	/**
+	 * handSize
+	 * 	Get the number of cards in a player's hand
+	 * @param player
+	 * @return number of cards in the player's hand
+	 */
 	public int handSize(Player player) {
 		return player.getHand().getCards().size();
 	}
 		
-	public void setup(TurnController turnController) {
-		this.turnController = turnController;
-	}
-	
 	/**
 	 * getInstance
 	 * 	get singleton instance of GiveCardController
