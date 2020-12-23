@@ -134,6 +134,7 @@ public class PlayCardView  {
 			Card card = turnController.getHandCards(player).get(i);
 			if (((TreasureCard)card).getCardType() == cardType) {
 				cardController.playCard(card, player);
+				break;
 			}
 		}
 	}
