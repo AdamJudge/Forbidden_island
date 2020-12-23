@@ -1,20 +1,22 @@
 package observers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import elements.board.Board;
 import elements.board.TileNames;
 import elements.treasures.Treasure;
-import elements.treasures.TreasureNames;
 import mechanics.GameOver;
 import mechanics.GamePlay;
-import mechanics.TurnController;
-import mechanics.TurnView;
-import mechanics.actions.ClaimTreasureView;
 import players.Player;
 import players.PlayerList;
+
+/**
+ * HelicopterLiftWinObserver
+ * 	Handles setting up and attachment of observers
+ * @author Adam Judge
+ * @version 3
+ * Date created: 12/12/20 
+ * Last modified: 24/12/20
+ *
+ */
 
 public class HelicopterLiftWinObserver extends Observer {
 	public HelicopterLiftWinObserver(Subject subject) {
@@ -22,6 +24,7 @@ public class HelicopterLiftWinObserver extends Observer {
 		this.subject.attach(this);
 	}
 	
+	//Updates when a helicopter lift is used in an attempt at escaping the island
 	@Override
 	public void update() {
 		boolean onFoolsIsland=true, treasuresCaptured=true;
@@ -36,23 +39,26 @@ public class HelicopterLiftWinObserver extends Observer {
 			}
 		}
 		
-		if (!notOnFI.equals("")) {
+		if (!onFoolsIsland) {
 			System.out.println(notOnFI + " must be on Fools Landing!");
 		}
 		
 		for (Treasure t:Board.getInstance().getTreasures().values()) {
 			if (!t.isCaptured()) {
+				//If a treasure is not captured set to false
 				treasuresCaptured=false;
 				notCaptured+=t.toString() + ",";
 			}
 		}
 		
-		if (!notCaptured.equals("")) {
+		if (!treasuresCaptured) {
 			System.out.println(notCaptured + " must be captured first!");
 		}
 
+		//Conditions met
 		if (onFoolsIsland && treasuresCaptured) {
 			GamePlay.getInstance().setLeave(true);
+			//Trigger victory
 			GameOver.endGame(true);
 		} else {
 			GamePlay.getInstance().setLeave(false);
