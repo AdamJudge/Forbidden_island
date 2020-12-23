@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.4" icons="true" automaticImage="PNG" generate-combined-fragments="true">  
+  <object id="1" language="java" name="mechanics.TurnView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/TurnView.java" binary="false" label="turnView" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="159" y="0"/>    
+    <execution id="2">      
+      <position height="368" width="0" x="0" y="89"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="305" width="0" x="0" y="131"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="181" width="0" x="0" y="234"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="80" width="0" x="0" y="314"/>    
+    </execution>    
+    <execution id="13">      
+      <position height="21" width="7" x="43" y="379"/>    
+    </execution>  
+  </object>  
+  <object id="14" language="java" name="mechanics.ViewInputTools" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/ViewInputTools.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="21" width="0" x="0" y="352"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="21" width="0" x="0" y="1566"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="704"/>    
+    </execution>  
+  </object>  
+  <object id="17" language="java" name="players.Player" project="Forbidden_island" 
+    file="/Forbidden_island/src/players/Player.java" binary="false" label="player" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="157"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="21" width="0" x="0" y="1094"/>    
+    </execution>    
+    <execution id="19">      
+      <position height="21" width="0" x="0" y="1671"/>    
+    </execution>    
+    <execution id="20">      
+      <position height="21" width="0" x="0" y="1755"/>    
+    </execution>  
+  </object>  
+  <object id="21" language="java" name="mechanics.actions.MoveView" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/actions/MoveView.java" binary="false" label="moveView" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="389" y="0"/>    
+    <execution id="22">      
+      <position height="1670" width="0" x="0" y="358"/>    
+    </execution>    
+    <execution id="25">      
+      <position height="1540" width="0" x="0" y="467"/>    
+    </execution>    
+    <execution id="27">      
+      <position height="325" width="0" x="0" y="547"/>    
+    </execution>  
+  </object>  
+  <object id="56" language="java" name="java.io.PrintStream" project="Forbidden_island" 
+    file="C:/Program Files/Java/jdk-11.0.8/lib/jrt-fs.jar" binary="true" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="44">      
+      <position height="21" width="0" x="0" y="578"/>    
+    </execution>  
+  </object>  
+  <object id="57" language="java" name="mechanics.TurnController" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/TurnController.java" binary="false" label="turnController" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="46">      
+      <position height="21" width="0" x="0" y="620"/>    
+    </execution>    
+    <execution id="53">      
+      <position height="21" width="0" x="0" y="788"/>    
+    </execution>  
+  </object>  
+  <object id="58" language="java" name="java.util.ArrayList" project="Forbidden_island" 
+    file="C:/Program Files/Java/jdk-11.0.8/lib/jrt-fs.jar" binary="true" label="validPlayers" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="51">      
+      <position height="21" width="0" x="0" y="746"/>    
+    </execution>  
+  </object>  
+  <object id="59" language="java" name="java.util.ArrayList" project="Forbidden_island" 
+    file="C:/Program Files/Java/jdk-11.0.8/lib/jrt-fs.jar" binary="true" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="55">      
+      <position height="21" width="0" x="0" y="830"/>    
+    </execution>  
+  </object>  
+  <object id="60" language="java" name="java.util.ArrayList" project="Forbidden_island" 
+    file="C:/Program Files/Java/jdk-11.0.8/lib/jrt-fs.jar" binary="true" label="possibleTiles" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="29">      
+      <position height="21" width="0" x="0" y="993"/>    
+    </execution>    
+    <execution id="38">      
+      <position height="21" width="0" x="0" y="1608"/>    
+    </execution>    
+    <execution id="42">      
+      <position height="126" width="0" x="0" y="1860"/>    
+    </execution>    
+    <execution id="64">      
+      <position height="21" width="0" x="0" y="1944"/>    
+    </execution>  
+  </object>  
+  <object id="65" language="java" name="java.util.Objects" project="Forbidden_island" 
+    file="C:/Program Files/Java/jdk-11.0.8/lib/jrt-fs.jar" binary="true" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="62">      
+      <position height="21" width="0" x="0" y="1881"/>    
+    </execution>  
+  </object>  
+  <object id="66" language="java" name="mechanics.actions.MoveController" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/actions/MoveController.java" binary="false" label="controller" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="31">      
+      <position height="168" width="0" x="0" y="1073"/>    
+    </execution>    
+    <execution id="33">      
+      <position height="232" width="0" x="0" y="1261"/>    
+    </execution>    
+    <execution id="40">      
+      <position height="189" width="0" x="0" y="1650"/>    
+    </execution>  
+  </object>  
+  <object id="82" language="java" name="elements.pawns.Pawn" project="Forbidden_island" 
+    file="/Forbidden_island/src/elements/pawns/Pawn.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="78">      
+      <position height="21" width="0" x="0" y="1713"/>    
+    </execution>  
+  </object>  
+  <object id="83" language="java" name="elements.pawns.Pawn" project="Forbidden_island" 
+    file="/Forbidden_island/src/elements/pawns/Pawn.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="81">      
+      <position height="21" width="0" x="0" y="1797"/>    
+    </execution>  
+  </object>  
+  <object id="84" language="java" name="players.Player" project="Forbidden_island" 
+    file="/Forbidden_island/src/players/Player.java" binary="false" label="navigatorPlayer" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="71">      
+      <position height="21" width="0" x="0" y="1325"/>    
+    </execution>  
+  </object>  
+  <object id="85" language="java" name="players.Player" project="Forbidden_island" 
+    file="/Forbidden_island/src/players/Player.java" binary="false" label="playerToMove" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="73">      
+      <position height="21" width="0" x="0" y="1367"/>    
+    </execution>  
+  </object>  
+  <object id="86" language="java" name="elements.pawns.Navigator" project="Forbidden_island" 
+    file="/Forbidden_island/src/elements/pawns/Navigator.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="75">      
+      <position height="63" width="0" x="0" y="1409"/>    
+    </execution>  
+  </object>  
+  <object id="89" language="java" name="elements.pawns.Pawn" project="Forbidden_island" 
+    file="/Forbidden_island/src/elements/pawns/Pawn.java" binary="false" label="otherPawn" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="88">      
+      <position height="21" width="0" x="0" y="1430"/>    
+    </execution>  
+  </object>  
+  <object id="90" language="java" name="elements.pawns.Pawn" project="Forbidden_island" 
+    file="/Forbidden_island/src/elements/pawns/Pawn.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="69">      
+      <position height="84" width="0" x="0" y="1136"/>    
+    </execution>    
+    <execution id="92">      
+      <position height="21" width="0" x="0" y="1178"/>    
+    </execution>  
+  </object>  
+  <object id="93" language="java" name="mechanics.ViewDisplayTools" project="Forbidden_island" 
+    file="/Forbidden_island/src/mechanics/ViewDisplayTools.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="35">      
+      <position height="21" width="0" x="0" y="1524"/>    
+    </execution>    
+    <execution id="48">      
+      <position height="21" width="0" x="0" y="662"/>    
+    </execution>  
+  </object>  
+  <combined-fragment id="94" interaction-operator="OPT">    
+    <interaction-operand id="95" constraint="playable">      
+      <fragment refId="96"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <combined-fragment id="97" interaction-operator="LOOP">    
+    <interaction-operand id="98" constraint="while: actionCount &gt; 0">      
+      <fragment refId="11"/>      
+      <fragment refId="23"/>      
+      <fragment refId="9"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <combined-fragment id="99" interaction-operator="OPT">    
+    <interaction-operand id="100" constraint="turnController.isNavigator(currentPlayer)">      
+      <fragment refId="54"/>      
+      <fragment refId="52"/>      
+      <fragment refId="45"/>      
+      <fragment refId="50"/>      
+      <fragment refId="26"/>      
+      <fragment refId="43"/>      
+      <fragment refId="47"/>      
+      <fragment refId="49"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <combined-fragment id="101" interaction-operator="LOOP">    
+    <interaction-operand id="102" constraint="for:i&lt;moves">      
+      <fragment refId="28"/>      
+      <fragment refId="34"/>      
+      <fragment refId="77"/>      
+      <fragment refId="39"/>      
+      <fragment refId="103"/>      
+      <fragment refId="61"/>      
+      <fragment refId="79"/>      
+      <fragment refId="41"/>      
+      <fragment refId="63"/>      
+      <fragment refId="37"/>      
+      <fragment refId="36"/>      
+      <fragment refId="76"/>      
+      <fragment refId="104"/>      
+      <fragment refId="80"/>    
+    </interaction-operand>    
+    <combined-fragment id="104" interaction-operator="ALT">      
+      <interaction-operand id="105" constraint="playerToMove == currentPlayer">        
+        <fragment refId="91"/>        
+        <fragment refId="67"/>        
+        <fragment refId="30"/>        
+        <fragment refId="68"/>      
+      </interaction-operand>      
+      <interaction-operand id="106" constraint="else">        
+        <fragment refId="32"/>        
+        <fragment refId="107"/>      
+      </interaction-operand>      
+      <combined-fragment id="107" interaction-operator="OPT">        
+        <interaction-operand id="108" constraint="navigatorPlayer.getPawn() instanceof Navigator">          
+          <fragment refId="70"/>          
+          <fragment refId="72"/>          
+          <fragment refId="74"/>          
+          <fragment refId="87"/>        
+        </interaction-operand>      
+      </combined-fragment>    
+    </combined-fragment>  
+  </combined-fragment>  
+  <message id="3" operation="run(players.Player):void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="getPawn():elements.pawns.Pawn" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="doActions():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="selectAction():int" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" operation="numbers(mechanics.Scan,int,int):int" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="23" asynchronous="false">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="24" operation="doAction(players.Player):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="25"/>  
+  </message>  
+  <message id="26" operation="navigatorException(players.Player):players.Player" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="27"/>  
+  </message>  
+  <message id="28" operation="ArrayList()" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="29"/>  
+  </message>  
+  <message id="30" operation="getMoveCheck(players.Player):java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="31"/>  
+  </message>  
+  <message id="32" operation="getMoveOtherCheck(players.Player,players.Player):java.util.ArrayList&lt;Tile&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="33"/>  
+  </message>  
+  <message id="34" operation="printTileList(java.util.ArrayList&lt;elements.board.Tile&gt;):void" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="35"/>  
+  </message>  
+  <message id="36" operation="numbers(mechanics.Scan,int,int):int" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="37" operation="size():int" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="38"/>  
+  </message>  
+  <message id="39" operation="move(players.Player,elements.board.Tile):elements.board.Tile" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="40"/>  
+  </message>  
+  <message id="41" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="42"/>  
+  </message>  
+  <message id="43" operation="println(java.lang.String):void" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="44"/>  
+  </message>  
+  <message id="45" operation="getPlayers():java.util.ArrayList&lt;Player&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="46"/>  
+  </message>  
+  <message id="47" operation="printPlayerList(java.util.ArrayList&lt;players.Player&gt;,players.Player):void" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="48"/>  
+  </message>  
+  <message id="49" operation="numbers(mechanics.Scan,int,int):int" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="50" operation="size():int" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="51"/>  
+  </message>  
+  <message id="52" operation="getPlayers():java.util.ArrayList&lt;Player&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="53"/>  
+  </message>  
+  <message id="54" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="55"/>  
+  </message>  
+  <message id="61" operation="checkIndex(int,int):int" asynchronous="false">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="62"/>  
+  </message>  
+  <message id="63" operation="elementData(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="64"/>  
+  </message>  
+  <message id="67" operation="getPawn():elements.pawns.Pawn" asynchronous="false">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="68" operation="moveCheck():java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="69"/>  
+  </message>  
+  <message id="70" operation="getPawn():elements.pawns.Pawn" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="71"/>  
+  </message>  
+  <message id="72" operation="getPawn():elements.pawns.Pawn" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="73"/>  
+  </message>  
+  <message id="74" operation="moveOtherCheck(elements.pawns.Pawn):java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="75"/>  
+  </message>  
+  <message id="76" operation="getPawn():elements.pawns.Pawn" asynchronous="false">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="19"/>  
+  </message>  
+  <message id="77" operation="move(elements.board.Tile):void" asynchronous="false">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="78"/>  
+  </message>  
+  <message id="79" operation="getPawn():elements.pawns.Pawn" asynchronous="false">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="80" operation="getTile():elements.board.Tile" asynchronous="false">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="81"/>  
+  </message>  
+  <message id="87" operation="getAdjacent():java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="75"/>    
+    <end type="TARGET" refId="88"/>  
+  </message>  
+  <message id="91" operation="getAdjacent():java.util.ArrayList&lt;Tile&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="69"/>    
+    <end type="TARGET" refId="92"/>  
+  </message>
+</sequence-diagram>
