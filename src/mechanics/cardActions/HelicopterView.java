@@ -63,7 +63,7 @@ public class HelicopterView {
 			}
 			
 			// if they want to leave
-			if (input == possibleTiles.size()+1) { 			// TODO could check automatically ?? 
+			if (input == possibleTiles.size()+1) { 		 
 				boolean leaving = hController.tryLeave();
 				if(leaving == false) {
 					System.out.println("Conditions not met for leaving! Enter another number to fly to a tile, or 0 to cancel.");

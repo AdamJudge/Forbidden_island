@@ -11,7 +11,6 @@ import org.junit.Test;
 import elements.board.Board;
 import elements.board.Difficulty;
 import elements.board.Tile;
-import elements.board.TileStatus;
 import elements.board.WaterLevel;
 import elements.cards.*;
 
@@ -21,12 +20,19 @@ import org.junit.After;
 import mechanics.GamePlay;
 import mechanics.Scan;
 import mechanics.TurnView;
-import mechanics.ViewInputTools;
 import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 import elements.pawns.*;
 
+/**
+ * TurnTest
+ * 
+ * test turn behaviour. We assume actions are tested in relevant tests, this only tests the number of actions done in turns
+ * 
+ * @author Catherine Waechter
+ *
+ */
 public class TurnTest {
 
 	private Player engPlayer, navPlayer, expPlayer, divPlayer, pilPlayer, mesPlayer;
@@ -286,10 +292,6 @@ public class TurnTest {
 		}
 	}
 
-	
-
-
-	
 	@After
 	public void tearDown() {
 		PlayerList.getInstance().tearDown();

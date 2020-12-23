@@ -21,6 +21,14 @@ import mechanics.cardActions.PlayCardView;
 import mechanics.setup.Setup;
 import players.*;
 
+/**
+ * PlayerTests
+ * 
+ * test full hand behaviour
+ * 
+ * @author Catherine Waechter
+ *
+ */
 public class PlayerTests {
 
 	@Before 
@@ -28,6 +36,12 @@ public class PlayerTests {
 		Setup.setupOnly();
 	}
 	
+	/**
+	 * fullHandTest
+	 * 
+	 * check that hand hand does not allow 6 cards 
+	 * input used to discard card when prompted
+	 */
 	@Test
 	public void fullHandtest()   {
 		

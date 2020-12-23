@@ -1,7 +1,11 @@
+package players;
+
+import elements.pawns.Pawn;
+
 /**
  * Class Name: Player
  *
- * DETAILS
+ * Represents a player. Player has a hand and a pawn
  * 
  * Author: @author Adam Judge , Catherine Waechter
  * Version: @version 1.3
@@ -10,10 +14,6 @@
  * Creation Date: 22/10/20
  * Last Modified: 03/12/20
  */
-
-package players;
-
-import elements.pawns.Pawn;
 
 public class Player {
 	protected String name;
