@@ -239,10 +239,12 @@ public class TurnView {
 			if(GiveCardView.getInstance().doAction(currentPlayer)) {
 				return 1;
 			}
+			break;
 		case 4:
 			if(ClaimTreasureView.getInstance().doAction(currentPlayer)) {
 				return 1;
 			}
+			break;
 		case 5:														// End turn - return -1 to signify all actions should be used at once
 			return -1;
 		case 6:														// 	playing a card never uses an action (doesn't matter if played or cancelled)
