@@ -158,12 +158,15 @@ public class TurnView {
 		boolean playable = false;
 		for(int i = 0; i<2; i++) {	// draw 2 treasure cards
 			cardDrawn = controller.drawTreasureCard(currentPlayer);
-			if(cardController.playable(cardDrawn)){ 	// check if either card is playable	
+			// check if either card is playable	
+			// check if card is still in hand. If hand became full, it would prompt to use it already
+			if(cardController.playable(cardDrawn) && controller.getHandCards(currentPlayer).contains(cardDrawn)){ 	
 				playable = true;
 			}
 			System.out.println(currentPlayer + " drew a " + cardDrawn + " card.");
 		}
 		System.out.println("Your cards are : " + controller.getHand(currentPlayer));	// print updated hand
+		
 		return playable;
 	}
 	
