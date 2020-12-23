@@ -17,7 +17,7 @@ import elements.cards.TreasureDeck;
 import elements.cards.TreasureDiscard;
 import mechanics.Scan;
 import mechanics.ViewInputTools;
-import mechanics.actions.PlayCardView;
+import mechanics.cardActions.PlayCardView;
 import players.PlayerList;
 
 public class UserInputTest {
@@ -46,19 +46,6 @@ public class UserInputTest {
 		
 		assertEquals("Input should not contain numbers", "Adam", output);
 	}
-	
-	@Test
-	public void stringInputBlank()  {
-		String input = "  ";
-		InputStream in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		Scan.getInstance().setScanner(new Scanner(in));
-		
-		String output = ViewInputTools.letters(Scan.getInstance());
-		
-		assertEquals("Input should not contain numbers", " ", output);
-	}
-	
 	
 	@Test
 	public void stringInputWithNumber()  {
