@@ -88,7 +88,7 @@ public class SwimTests {
 	}
 	
 	//Flood tile setup
-	public void sunkenTileSetupDiverOnlySurvivable() {
+	public void sunkenTileSetupExplorerDiverOnlySurvivable() {
 		int[] floodMe = new int[] {3,7,9,10,14,16};
 		for (int i:floodMe) {
 			sortedTiles.get(i).remove();
@@ -96,6 +96,16 @@ public class SwimTests {
 		System.out.println(testBoard.toString());
 	}
 	
+	//Flood tile setup, remove all but tile players are on and bottom corner tile
+	public void sunkenTileSetupDiverOnlySurvivable() {
+		int[] floodMe = new int[] {0,1,2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22};
+		for (int i:floodMe) {
+			sortedTiles.get(i).remove();
+		}
+		System.out.println(testBoard.toString());
+	}
+
+
 	@Test
 	public void normalPawnSwimCheck_Success() {
 		player1.setPawn(new Engineer());
@@ -108,13 +118,9 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		cardController.floodTile(new FloodCard(startingTile));
-		cardController.floodTile(new FloodCard(startingTile));
-		Tile finalTile = player1.getPawn().getTile();	//Engineer
-
-		System.out.println(testBoard.toString());
-		//Player has now swam, check tile is different
-		assertNotEquals("Player has swam from sunken tile", startingTile, finalTile);
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Swim check should return tiles, pawn will not drown", noSwimTiles);
 		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
 	}
 
@@ -130,13 +136,9 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		cardController.floodTile(new FloodCard(startingTile));
-		cardController.floodTile(new FloodCard(startingTile));
-		Tile finalTile = player1.getPawn().getTile();	//Engineer
-
-		System.out.println(testBoard.toString());
-		//Player has now swam, check tile is different
-		assertNotEquals("Player has swam from sunken tile", startingTile, finalTile);
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Swim check should return tiles, Diver will not drown", noSwimTiles);
 		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
 	}
 
@@ -153,13 +155,9 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		cardController.floodTile(new FloodCard(startingTile));
-		cardController.floodTile(new FloodCard(startingTile));
-		Tile finalTile = player1.getPawn().getTile();	//Engineer
-
-		System.out.println(testBoard.toString());
-		//Player has now swam, check tile is different
-		assertNotEquals("Player has swam from sunken tile", startingTile, finalTile);
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Swim check should return tiles, Pawn will not drown", noSwimTiles);
 		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
 	}
 
@@ -177,39 +175,94 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		cardController.floodTile(new FloodCard(startingTile));
-		System.out.println(testBoard.toString());
-
-		cardController.floodTile(new FloodCard(startingTile));
-		Tile finalTile = player1.getPawn().getTile();	//Engineer
-
-		System.out.println(testBoard.toString());
-		//Player has now swam, check tile is different
-		assertNotEquals("Player has swam from sunken tile", startingTile, finalTile);
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Swim check should return tiles, Diver will not drown", noSwimTiles);
 		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
 	}
 	
+	//Normal pawn will drown
 	@Test
-	public void sunkenPawnSwimCheck2_Success() {
-		sunkenTileSetupDiverOnlySurvivable();
+	public void sunkenPawnSwimCheck2_Failure() {
+		sunkenTileSetupExplorerDiverOnlySurvivable();
 		player1.setPawn(new Engineer());
 		moveToCenter();
 		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
 		
 		//Pawn should be able to swim to only remaining adjacent tile
-		String input = " ";
+		String input = "";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 	
-		//TODO using this setup is valid for all change to this!
 		player1.getPawn().getTile().remove();
-		assertTrue("Swim check should return no tiles, player would drown and game ends", player1.getPawn().swimCheck().isEmpty());
-		System.out.println(testBoard.toString());
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		System.out.println(noSwimTiles);
+		assertTrue("Swim check should return no tiles, player would drown and game ends", noSwimTiles);
 	}
 
+	//Explorer can escape diagonally
+	@Test
+	public void sunkenExlporerSwimCheck2_Success() {
+		sunkenTileSetupExplorerDiverOnlySurvivable();
+		player1.setPawn(new Explorer());
+		moveToCenter();
+		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
+		
+		//Pawn should be able to swim to only remaining adjacent tile
+		String input = "1";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+	
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Swim check should return tiles, Explorer escapes diagonally", noSwimTiles);
+		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
+	}
 	@Test
 	public void sunkenDiverSwimCheck2_Success() {
+		sunkenTileSetupExplorerDiverOnlySurvivable();
+		player1.setPawn(new Diver());
+		moveToCenter();
+		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
+		
+		//Pawn should be able to swim to only remaining adjacent tile
+		String input = "1";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+		
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Swim check should return tiles, Diver will not drown", noSwimTiles);
+		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
+	}
+		
+	///////////////////////////////////
+	// All pawns should drown with final setup 
+	// Explorer can escape diagonally
+	@Test
+	public void sunkenExlporerSwimCheck2_Failure() {
+		sunkenTileSetupDiverOnlySurvivable();
+		player1.setPawn(new Explorer());
+		moveToCenter();
+		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
+		
+		//Pawn should be able to swim to only remaining adjacent tile
+		String input = "1";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		Scan.getInstance().setScanner(new Scanner(in));
+	
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertTrue("Swim check should not return tiles, Explorer will drown", noSwimTiles);
+	}
+	
+	//Diver can always escape if there is only one tile remaining
+	@Test
+	public void sunkenDiverSwimCheck3_Success() {
 		sunkenTileSetupDiverOnlySurvivable();
 		player1.setPawn(new Diver());
 		moveToCenter();
@@ -221,18 +274,11 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		cardController.floodTile(new FloodCard(startingTile));
-		System.out.println(testBoard.toString());
-
-		cardController.floodTile(new FloodCard(startingTile));
-		Tile finalTile = player1.getPawn().getTile();	//Engineer
-
-		System.out.println(testBoard.toString());
-		//Player has now swam, check tile is different
-		assertNotEquals("Player has swam from sunken tile", startingTile, finalTile);
+		player1.getPawn().getTile().remove();
+		boolean noSwimTiles = player1.getPawn().swimCheck().isEmpty();
+		assertFalse("Diver will always swim to the only remaining tile", noSwimTiles);
 		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
 	}
-		
 	
 	@After
 	public void tearDown() {
