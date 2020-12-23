@@ -1,7 +1,6 @@
 package mechanics.cardActions;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import elements.board.Board;
 import elements.board.Tile;
@@ -21,6 +20,7 @@ public class CardActionController {
 	private MoveController moveController;
 	private HelicopterView hView;
 	private SandbagsView sView;
+	private PlayCardView playCardView;
 	
 	
 	public void playCard(Card card, Player player) {
@@ -49,6 +49,11 @@ public class CardActionController {
 		}
 		return false;
 	}
+	
+	public void doPlayCard(Player player) {
+		playCardView.doAction(player);
+	}
+	
 	
 	/**
 	 * floodTile
@@ -102,10 +107,11 @@ public class CardActionController {
 	
 
 	
-	public void setup(HelicopterView hView, SandbagsView sView, MoveController moveController) {
+	public void setup(HelicopterView hView, SandbagsView sView, PlayCardView playCardView, MoveController moveController) {
 		this.moveController = moveController;
 		this.hView = hView;
 		this.sView = sView;
+		this.playCardView = playCardView;
 	}
 	
 	/**
