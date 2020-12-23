@@ -23,10 +23,7 @@
   <packagedElement xmi:type="uml:UseCase" xmi:id="_AeCf0EU6EeuG-PHZ-V-DFg" name="PlayerSetup">
     <include xmi:type="uml:Include" xmi:id="_o2ULIEU6EeuG-PHZ-V-DFg" addition="_bPKY8EU6EeuG-PHZ-V-DFg"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_bPKY8EU6EeuG-PHZ-V-DFg" name="SetupPawns">
-    <include xmi:type="uml:Include" xmi:id="_p6-GEEU6EeuG-PHZ-V-DFg" addition="_1yjNgEU5EeuG-PHZ-V-DFg"/>
-    <include xmi:type="uml:Include" xmi:id="_r9R8EEU6EeuG-PHZ-V-DFg" addition="_-PRiMEU5EeuG-PHZ-V-DFg"/>
-  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_bPKY8EU6EeuG-PHZ-V-DFg" name="SetupPawns"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_NtZAkEU7EeuG-PHZ-V-DFg" name="SetupWaterLevel"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_28dNIEU_EeuG-PHZ-V-DFg" name="GameSetup">
     <include xmi:type="uml:Include" xmi:id="_8bNU0EU_EeuG-PHZ-V-DFg" addition="_NtZAkEU7EeuG-PHZ-V-DFg"/>
