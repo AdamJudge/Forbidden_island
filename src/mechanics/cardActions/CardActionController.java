@@ -113,6 +113,18 @@ public class CardActionController {
 		return false;
 	}
 	
+	public boolean anyPlayable() {
+		for(Player player : PlayerList.getInstance().getPlayers()) {
+			for(Card card : player.getHand().getCards()) {
+				if(playable(card)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	
 	/**
 	 * doPlayCard
 	 * prompts the playCardView
