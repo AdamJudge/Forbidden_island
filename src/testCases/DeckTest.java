@@ -2,22 +2,26 @@ package testCases;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.Set;
 import java.util.HashSet;
 import elements.cards.*;
 import elements.treasures.*;
-import mechanics.setup.GameSetup;
+import mechanics.setup.Setup;
 import elements.board.Board;
-import elements.board.TileNames;
 import elements.board.Tile;
 import elements.board.TileStatus;
 
 public class DeckTest {
 
+	@Before
+	public void setup() {
+		Setup.setupOnly();
+	}
+	
 	@Test
 	public void treasureDeckContents() {
 		
@@ -100,10 +104,6 @@ public class DeckTest {
 
 	@Test
 	public void drawFloodCard() {
-		
-		FloodDeck.getInstance().tearDown();
-		FloodDiscard.getInstance().tearDown();
-		Board.getInstance().tearDown();
 		
 		FloodDeck fdeck = FloodDeck.getInstance();
 		FloodDiscard fdiscard = FloodDiscard.getInstance();

@@ -16,9 +16,7 @@ import elements.cards.FloodCard;
 import elements.pawns.*;
 import mechanics.GamePlay;
 import mechanics.Scan;
-import mechanics.actions.ActionController;
-import mechanics.actions.MoveView;
-import mechanics.cardActions.FloodTileView;
+import mechanics.cardActions.CardActionController;
 import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;
@@ -29,6 +27,7 @@ public class SwimTests {
 	private List<Tile> sortedTiles = new ArrayList<Tile>();
 	private Player player1, player2, player3, player4;
 	private Tile startingTile;
+	private CardActionController  cardController; // TODO Adam - I think this is okay? avoids having to get instance all the time (get instance in setup)
 
 	
 	@Before
@@ -47,6 +46,7 @@ public class SwimTests {
 		player1.getPawn().toInitialTile();
 		player1.setHand(new Hand());
 		Setup.setupOnly();
+		cardController = CardActionController.getInstance(); 	
 		
 		//Move player to center tile
 		for (Tile t:sortedTiles) {
@@ -101,8 +101,8 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
+		cardController.floodTile(new FloodCard(startingTile));
 		Tile finalTile = player1.getPawn().getTile();	//Engineer
 
 		System.out.println(testBoard.toString());
@@ -123,8 +123,8 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
+		cardController.floodTile(new FloodCard(startingTile));
 		Tile finalTile = player1.getPawn().getTile();	//Engineer
 
 		System.out.println(testBoard.toString());
@@ -146,8 +146,8 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
+		cardController.floodTile(new FloodCard(startingTile));
 		Tile finalTile = player1.getPawn().getTile();	//Engineer
 
 		System.out.println(testBoard.toString());
@@ -169,10 +169,10 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
 		System.out.println(testBoard.toString());
 
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
 		Tile finalTile = player1.getPawn().getTile();	//Engineer
 
 		System.out.println(testBoard.toString());
@@ -213,10 +213,10 @@ public class SwimTests {
 		System.setIn(in);
 		Scan.getInstance().setScanner(new Scanner(in));
 		
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
 		System.out.println(testBoard.toString());
 
-		FloodTileView.floodTile(new FloodCard(startingTile), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(startingTile));
 		Tile finalTile = player1.getPawn().getTile();	//Engineer
 
 		System.out.println(testBoard.toString());

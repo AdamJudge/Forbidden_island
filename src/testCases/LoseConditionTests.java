@@ -15,8 +15,7 @@ import elements.pawns.Engineer;
 import elements.pawns.Explorer;
 import elements.pawns.Navigator;
 import mechanics.GamePlay;
-import mechanics.actions.ActionController;
-import mechanics.cardActions.FloodTileView;
+import mechanics.cardActions.CardActionController;
 import mechanics.setup.ObserverSetup;
 import mechanics.setup.Setup;
 import observers.PawnObserver;
@@ -31,6 +30,7 @@ public class LoseConditionTests {
 	private Player player1, player2, player3, player4;
 	private PlayerList playerList;
 	private GamePlay gp;
+	private CardActionController cardController;
 	
 	@Before
 	public void setup() {
@@ -39,6 +39,7 @@ public class LoseConditionTests {
 		wl.setDifficulty(Difficulty.LEGENDARY);
 		boardTiles = testBoard.getSortedTiles();
 		Setup.setupOnly();
+		cardController = CardActionController.getInstance();
 		
 		//Setup Players
 		player1 = new Player("player 1");
@@ -89,11 +90,11 @@ public class LoseConditionTests {
 	// If fools landing sinks game is over
 	@Test
 	public void foolsLandingRemoved() {
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.FOOLS_LANDING)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.FOOLS_LANDING)));
 		//Flood Tile
 		assertFalse("Game should not be over with a flooded fools landing", gp.getGameOver());
 		//Remove Tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.FOOLS_LANDING)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.FOOLS_LANDING)));
 		assertTrue("Game should end as fools landing has sunken", gp.getGameOver());
 	}
 	
@@ -102,52 +103,52 @@ public class LoseConditionTests {
 	@Test
 	public void oceanTilesRemoved() {
 		//Remove first treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.CORAL_PALACE)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.CORAL_PALACE)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.CORAL_PALACE)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.CORAL_PALACE)));
 		assertFalse("Game should not be over with only one treasure tile removed", gp.getGameOver());
 		
 		//Remove Second treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.TIDAL_PALACE)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.TIDAL_PALACE)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.TIDAL_PALACE)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.TIDAL_PALACE)));
 		assertTrue("Game should end as both treasure tiles have sunken", gp.getGameOver());
 	}
 	
 	@Test
 	public void earthTilesRemoved() {
 		//Remove first treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_MOON)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_MOON)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_MOON)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_MOON)));
 		assertFalse("Game should not be over with only one treasure tile removed", gp.getGameOver());
 		
 		//Remove Second treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_SUN)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_SUN)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_SUN)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.TEMPLE_OF_THE_SUN)));
 		assertTrue("Game should end as both treasure tiles have sunken", gp.getGameOver());
 	}
 	
 	@Test
 	public void windTilesRemoved() {
 		//Remove first treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.HOWLING_GARDEN)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.HOWLING_GARDEN)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.HOWLING_GARDEN)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.HOWLING_GARDEN)));
 		assertFalse("Game should not be over with only one treasure tile removed", gp.getGameOver());
 		
 		//Remove Second treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.WHISPERING_GARDEN)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.WHISPERING_GARDEN)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.WHISPERING_GARDEN)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.WHISPERING_GARDEN)));
 		assertTrue("Game should end as both treasure tiles have sunken", gp.getGameOver());
 	}
 	
 	@Test
 	public void fireTilesRemoved() {
 		//Remove first treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_EMBERS)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_EMBERS)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_EMBERS)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_EMBERS)));
 		assertFalse("Game should not be over with only one treasure tile removed", gp.getGameOver());
 		
 		//Remove Second treasure tile
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_SHADOWS)), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_SHADOWS)), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_SHADOWS)));
+		cardController.floodTile(new FloodCard(getTile(TileNames.CAVE_OF_SHADOWS)));
 		assertTrue("Game should end as both treasure tiles have sunken", gp.getGameOver());
 	}
 	
@@ -210,18 +211,18 @@ public class LoseConditionTests {
 		player2.getPawn().move(testBoard.getSortedTiles().get(0));
 		System.out.println(testBoard.toString());
 		// Remove tile to right of player
-		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())));
+		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(1).getName())));
 		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
 
 		// Remove tile below player. Player will have nowhere to swim to if tile is removed
-		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())));
+		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(3).getName())));
 		assertFalse("Game is not over before player drowns", GamePlay.getInstance().getGameOver());
 
 		// Remove tile player is standing on
-		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())), ActionController.getInstance());
-		FloodTileView.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())), ActionController.getInstance());
+		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())));
+		cardController.floodTile(new FloodCard(getTile(testBoard.getSortedTiles().get(0).getName())));
 		assertTrue("The player should have no tiles available to swim to and will drown", player2.getPawn().swimCheck().isEmpty());
 		assertTrue("Game is over if player drowns", GamePlay.getInstance().getGameOver());
 	}
