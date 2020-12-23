@@ -84,8 +84,6 @@ public class WinConditionTests {
 	
 	public void captureTreasures(TreasureNames treasureName) {
 		testBoard.getTreasures().get(treasureName).captureTreasure();
-		System.out.println(testBoard.getTreasures().get(treasureName).getName().toString());
-		System.out.println(testBoard.getTreasures().get(treasureName).isCaptured());
 	}
 	
 	@Test
@@ -102,7 +100,6 @@ public class WinConditionTests {
 		captureTreasures(TreasureNames.OCEAN_CHALICE);
 		captureTreasures(TreasureNames.STATUE_OF_THE_WIND);
 		
-		//System.out.println(testBoard.toString());
 		givePlayerHelicopter(player1);
 		String input = "1 24";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
