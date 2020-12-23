@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import elements.board.*;
-import elements.cards.FloodCard;
 import elements.cards.FloodDeck;
 import elements.cards.FloodDiscard;
 import elements.cards.TreasureDeck;
@@ -21,7 +20,6 @@ import elements.pawns.*;
 import mechanics.GamePlay;
 import mechanics.Scan;
 import mechanics.cardActions.PlayCardView;
-import mechanics.cardActions.CardActionController;
 import mechanics.setup.Setup;
 import players.Hand;
 import players.Player;
@@ -32,7 +30,6 @@ public class SwimTests {
 	private List<Tile> sortedTiles = new ArrayList<Tile>();
 	private Player player1;
 	private Tile startingTile;
-	private CardActionController  cardController; 
 
 	
 	@Before
@@ -45,13 +42,11 @@ public class SwimTests {
 		player1 = new Player("player 1");
 		PlayerList.getInstance().addPlayer(player1);
 
-		//Normal pawns movement abilities
+		//Initial pawn set to place on board
 		player1.setPawn(new Engineer());
-		
 		player1.getPawn().toInitialTile();
 		player1.setHand(new Hand());
 		Setup.setupOnly();
-		cardController = CardActionController.getInstance(); 	
 		PlayCardView.getInstance();
 		
 		//Move player to center tile
@@ -239,9 +234,7 @@ public class SwimTests {
 		assertFalse("Game is not over as player does not drown", GamePlay.getInstance().getGameOver());
 	}
 		
-	///////////////////////////////////
-	// All pawns should drown with final setup 
-	// Explorer can escape diagonally
+	// Explorer will drown as all surrounding tiles removed
 	@Test
 	public void sunkenExlporerSwimCheck2_Failure() {
 		sunkenTileSetupDiverOnlySurvivable();
@@ -260,7 +253,7 @@ public class SwimTests {
 		assertTrue("Swim check should not return tiles, Explorer will drown", noSwimTiles);
 	}
 	
-	//Diver can always escape if there is only one tile remaining
+	//Diver can escape if there is only one tile remaining
 	@Test
 	public void sunkenDiverSwimCheck3_Success() {
 		sunkenTileSetupDiverOnlySurvivable();
