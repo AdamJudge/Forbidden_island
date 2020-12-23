@@ -4,8 +4,6 @@ import elements.treasures.*;
 import observers.Subject;
 
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 
 /**

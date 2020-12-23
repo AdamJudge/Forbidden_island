@@ -2,7 +2,6 @@ package elements.cards;
 
 import java.util.Stack;
 import java.util.Map;
-import java.io.IOException;
 
 import elements.board.Board;
 import elements.treasures.*;
