@@ -7,13 +7,15 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 	SetupTest.class,
-    BoardTest.class, 
-    CaptureTreasure.class,
+	BoardTest.class, 
+	CaptureTreasure.class,
     DeckTest.class,
+    TurnTest.class,
     GiveCardTests.class,
     LoseConditionTests.class,
     MovementTests.class,
     PlayableCardsTest.class,
+    WatersRiseTest.class,
     PlayerTests.class,
     ShoreUpTests.class,
     SwimTests.class,
