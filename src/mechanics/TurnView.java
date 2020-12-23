@@ -52,13 +52,16 @@ public class TurnView {
 			return;
 		}
 		
-		// TODO play card? 
+		System.out.println("You've completed all your actions, but someone can still play a card. Would anyone like to do so? [y/n]");
+		if(ViewInputTools.yesNo(user)) {
+			cardController.doPlayCard(null);	
+		}
 		
 		boolean playable = drawTreasureCards();
 		if(playable) {
 			System.out.println("You drew a playable card! Would you like to play it? [y/n]");
 			if(ViewInputTools.yesNo(user)) {
-				PlayCardView.getInstance().doAction(player);
+				cardController.doPlayCard(player);
 			}
 		}
 		statusOK = !controller.gameOver();
@@ -74,7 +77,6 @@ public class TurnView {
 		controller.pilotReset(player); // checks if the player is a pilot, so can be called regardless
 	}
 		
-	
 	/**
 	 * doActions
 	 * Carry out 3 actions 
