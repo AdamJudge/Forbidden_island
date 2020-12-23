@@ -14,6 +14,20 @@ import mechanics.actions.MoveController;
 import players.Player;
 import players.PlayerList;
 
+/**
+ * CardActionController (Singleton, MVC)
+ * 
+ * Controller to handle card mechanics (playing cards, and flood cards being drawn)
+ * 
+ * @author Catherine Waechter
+ * @version 1.2
+ * 	Most methods used to be in other controllers or classes
+ * 	No longer contains helicopter methods
+ * 
+ * Date Created: 21/12/20
+ * Last modified: 23/12/20
+ *
+ */
 public class CardActionController {
 	
 	private static CardActionController cardController = null;
@@ -22,7 +36,13 @@ public class CardActionController {
 	private SandbagsView sView;
 	private PlayCardView playCardView;
 	
-	
+	/**
+	 * playCard
+	 * 	Play a player's card (sandbags or helicopter)
+	 * 
+	 * @param card
+	 * @param player
+	 */
 	public void playCard(Card card, Player player) {
 		if (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER) {
 			hView.play(card, player);
@@ -30,36 +50,6 @@ public class CardActionController {
 		else if(((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS) {
 			sView.play(player, card);
 		}
-	}
-	
-	public boolean playable(Card card) { 
-		
-		if(isHelicopter(card) || isSandbags(card)) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public boolean playable(ArrayList<Card> cards) { 
-		for(Card card : cards) {
-			if(playable(card)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void doPlayCard(Player player) {
-		playCardView.doAction(player);
-	}
-	
-	public boolean isHelicopter(Card card) {
-		return (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER );
-	}
-	
-	public boolean isSandbags(Card card) {
-		return ((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS;
 	}
 	
 	/**
@@ -96,6 +86,61 @@ public class CardActionController {
 	}
 	
 	/**
+	 * playable
+	 * @param card - single card
+	 * @return true if the card is playable (sandbags or helicopter)
+	 */
+	public boolean playable(Card card) { 
+		
+		if(isHelicopter(card) || isSandbags(card)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * playable
+	 * @param cards - list of cards
+	 * @return true if any card in the list is playable
+	 */
+	public boolean playable(ArrayList<Card> cards) { 
+		for(Card card : cards) {
+			if(playable(card)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * doPlayCard
+	 * prompts the playCardView
+	 * @param player
+	 */
+	public void doPlayCard(Player player) {
+		playCardView.doAction(player);
+	}
+	
+	/**
+	 * isHelicopter
+	 * @param card
+	 * @return true if the card is a helicopter
+	 */
+	public boolean isHelicopter(Card card) {
+		return (((TreasureCard)card).getCardType() == TreasureCardTypes.HELICOPTER );
+	}
+	
+	/**
+	 * isSandbags
+	 * @param card
+	 * @return true if the card is a sandbag
+	 */
+	public boolean isSandbags(Card card) {
+		return ((TreasureCard)card).getCardType() == TreasureCardTypes.SANDBAGS;
+	}
+	
+	/**
 	 * getFloodedTiles
 	 * 	returns list of tiles that can be shored up	 (For Sandbags View)
 	 * @return floodedTiles
@@ -113,7 +158,14 @@ public class CardActionController {
 	}
 	
 
-	
+	/**
+	 * setup
+	 * assign views
+	 * @param hView
+	 * @param sView
+	 * @param playCardView
+	 * @param moveController
+	 */
 	public void setup(HelicopterView hView, SandbagsView sView, PlayCardView playCardView, MoveController moveController) {
 		this.moveController = moveController;
 		this.hView = hView;

@@ -12,6 +12,19 @@ import elements.treasures.Treasure;
 import elements.treasures.TreasureNames;
 import players.Player;
 
+/**
+ * ClaimTreasureController (Singleton, MVC)
+ * 
+ * 	Controller to handle claiming treasures
+ * 	
+ * @author Catherine Waechter
+ * @version 1.0 
+ * 	Methods were originally in ActionController
+ * 
+ * Date Created: 23/12/20
+ * Last Modified: 23/12/20
+ *
+ */
 public class ClaimTreasureController {
 
 	private static ClaimTreasureController claimTreasureController = null;
